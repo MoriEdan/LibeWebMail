@@ -1,0 +1,257 @@
+{showpage:include/header}
+<script>
+function checkfn(count)
+{
+for(var i=0;i<count;i++)
+{
+document.getElementById('check'+i).checked='checked';
+//string+=document.getElementById('check'+i).value+",";
+}
+
+}
+function uncheckfn(count)
+{
+for(var i=0;i<count;i++)
+{
+document.getElementById('check'+i).checked='';
+//string=string.replace(",document.getElementById('check'+i).value,",",");
+}
+//alert(string);
+
+}
+
+function confirmationnew(count)
+{
+
+var string='';var ct=0;
+
+for(var i=0;i<count;i++)
+{
+
+if(document.getElementById('check'+i))
+   {
+       if(document.getElementById('check'+i).checked==true)
+        {
+           string+=document.getElementById('check'+i).value+",";
+           ct++;
+       }
+  }
+else
+break;
+}
+
+	if(ct==0)
+alert("Please select a contact.");
+else 
+{
+  var answer = confirm("You want to delete the user. Press OK to continue.")
+	if(answer)
+	{
+   window.location.href = "{url:(user/deleteuser/)}"+string;
+    }	
+}
+
+}
+
+
+function confirmation(p1)
+ {
+           var answer = confirm("You are about to delete this User. Press OK to continue.")
+           if (answer)
+            {
+                window.location.href = "{url:(user/deleteuser/)}"+p1+",";
+                
+            }
+
+}
+function confirmation2(p1)
+ {
+           var answer = confirm("You are about to block this User. Press OK to continue.")
+           if (answer)
+            {
+                window.location.href = "{url:(user/activateuser/)}"+p1;
+                
+            }
+
+}
+
+function display(execute)
+{
+if(execute==0)//for time period
+{
+
+var flag=document.getElementById('timeperiod').value;
+
+if(flag=="")
+{
+  window.location.href = "{url:(user/searchuser/)}"+flag+"/"+execute;
+}
+
+
+else if(flag=='today')
+{
+
+  window.location.href = "{url:(user/searchuser/)}"+flag+"/"+execute;
+  }
+  
+ else  if(flag=='lastweek')
+  {
+  window.location.href = "{url:(user/searchuser/)}"+flag+"/"+execute;
+  }
+  
+ else  if(flag=='lastmonth')
+  { 
+window.location.href = "{url:(user/searchuser/)}"+flag+"/"+execute;
+  }
+  
+  
+else  if(flag=='lastyear')
+  {  
+window.location.href = "{url:(user/searchuser/)}"+flag+"/"+execute;
+  }
+  
+  }
+  
+  else if(execute==1)//for searching particular user
+  {
+  var searchvalue=document.getElementById("searchusers").value;
+  var flag=document.getElementById('timeperiod').value;//time period
+  window.location.href = "{url:(user/searchuser/)}"+searchvalue+"/"+execute+"/"+flag;
+  }
+  
+  
+}
+
+function searchfn()
+{
+
+var searchvalue=document.getElementById("searchusers").value;
+if(searchvalue==""||searchvalue=="Search User")
+document.getElementById("searchusers").value="";
+}
+function displayfn()
+{
+var searchvalue=document.getElementById("searchusers").value;
+if(searchvalue==""||searchvalue=="Search User")
+document.getElementById("searchusers").value="Search User";
+}
+
+function searchingfn(evt)
+{
+
+var charCode = (evt.which) ? evt.which : event.keyCode;
+var searchvalue=document.getElementById("searchusers").value;
+if(searchvalue!="" && searchvalue!="Search User")
+{
+if(charCode==13 || charCode==1)//1 for button click 
+{
+display(1);
+
+}
+}
+}
+
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#B4CDCD";
+else
+
+document.getElementById(id).style.background="";
+}
+</script>
+<html><head></head>
+<body onLoad="displayfn()">
+<br> 
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/userheader}</td>
+
+  </tr>
+
+  </table>
+  
+<table cellpadding="0" cellspacing="0"  align="center" style="padding-left: 20px;padding-right:20px;padding-top: 0px;" width="98%">
+<tr>
+  <td height="20" colspan="4" align="center" ><div class="page_title">Please specify your user search criteria below </div></td> </tr>
+
+  <tr class="table_header">
+<td height="20" align="left"><span align="left" style="padding-left:10px">Time Period
+
+  <select id="timeperiod" name="timeperiod" onChange="display(0)">
+
+      <option value="" selected>All Time</option>
+
+        <option value="today" {if($time=="today")} selected {endif}>Today</option>
+
+        <option value="lastweek"{if($time=="lastweek")} selected {endif}>Last Week</option>
+
+        <option value="lastmonth" {if($time=="lastmonth")} selected {endif}>Last Month</option>
+
+        <option value="lastyear" {if($time=="lastyear")} selected {endif}>Last Year</option>
+
+        </select></span>
+</td>
+<td style="padding-left: 400px;" height="20">
+<span align="left" >Search User
+<input type="text" {if($searchuser!="")} value="{$searchuser}" {else} value="Search User" {endif} onclick="searchfn()" id="searchusers" onblur="displayfn()" onkeyup="searchingfn(event)">
+		
+		<a href="javascript:display(1)"><img src="images/searchi.png" align="top" border=""></a></span>
+</td></tr> 
+
+</table>
+
+{if($empty!='')}<br><br>
+<div align="center" class="info_div" >{$empty}</div><br>
+{else}
+
+<br>
+
+<table  width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:10px;" align="center">
+<tr><td>
+     {loopstart:users:1}
+			
+			<table cellpadding="0" cellspacing="0"  class="userview_table">  
+					  <tr class="table_header_tr" align="left"> 
+					  <td class="table_header_td" width="5%">&nbsp;</td> 	 
+						  <td width="35%">User Name </td>
+						 <td width="8%">Status</td>
+						  <td width="">Action </td>
+					  </tr>
+					  
+					  {loopend:users}
+					
+					{loopstart:users:100}
+					{if($portal_status==0)}
+					<tr {if($users % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:users})" id="{loop:users}" onmouseout="dispfn(1,{loop:users})">
+					<td class="detail_td"><input type="checkbox" name="check" id="check{loop:users}" value="{$users[0]}"/></td>
+					<td style="border-bottom: 1px solid #b7b5b3;"><a href="{url:(user/viewprofile/{$users[0]})}"  class="action2" title="{$users[3]}{cfn:getextension()}">{$users[1]}  {cfn:getuseridformat($users[0])}</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;"{if($users[2]==1)} class="enable"{endif}
+				 {if($users[2]==0)} class="disable" {endif}>{if($users[2]==1)}<img src="images/active.png" title="Active" alt="active">{else}<img src="images/blocked.png" title="Blocked" alt="blocked">{endif}</td>
+						<td class="border_bottomright"> {if($users[2]==1)}<a href="javascript:confirmation2({$users[0]})" class="action" title="Block user">Block</a>{else}<a href="{url:(user/activateuser/{$users[0]})}" class="action" title="Activate user">Activate</a>{endif} | <a href="javascript:confirmation({$users[0]})" class="action" title="Delete user">Delete</a>&nbsp;| <a href="{url:(user/viewprofile/{$users[0]})}" class="action" title="View user details">View Profile</a>&nbsp;| <a href="{url:(user/changepassword/{$users[0]})}" class="action" title="Change user password">Change Password</a>&nbsp;| <a href="{url:(user/statitics/{$users[0]})}" class="action" title="View user statistics">Statistics</a>&nbsp;| <a href="{url:(user/contacts/0/{$users[0]})}" class="action" title="View user statistics">Contacts</a>&nbsp;</td> 
+					  </tr>
+					  {else}
+					  <tr {if($users % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:users})" id="{loop:users}" onmouseout="dispfn(1,{loop:users})">
+					<td class="detail_td"><a href="{url:(user/viewprofile/{$users[0]})}"  class="action2" title="{$users[3]}{cfn:getextension()}">{$users[1]}  {cfn:getuseridformat($users[0])}</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;"{if($users[2]==1)} class="enable"{endif}
+				 {if(($users[2]==0)||($users[2]==5))} class="disable" {endif}>{if($users[2]==1)}<img src="images/active.png" title="Active" alt="active">{elseif($users[2]==0)}<img src="images/blocked.png" title="Blocked" alt="blocked">{else}deleted{endif}</td>
+						<td class="border_bottomright">  <a href="javascript:confirmation2({$users[0]})" class="action" title="Delete user">Delete</a>&nbsp;| <a href="{url:(user/viewprofile/{$users[0]})}" class="action" title="View user details">View Profile</a>&nbsp;| <a href="{url:(user/statitics/{$users[0]})}" class="action" title="View user statistics">Statistics</a>&nbsp;| <a href="{url:(user/contacts/0/{$users[0]})}" class="action" title="View user statistics">Contacts</a>&nbsp;</td> 
+					  </tr>
+					  {endif}
+					{loopend:users}
+
+</table>
+	<br />
+<tr><td class="left_td"><a href="#" class="action2" onclick="checkfn({$count});">Check All</a>&nbsp;|&nbsp;<a href="#" class="action2" onclick="uncheckfn({$count});">Uncheck All</a></td></tr>
+		<tr><td class="left_td"><br><a href="#" onclick="javascript:confirmationnew({$count})" ><img src="images/delete.gif" title="delete the contact" border=""/></a></td></tr>		
+<tr> <td align="center">		
+		
+			{noescape:$pagingtop}
+ </td></tr></table>
+ 	{endif}
+ <br><br><br>
+ </body>
+ </html>
+{showpage:include/footer}

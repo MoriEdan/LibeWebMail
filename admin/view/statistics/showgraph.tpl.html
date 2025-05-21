@@ -1,0 +1,107 @@
+{showpage:include/header}
+
+<script language='javascript' src='graph/FusionCharts/FusionCharts.js'></script>
+
+<script type="text/javascript">
+function showresult(id)
+{
+	if(id==0)
+	{
+	var flag="today";
+	var url="{url:(statistics/showgraph/)}"+flag;
+	}
+	else if(id==2)
+	{
+	var month=document.getElementById("month").value;
+	var year=document.getElementById("year").value;
+	
+	if((month!="" && year=="") || (month!="" && year!=""))
+	var flag="month";//current month
+	else if(month=="" && year!="")
+	var flag="year";//12 months
+	//else 
+	//var flag="all";//yearwise
+	
+	var url="{url:(statistics/showgraph/)}"+flag+"/"+month+"/"+year;
+	}
+	else
+	{
+	var flag="all";
+	var url="{url:(statistics/showgraph/)}"+flag;
+	}
+	window.location.href=url;
+	// $.ajax({ type:"GET", cache: false,
+		       //  url:"{url:(statistics/graph/)}"+flag,
+		      //   success: function(data)
+		      //  {
+		       //  
+		       // }
+		       // });
+
+}
+</script>
+<html><head></head>
+<body>
+
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/statisticsheader}</td>
+
+  </tr>
+
+  </table>	
+  <br><br>
+<table cellpadding="0" cellspacing="0"  align="center" style="padding-left: 20px;padding-right:20px;padding-top: 0px;" width="98%" border="0">
+
+<td align="center" class="page_title"><b>Logined User Statistics</b></td></tr>
+<td align="center" class="page_title">&nbsp;</td></tr>
+  <tr class="table_header">
+<td height="20" align="left">
+<span style="padding-left: 50px"><a href="javascript:showresult(0)" >Today</a></span>
+<span style="padding-left:20px"><a href="javascript:showresult(1)">All Time</a></span>
+<!--<span align="left" style="padding-left:10px">Time Period
+
+  <select id="timeperiod" name="timeperiod" onChange="display(0)">
+
+      <option value="" selected>All Time</option>
+
+        <option value="today" {if($time=="today")} selected {endif}>Today</option>
+
+        <option value="lastweek"{if($time=="lastweek")} selected {endif}>Last 7 days</option>
+        
+           </select></span>
+           <span align="right"><a href="#" onClick="show()">show</a></span>-->
+       <span  align="center" style="padding-left: 100px;float: right;">
+			<select name="month" id="month" >
+				<option value="" selected>Month</option>
+				{loopstart:month:100}
+				<option value="{$month[0]}" {if($setmonth==$month[0])} selected {endif}>{$month[1]}</option>
+				{loopend:month}
+			</select> 
+			
+			<select name="year" id="year" >
+				<option value="" selected>Year</option>
+				{loopstart:year:1000000}
+				<option value="{$year[0]}" {if($setyear==$year[0])} selected {endif}>{$year[0]}</option>
+				{loopend:year}
+			</select>
+			<input type="button" onclick="showresult(2)" value="show">
+			</span>
+		
+    
+       
+        
+</td>
+</tr>
+
+<tr><td>{showpage:statistics/graph/$show/$setmonth/$setyear}</td></tr>
+
+</table>
+
+</body>
+</html>
+{showpage:include/footer}

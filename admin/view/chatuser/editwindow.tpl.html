@@ -1,0 +1,108 @@
+{showpage:include/header}
+
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+	<tr align="center">
+
+		<td>{showpage:include/settingsheader}</td>
+
+	</tr>
+</table>
+
+<table width="93%" border="0" align="center" cellpadding="0"
+	cellspacing="0" class="userview_table">
+
+	<tr>
+		<td width="100%" align="center">
+		<table class="settings_table" cellpadding="0" cellspacing="0"
+			align="center" border="0">
+			<tr>
+				<td>&nbsp;</td>
+			<tr>
+				<td align="center">{loopstart:editwindow:10000000000}
+
+				<table cellpadding="0" cellspacing="0" width="80%" align="center"
+					border="0">
+
+
+					<tr>
+						<td class="page_title1" align="left" colspan="2">Edit Chat
+						Window</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					
+					{formstart:windowupdate:{url:(chatuser/updatewindow/{$id})}:post}
+					<tr>
+						<td>Name</td>
+						<td><input type="text" value="{$editwindow[1]}" name="name"
+							size="32" /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>Width</td>
+						<td><input type="text" value="{$editwindow[2]}"
+							name="width" size="32" /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>Height</td>
+						<td><input type="text" value="{$editwindow[3]}"
+							name="height" size="32" /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><input type="submit" name="submit" value="Update" /></td>
+					</tr>
+				{formend:windowupdate}
+				</table>
+
+
+				{loopend:editwindow}</td>
+			</tr>
+		</table>
+
+
+
+
+
+
+
+
+
+
+
+		</td>
+	</tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{showpage:include/footer}

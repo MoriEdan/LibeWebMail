@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE>Libe Web Mail Ultimate Readme :: Install &amp; Basic Customization</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.4  (Linux)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20090206;17380500">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 21cm 29.7cm }
+.style3 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.style4 {font-size: 24px}
+.style5 {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333333;
+}
+.style6 {
+	color: #330066;
+	font-weight: bold;
+}
+.style7 {color: #330066}
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-IN" BGCOLOR="#ccccff" DIR="LTR">
+<CENTER>
+	<TABLE WIDTH=95% BORDER=0 CELLPADDING=0 CELLSPACING=0 STYLE="page-break-before: always">
+		<COL WIDTH=256*>
+		<TR>
+		  <TD>&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		<TR>
+		  <TD>&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left" class="style5">Libe Web Mail- Readme </div></TD>
+	  </TR>
+		<TR>
+		  <TD>&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		<TR>
+			<TD WIDTH=5%>&nbsp;</TD>
+		    <TD WIDTH=2%>&nbsp;</TD>
+		    <TD WIDTH=93%><P align="left"><STRONG><FONT COLOR="#004080"> Hello and thank you for choosing Libe Web Mail</FONT></STRONG><br>
+		     <P align="left" class="style3">* If you want to upgrade version 2.0 to ultimate edition, please read <a href="Upgrade.html">Upgrade.html</a> <br></P>
+			 <P align="left" class="style3">To install the script, please follow the steps 1-7</P>
+            </TD>
+		</TR>
+		<TR>
+		  <TD>&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top"><div align="right">1.&nbsp;</div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD>Upload all files to your root directory or a new directory created inside your root directory in your webserver. </TD>
+	  </TR>
+		<TR>
+		  <TD valign="top">&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+	  </TR>
+		<TR>
+		  <TD valign="top"><div align="right">2.&nbsp;</div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD> <div align="left">Create a new MySQL database and assign a username and password to it.</div></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top">&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top"><div align="right">3.&nbsp;</div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD><P align="left">Open the
+		    file config/database.default.config.php and edit the settings
+		    inside to match your new MySQL    database. </P>
+		    <P align="left">The setting for &quot;localhost&quot; usually doesn't need to be
+		      changed but your host may have a different name for their MySQL
+		      server.</P>
+		    <P align="left">The settings for &quot;username&quot;, &quot;password&quot; and
+		      &quot;database name&quot; <EM><I>usually</I></EM> need to be
+		      entered like this in the database.default.config file. [If you
+		      need assistance most hosts will happily guide you.]</P>
+		    <P align="left">
+		      db_username</P>
+		    <P align="left"> db_password just as it is</P>
+	      <P align="left"> db_name - your database name where you want to store Libe webmail data;</P></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top">&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top"><div align="right">4.&nbsp;</div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD><P align="left">Open the file config/system.config.php and enter the
+		    license key</P>
+		    <P align="left"> Note<BR>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</P>
+		    <P align="left">You can generate the     license key after logging into the members area
+		      of liberyus.com. <BR>
+ 
+	        Please use your email address and the given password to login.</P>
+	      <P align="left">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</P></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top">&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		
+		<TR>
+		  <TD valign="top"><div align="right">5.&nbsp; </div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD>
+		    <div align="left">Change the
+	      permission of the folders 'attachments', userdata and 'admin/logo' to 777</div></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top">&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+	  </TR>
+		<TR>
+		  <TD height="55">&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD>
+<P><B>Note:</B> If you have cron job support in your server, you may create a cron job to run the file <b> cron/birthday.php</b> once in every day <br> and <b>cron/calendar.php</b> Once Every 5 minutes.<br>
+</P>
+</TD>
+		  </tr>
+		<TR>
+		  <TD valign="top">&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		
+		<TR>
+		  <TD valign="top"><div align="right">6.&nbsp;</div></TD>
+		   <TD>&nbsp;</TD>
+		  <TD><P align="left">Now, to install the script, please go to the following URL in your browser and follow the instructions mentioned in that page.<br>
+    http://www.yourdomain.com/[SCRIPTUPLOADPATH]/install/install.php<BR>
+  </P>
+		     <P align="left">&nbsp; </P>
+		    <P align="left">NOTE<BR>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</P>
+		    <P ALIGN=left>If
+		      you are getting any error message while trying to log in, saying
+		      some ion cube loader file is missing, please find the required
+		      file in the zip file
+		    http://www.liberyus.com/downloads/ioncube_loader_files.zip
+		      and upload to the 'ioncube' directory.<BR>
+			If you have any query, please contact our support desk. We will be
+		      glad to help you.</P>
+		    <P align="left">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</P>
+		    <P align="left">&nbsp;</P></TD>
+	  </TR>
+		
+		
+	  <TR>
+		  <TD height="55"><div align="right">7.&nbsp;</div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD>Delete the 'install' folder from the server for security reasons.</TD>
+	  </TR>
+		<TR>
+		  <TD height="55">&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><P align="left" class="style6">That's it! </P>
+		    <P align="left" class="style6">&nbsp;</P>
+		    <P align="left"><FONT COLOR="#000000">&nbsp;</FONT>Client Area : http://www.yourdomain.com/[SCRIPTUPLOADPATH]/</P>
+		    <P align="left"><span class="style7">Admin Area : http://www.yourdomain.com/[SCRIPTUPLOADPATH]/admin/</span></P>
+		  
+		    <P align="left">&nbsp;</P>
+		    <P align="left" LANG="en-US"><strong>Customization details</strong></P>
+		    <P align="left" LANG="en-US">The look and feel of any page can be easily modified by
+		      editing the template files in the 'view' folder.&nbsp; </P>
+			   
+		       
+		        <P align="left">&nbsp;</P>
+		    <P align="left" LANG="en-US"><strong>Monetize your site</strong></P>
+	      <P align="left">&nbsp;You may monetize your site mainly by three methods.</P></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top">&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top"><div align="right">1.</div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left">Using Google Adsense – You may partner with google and
+		      place ad codes in your template files so that you may start
+	      earning money immediately.   <script type="text/javascript"><!--
+google_ad_client = "pub-4694234101347250";
+google_ad_output = "textlink";
+google_ad_format = "ref_text";
+google_cpa_choice = "CAAQ1dLQgAIaCNCLSd3xhobkKN2uuIEB";
+google_ad_channel = "2037210659";
+//--></script>
+        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+        You may specify your Google Adsense Publisher code directly from your admin area. </div></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top"><div align="right"></div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		
+		<TR>
+		  <TD valign="top"><div align="right">2.</div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD> <div align="left">Using Libe Adserver – If you
+		      have libe adserver installed, then you may place ad codes in the
+		      template files to show your advertiser ads as like google
+		      adsense. To learn more about Libe Adserver, <A HREF="http://www.liberyus.com/products/adserver/">click
+          here</A>.</div></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top"><div align="right"></div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD><div align="left"></div></TD>
+	  </TR>
+		<TR>
+		  <TD valign="top"><div align="right">3.</div></TD>
+		  <TD>&nbsp;</TD>
+		  <TD> <div align="left">Partnering with Libescripts – You may
+		      configure your Libescripts affiliate ID in your admin area, so
+		      that an affiliate link will be displayed in your site footer. For
+		      each valid sales we'll give you a share of profit. To learn more
+		      about our affiliate program, <A HREF="http://www.liberyus.com/affiliate/">click
+		        here</A>. <BR>
+Note: If you want to remove the affiliate link from
+	      the site footer, you can do so by editing the footer template.</div></TD>
+	  </TR>
+		<TR>
+		  <TD WIDTH=5%>&nbsp;</TD>
+		  <TD>&nbsp;</TD>
+		  <TD><P align="left">&nbsp;</P>
+		    <P align="left"><BR>
+            ==================================================</P>
+		    <H1 align="left" class="style4" LANG="en-US">DISCLAIMER</H1>
+		    <P align="left" STYLE="text-decoration: none">&nbsp; </P>
+		    <P align="left"><SPAN STYLE="text-decoration: none"><B>By downloading and/or
+		      installing this script you accept all responsibility and
+		      liability without exception for all content displayed on the
+		      domain that uses this script, and you accept all the </B></SPAN><A HREF="http://www.liberyus.com/terms.php" TARGET="_blank">terms</A><SPAN STYLE="text-decoration: none"><B> of use without exception as given at our website </B></SPAN><A HREF="http://www.liberyus.com/" TARGET="_blank">Liberyus.com</A></P>
+		    <P align="left" STYLE="text-decoration: none">&nbsp; </P>
+		    <P align="left" STYLE="text-decoration: none">The licence granted is for
+		      single domain use only. You may create as many engines as you
+		      wish on a single domain. </P>
+		    <P align="left">&nbsp; </P>
+		    <P align="left">==================================================</P>
+		    <P align="left">Thanks and Regards,</P>
+		    <P align="left">Libescripts </P>
+	      <P align="left">support@liberyus.com</P></TD>
+	  </TR>
+		<TR>
+			<TD colspan="3">
+				<P>&nbsp;</P>			</TD>
+		</TR>
+		<TR>
+			<TD colspan="3">
+				<P>&nbsp;</P>			</TD>
+		</TR>
+	</TABLE>
+</CENTER>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

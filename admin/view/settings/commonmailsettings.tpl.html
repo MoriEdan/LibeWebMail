@@ -1,0 +1,54 @@
+{showpage:include/header}
+
+	<script type="text/javascript" src="js/nicEdit.js"></script>
+<script type="text/javascript">
+	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/settingsheader}</td>
+
+  </tr>
+
+  </table>	
+	{formstart:edit:{url:(settings/commonmailsettingsprocess)}:POST}
+	
+			<table class="fullwidth"  cellpadding="0" cellspacing="0" align="center" border="0">  
+			<tr><td colspan="2">&nbsp;</td></tr>
+				<tr>	
+				<td colspan="2" align="center" class="page_title">{showpage:include/emailsettingsheader}</td></tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr>	
+				<td colspan="2" align="center" class="page_title"><b>Common Mail</b></td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr><td style="padding-left: 60px"><b>Subject</b> </td><td><input style="width:380px" name="commonmailsubject" type="text" value="{$commonmailsubject}"></td></tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr><td style="padding-left: 60px"><b>Message</b> </td><td >
+				
+		
+					<textarea name="commonmailmessage" style="width: 100%;height: 300px;"  >{$commonmailmessage}</textarea>		
+			
+				 </td>
+				</tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				 <tr>
+				
+				<td></td><td colspan="" align=""><input type="submit" name="Update" value="Update">&nbsp;&nbsp;
+				<input type="submit" name="Send" value="Send" style="width: 75px;"></td>
+			</tr>	
+			<tr><td colspan="2">&nbsp;</td></tr>
+		   </table>
+		  		
+
+{validate:edit:isNotNull("commonmailsubject","Subject cannot be left blank.")}
+{validate:edit:isNotNull("commonmailmessage","Message cannot be left blank.")}
+{formend:edit}
+{showpage:include/footer}
+
+
+

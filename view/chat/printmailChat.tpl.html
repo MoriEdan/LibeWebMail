@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<title>{$subjtitle}</title>
+<style type="text/css">
+body { margin:10px}
+body, td{font-family:arial,sans-serif;font-size:13px} img{border:0px} pre { white-space: pre; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; white-space: pre-wrap; word-wrap: break-word; width: 800px; overflow: auto;}
+</style>
+<script>
+function Print(){document.body.offsetHeight;window.print()};
+</script>
+</head>
+<body onLoad="Print()">
+
+<div class="bodycontainer">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr height="14px">
+<td width="143">
+<img width="" height="" alt="{$servicename}" src="{$imgpath}">
+</td>
+<td align="right">
+<font size="-1" color="#777">
+<b> {$name} </b>
+</font>
+</td>
+</tr>
+</table>
+<hr>
+<div class="maincontent">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td>
+<font size="+1">
+<b>{noescape:$subj}</b>
+</font>
+<br>
+</td>
+</tr>
+</table>
+<hr>
+<table class="message" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td>
+<font size="-1">
+<b> {$from} </b>
+</font>
+</td>
+<td align="right">
+<font size="-1"> {noescape:$time1} </font>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<font class="recipient" size="-1">
+{if($to!="")}
+<div> {$to} </div>{endif}
+{if($cc!="")}
+<div> {$cc} </div>{endif}
+</font>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%" cellspacing="0" cellpadding="12" border="0">
+<tr>
+<td>
+{noescape:$body}
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+</body>
+</html>

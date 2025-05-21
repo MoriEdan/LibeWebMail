@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<!-- <link rel="stylesheet" href="style.php" >  -->
+<link rel="stylesheet" href="style1.css" type="text/css">
+
+<style type="text/css">
+
+</style>
+</head>
+<body   style="width: 300px;" border="0" cellpadding="0" cellspacing="0">
+
+
+<div >
+	<div id="preloadmail_image" style="display: none;"><img src="../images/loading.gif"></div>
+	<div id="preloadmail_div"  >
+		 
+		
+		<div class="mailBox">
+		
+		 
+		
+		{if($newmail==1)}
+				<div class="folderH">
+		<div class="folderLH"></div>
+		<div class="folderMH" align="left"><span id="heading" >{cfn:getmessage(470)}</span></div>
+		<div class="folderRH"></div>
+		</div>	
+		{formstart:newmail:{url:(mail/newmail)}:post}
+		<!-- <form name="replymail" id="replymail" enctype="multipart/form-data" method="POST"  action="{url:(mail/replymail/)}{$mail[0]}/{$folderid}" >
+		 --><div class="row marginL10">
+		<div class=""><span class="commonBtn"><input type="submit" name="send" value="{cfn:getmessage(37)}"  class="sendBtn"/></span><span class="commonBtn"><input type="submit" name="draft" value="{cfn:getmessage(36)}"  class="nosendBtn"/></span><span class="commonBtn">
+		{if($act=='m')}
+		<a href="{url:(mail/mailbox/)}{$fldr}/{$pge}" class=""/>
+		{elseif($act=='r')}
+		<a href="{url:(mail/detailmail/)}{$fldr}/{$pge}" class=""/>
+		{elseif($act=='d')}
+		<a href="{url:(mail/detailmail/)}{$fldr}/{$pge}" class=""/>
+		{endif}
+		{cfn:getmessage(59)}</a></span>
+	    </div>
+		</div>
+	
+	
+	<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum18 floatL"> <span class="boldTxt">{cfn:getmessage(31)}:</span></div>
+				<div class="coloum floatL" >
+					
+					<input autocomplete="off" type="text" name="to" id="to" value="" style="height: 15px;width: 270px;font-size: 12px;font-weight: 500;line-height: 20px;padding-left: 0px;" >
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum18 floatL"> <span class="boldTxt">{cfn:getmessage(32)}:</span></div>
+				<div class="coloum floatL" >
+					
+					<input autocomplete="off" type="text" name="cc" id="cc" value="" style="height: 15px;width: 270px;font-size: 12px;font-weight: 500;line-height: 20px;padding-left: 0px;" >
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum18 floatL"> <span class="boldTxt">{cfn:getmessage(33)}:</span></div>
+				<div class="coloum floatL" >
+					
+					<input autocomplete="off" type="text" name="bcc" id="bcc" value="" style="height: 15px;width: 270px;font-size: 12px;font-weight: 500;line-height: 20px;padding-left: 0px;" >
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum18 floatL"><span class="boldTxt">{cfn:getmessage(53)}:</span></div>
+				<div class="coloum floatR" >
+					
+					<input autocomplete="off" type="text" name="sub" id="sub" 	value="" style="height: 15px;width: 270px;font-size: 12px;font-weight: 500;line-height: 20px;padding-left: 0px;" >
+					
+				</div>
+			</div>
+		</div>
+		
+			
+	
+		<div class="row marginT10" >
+		<textarea name="body" style="width:295px;height:200px;background-color:#FFFFFF;">
+</textarea>
+</div>
+
+
+
+<div class="row marginL10">
+		<div class="row marginT10"><span class="commonBtn"><input type="submit" name="send" value="{cfn:getmessage(37)}"  class="sendBtn"/></span><span class="commonBtn"><input type="submit" name="draft" value="{cfn:getmessage(36)}"  class="nosendBtn"/></span><span class="commonBtn">
+		{if($act=='m')}
+		<a href="{url:(mail/mailbox/)}{$fldr}/{$pge}" class=""/>
+		{elseif($act=='r')}
+		<a href="{url:(mail/detailmail/)}{$fldr}/{$pge}" class=""/>
+		{elseif($act=='d')}
+		<a href="{url:(mail/detailmail/)}{$fldr}/{$pge}" class=""/>
+		{endif}
+		
+		
+		{cfn:getmessage(59)}</a></span>
+	    </div>
+		</div>
+	{formend:newmail}<br>
+	<div class="vertmenu">{if($more==0)}{showpage:mail/mailfooter1/$fid/r/$mail[0]/$action}{elseif($more==1)}{showpage:mail/mailfooter2/$fid/r/$mail[0]/$action}{endif}</div>
+{else}
+		
+		
+		{loopstart:mail:10000}
+		
+			<div class="mailBoxFooter" id="replyFooter1" > 
+			
+			<span class="mailBoxBM">
+				<div class="replyLink floatL"><img src="../images/filler.gif" alt="" border="0" align="absmiddle" class="iconsCornner reply-r" ><a href="{url:(mail/replylink/)}{$folderid}/{$mail[0]}/r">{cfn:getmessage(15)}</a> </div> 
+				<div class="replyLink floatL"><img src="../images/filler.gif" alt="" border="0" align="absmiddle" class="iconsCornner reply-a"><a href="{url:(mail/replylink/)}{$folderid}/{$mail[0]}/ra"> {cfn:getmessage(16)}</a> </div>
+				<div class="replyLink floatL"><img src="../images/filler.gif" alt="" border="0" align="absmiddle" class="iconsCornner reply-f"><a href="{url:(mail/replylink/)}{$folderid}/{$mail[0]}/f">{cfn:getmessage(17)}</a></div> 
+			 </span>  
+			
+		</div>
+		
+		{formstart:replymail:{url:(mail/replymail/)}{$mail[0]}/{$folderid}:post}
+		<!-- <form name="replymail" id="replymail" enctype="multipart/form-data" method="POST"  action="{url:(mail/replymail/)}{$mail[0]}/{$folderid}" >
+		 --><div class="row marginL10">
+		<div class=""><span class="commonBtn"><input type="submit" name="send" value="{cfn:getmessage(37)}"  class="sendBtn"/></span><span class="commonBtn"><input type="submit" name="draft" value="{cfn:getmessage(36)}"  class="nosendBtn"/></span><span class="commonBtn">
+		
+		<a href="{url:(mail/detailmail/)}{$fid}/{$mailid}" class=""/>
+		{cfn:getmessage(59)}</a></span>
+	    </div>
+		</div>
+	
+	
+	<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum18 floatL"> <span class="boldTxt">{cfn:getmessage(31)}:</span></div>
+				<div class="coloum floatL" >
+					
+					<input autocomplete="off" type="text" name="to" id="to" 	{if($action=="r")} value="{cfn:to($mail[2],$mail[3])}" {elseif($action=="ra")} value="{cfn:tolist($mail[2])}{cfn:tolist($mail[3])}" {else} value="" {endif} style="height: 15px;width: 270px;font-size: 12px;font-weight: 500;line-height: 20px;" >
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum18 floatL"> <span class="boldTxt">{cfn:getmessage(32)}:</span></div>
+				<div class="coloum floatL" >
+					
+					<input autocomplete="off" type="text" name="cc" id="cc" 	{if($action=="ra")} value="{$mail[4]}" {else} value="" {endif} style="height: 15px;width: 270px;font-size: 12px;font-weight: 500;line-height: 20px;" >
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum18 floatL"> <span class="boldTxt">{cfn:getmessage(33)}:</span></div>
+				<div class="coloum floatL" >
+					
+					<input autocomplete="off" type="text" name="bcc" id="bcc" value="" style="height: 15px;width: 270px;font-size: 12px;font-weight: 500;line-height: 20px;" >
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum18 floatL"> <span class="boldTxt">{cfn:getmessage(34)}:</span></div>
+				<div class="coloum floatL" >
+					
+					<input autocomplete="off" type="text" name="sub" id="sub" 	value="{cfn:pre($action)} {$mail[6]}" style="height: 15px;width: 270px;font-size: 12px;font-weight: 500;line-height: 20px;" >
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum18 floatL"> <span class="boldTxt">&nbsp;</span></div>
+				<div class="coloum floatL" >
+					<input type="checkbox" name="previousbody" value="" checked="checked" /><span style="font-size: 12px;font-weight: 500;line-height: 20px;vertical-align: text-top;">Include quoted text</span>
+					
+				</div>
+			</div>
+		</div>
+		
+	
+		<div class="row marginT10" >
+		<textarea name="newbody" id="newbody"	style="width:295px;height:200px;background-color:#FFFFFF;">
+</textarea>
+</div>
+
+
+
+<div class="row marginL10">
+		<div class="row marginT10"><span class="commonBtn"><input type="submit" name="send" value="{cfn:getmessage(37)}"  class="sendBtn"/></span><span class="commonBtn"><input type="submit" name="draft" value="{cfn:getmessage(36)}"  class="nosendBtn"/></span><span class="commonBtn">
+		<a href="{url:(mail/detailmail/)}{$fid}/{$mailid}" class=""/>{cfn:getmessage(59)}</a></span>
+	    </div>
+		</div>
+	{formend:replymail}
+<div class="mailBoxFooter" id="replyFooter1" > 
+			
+			<span class="mailBoxBM">
+				<div class="replyLink floatL"><img src="../images/filler.gif" alt="" border="0" align="absmiddle" class="iconsCornner reply-r" ><a href="{url:(mail/replylink/)}{$folderid}/{$mail[0]}/r">{cfn:getmessage(15)}</a> </div> 
+				<div class="replyLink floatL"><img src="../images/filler.gif" alt="" border="0" align="absmiddle" class="iconsCornner reply-a"><a href="{url:(mail/replylink/)}{$folderid}/{$mail[0]}/ra"> {cfn:getmessage(16)}</a> </div>
+				<div class="replyLink floatL"><img src="../images/filler.gif" alt="" border="0" align="absmiddle" class="iconsCornner reply-f"><a href="{url:(mail/replylink/)}{$folderid}/{$mail[0]}/f">{cfn:getmessage(17)}</a></div> 
+			 </span>  
+			
+		</div>
+		<div class="vertmenu">{if($more==0)}{showpage:mail/mailfooter1/$fid/r/$mail[0]/$action}{elseif($more==1)}{showpage:mail/mailfooter2/$fid/r/$mail[0]/$action}{endif}</div>
+{loopend:mail}
+{endif}
+</div><!-- end of mailBox-->
+
+</div>
+</div>
+</body>
+</html>

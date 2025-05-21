@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script language="JavaScript" type="text/javascript">
+
+  var attach_count={$i};
+function delete_item(id)
+{
+var url="{url:(mail/delete_forwardattachment)}/"+{$draftid}+"/"+id;
+ $.ajax({
+
+type: "GET",cache: false,
+url: url,
+success: function(data) {
+  	 attach_count--;//alert(attach_count);
+     var loop="{$loop}"; 
+     var height=attach_count*30;
+        document.getElementById("attachments").innerHTML= xmlHttp11.responseText;
+ 		parent.document.getElementById("upload_forward_"+loop).style.height=height+"px";  
+if((attach_count==0)&&(parent.filevar_count[loop]==0))
+{
+parent.document.getElementById("attachlink_"+loop).style.display="";
+parent.document.getElementById("additionalattach_"+loop).style.display="none";
+}
+else
+{
+parent.document.getElementById("forward_"+loop).style.display="";
+parent.document.getElementById("attachlink_"+loop).style.display="none";
+parent.document.getElementById("additionalattach_"+loop).style.display="";
+}    	
+         
+ }
+
+});
+}
+function getifrHeight() {
+	//alert('hello my dear..!!');
+  var h=document.getElementById('iframefwdid').offsetHeight+5;
+//alert(h);
+parent.document.getElementById('upload_forward_0').height=h+"px !important;";	
+parent.document.getElementById('upload_forward_0').className="sibin";
+}
+
+
+	</script>
+</head>
+<body style="background-color: transparent;font-size: 12px;font-family: Arial, Helvetica, sans-serif;" id="iframefwdid" onload="getifrHeight()">
+<div id="attachments">
+<table border="0" id="frame_content">
+{loopstart:attach:10000}
+<tr><td>
+	<input type="checkbox" name="select_{loop:attach}" id="select_{loop:attach}" checked="true" onClick=" delete_item('{$attach[2]}')"></td>
+	<td>{$attach[0]}({$attach[1]}kb)</td></tr>
+
+{loopend:attach}
+</table>
+</div>
+</body>
+</html>

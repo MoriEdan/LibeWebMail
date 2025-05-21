@@ -1,0 +1,181 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+      <td>{if($userid=="")}{showpage:include/contactsheader} {else}
+<div class="sub_link_style"><a href="{url:(user/contacts/0/{$userid})}" >All Contacts</a>&nbsp;|&nbsp;<a href="{url:(user/groups/{$userid})}" >Contact Groups</a></div> {endif}
+</td>
+
+  </tr>
+
+</table>	
+	
+	
+			<table width="93%" border="0" align="center" cellpadding="0" cellspacing="0"  class="userview_table" >  
+			
+				<tr>
+				<td width="100%" align="center">
+				{if($userid=="")}
+				{formstart:editcontacts:{url:(user/editcontacts/{$id})}:post}
+				{else}
+			{formstart:editcontacts:{url:(user/editcontacts/{$id}/{$userid})}:post}{endif}
+							<table class="settings_table" cellpadding="0" cellspacing="0" align="center" border="0">
+							<tr >
+								<td  >&nbsp;</td>
+							
+							<tr><td align="center" >	
+							
+							{loopstart:contacts:100}
+							<table cellpadding="0" cellspacing="0" width="80%" align="center" border="0" >  
+							
+							
+							<tr><td class="page_title1" align="left" colspan="2">Edit Contact Details</td></tr>
+							<tr >
+								<td  >&nbsp;</td>
+								<td >&nbsp;</td>
+							</tr>
+							<tr >
+								<td  >&nbsp;</td>
+								<td >&nbsp;</td>
+							</tr>
+							  <tr>
+									<td  >Contacts</td>
+									<td   a ><input type="text" value="{$contacts[1]}" name="mailid" size="32" readonly="readonly"/></td>
+							  </tr>
+							  <tr>
+								<td >&nbsp;</td>
+								<td >&nbsp;</td>
+							</tr>
+							  <tr>
+								<td >Added By</td> 
+								<td  ><input type="text" value="{cfn:getusername($contacts[2])}" name="addedby" size="32"   /></td>
+							  </tr>
+							  <tr>
+								<td >&nbsp;</td>
+								<td >&nbsp;</td>
+							</tr>
+							
+							  <tr>
+								<td >Group Name</td> 
+								<td   ><select name="groupname">
+								<option selected="selected">Select</option>
+								{loopstart:groups:100}
+								<option value="{$groups[0]}" {if($groups[0])} selected="selected" {endif}>{$groups[1]}</option>
+								{loopend:groups}
+								</select>
+								</td>
+							  </tr>
+							  
+							  <tr>
+								<td >&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							
+							
+							   <tr>
+								<td>First Name</td> 
+								<td   > <input type="text"   {if($contacts[4]!="")} value="{$contacts[4]}" {else} value=""{endif} name="fname" size="32"/></td>
+							  </tr>
+							<tr>
+								<td >&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							 
+							 <tr>
+							<td >Last Name</td> 
+								<td> <input type="text"  {if($contacts[5]!="")} value="{$contacts[5]}" {else} value=""{endif} name="lname" size="32"/></td>
+							  </tr>
+							 <tr>
+								<td >&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							 
+							 <tr>
+								<td >Date of Birth</td> 
+								<td> <input type="text"  {if($contacts[6]!="")} value="{fn:date("m/j/Y",$contacts[6])}" else value="" {endif}  name="dob" size="32"/>&nbsp;(mm/dd/yyyy)</td>
+							  </tr>
+							 <tr>
+								<td >&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							  
+							
+							   <tr>
+								<td >Title</td> 
+								<td ><input type="text"   {if($contacts[7]!="")} value="{$contacts[7]}" {else} value=""{endif}  name="title" size="32"/></td>
+							  </tr>
+							 
+							  <tr>
+								<td >&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							
+							 <tr>
+								<td >Company</td> 
+								<td> <input type="text"    {if($contacts[8]!="")} value="{$contacts[8]}" {else} value=""{endif}  name="company" size="32"/></td>
+							  </tr>
+					
+							  <tr>
+								<td >&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							
+							  <tr>
+								<td >Phone</td> 
+								<td> <input type="text"    {if($contacts[9]!=0)} value="{$contacts[9]}" {else} value=""{endif}  name="phone" size="32" /></td>
+							  </tr>
+						
+							  <tr>
+								<td >&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							  
+							  <tr>
+							<td >Address</td> 
+								<td><textarea rows="5" cols="37" name="address" size="32">{$contacts[10]}</textarea></td>
+							  </tr>
+							 
+							  <tr>
+								<td >&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							   
+							 <tr>
+								<td >Website</td> 
+								<td> <input type="text" {if($contacts[11]!="")} value="{$contacts[11]}" {else} value=""{endif} name="website" size="32"/></td>
+							  </tr>
+							  
+							  <tr>
+								<td >&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							  
+							  <tr>
+								<td >&nbsp;</td> 
+								<td> <input type="submit" name="submit" value="Submit"/></td>
+							  </tr>
+							  
+							  <tr>
+								<td  align="">&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+						  	  </table>
+							  {loopend:contacts}
+							 </td></tr>
+						</table>	
+			{formend:editcontacts}
+				 </td>
+				</tr>
+</table>
+		  		 
+
+{showpage:include/footer}
+
+
+

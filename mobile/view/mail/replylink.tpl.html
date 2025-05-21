@@ -1,0 +1,164 @@
+{if($newmail==1)}
+{showpage:mail/header/new}{else}{showpage:mail/header}{endif}
+	
+<div class="warningTxt">{$ms}</div>
+<div class="clear"></div>
+<div class="whiteBg">
+	<div id="preloadmail_image" style="display: none;"><img src="../images/loading.gif"></div>
+	<div id="preloadmail_div">
+
+		<div >
+		{if($newmail==1)}
+		{formstart:newmail:{url:(mail/newmail/)}{$fldr}/{$pge}/{$act}/{$crntfold}/{$crntid}:post}
+		<div class="clear"></div>
+		<div class="marginT5">
+			<input type="submit" name="send" value="{cfn:getmessage(37)}" class="commonBtn2" />
+			<input type="submit" name="draft" value="{cfn:getmessage(36)}" class="commonBtn2"/>
+		{if($act=='m')}
+		<a href="{url:(mail/mailbox/)}{$fldr}/{$pge}" class="commonBtn2"/>
+		{elseif($act=='r')}
+		<a href="{url:(mail/detailmail/)}{$crntfold}/{$crntid}" class="commonBtn2"/>
+		{elseif($act=='d')}
+		<a href="{url:(mail/detailmail/)}{$fldr}/{$pge}" class="commonBtn2"/>
+		{else}
+		<a href="{url:(mail/mailbox/)}{$fldr}/{$pge}" class="commonBtn2"/>
+		{endif}
+		{cfn:getmessage(59)}</a>
+		</div>
+		<div class="clear"></div>
+					
+	
+		<!-- <form name="replymail" id="replymail" enctype="multipart/form-data" method="POST"  action="{url:(mail/replymail/)}{$mail[0]}/{$folderid}" >
+		 -->
+	
+	
+	<div class="composemail">
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="30px"><span class="boldTxt">{cfn:getmessage(31)}:</span></td>
+				<td><input autocomplete="off" type="text" name="to" id="to" value="{$to}" /></td>
+			</tr>
+			<tr>
+				<td width="30px"><span class="boldTxt">{cfn:getmessage(32)}:</span></td>
+				<td><input autocomplete="off" type="text" name="cc" id="cc" value=""/ >	</td>
+			</tr>
+			<tr>
+				<td width="30px"><span class="boldTxt">{cfn:getmessage(33)}:</span></td>
+				<td><input autocomplete="off" type="text" name="bcc" id="bcc" value=""/></td>
+			</tr>
+			<tr>
+				<td width="30px"><span class="boldTxt">{cfn:getmessage(53)}:</span></td>
+				<td><input autocomplete="off" type="text" name="sub" id="sub" value=""/></td>
+			</tr>
+		</table>
+	</div>
+		
+			
+	
+		<div class="marginT10" >
+		<textarea name="newbody" class="mailtextarea" onmouseover="this.rows=6" onmouseout="this.rows=3">
+</textarea>
+</div>
+
+
+
+<div class="row">
+		<div class="row marginT5">
+		<input type="submit" name="send" value="{cfn:getmessage(37)}"  class="commonBtn2"/>
+		<input type="submit" name="draft" value="{cfn:getmessage(36)}"  class="commonBtn2"/>
+		{if($act=='m')}
+		<a href="{url:(mail/mailbox/)}{$fldr}/{$pge}" class="commonBtn2"/>
+		{elseif($act=='r')}
+		<a href="{url:(mail/detailmail/)}{$crntfold}/{$crntid}" class="commonBtn2"/>
+		{elseif($act=='d')}
+		<a href="{url:(mail/detailmail/)}{$fldr}/{$pge}" class="commonBtn2"/>
+		{elseif($act=='t')}
+		{if($crntid=="")}
+		<a href="{url:(mail/contacts)}" class="commonBtn2"/>
+		{else}
+		<a href="{url:(mail/viewcontacts/)}{$crntid}" class="commonBtn2"/>{endif}
+		{endif}
+		
+		
+		{cfn:getmessage(59)}</a>
+	    </div>
+		</div>
+	{formend:newmail}
+{else}
+		
+		
+		{loopstart:mail:1000}
+		
+		
+		{formstart:replymail:{url:(mail/replymail/)}{$mail[0]}/{$fid}/{$action}/{$crntfold}/{$crntid}:post}
+		<!-- <form name="replymail" id="replymail" enctype="multipart/form-data" method="POST"  action="{url:(mail/replymail/)}{$mail[0]}/{$folderid}" >
+		 --><div class="row marginL10">
+		<div class=""><input type="submit" name="send" value="{cfn:getmessage(37)}"  class="commonBtn2"/>
+		<input type="submit" name="draft" value="{cfn:getmessage(36)}"  class="commonBtn2"/>
+		<a href="{url:(mail/detailmail/)}{$crntfold}/{$crntid}" class="commonBtn2"/>
+		{cfn:getmessage(59)}</a>
+	    </div>
+		</div>
+	
+	
+	<div class="composemail">
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="30px"><span class="boldTxt">{cfn:getmessage(31)}:</span></td>
+				<td><input autocomplete="off" type="text" name="to" id="to" {if($action=="r")} value="{cfn:to($mail[2],$mail[3])}" {elseif($action=="ra")} value="{cfn:tolist($mail[2])}{cfn:tolist($mail[3])}" {else} value="" {endif} /></td>
+			</tr>
+			<tr>
+				<td width="30px"><span class="boldTxt">{cfn:getmessage(32)}:</span></td>
+				<td><input autocomplete="off" type="text" name="cc" id="cc" {if($action=="ra")} value="{$mail[4]}" {else} value="" {endif}/ >	</td>
+			</tr>
+			<tr>
+				<td width="30px"><span class="boldTxt">{cfn:getmessage(33)}:</span></td>
+				<td><input autocomplete="off" type="text" name="bcc" id="bcc" value=""/></td>
+			</tr>
+			<tr>
+				<td width="30px"><span class="boldTxt">{cfn:getmessage(53)}:</span></td>
+				<td><input autocomplete="off" type="text" name="sub" id="sub" 	value="{cfn:pre($action)} {$mail[6]}"/></td>
+			</tr>
+			
+			<tr>
+				<td width="30px"><span class="boldTxt"><input type="checkbox" name="previousbody" value="" checked="checked" /></span></td>
+				<td style="font-size:12px;font-family:Verdana, Arial, Helvetica, sans-serif">{cfn:getmessage(765)}</td>
+			</tr>
+			
+		</table>
+	</div>
+	
+		<div class="row marginT10" >
+		<textarea name="newbody" id="newbody"	class="mailtextarea" onmouseover="this.rows=6" onmouseout="this.rows=3">
+</textarea>
+</div>
+
+
+
+<div class="row marginL10">
+		<div class="row marginT10"><input type="submit" name="send" value="{cfn:getmessage(37)}"  class="commonBtn2"/>
+		<input type="submit" name="draft" value="{cfn:getmessage(36)}"  class="commonBtn2"/>
+		<a href="{url:(mail/detailmail/)}{$crntfold}/{$crntid}"  class="commonBtn2"/>{cfn:getmessage(59)}</a>
+	    </div>
+		</div>
+	{formend:replymail}
+	{if($folderid!=2)}
+	<div class="clear"></div>
+<div id="replyFooter1" > 
+			
+
+				<div class="replyLink floatL"><a href="{url:(mail/replylink/)}{$folderid}/{$mail[0]}/r/{$crntfold}/{$crntid}">{cfn:getmessage(15)}</a> </div> 
+				<div class="replyLink floatL"><a href="{url:(mail/replylink/)}{$folderid}/{$mail[0]}/ra/{$crntfold}/{$crntid}"> {cfn:getmessage(16)}</a> </div>
+				<div class="replyLink floatL"><a href="{url:(mail/replylink/)}{$folderid}/{$mail[0]}/f/{$crntfold}/{$crntid}">{cfn:getmessage(17)}</a></div> 
+
+			
+		</div>
+		{endif}
+		
+{loopend:mail}
+{endif}
+</div><!-- end of mailBox-->
+
+</div>
+</div>
+{showpage:mail/footer}

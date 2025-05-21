@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script type="text/javascript" language="javascript">
+function selectfn(id,value)
+{
+if(value==1)
+{
+if(id=='forwardmsgid')
+{
+//document.getElementById("forwardmsgid").focus();
+document.getElementById("forwardmsgid").disabled=false;
+document.getElementById("checkvalue2").value=1;
+document.getElementById("forwardsubj").disabled=false;
+
+}
+else if(id=='forwardmailid')
+{
+//document.getElementById("forwardmailid").focus();
+document.getElementById("forwardmailid").disabled=false;
+document.getElementById("checkvalue1").value=1;
+}
+}
+else
+{
+if(id=='forwardmsgid')
+{
+document.getElementById("checkvalue2").value=0;
+document.getElementById("forwardsubj").disabled=true;
+document.getElementById(id).disabled=true;
+}
+else if(id=='forwardmailid')
+{
+document.getElementById("checkvalue1").value=0;
+document.getElementById(id).disabled=true;
+
+}
+}
+
+}
+
+
+
+function echeck(str) {
+
+		var at="@"
+		var dot="."
+		var lat=str.indexOf(at)
+		var lstr=str.length
+		var ldot=str.indexOf(dot)
+		if (str.indexOf(at)==-1){
+		   alert("{cfn:getmessage(159)}")
+		   return false
+		}
+
+		if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+		   alert("{cfn:getmessage(159)}")
+		   return false
+		}
+
+		if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+		    alert("{cfn:getmessage(159)}")
+		    return false
+		}
+
+		 if (str.indexOf(at,(lat+1))!=-1){
+		    alert("{cfn:getmessage(159)}")
+		    return false
+		 }
+
+		 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+		    alert("{cfn:getmessage(159)}")
+		    return false
+		 }
+
+		 if (str.indexOf(dot,(lat+2))==-1){
+		    alert("{cfn:getmessage(159)}")
+		    return false
+		 }
+		
+		 if (str.indexOf(" ")!=-1){
+		    alert("{cfn:getmessage(159)}")
+		    return false
+		 }
+
+ 		 return true					
+	}
+   
+function ValidateForm()
+{
+
+var returnvalue1=0;var returnvalue2=0;
+
+if(document.getElementById("checkvalue1").value==0)
+returnvalue1=1;
+if(document.getElementById("checkvalue2").value==0)
+returnvalue2==1;
+
+if(document.getElementById("checkvalue1").value==0 && document.getElementById("checkvalue2").value==0)
+{
+//alert("{cfn:getmessage(162)}");
+return true;
+}
+else
+{
+
+if(document.getElementById("checkvalue1").value==1)
+{
+if(document.getElementById("checkvalue2").value==0)
+	returnvalue2=1;
+	
+	var emailID=document.getElementById("forwardmailid").value;
+
+	if ((emailID==null)||(emailID==""))
+	{
+		alert("{cfn:getmessage(158)}");
+		document.getElementById("forwardmailid").focus();
+		return false;
+	}
+	var ss=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+	var length=(emailID.length)-1;
+if(emailID[length]!=',')
+{
+emailID=emailID+",";
+}
+
+emailID=emailID.split(",");
+emailIDcount=(emailID.length)-1;
+if(emailIDcount==1)
+emailIDcount=1;
+for(i=0;i<emailIDcount;i++)
+	{
+	 if(ss.test(emailID[i])==false) 
+	 {
+	 alert("{cfn:getmessage(159)}");
+	 document.getElementById("forwardmailid").focus();
+      return false;
+	  }
+	  else if (echeck(emailID[i])==false)
+	{
+	    alert("{cfn:getmessage(159)}");
+		document.getElementById("forwardmailid").value="";
+		document.getElementById("forwardmailid").focus();
+		return false;
+	}
+	else
+	returnvalue1=1;
+	
+	}
+	}
+	
+	 if(document.getElementById("checkvalue2").value==1)
+	{
+	
+	if(document.getElementById("checkvalue1").value==0)
+	returnvalue1=1;
+	
+	if(document.getElementById("forwardsubj").value=="")
+	{
+	 alert("{cfn:getmessage(259)}");
+	 document.getElementById("forwardsubj").focus();
+	 return false;
+	 }
+	
+	else if(document.getElementById("forwardmsgid").value=="")
+	{
+	 alert("{cfn:getmessage(160)}");
+	 document.getElementById("forwardmsgid").focus();
+	 return false;
+	}
+	else
+	{
+	returnvalue2=1;
+	//document.getElementById("checkvalue2").value=0;
+	}
+	}
+	
+	if(returnvalue1==1 && returnvalue2==1)
+	return true;
+	else
+	return false;
+	}
+}
+
+
+function messageview()
+{
+
+setTimeout("doSomething()",5000);
+}
+function doSomething() 
+    {
+       document.getElementById('msgviewed').style.display = 'none';
+    }
+
+function checkfn()
+{
+
+var s="{$msg}";
+if(s!="")
+{
+document.getElementById("msgviewed").style.display="";
+messageview();
+}
+
+if({$forwardmailidflag}==1)
+document.getElementById("checkvalue1").value=1;
+else
+document.getElementById("checkvalue1").value=0;
+
+if({$autoreplymsgflag}==1)
+document.getElementById("checkvalue2").value=1;
+else
+document.getElementById("checkvalue2").value=0;
+
+}
+</script>
+</head>
+<body onLoad="checkfn()" >
+{formstart:mailoptions:{url:(settings/mailoptions)}:post}
+
+<!-- <table class="fullwidth" cellspacing="0" cellpadding="0">
+
+<tr>
+<td class="fullwidth">{if($msg!="")}<div id="msgviewed" class="messagedisplay" >{$msg}</div>{endif}</td>
+</tr>
+</table> -->
+
+
+ <div class="messageTab" id="msgviewed" style="display: none;padding-left: 30px;padding-top: 5px;" align="center">
+<span class="messageTabL"></span>
+<span class="messageTabM">{$msg}</span>
+<span class="messageTabR"></span>
+</div>
+
+<div class="mailoptions_details_table">
+<div style="padding-bottom:30px;padding-top:0px;" valign="top"><font class="info_title">{cfn:getmessage(466)}</font></div>
+<input type="hidden" name="msgdisplay" id="msgdisplay" value="{$msg}">
+<div class="row">
+	<div class="coloum200 floatL"  ><span class="boldTxt"> {cfn:getmessage(153)}</span></div>
+	<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"><input type="radio" name="forwardmail" id="forwardmail"  {if($forwardmailidflag==1)}  checked="checked"   {endif} value="1"   onClick="selectfn('forwardmailid',1)">{cfn:getmessage(52)}  <input type="radio" name="forwardmail" id="forwardmail"  {if($forwardmailidflag==0)} checked="checked" {endif} value="0"    onClick="selectfn('forwardmailid',0)">{cfn:getmessage(157)}<input type="hidden" value="" id="checkvalue1"><input type="hidden" value="" id="checkvalue2"> </span>
+		</div>
+	</div>
+</div>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(154)} </span></div>
+	<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"><textarea rows="1" cols="35" name="forwardmailid"  id="forwardmailid"  {if($forwardmailid=="")} disabled="disabled" {endif}>{$forwardmailid}</textarea> </span>
+		</div>
+	</div>
+
+</div>
+<div class="row marginT10"><div class="coloum200 floatL"  ><span class="boldTxt">&nbsp;</span></div>
+<div class="coloum floatL"  >
+<div class="notes" style="padding-left:12px;">
+{cfn:getmessage(754)}</div>
+</div>
+</div>
+
+	<div class="row" style="width: 100%;padding-top:5px;margin-bottom: 20px;">&nbsp;</div>
+	
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(155)} </span></div>
+	<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"> <input type="radio" name="forwardmsg"  id="forwardmsg"  value="1"  {if($autoreplymsgflag==1)}  checked="checked"   {endif} onClick="selectfn('forwardmsgid',1)">{cfn:getmessage(52)} <input type="radio" name="forwardmsg"  id="forwardmsg" value="0" {if($autoreplymsgflag==0)} checked="checked" {endif} onClick="selectfn('forwardmsgid',0)"> {cfn:getmessage(157)} </span>
+		</div>
+	</div>
+</div>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(34)} </span></div>
+	<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"><input  name="forwardsubj"  id="forwardsubj" size="46" type="text" rows="1" {if($autoreplysubj=="")} disabled="disabled" {endif} value="{$autoreplysubj}"> </span>
+		</div>
+	</div>
+</div>
+
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(38)} </span></div>
+	<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"><textarea name="forwardmsgid"  id="forwardmsgid" cols="35" rows="3" {if($autoreplymsg=="")} disabled="disabled" {endif}>{$autoreplymsg}</textarea> </span>
+		</div>
+	</div>
+</div>
+<div class="row marginT10"><div class="coloum200 floatL"  ><span class="boldTxt">&nbsp;</span></div>
+<div class="coloum floatL"  >
+<div class="notes" style="padding-left:12px;">
+{cfn:getmessage(755)}</div>
+</div>
+</div>
+
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt"> </span></div>
+	<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"><input type="submit" value="{cfn:getmessage(79)}" name="submit" onClick=" return ValidateForm()" class="cursor_select"> </span>
+		</div>
+	</div>
+	
+		
+</div>
+
+
+
+{formend:mailoptions}
+</body>
+</html>
+<script type="text/javascript">
+
+parent.showPreloadDiv();
+parent.showPreloadDivGif();
+</script>

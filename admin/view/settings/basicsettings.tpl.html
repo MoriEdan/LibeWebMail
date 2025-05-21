@@ -1,0 +1,989 @@
+{showpage:include/header}
+
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+	 <tr align="center">
+
+   		 <td>
+		 		{showpage:include/settingsheader}
+		 </td>
+
+ 	 </tr>
+</table>	
+{formstart:edit:{url:(settings/basicsettingsprocess)}:POST}
+<table class="fullwidth" border="0" cellpadding="0" cellspacing="0" >  
+	<tr>
+
+		<td > 
+				<div align="center"><span class="page_title">Manage Basic Settings</span></div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+				<table class="settings_table" cellpadding="0" cellspacing="0" align="center" border="0">	
+				<tr>
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+		    		<tr>
+						
+						<td align="center" colspan="2"><b>Manage Basic Settings </b></td>
+					</tr>
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>Webmail Service Name: </td>
+						<td ><input style="width:380px" name="enginename" type="text" id="enginename" maxlength="200" value="{$engine_name}">
+						<input type="hidden" value="0" id="editdisplay" name="editdisplay">
+						</td>		
+					</tr>
+						 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top">Libescripts Affiliate Id: </td>
+						<td ><input style="width:380px" name="affiliateid" type="text" id="affiliateid" maxlength="200" value="{$affiliate_id}">
+					</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>Administratior Email: </td>
+						<td ><input style="width:380px" name="adminemail" type="text" id="adminemail" maxlength="200" value="{$adminemail}">
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>Charset: </td>
+						<td ><input style="width:380px" name="charset" type="text" id="charset" maxlength="200" value="{$charset}">
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top">Restricted Attachment Types: </td>
+						<td ><input style="width:380px" name="restricted_attachment_types" type="text" id="restricted_attachment_types" maxlength="200" value="{$restricted_attachment_types}">
+						</td>		
+					</tr>
+					
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>Maximum Attachment Size (MB): </td>
+						<td ><input style="width:380px" name="attachment_size" type="text" id="attachment_size" maxlength="200" value="{$attachment_size}">
+						</td>		
+					</tr>
+					
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>Email Extension: </td>
+						<td ><input style="width:380px" name="emailextension" type="text" id="emailextension" maxlength="200" value="{$emailextension}">
+						</td>		
+					</tr>
+					
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>Forward Subject Predecessor: </td>
+						<td ><input style="width:380px" name="forward_sub_predecessor" type="text" id="forward_sub_predecessor" maxlength="200" value="{$forward_sub_predecessor}">
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>Reply Subject Predecessor: </td>
+						<td ><input style="width:380px" name="reply_sub_predecessor" type="text" id="reply_sub_predecessor" maxlength="200" value="{$reply_sub_predecessor}">
+						</td>		
+					</tr>
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top">Global Address Book :</td>
+						<td><input   name="globaladdress_book" type="checkbox" id="globaladdress_book"  {if($globaladdress_book==1)}checked="checked"{endif}>
+						</td>
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>SMTP Host: </td>
+						<td ><input style="width:380px" name="SMTP_host" type="text" id="SMTP_host" maxlength="200" value="{$SMTP_host}">
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>SMTP Port: </td>
+						<td ><input style="width:380px" name="SMTP_port" type="text" id="SMTP_port" maxlength="200" value="{$SMTP_port}">
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>Minimum characters of username: </td>
+						<td ><input style="width:380px" name="min_usernamelength" type="text" id="min_usernamelength" maxlength="200" value="{$min_usernamelength}">
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><span class="mandatory">*</span>Minimum characters of password: </td>
+						<td >
+						<input  name="min_passwordlength" type="radio" id="min_passwordlength"  value="1" {if($min_passwordlength==1)} checked="checked" {endif}  />Level 1
+						<input  name="min_passwordlength" type="radio" id="min_passwordlength"  value="2"  {if($min_passwordlength==2)} checked="checked" {endif} />Level 2
+						<input  name="min_passwordlength" type="radio" id="min_passwordlength"  value="3"  {if($min_passwordlength==3)} checked="checked" {endif} />Level 3
+						<input  name="min_passwordlength" type="radio" id="min_passwordlength"  value="4"  {if($min_passwordlength==4)} checked="checked" {endif} />Level 4
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top" width="40%">Account Type:</td>
+						<td align="left">
+						<input  name="account_type" type="radio" id="account_type"  value="1" onchange="hideicon()" {if($catchall_mail==1)} checked="checked" {endif}/>Catch all
+						<input   name="account_type" type="radio" id="account_type"  value="0" onchange="showicon()" {if($catchall_mail==0)} checked="checked" {endif} />Individual
+						</td>
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					
+					<tr>
+						<td colspan="2">
+							<div id="controlpanelview" style="display: none;">
+								<table cellpadding="0" cellspacing="0" width="100%" border="0">
+									<tr>
+										<td align="left" width="40%"> <span class="mandatory">*</span>Control Panel Configuration:</td>
+										<td  align="left">
+											<label >
+											<input   type="radio" onchange="hideicon1()" name="controlpanel" id="controlpanel"    value="1" {if($controlpanel==1)}  checked="checked" {endif} />cPanel</label>
+											<label><input  type="radio" onchange="showicon1()" name="controlpanel" id="controlpanel" value="2" {if($controlpanel==2)} checked= "checked" {endif}/>Plesk</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onclick="editfn({$controlpanel})" style="cursor: pointer;color:#0174DF; text-decoration: underline;" id="editlinkview">edit</span>
+										</td>
+								 </tr>
+							 
+								  <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					  
+					  	 </table>
+							</div>
+					  	</td>
+					  </tr>
+					  <tr>
+					  		<td colspan="2">
+	   							<div id="cPanelview" style="display: none;">
+									<table cellpadding="0" cellspacing="0"  border="0" width="100%">
+									   	<tr>
+											<td class="settings_controlpanel_td1" valign="top"><b>cPanel:</b></td>
+										 	<td class="settings_controlpanel_td2">&nbsp;</td>
+									 	</tr>
+												<tr style="height: 2px;padding: 0px;margin: 0px;">
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+												</tr>
+								  
+								  		<tr>
+											<td  class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Version:</td>
+										  	<td class="settings_controlpanel_td2">
+											<input type="text" name="cpanelversion" id="cpanelversion" value="{$controlpanel_version}" style="width:380px"></td>
+								  		</tr>
+												<tr style="height: 2px;padding: 0px;margin: 0px;">
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+												</tr>
+								  
+					
+									   
+								 		<tr>
+										 	<td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Domain Username:</td>
+										  	<td class="settings_controlpanel_td2">
+											<input type="text" name="cpaneldomainusername" id="cpaneldomainusername" value="{$domain_username}" style="width:380px"></td>
+										 </tr>
+												 <tr style="height: 2px;padding: 0px;margin: 0px;">
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+												</tr>
+								  
+								  
+								 		 <tr>
+										 	 <td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Domain Password:</td>
+										 	 <td class="settings_controlpanel_td2">
+											 <input type="password" name="cpaneldomainpassword" id="cpaneldomainpassword" value="{$domain_password}" style="width:380px"></td>
+								 		</tr>
+												 <tr style="height: 2px;padding: 0px;margin: 0px;">
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+												</tr>
+								  
+								   		<tr>
+										 	<td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Domain Name:</td>
+										  	<td class="settings_controlpanel_td2">
+											<input type="text" name="cpaneldomainname" id="cpaneldomainname" value="{$domain_name}" style="width:380px"></td>
+								  		</tr>
+												 <tr style="height: 2px;padding: 0px;margin: 0px;">
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+													<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+												</tr>
+								  
+								  
+								  		<tr>
+											 <td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Domain IP:</td>
+										  	 <td class="settings_controlpanel_td2">
+											 <input type="text" name="cpaneldomainip" id="cpaneldomainip" value="{$domain_ip}" style="width:380px"></td>
+								  		</tr>
+								  		
+								  		<tr>
+										  	<td class="settings_controlpanel_td1" valign="top">&nbsp;</td>
+										 	 <td class="settings_controlpanel_td2">&nbsp;</td>
+								 		 </tr>
+								  	</table>
+								</div>  
+							  </td>
+		 			 </tr>
+		 			       <tr><td colspan="2">
+	      <div id="Pleskview" style="display: none;">
+				<table cellpadding="0" cellspacing="0"  border="0" width="100%">
+			   <tr>
+			     <td class="settings_controlpanel_td1" valign="top"><b>Plesk:</b></td>
+			      <td class="settings_controlpanel_td2">&nbsp;</td>
+	          </tr>
+	      
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+	      <tr>
+			     <td  class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Version:</td>
+			      <td class="settings_controlpanel_td2"><input type="text" name="pleskversion" id="pleskversion" value="{$controlpanel_version}" style="width:380px"></td>
+	      </tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+	      <tr>
+			     <td class="settings_controlpanel_td1" valign="top" width="40%" > <span class="mandatory">*</span>Domain Username:</td>
+			      <td class="settings_controlpanel_td2"><input type="text" name="pleskdomainusername" id="pleskdomainusername" value="{$domain_username}" style="width:380px"></td>
+	      </tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+	      <tr>
+			     <td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Domain Password:</td>
+			      <td class="settings_controlpanel_td2"><input type="password" name="pleskdomainpassword" id="pleskdomainpassword" value="{$domain_password}" style="width:380px"></td>
+	      </tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+	       <tr>
+			     <td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Packet Version:</td>
+			      <td class="settings_controlpanel_td2"><input type="text" name="packetversion" id="packetversion" value="{$plesk_packetversion}" style="width:380px"></td>
+	      </tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+	      <tr>
+			     <td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Plesk Domain Id:</td>
+			      <td class="settings_controlpanel_td2"><input type="text" name="pleskdomainid" id="pleskdomainid" value="{$plesk_domainid}" style="width:380px"></td>
+	      </tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+	       <tr>
+			     <td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Domain Name:</td>
+			      <td class="settings_controlpanel_td2"><input type="text" name="pleskdomainname" id="pleskdomainname" value="{$domain_name}" style="width:380px"></td>
+	      </tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+	      <tr>
+			     <td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Domain IP:</td>
+			      <td class="settings_controlpanel_td2"><input type="text" name="pleskdomainip" id="pleskdomainip" value="{$domain_ip}" style="width:380px"></td>
+	      </tr>
+	      
+		  <tr>
+			      <td class="settings_controlpanel_td1" valign="top">&nbsp;</td>
+			      <td class="settings_controlpanel_td2">&nbsp;</td>
+	      </tr>
+					
+	      </table></div>
+	      </td></tr>
+					 <tr>
+						  <td colspan="2">
+						  		<div id="display_automatic" style="display: none;">
+									<table width="100%" border="0">
+									
+										<tr>
+											<td valign="top" width="40%">Automatic Account Creation:</td>
+											<td>
+											<input   name="automatic_creation" type="checkbox" id="automatic_creation" {if($automatic_account_creation==1)}checked="checked" {endif}/>
+											</td>
+										</tr>
+										
+	      									 <tr style="height: 2px;padding: 0px;margin: 0px;">
+												<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+												<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+											</tr>
+									</table>
+								</div>
+							</td>
+						</tr>	
+								
+						<tr>
+							<td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Pop3 Server Name:</td>
+							<td class="settings_controlpanel_td2">
+							<input type="text" name="pop3_servername" id="pop3_servername" value="{$pop3_servername}" style="width:380px"></td>
+	      				</tr>
+	      				
+	      				 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+						
+						<tr>
+							<td colspan="2">
+				  				<div id="display_pop3details" style="display: none;">
+									<table border="0" width="99%">
+										<tr>
+											 <td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Pop3 Server Email:</td>
+											 <td class="settings_controlpanel_td2">
+											 <input type="text" name="pop3_serveremail" id="pop3_serveremail" value="{$pop3_serveremail}" style="width:380px"></td>
+				 						 </tr>
+	      				 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+				  
+				 						 <tr>
+						 					<td class="settings_controlpanel_td1" valign="top" width="40%"> <span class="mandatory">*</span>Pop3 Server Password:</td>
+						  					<td class="settings_controlpanel_td2">
+											<input type="password" name="pop3_serverpassword" id="pop3_serverpassword" value="{$pop3_serverpassword}" style="width:380px"></td>
+				  						</tr>	
+	      				 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td valign="top"  width="40%"><span class="mandatory">*</span>SMTP Username: </td>
+						<td ><input style="width:380px" name="SMTP_username" type="text" id="SMTP_username" maxlength="200" value="{$SMTP_username}">
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"  width="40%"><span class="mandatory">*</span>SMTP Password: </td>
+						<td ><input style="width:380px" name="SMTP_password" type="password" id="SMTP_password" maxlength="200" value="{$SMTP_password}">
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					</table>
+				  					
+								</div>
+				  		</td>
+		 			 </tr>
+					 
+					 <tr>
+							<td valign="top" width="40%">Public Registration:</td>
+							<td><input   name="public_registration" type="checkbox" id="public_registration" {if($public_registration==1)}checked="checked" {endif}/>
+							</td>
+					</tr>
+			
+										
+	      		  <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					<tr>
+			      			<td valign="top"  width="40%">Default Language:</td>
+			      			<td><select	 name="lang" id="lang">
+							{loopstart:language:1000}
+							<option value="{$language[0]}" {if($default_language==$language[0])} selected="selected" {endif}>{noescape:$language[1]}</option>
+							{loopend:language}
+							</select>
+							</td>
+					</tr>
+			
+										
+	      		   <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+				    <tr>
+			      		<td valign="top"  width="40%">Default Theme:</td>{$design[0]}
+			      		<td><select	 name="themes" id="themes">
+						{loopstart:design:1000}
+						<option value="{$design[0]}" {if($themes==$design[0])} selected="selected" {endif}>{noescape:$design[1]}</option>{$design[0]}
+						{loopend:design}
+						</select>
+						</td>
+					</tr>
+			
+			 		 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"  width="40%"><span class="mandatory">*</span>Public Page Logo: </td>
+						<td >
+							<div id="#public_logo"></div>{if($public_page_logo!="")}
+							<span id="public_page_logo_hide">
+							<img src="logo/{$public_page_logo}" width="250px" height="50px" border="">&nbsp;&nbsp;&nbsp;
+							<a href="#public_logo"  onclick="changefn(0)" style="cursor: pointer;color: #0174DF;text-decoration: underline;">Change</a></span>
+							<span id="public_page_logo_browse" style="display: none">
+							<input style="width:380px" name="public_page_logo" type="file" id="public_page_logo" maxlength="200"></span>
+							{else}
+							<input style="width:380px" name="public_page_logo" type="file" id="public_page_logo" maxlength="200">
+							{endif}
+						</td>		
+					</tr>	
+			
+										
+	      		 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"  width="40%"><span class="mandatory">*</span>User Page Logo: </td><td >
+							<div id="#user_logo"></div>
+							{if($user_page_logo!="")}
+							<span id="user_page_logo_hide"><img src="logo/{$user_page_logo}" width="250px" height="50px" border="">&nbsp;&nbsp;&nbsp;
+							<a href="#user_logo"  onclick="changefn(1)" style="cursor: pointer;color: #0174DF;text-decoration: underline;">change</a></span>
+							<span id="user_page_logo_browse" style="display: none">
+							<input style="width:380px" name="user_page_logo" type="file" id="user_page_logo" maxlength="200"></span>
+							{else}
+							<input style="width:380px" name="user_page_logo" type="file" id="user_page_logo" maxlength="200">
+							{endif}
+						</td>		
+					</tr>	
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+			
+			    	<tr>
+						<td valign="top"  width="40%">Mails Per Page: </td>
+						<td ><input style="width:380px" name="mails_per_page" type="text" id="mails_per_page" maxlength="200" value="{$mails_per_page}">
+						</td>		
+					</tr>
+			<!--
+			 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+			  		<tr>
+						<td valign="top"  width="40%"><span class="mandatory">*</span>Users Allowed  Memory Size (MB): </td>
+						<td ><input style="width:380px" name="user_memory_size" type="text" id="user_memory_size" maxlength="200" value="{$user_memory_size}">
+						</td>		
+					</tr>	
+	      -->
+			    	 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"  width="40%">View Memory Usage Details In Client Area: </td>
+						<td >
+							<input  name="memoryusage_publicview" type="checkbox" id="memoryusage_publicview" {if($memoryusage_publicview==1)}checked="checked" {endif} onclick="hideicon2()"/>
+							<input type="hidden" id="memoryusage_publicview_value" name="memoryusage_publicview_value" value="{$memoryusage_publicview}">
+						</td>		
+					</tr>
+			
+										
+	      		  <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td colspan="2"> 
+			
+						<div id="memory_details" style="display: none;">
+	        				<table width="100%" border="0"> 
+							
+								<tr>
+				 
+									<td valign="top">
+									<input   name="memoryusage_publicview_area" type="radio" id="memoryusage_publicview_area"  value="1"  {if($memoryusage_publicview_area==1)} checked="checked"{endif}/>Show details in Settings Page only </td>
+									<td>
+									<input  name="memoryusage_publicview_area" type="radio" id="memoryusage_publicview_area"  value="0"  {if($memoryusage_publicview_area==0)} checked="checked" {endif} />Show details in Footer and Settings</td></tr>
+								<!--<tr>
+								<td valign="top"><input   name="memorysize_format" type="radio" id="memorysize_format"  value="1"  {if($memorysize_format==1)} checked="checked" {endif}/>Show memory size in Percentage(%)</td>
+							<td><input   name="memorysize_format" type="radio" id="memorysize_format"  value="0"  {if($memorysize_format==0)} checked="checked" {endif} />Show memory size in MegaBytes(MB)
+							</td>		
+						
+							</tr>-->
+			
+	     					 </table>
+							</div>	
+	      				</td>	
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+	     			<tr>
+		          		<td>Time Zone:</td>
+		          		<td><label>
+						<input type="radio" onchange="hidetimezone()" name="time_zone" id="time_zone" value="0"  {if($time_zone==0)}checked="checked" {endif}/>Use Server Time Zone</label>		<label>
+						<input type="radio" onchange="showtimezone()" name="time_zone" id="time_zone" value="1" {if($time_zone==1)}checked="checked" {endif}/>Use Specific Time Zone</label>
+						</td>
+          		  </tr>
+				  <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+				
+				 <tr>
+		           <td colspan="2">
+				  		<div id="zone" {if($time_zone==1)} style="height:100%; padding:5px;padding-bottom:10px; padding-left:10px;"{else} style="display:none; height:100%; padding:5px;padding-bottom:10px; padding-left:10px;" {endif} >
+							<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td>	My time zone is&nbsp;</td>
+								<td>
+								<select	 name="time_zone_hour" id="time_zone_hour">
+								<option value="" selected="selected">Select Hour</option>
+								{loopstart:hour:25}
+								<option value={$hour[0]}  {if($time_zone_hour==$hour[0])} selected="selected" {endif}>{$hour[0]}</option>
+								{loopend:hour}
+								</select>&nbsp;				
+								</td>
+								<td>
+								<select	 name="time_zone_mint" id="time_zone_mint">
+								<option value="" selected="selected">Select Mint</option>
+								{loopstart:mint:12}
+								<option value={$mint[0]}  {if($time_zone_mint==$mint[0])} selected="selected" {endif}>{noescape:$mint[0]}</option>
+								{loopend:mint}
+								</select>&nbsp;	
+								</td>
+								<td>
+								<select	 name="time_zone_postion" id="time_zone_postion">
+								<option value="Ahead"  {if($time_zone_postion=="Ahead")} selected="selected" {endif}>Ahead</option>
+								<option value="Behind"  {if($time_zone_postion=="Behind")} selected="selected" {endif}>Behind</option>
+								</select>&nbsp;		
+								</td>
+								<td>&nbsp;from the Greenwich Mean Time (GMT)&nbsp;</td>
+							</tr>
+							</table>
+						</div>	
+				    </td>
+          		</tr>
+          		
+          		<tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+          		<tr>
+					<td valign="top"><span class="mandatory">*</span>Admin's Time Zone:</td>
+						<td>
+							<select name="admin_timezone">
+							<option value="">Select the time zone</option>
+								{loopstart:adtimezone:10000}
+								<option value="{$adtimezone[0]}" {if($adtimezone[0]==$admin_timezone)} selected="selected" {endif}>(GMT&nbsp;{$adtimezone[2]})&nbsp;{$adtimezone[1]}</option>
+								{loopend:adtimezone}
+								</select></td>
+				</tr>
+	
+			 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+						<tr>
+						<td valign="top"  width="40%">Specify Ad type in top of the page: </td>
+						<td >
+							<input type="radio" name="adtype1" value="1" {if($topadtype==1)} checked="checked" {endif}>Adcode
+		<input type="radio" name="adtype1" value="2" {if($topadtype==2)}  checked="checked" {endif}>Sponsored Links
+		<input type="radio" name="adtype1" value="0" {if($topadtype==0)}  checked="checked" {endif}>None
+		</td>		
+					</tr>
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+			   	<tr>
+						<td valign="top"  width="40%">Specify Ad type in right side of mail </td>
+						<td >
+							<input type="radio" name="adtype2" value="1" {if($rightadtype==1)} checked="checked" {endif}>Adcode
+		<input type="radio" name="adtype2" value="2" {if($rightadtype==2)}  checked="checked" {endif}>Sponsored Links
+		<input type="radio" name="adtype2" value="0" {if($rightadtype==0)}  checked="checked" {endif}>None
+				</tr>
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"  width="40%">Portal Status </td>
+						<td >
+							<input  name="portal_status" type="checkbox" id="portal_status" {if($portal_status==1)}checked="checked" {endif} >
+							
+						</td>		
+					</tr>
+					
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td valign="top">Portal Installation url</td>
+						<td ><input style="width:380px" name="portal_installation_url" type="text" id="portal_installation_url" maxlength="200" value="{$portal_installation_url}">
+						
+						</td>		
+					</tr>
+					
+					<tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+			   
+	       	 <tr>
+				<td></td>
+				<td><input type="submit" name="Update" value="Update"></td>
+			</tr>
+				</td></tr></table>
+			</table>
+
+{formend:edit}	
+<script language="javascript" type="text/javascript">
+
+ loading();
+
+ function loading()
+    { 
+
+    var s="{$catchall_mail}";
+    if(s==0)
+    { 
+ 
+      showicon();
+      document.getElementById("controlpanelview").style.display=""; 
+      document.getElementById("editlinkview").style.display="";  
+      document.getElementById("display_pop3details").style.display="none"; 
+      document.getElementById("display_automatic").style.display=""; 
+    }
+    else
+    {
+      document.getElementById("display_pop3details").style.display=""; 
+      document.getElementById("display_automatic").style.display="none"; 
+      }
+    var t="{$memoryusage_publicview}";
+        	if(t==1)
+        		{
+        
+        			 document.getElementById("memory_details").style.display="";
+         			document.getElementById("memoryusage_publicview_value").value=0;
+        		 }
+         else
+         		{
+         
+         			document.getElementById("memory_details").style.display="none";
+         			document.getElementById("memoryusage_publicview_value").value=1;
+         
+         		}
+		
+
+
+    
+    }
+    
+
+     
+function showicon()
+    { 
+     document.getElementById("display_pop3details").style.display="none"; 
+     document.getElementById("controlpanelview").style.display="";
+     document.getElementById("editlinkview").style.display="";  
+     document.getElementById("display_automatic").style.display="";    
+    }
+    function hideicon()
+    {
+        document.getElementById("display_pop3details").style.display=""; 
+	    document.getElementById("display_automatic").style.display="none"; 
+	    document.getElementById("controlpanelview").style.display="none";
+	    document.getElementById("Pleskview").style.display="none";
+	    document.getElementById("cPanelview").style.display="none";
+        document.getElementById("editlinkview").style.display="none";  
+    }
+    
+function showicon1()
+    { 
+    
+   var p="{$controlpanel}";
+   if(p!="")
+   {
+      if(p==2)
+          document.getElementById("editlinkview").style.display="";
+         else if(p==1)
+         document.getElementById("editlinkview").style.display="none";
+     
+     document.getElementById("cPanelview").style.display="none";
+     document.getElementById("Pleskview").style.display="";
+     
+    }
+    else
+    {
+  
+     document.getElementById("cPanelview").style.display="none";
+     document.getElementById("Pleskview").style.display="";
+    }
+    
+    }
+    
+    function hideicon1()
+    {  
+    var t="{$controlpanel}";
+    if(t!="")
+    {
+        if(t==1)
+         document.getElementById("editlinkview").style.display="";
+         else if(t==2)
+         document.getElementById("editlinkview").style.display="none";
+         
+	    document.getElementById("Pleskview").style.display="none";
+	    document.getElementById("cPanelview").style.display="";
+	    }
+	    else
+	    {
+	    	document.getElementById("Pleskview").style.display="none";
+	    	document.getElementById("cPanelview").style.display="";
+	    	    
+	    }
+    }
+    
+    
+    function hideicon2()
+    {  
+    
+	if(document.getElementById("memoryusage_publicview").checked==true)
+	  {
+		 document.getElementById("memory_details").style.display="";
+         document.getElementById("memoryusage_publicview_value").value=0;
+	  }
+	else
+	  {
+		 document.getElementById("memory_details").style.display="none";
+         document.getElementById("memoryusage_publicview_value").value=1;
+	  }
+        //var t="{$memoryusage_publicview}";
+    
+        //if(t==1)
+        //{
+        
+        // document.getElementById("memory_details").style.display="";
+         //document.getElementById("memoryusage_publicview_value").value=0;
+         //}
+         //else
+         //{
+         
+        // document.getElementById("memory_details").style.display="none";
+         //document.getElementById("memoryusage_publicview_value").value=1;
+         
+         //}
+	    
+    }
+    
+    
+    function editfn(execute)
+    {
+    
+   var editvalue=document.getElementById("editdisplay").value;
+   
+   if(editvalue==0)
+   {
+    document.getElementById("editdisplay").value=1;
+    
+    if(execute==1)
+    {
+        
+	    document.getElementById("Pleskview").style.display="none";
+	    document.getElementById("cPanelview").style.display="";
+    }
+	else if(execute==2)
+       {
+    	
+     	document.getElementById("cPanelview").style.display="none";
+    	 document.getElementById("Pleskview").style.display="";
+	    }
+   }
+   
+   else if(editvalue==1)
+   {
+    document.getElementById("editdisplay").value=0;
+    document.getElementById("Pleskview").style.display="none";
+    document.getElementById("cPanelview").style.display="none";
+   }
+   
+    
+    }
+    
+function showtimezone()
+    {  
+     document.getElementById("zone").style.display="";
+	 //alert(   document.getElementById("zone").checked);
+	 //document.getElementById("addc").style.display="none";
+    }
+    function hidetimezone()
+    {
+	    document.getElementById("zone").style.display="none";
+		// document.getElementById("addc").style.display="";
+    }
+    
+    
+    
+var xmlHttp8;
+  function changefn(value)
+    {
+       xmlHttp8=GetXmlHttpObject8();
+            if (xmlHttp8==null)
+              {
+              alert ("Your browser does not support AJAX!");
+              return;
+              } 
+              
+     	   if(value==0)
+    	      document.getElementById("public_page_logo_hide").style.display="none";
+     	  else if(value==1)
+     	     document.getElementById("user_page_logo_hide").style.display="none";
+     	 
+            var url1="{url:(settings/deletelogo/)}"+value;
+
+            xmlHttp8.onreadystatechange=countChanged8;
+            xmlHttp8.open("GET",url1,true);  
+            xmlHttp8.send(null);
+ 
+    } 
+
+function countChanged8() 
+{ 
+
+var t=xmlHttp8.readyState;
+        if (xmlHttp8.readyState==4)
+        { 
+    	  var p=xmlHttp8.responseText;//alert(p);
+     	if(p==0)
+    	  document.getElementById("public_page_logo_browse").style.display="";
+     	 else if(p==1)
+     	 document.getElementById("user_page_logo_browse").style.display="";
+      
+       }
+      
+}
+ 
+function GetXmlHttpObject8()
+{
+        var xmlHttp8=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp8=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp8=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp8=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp8;
+}
+
+ 
+
+
+</script>
+
+
+{showpage:include/footer}
+
+
+

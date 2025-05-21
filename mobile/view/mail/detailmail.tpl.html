@@ -1,0 +1,61 @@
+{showpage:mail/header}
+<div class="whiteBg">
+	<div id="preloadmail_div"  >
+		<div class="warningTxt">{$msg}</div>
+		
+		<div class="mailBox" style="">
+		{loopstart:mail:10000}
+		<h2><a href="{url:(mail/star/)}{$mail[13]}/{$mail[0]}/{$mail[11]}/{$fid}/{$mailid}"><img  src="../images/filler.gif" alt="" border="0" align="absmiddle" {if($mail[11]==1)} class="iconsCornner str-y" {elseif($mail[11]==0)} class="iconsCornner str-g" {endif}></a>{if($subject!="")}{$subject}{endif}</h2>
+		
+		
+		<div class="row" >
+		<div class="fromName"><a href="#" class="shdtls">{cfn:getmessage(282)}</a></div>
+		</div>
+		
+		<div class="clear" ></div>
+		<div class="row marginT10" ></div>
+		
+			<div class="row shdtlsdiv"  id="showDetails{loop:mail}" style="display:none">
+					<!--detailedList-->
+					<div class="detailedList" >{if($mail[13]==3)}{cfn:arrange_ids($mail[3],$mail[4],$mail[5],$mail[8],$mail[6],$mail[2])}{else}{cfn:arrange_ids($mail[3],$mail[4],0,$mail[8],$mail[6],$mail[2])}{endif}
+					<a href="#" class="hidedtls">{cfn:getmessage(283)}</a></div>
+				</div>
+				
+				<div class="row marginT10" ></div>
+				  	
+					<span class="mailContent" id="mail_display_{$mail[0]}" >{noescape:$mail[7]}
+			{cfn:getattachment($mail[0],$mail[13])}</span>
+				
+				
+				
+				<div class="mailBoxFooter" id="replyFooter1" > 
+			
+			<span class="mailBoxBM">
+			{if($fid!=2)}
+				<div class="replyLink floatL"><a href="{url:(mail/replylink/)}{$mail[13]}/{$mail[0]}/r/{$fid}/{$mailid}">{cfn:getmessage(15)}</a></div> 
+				<div class="replyLink floatL"><a href="{url:(mail/replylink/)}{$mail[13]}/{$mail[0]}/ra/{$fid}/{$mailid}"> {cfn:getmessage(16)}</a> </div>
+				<div class="replyLink floatL"><a href="{url:(mail/replylink/)}{$mail[13]}/{$mail[0]}/f/{$fid}/{$mailid}">{cfn:getmessage(17)}</a></div>
+				{else}
+				<div class="replyLink floatL"><a href="{url:(mail/replylink/)}2/{$mail[0]}/r/{$fid}/{$mailid}">{cfn:getmessage(26)}</a></div>
+				{endif}
+				{if($fid!=2 && $fid!=3 && $fid!=4 && $fid!=6)} 	
+				<div class="replyLink floatL"><a href="{url:(mail/spam/)}{$mail[13]}/{$mail[0]}/{$pge}">{cfn:getmessage(604)}</a></div> 
+				{endif}
+				{if($fid!=6)}
+				<div class="replyLink floatL"><a href="{url:(mail/maildelete/)}{$mail[13]}/{$mail[0]}/{$pge}">{cfn:getmessage(14)}</a></div> 
+				{endif}
+				{if($fid!=2)}
+{cfn:getreaddetails($fid,$mail[0])}
+{endif}<div class="clear"></div>
+			</span>  
+			 
+		</div>
+{loopend:mail}
+
+
+
+</div><!-- end of mailBox-->
+
+</div>
+</div>
+{showpage:mail/footer}

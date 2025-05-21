@@ -1,0 +1,37 @@
+{showpage:include/header}<br />
+
+<center>
+{showpage:include/languageheader}<br />
+
+</center>
+{formstart:messagesform:{url:(language/store_messages/{$id})}:post}
+<table align="center" width="60%" cellpadding="0" cellspacing="0"
+>
+<tr>
+<td colspan="2" align="center"  height="45"><font style="color:#336699; font-size:18px;"><center>Add New Message</center></<br />
+<br />
+</td>
+ </tr>
+
+<tr bgcolor="e1e1e1">
+<td style="padding-left:10px;
+border-top-color:#cccccc;border-top-style:solid;border-top-width:1px;
+border-left-color: #cccccc;border-left-style: solid;border-left-width:1px;">New Message in English</td>
+<td align="left" height="75"  style="border-top-color:#cccccc;border-top-style:solid;border-top-width:1px;
+border-right-color: #cccccc;border-right-style: solid;border-right-width:1px;">
+<textarea name="message" rows="2" cols="42"></textarea>&nbsp;<span style="font-size:13px;color:red">*</span>
+</td>
+</tr>
+<tr bgcolor="e1e1e1">
+<td  align="center" colspan="2" height="50" style="border-left-color:#cccccc;border-left-style:solid;border-left-width:1px;
+border-right-color:#cccccc;border-right-style:solid;border-right-width:1px;
+border-bottom-color:#cccccc;border-bottom-style:solid;border-bottom-width:1px;
+"><input type="submit" value ="Add New Message!"></td>
+</tr>
+</table>
+{formend:messagesform}
+{validate:messagesform:isNotNull(message,"Please enter the message.")}<br />
+<br />
+
+{showpage:include/footer}
+

@@ -1,0 +1,58 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+</script>
+
+<br>
+
+	
+	
+			<table width="93%" border="0" align="center" cellpadding="0" cellspacing="0"  class="userview_table" >  
+			
+			<tr>	
+				<td  colspan="2" align="center" class="page_title">{showpage:include/eventsheader}</td></tr>
+				<tr><td >&nbsp;</td></tr>
+			<tr>	
+				<td  colspan="2" align="center" class="page_title">{showpage:include/tipheader}</td></tr>
+				<tr><td >&nbsp;</td></tr>
+				<tr>	
+				<td  colspan="2" align="center" class="page_title">Manage Tip of the Day</td></tr>
+				<tr><td >&nbsp;</td></tr>
+				<tr>
+				<td width="100%" align="center">
+				
+			{formstart:edittips:{url:(tipoftheday/edit_tipsprocess/{$id})}:post}
+							<table class="settings_table" cellpadding="0" cellspacing="0" align="center" border="0">
+							<tr><td colspan="2">&nbsp;</td></tr>
+				
+				<tr><td colspan="2">&nbsp;</td></tr>
+				
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr><td style="padding-left: 150px"; ><b>Title</b> </td><td><input style="width:285px" name="title" id="title" type="text" value="{$title}" maxlength="20"></td></tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr><td style="padding-left: 150px"><b>Message</b> </td><td>
+				
+		
+					<textarea name="message" id="message" style="width: 65%;height: 100px;">{$message}</textarea>		
+			
+				 </td>
+				</tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				 <tr>
+				
+				<td>&nbsp;</td><td><input type="submit" name="edit" value="edit"></td>
+			</tr>	
+			<tr><td colspan="2">&nbsp;</td></tr>
+						</table>	
+{validate:edittips:isNotNull("title","Title cannot be left blank.")}
+{validate:edittips:isNotNull("message","Message cannot be left blank.")}
+			{formend:edittips}
+				 </td>
+				</tr>
+</table>
+		  		 
+
+{showpage:include/footer}
+
+
+

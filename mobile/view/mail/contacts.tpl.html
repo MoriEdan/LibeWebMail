@@ -1,0 +1,44 @@
+{showpage:mail/header/contacts}
+	<div class="row marginT10"></div>
+		<div class="mailBox">
+		{if($no==0)}
+		<div class="warningTxt">{cfn:getmessage(603)}</div>{else}
+	<div class="vertmenu">
+	<!--<ul id="leftMenu">-->
+	{loopstart:contacts:1000}
+	<div class="twopaneMail">
+	<span class="readmail"><a href="{url:(mail/replylink/tomail/1/1/t/)}{$contacts[1]}" style="text-decoration: none;color: #373738;"><span class="">{cfn:getcontactname($contacts[1])}</span></a></span></div>
+	{loopend:contacts}
+{endif}	
+	<!--</ul>-->
+	<div class="searchDiv">
+{formstart:mailaction1:{url:(mail/contacts)}:post}
+
+<table cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top">
+<input type="text" value="" name="search" class="searchBox"/>
+</td>
+<td width="21px" valign="top">
+<div class="searchButton">
+<input type="submit" name="submit" id="submit" value=" "  class="sendButtn"/>
+</div>
+</td>
+</tr>
+</table>
+
+<!--
+<span class="abc" style="padding-left: 0px;display: inline;width: 100%;">
+
+<input type="text" value="" name="search" class="searchBox"/>
+
+</span><br>
+			<span class="commonBtn2"><input type="submit" name="searchbtn" value="{cfn:getmessage(324)}"  class="nosendBtn"/></span>
+	-->		
+{formend:mailaction1}
+		</div>
+		
+	</div>
+	
+	<div class="clear"></div>
+	<div class="ftr">{$footer}</div>

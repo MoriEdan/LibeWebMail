@@ -1,0 +1,58 @@
+{showpage:include/header}
+
+<br>
+  
+  	<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/adssettingsheader}</td>
+
+  </tr>
+
+  </table>	
+  
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	
+	
+	<tr><td align="center" height="50"><span id="styleTitle" class="page_title">Please Enter Your Thrid Party Ad Code</span>
+	</td>
+	</tr>
+
+	
+	
+	</table>
+		{formstart:add:{url:(ads/adscodeprocess)}:POST}
+	
+	<table width="75%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-width: 1px; border-color: #cccccc; border-style: solid;">
+	<tr><td align="center" height="40" colspan="2"><span style="font-size:14px;">The ad code for the ads to be displayed in the right panel of the mail page [120 x 500 adcode or similar less size].</span></td></tr>
+	<tr bgcolor="#eeeeee"><td  style="padding-left:10px;" width="20%" height="180"> 
+	Ad Code
+	</td>
+	<td>
+	<textarea name="rightads_code" rows="8" cols="55">{$rightads_code}</textarea>&nbsp;
+
+	</td>
+	</tr>
+	
+	</table>
+	<table width="75%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-width: 1px; border-color: #cccccc; border-style: solid;">
+	<tr><td align="center" height="40" colspan="2"><span style="font-size:14px;">The ad code for the ads to be displayed in the top of the mail page [728 x 90 , 728 x 15 adcode or similar].</span></td></tr>
+	<tr bgcolor="#eeeeee"><td  style="padding-left:10px;" width="20%" height="180"> 
+	Ad Code
+	</td>
+	<td>
+	<textarea name="topads_code" rows="8" cols="55">{$topads_code}</textarea>&nbsp;
+
+	</td>
+	</tr>
+	<tr bgcolor="#eeeeee"><td colspan="2" align="center" height="40"><input type="submit" name="submit" value="Save Ad Code!"></td></tr>
+	</table>
+	{formend:add}
+		
+		
+
+{showpage:include/footer}
+
+
+

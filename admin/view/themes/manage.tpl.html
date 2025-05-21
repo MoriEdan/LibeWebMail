@@ -1,0 +1,68 @@
+{showpage:include/header}
+<link href="style.css" rel="stylesheet" type="text/css">
+<script language="javascript" type="text/javascript">
+function promptuser()
+{
+var answer = confirm ("You are able to delete this theme. Are you sure to continue?")
+if (answer)
+return true;
+else
+return false;
+}
+</script>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr align="center">
+		<td colspan="1">&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td colspan="1">{showpage:include/themeheader}</td>
+	</tr>
+	{if($msg!="")}
+	<tr align="center">
+		<td><br /><span
+			style="color: green; font-weight: bold; padding: 5px; border-color: green; border-style: dotted; border-width: 1px">
+{$msg}</span></td>
+	</tr>
+	{endif}
+	<tr align="center">
+		<td colspan="1" height="42"><font style="color:#336699; font-size:18px;"><center>Manage Themes</center></font></td>
+	</tr>
+	<tr>
+		<td colspan="1">
+	</tr>
+	{if($msg1!="")}
+	<tr align="center">
+		<td colspan="1" height="42"><font style="color:red; font-size:16px;"><center>{$msg1}</center></font></td>
+	</tr>
+	{else}
+	<tr>
+		<td colspan="1" align="center">
+		<table  width="80%" border="0" cellpadding="0" cellspacing="0"	style="border-width: 1px; border-color: #cccccc; border-style: solid; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #cccccc">
+		<tr  bgcolor="#e1e1e1">
+		<td style="padding-left: 5px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc" height="48" align="left" width="40%">
+		<span style="font-weight: bold; font-size: 13px;">Theme Name</span></td>
+		<td align="left" width="40%" style="border-bottom-style:solid;border-bottom-width: 1px;border-bottom-color:#cccccc;"><span style="font-weight: bold; font-size: 13px;">Status</span></td>
+		<td align="left" width="20%" style="border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc;"><span style="font-weight: bold; font-size: 13px;">Actions</span></td>
+		</tr>
+		{loopstart:themes:100}
+		<tr {if($themes[3]==1)} bgcolor="#eeeeee"
+				{endif}{if($languages[3]==0)} bgcolor="#FEF7ED"{endif}>
+		  <td style="padding-left: 5px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc" height="48" align="left">{$themes[1]}&nbsp;</td>		
+		    <td align="left" style="border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc"">
+		{if($themes[3]==1)} 	Enabled
+		 {else} 	Disabled
+		  {endif}&nbsp;</td>
+		<td align="left" style="border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc""><a href="{url:(themes/edit/{$themes[0]})}">Edit</a> | 
+		<a href="{url:(themes/delete/{$themes[0]})}" onclick="return promptuser()">Delete</a>&nbsp;|&nbsp;{if($themes[3]==1)}<a
+					href="{url:(themes/disable/{$themes[0]})}">Disable</a>{else}<a
+					href="{url:(themes/enable/{$themes[0]})}">Enable</a>{endif}
+		</tr>
+		{loopend:themes}
+		</table>
+		</td>
+	</tr>
+	{endif}
+</table><br />
+<br />
+
+{showpage:include/footer}

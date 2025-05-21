@@ -1,0 +1,92 @@
+{showpage:include/header}
+<script type="text/javascript">
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}
+</script>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+	<tr align="center">
+
+		<td>{showpage:include/settingsheader}</td>
+
+	</tr>
+	
+</table>
+
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+	<tr align="center">
+
+		<td>{showpage:include/chatsettingsheader}</td>
+
+	</tr>
+</table>
+
+{formstart:edit:{url:(chatuser/windowsettings)}:POST}
+<table class="fullwidth" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+
+		<td>
+		<div align="center"><span class="page_title">Manage
+		Window Settings</span></div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<table class="userview_table" cellpadding="0" cellspacing="0">  
+					  <tr  class="table_header_tr" align="left">  	 
+						  <td width="25%" class="table_header_td" align="center">Name</td>
+						 <td width="25%"  align="center">Width</td>
+						  <td width="25%" align="center">Height</td>
+						
+						  <td width="25%" align="center">Actions</td>
+					  </tr>
+					
+					
+					
+					
+					{loopstart:window:10000}
+					<tr {if($window % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:window})" id="{loop:window}" onmouseout="dispfn(1,{loop:window})">
+						<td class="userdetail_td" width="25%" align="center">{$window[1]}</td>
+						<td class="border_bottomright" width="25%" align="center">{$window[2]}</td>
+						<td class="border_bottomright" width="25%" align="center"> {$window[3]} </td>
+						
+						<td class="border_bottomright" width="25%" style="padding-left: 80px;">
+						<a href="{url:(chatuser/editwindow/{$window[0]})}" class="action" title="Edit">Edit</a> &nbsp;|&nbsp;
+						<a href="{url:(chatuser/makedefault/{$window[0]})}" class="action" title="Default">{if($flag==$window[0])}Default{else}Make default{endif}</a></td> 
+					  </tr>
+					{loopend:window}
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+			</table>
+
+
+
+
+
+
+
+
+
+
+
+		</td>
+	</tr>
+
+</table>
+
+
+{formend:edit} {showpage:include/footer}

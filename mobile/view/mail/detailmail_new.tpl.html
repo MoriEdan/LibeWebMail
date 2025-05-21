@@ -1,0 +1,1689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<!-- <link rel="stylesheet" href="style.php" >  -->
+<link rel="stylesheet" href="style1.css" type="text/css">
+<script language="javascript" type="text/javascript">
+
+function chatwindow(value)
+{
+alert("hai");
+alert(value);
+}
+
+var draft1=new Array();
+var counter=-1;
+var tot="{$total}";
+var idarray=new Array();
+var m=0;
+{loopstart:mail:10000}
+idarray[m]=m;
+m++;
+{loopend:mail}
+var tot="{$total}";
+var filevar=new Array(tot) ;
+var filevar_count=new Array(tot) ;
+var deletevar=new Array(tot) ;
+for(var i=0;i<tot;i++)
+{
+
+filevar[i]=0;
+deletevar[i]=0;
+filevar_count[i]=0;
+}
+parent.parent.mailsubheaderframe.setValue(2);
+parent.parent.mailsubheaderframe.movefnct();
+parent.parent.mailsubheaderframe.morefnct();
+parent.parent.mailleftframe.getnewcount();
+parent.heading.hide_display();
+var f=getCookievalue("folderid");
+var m={$mailid0};
+parent.parent.mailsubheaderframe.selection(m,f);
+			var smileypath="{$path}";
+
+	
+
+
+		
+
+
+function search(search,folder)
+{
+
+
+
+var mode="{cfn:getmode()}";
+var urlstring=mode+"folder="+folder+"&search="+search;
+
+  var url="{url:(mail/shortmail_new)}"+urlstring;
+ 
+
+
+self.location.href=url; 
+}
+function modify_det(mailid,t)
+{
+
+	var mailids=new Array();
+	mailids=mailid.split(",");
+	var folder=getCookievalue("folderid");
+	if(t==3)
+	{
+		document.getElementById("star_"+mailid).innerHTML='<a href="javascript:unmarkstar('+mailid+','+folder+')"><img src="images/fullstar_sml.png"  align="absmiddle" border="0" /></a>';
+	}
+	else if(t==4)
+	{
+		document.getElementById("star_"+mailid).innerHTML='<a href="javascript:markstar('+mailid+','+folder+')"><img src="images/greystar_sml.png"  align="absmiddle" border="0" /></a>';
+	}
+	var mesg="";
+if(t==1)
+{
+	if(mailids.length>1)
+	{
+	var len=mailids.length;
+
+	mesg="{cfn:getmessage(184)}";
+	mesg=mesg.replace("{number}",len);
+	}
+	else
+	mesg="{cfn:getmessage(183)}";
+}
+else if(t==2)
+{
+	if(mailids.length>1)
+	{
+	mesg="{cfn:getmessage(188)}";
+	mesg=mesg.replace("{number}",mailids.length);
+	}
+	else
+	mesg="{cfn:getmessage(187)}";
+}
+else if(t==3)
+{
+	if(mailids.length>1)
+	{
+	mesg="{cfn:getmessage(186)}";
+	mesg=mesg.replace("{number}",mailids.length);
+	}
+	else
+	mesg="{cfn:getmessage(185)}";
+}
+else if(t==4)
+{
+	if(mailids.length>1)
+	{
+	mesg="{cfn:getmessage(190)}";
+	mesg=mesg.replace("{number}",mailids.length);
+	}
+	else
+	mesg="{cfn:getmessage(189)}";
+}
+	document.getElementById("msg_div").style.display="";
+	document.getElementById("message").innerHTML=mesg;
+	parent.parent.mailsubheaderframe.morefnct();
+	parent.parent.mailleftframe.getnewcount();
+}
+function replyFunction(id2,type,att_count)
+{
+
+
+replyfn(id2,type,att_count);
+window.location.href="#replylink_"+id2;
+
+}
+function replyfn(id2,type,att_count)
+{ 
+
+
+if(id2==-1)
+id2={$total}-1;
+{loopstart:mail:100}
+var q="{loop:mail}";
+
+if(id2==q)
+{
+
+create_dratfid(id2,type,{$mail[0]},{$mail[13]},att_count);
+}
+{loopend:mail}
+
+
+
+
+
+
+
+ 
+ 
+}
+
+function load_replywindow(id2,type,att_count)
+{
+
+
+
+if(document.getElementById('action_'+id2).style.display=="none")
+ {
+
+     x=type;
+     document.getElementById('action_'+id2).style.display="";
+      document.getElementById('replyFooter1_'+id2).style.display="none";
+           document.getElementById('sendFooter1_'+id2).style.display="";
+              
+                 document.getElementById('replyFooter2_'+id2).style.display="";
+           document.getElementById('sendFooter2_'+id2).style.display="";
+     
+     if(type<=2)
+     {
+         var t="{cfn:pre(1)}";
+     }
+     else
+     {
+          var t="{cfn:pre(3)}";
+     }
+//alert(t);alert(type);
+     {loopstart:mail:100}
+     if(id2=={loop:mail})
+     {
+     var fllder="{$mail[13]}";
+     document.getElementById('sub_'+id2).value=t+': '+"{$subject}";
+     if(type==1)
+     {
+       
+         document.getElementById('to_'+id2).value="{cfn:to($mail[2],$mail[3])}";
+        
+        
+         
+     }
+     else if(type==2)
+     {
+   
+             
+         document.getElementById('to_'+id2).value="{cfn:tolist($mail[2])}"+","+"{cfn:tolist($mail[3])}";
+         var cc="{$mail[4]}";
+         var bcc="{$mail[5]}";
+        
+             if(cc!="")
+             {
+                 document.getElementById("showcc_"+id2).style.display="";
+                document.getElementById("spancc_"+id2).style.display="none";
+                 document.getElementById('cc_'+id2).value="{cfn:tolist($mail[4])}";
+             }
+             if((fllder==3)&&(bcc!=""))
+             {
+                 document.getElementById("showbcc_"+id2).style.display="";
+                document.getElementById("spanbcc_"+id2).style.display="none";
+                 document.getElementById('bcc_'+id2).value="{cfn:tolist($mail[5])}";
+             }
+        
+     }
+     else
+     {
+//alert(att_count);
+           
+         if(att_count!=0)
+            {
+            var tot_height=30*att_count;
+                
+              filestringz="<iframe id=\"upload_forward_"+id2+"\" name=\"upload_forward_"+id2+"\" src=\"{url:(mail/upload_forward)}/"+draft1[id2]+"/"+id2+"/0\"  style=\"width:100%;height:"+tot_height+"px;border:0px solid #fff;\" scrolling=\"no\"></iframe>";
+          
+              document.getElementById('forward_'+id2).innerHTML=filestringz;
+              document.getElementById('attachlink_'+id2).style.display="none";
+	 	 	document.getElementById('additionalattach_'+id2).style.display="";
+              }
+             
+             document.getElementById('to_'+id2).value="";
+            
+     }
+     
+     
+     }
+     
+     {loopend:mail}
+
+
+     
+     document.getElementById('to_'+id2).focus();
+   
+ }
+ else
+ {
+
+     if(x!=type)
+     {
+     if((type<3)&&(x==3))
+     var display_type=1;
+     else
+     var display_type=0;
+     	 x=type;
+         if(type<=2)
+         {
+             var t="{cfn:pre(1)}";
+         }
+         else
+         {
+             var t="{cfn:pre(3)}";
+         }
+         
+         {loopstart:mail:100}
+          if(id2=={loop:mail})
+          {
+          var fllder="{$mail[13]}";
+          document.getElementById('sub_'+id2).value=t+': '+"{$subject}";
+         if(type==1)
+         {
+             
+             document.getElementById('to_'+id2).value="{cfn:to($mail[2],$mail[3])}";
+             if(display_type==1)
+             {
+	             if(document.getElementById('upload_forward_'+id2).style.display=="")
+	             document.getElementById('upload_forward_'+id2).style.display="none";
+             }
+         }
+         else if(type==2)
+         {
+             
+            
+         document.getElementById('to_'+id2).value="{cfn:tolist($mail[2])}"+"{cfn:tolist($mail[3])}";
+             var cc="{$mail[4]}";
+             var bcc="{$mail[5]}";
+            
+             if(cc!="")
+             {
+                 document.getElementById("showcc_"+id2).style.display="";
+                document.getElementById("spancc_"+id2).style.display="none";
+                 document.getElementById('cc_'+id2).value="{cfn:tolist($mail[4])}";
+             }
+             if((fllder==3)&&(bcc!=""))
+             {
+                 document.getElementById("showbcc_"+id2).style.display="";
+                document.getElementById("spanbcc_"+id2).style.display="none";
+                 document.getElementById('bcc_'+id2).value="{cfn:tolist($mail[5])}";
+             }
+             if(display_type==1)
+             {
+	             if(document.getElementById('upload_forward_'+id2).style.display=="")
+	             document.getElementById('upload_forward_'+id2).style.display="none";
+	         }
+         }
+         else
+         {
+            
+         //alert(att_count);   
+              if(att_count!=0)
+            {
+             var tot_height=30*att_count;
+              filestringz="<iframe id=\"upload_forward_"+id2+"\" name=\"upload_forward_"+id2+"\" src=\"{url:(mail/upload_forward)}/"+draft1[id2]+"/"+id2+"/0\"  style=\"width:100%;height:"+tot_height+"px;border:0px solid #fff;\" scrolling=\"no\"></iframe>";
+              document.getElementById('forward_'+id2).innerHTML=filestringz;
+              document.getElementById('attachlink_'+id2).style.display="none";
+	 	 	document.getElementById('additionalattach_'+id2).style.display="";
+              }
+             document.getElementById('to_'+id2).value="";
+            
+         }
+         }
+         {loopend:mail}
+         
+         document.getElementById('to_'+id2).focus();
+     }
+     else
+     {
+     
+     document.getElementById('action_'+id2).style.display="none";
+       document.getElementById('sendFooter1_'+id2).style.display="none";
+        document.getElementById('replyFooter1_'+id2).style.display="";
+     document.getElementById('mail_'+id2).focus();
+     }
+ }
+}
+
+
+
+function unmarkstar(mail_id,folder_id)
+{
+
+   document.getElementById("star_"+mail_id).innerHTML='<a href="javascript:markstar('+mail_id+','+folder_id+')"><img src="images/greystar_sml.png"  align="absmiddle" border="0" /></a>';
+   
+     mark_star(mail_id,folder_id,0);
+    
+}
+
+function markstar(mail_id,folder_id)
+{
+
+
+
+    document.getElementById("star_"+mail_id).innerHTML='<a href="javascript:unmarkstar('+mail_id+','+folder_id+')"><img src="images/fullstar_sml.png"  align="absmiddle" border="0" /></a>';
+ mark_star(mail_id,folder_id,1);
+
+}
+
+
+
+function makeInvisible(folders,mailids,id)
+{
+
+	var folder1=getCookievalue("folderid");
+	if(id==1)
+		parent.delete1(folder1,mailids,folders);
+	else if(id==5)
+		parent.makespam(folder1,mailids,folders);
+	
+}
+function movefn(str,t)
+	{
+		
+		var folder=parent.parent.mailsubheaderframe.getfolders();
+		fldr=getCookievalue("folderid");
+		
+		parent.movetofn(fldr,str,t,folder);
+		
+	}
+function getCookievalue(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+    if (c_end==-1) c_end=document.cookie.length;
+    return unescape(document.cookie.substring(c_start,c_end));
+    }
+  }
+return "";
+}
+
+var x=0;
+
+
+var xmlHttp23
+function getforward_attachments(dr,id2)
+{
+
+ xmlHttp23=GetXmlHttpObject23();
+   
+    if (xmlHttp23==null)
+      {
+      alert ("Your browser does not support AJAX!");
+      return;
+      }
+   
+    
+    var url3="{url:(mail/getforward_attachments_ajax)}/"+dr+"/"+id2;
+     //alert(url3); 
+    xmlHttp23.open("GET",url3,true); 
+     xmlHttp23.onreadystatechange=function()
+     {
+      if (xmlHttp23.readyState==4)
+        {  
+        var x=xmlHttp23.responseText;//alert(x);
+    document.getElementById('forward_'+id2).innerHTML=x;
+   
+ 
+
+        }
+     };
+    xmlHttp23.send(null);
+   
+}
+function countChanged23(id2)
+{ 
+//alert(xmlHttp22.readyState);
+
+        if (xmlHttp23.readyState==4)
+        {  
+        var x=xmlHttp23.responseText;//alert(x);
+    document.getElementById('forward_'+id2).innerHTML=x;
+   
+ 
+
+        }
+ }
+
+
+function GetXmlHttpObject23()
+{
+
+        var xmlHttp23=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp23=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp23=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp23=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp23;
+}
+function opendiv(mailid)
+{
+//alert(mailid);
+if(mailid>=0)
+{
+//alert("dddddddddd");
+document.getElementById('shortdiv_'+mailid).style.display="none";
+document.getElementById('mail_'+mailid).style.display="";
+}
+}
+function closediv(mailid)
+{
+if(mailid>=0)
+{
+document.getElementById('shortdiv_'+mailid).style.display="";
+document.getElementById('mail_'+mailid).style.display="none";
+}
+}
+function show_details(mailid)
+{
+document.getElementById('hide_details'+mailid).style.display="";
+document.getElementById('show_details'+mailid).style.display="none";
+document.getElementById('showDetails'+mailid).style.display="";
+
+}
+function hide_details(mailid)
+{
+
+document.getElementById('hide_details'+mailid).style.display="none";
+document.getElementById('show_details'+mailid).style.display="";
+document.getElementById('showDetails'+mailid).style.display="none";
+}
+
+function showccfun(id)
+{
+document.getElementById("bcc_only"+id).style.display="";
+document.getElementById("cc_only"+id).style.display="none";
+document.getElementById("showcc_"+id).style.display="";
+document.getElementById("cc_bcc"+id).style.display="none";
+
+}
+function showbccfun(id)
+{
+
+document.getElementById("bcc_only"+id).style.display="none";
+document.getElementById("cc_only"+id).style.display="";
+document.getElementById("showbcc_"+id).style.display="";
+document.getElementById("cc_bcc"+id).style.display="none";
+}
+function showccfun2(id)
+{
+
+document.getElementById("cc_only"+id).style.display="none";
+document.getElementById("showcc_"+id).style.display="";
+
+}
+function showbccfun2(id)
+{
+
+document.getElementById("bcc_only"+id).style.display="none";
+document.getElementById("showbcc_"+id).style.display="";
+}
+
+
+
+function addfilefield(loop)
+{
+
+
+
+filevar[loop]=filevar[loop]+1;
+
+filevar_count[loop]=filevar_count[loop]+1;
+
+filestring="<iframe id=\"upload_target_"+loop+"_"+filevar[loop]+"\" name=\"upload_target_"+loop+"_"+filevar[loop]+"\" src=\"{url:(mail/upload_frame_reply)}/"+draft1[loop]+"/"+filevar[loop]+"/"+loop+"\"  style=\"width:100%;height:40px;border:0px solid #fff;\" scrolling=\"no\"></iframe>";
+
+var filevartemp=filevar[loop]-1;
+filestring=filestring+"<div id=\"filedivcontainer_"+loop+"_"+filevar[loop]+"\">";
+
+var filevartemp=filevar[loop]-1;
+
+document.getElementById("filedivcontainer_"+loop+"_"+filevartemp).innerHTML=filestring;
+document.getElementById("attachcount_"+loop).value=filevar[loop];
+document.getElementById("attachlink_"+loop).style.display="none";
+document.getElementById("additionalattach_"+loop).style.display="";
+
+
+
+
+
+}
+
+function deletefilefield(loop,fieldcount)
+{
+
+deletevar[loop]=deletevar[loop]+1;
+document.getElementById("attach_"+loop+"_"+fieldcount).value="";
+
+document.getElementById("tablefiledivcontainer_"+loop+"_"+fieldcount).style.display="none";
+
+if(filevar[loop]==deletevar[loop])
+{
+document.getElementById("attachlink_"+loop).style.display="";
+document.getElementById("additionalattach_"+loop).style.display="none";
+}
+
+}
+
+function messageview()
+{
+setTimeout ( "messagehide()", 10000 );
+//settimeout("messagehide()",3000);
+
+} 
+function messagehide()
+{
+document.getElementById("message").style.display="none";
+}
+messageview();
+
+function display_image(id)
+{
+
+	document.getElementById("imagez").style.display="none";
+	
+	{loopstart:mail:10000}
+	if(id=={$mail[0]})
+	{
+		document.getElementById("mail_display_"+{$mail[0]}).innerHTML="{cfn:htmltobody($mail[7],$mail[13],$mail[0])}";
+		
+		adddisplaynow({$mail[0]},{$mail[13]});
+	}
+	
+	
+	{loopend:mail}
+
+}
+function display_imagealltime(id)
+{
+
+	document.getElementById("imagez").style.display="none";
+	
+	{loopstart:mail:10000}
+	if(id=={$mail[0]})
+	{
+		document.getElementById("mail_display_"+{$mail[0]}).innerHTML="{cfn:htmltobody($mail[7],$mail[13],$mail[0])}";
+		var q="{$mail[0]}";
+		var s="{$mail[13]}";
+		adddisplay(q,s);
+	}
+	{loopend:mail}
+}
+
+
+var xmlHttp15
+function adddisplay(mailid,folder)
+{
+xmlHttp15=GetXmlHttpObject15();
+ 
+    if (xmlHttp15==null)
+      {
+      alert ("Your browser does not support AJAX!");
+      return;
+      }
+   
+
+    var url3="{url:(mail/adddisplay)}";
+var params = "mailid="+mailid+"&folder="+folder;
+xmlHttp15.open("POST", url3, true);
+
+//Send the proper header information along with the request
+xmlHttp15.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlHttp15.setRequestHeader("Content-length", params.length);
+xmlHttp15.setRequestHeader("Connection", "close");
+
+xmlHttp15.onreadystatechange = function() {//Call a function when the state changes.
+
+	if(xmlHttp15.readyState == 4 )
+	 {
+		//alert(xmlHttp15.responseText);
+	
+	 }
+}
+xmlHttp15.send(params);
+    
+
+}
+
+
+
+
+function GetXmlHttpObject15()
+{
+        var xmlHttp15=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp15=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp15=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp15=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp15;
+}
+
+
+var xmlHttp16
+    function adddisplaynow(p1,p2)
+    {
+
+
+            xmlHttp16=GetXmlHttpObject16();
+            if (xmlHttp16==null)
+              {
+              alert ("Your browser does not support AJAX!");
+              return;
+              } 
+                 
+            var url="{url:(mail/adddisplaynow/)}"+p1+"/"+p2;
+         
+            xmlHttp16.onreadystatechange=countChanged16;
+            xmlHttp16.open("GET",url,true);  
+            xmlHttp16.send(null);
+             
+            
+ 
+ 
+    } 
+
+function countChanged16() 
+{ 
+
+        if (xmlHttp16.readyState==4)
+        {  
+        var x=xmlHttp16.responseText;
+    
+
+//if({$folder}!=6)
+//{
+	//parent.mailframe.shortmailframe.getUrlz(x);
+	//}
+	//else
+	//{
+	//parent.mailframe.shortmailframe.getUrls(x);
+	//}
+   
+        //document.getElementById("inbox_count").innerHTML=xmlHttp1.responseText;
+        	
+         
+        }
+//xmlHttp.readyState=1;
+//xmlHttp.onreadystatechange=0;
+}
+ 
+function GetXmlHttpObject16()
+{
+        var xmlHttp16=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp16=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp16=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp16=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp16;
+}
+
+
+function count()
+{
+parent.parent.mailleftframe.getnewcount();
+}
+count();
+
+var global_draftcount=0;
+function savetodraft(loop_mail)
+{
+
+
+global_draftcount++;
+
+if(global_draftcount==20)
+{
+
+ajax_savetodraft(loop_mail,0);
+
+
+
+global_draftcount=0;
+
+}
+}
+//function ajax_savetodraft(loop_mail,typ)
+//{
+
+//var to=document.getElementById('to_'+loop_mail).value;
+//var cc=document.getElementById('cc_'+loop_mail).value;
+//var bcc=document.getElementById('bcc_'+loop_mail).value;
+//var subject=document.getElementById('sub_'+loop_mail).value;
+//var body=document.getElementById('capturediv_'+loop_mail).innerHTML;
+//var draftid=document.getElementById('draftid_'+loop_mail).value;
+//save_draft(loop_mail,to,cc,bcc,subject,body,draftid);
+
+
+//}
+//var xmlHttp07
+//function save_draft(loop_mail,to,cc,bcc,subject,body,draftid)
+////{
+
+//xmlHttp07=GetXmlHttpObject07();
+ 
+    //if (xmlHttp07==null)
+     // {
+     // alert ("Your browser does not support AJAX!");
+     // return;
+     // }
+   
+    
+   // var url3="{url:(mail/save_draft_reply)}";
+//var params = "loop="+loop_mail+"&to="+to+"&cc="+cc+"&bcc="+bcc+"&subject="+subject+"&body="+body+"&draftid="+draftid;
+//xmlHttp07.open("POST", url3, true);
+
+//Send the proper header information along with the request
+//xmlHttp07.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//xmlHttp07.setRequestHeader("Content-length", params.length);
+//xmlHttp07.setRequestHeader("Connection", "close");
+
+//xmlHttp07.onreadystatechange = function() {//Call a function when the state changes.
+	//if(xmlHttp07.readyState == 4 )
+	 //{
+	
+		
+	// }
+//}
+//xmlHttp07.send(params);
+    
+    
+    
+    
+  
+//}
+
+//function GetXmlHttpObject07()
+//{
+       // var xmlHttp07=null;
+        //try
+         // {
+          // Firefox, Opera 8.0+, Safari
+         // xmlHttp07=new XMLHttpRequest();
+         // }
+       // catch (e)
+         // {
+          // Internet Explorer
+         // try
+          //  {
+          //  xmlHttp07=new ActiveXObject("Msxml2.XMLHTTP");
+          //  }
+         // catch (e)
+         //   {
+         //   xmlHttp07=new ActiveXObject("Microsoft.XMLHTTP");
+         //   }
+         /// }
+        //return xmlHttp07;
+//}
+
+
+var xmlHttp30
+ function getAttachSize(mail,loop)
+    {
+var folder="{$folderd}";
+    xmlHttp30=GetXmlHttpObject30();
+   
+    if (xmlHttp30==null)
+      {
+      alert ("Your browser does not support AJAX!");
+      return;
+      }
+   
+    
+    var url4="{url:(mail/getAttachSize)}/"+folder+"/"+mail+"/"+loop;
+      
+    xmlHttp30.open("GET",url4,true); 
+     xmlHttp30.onreadystatechange=function countChanged30() 
+{ 
+
+
+        if (xmlHttp30.readyState==4)
+        {  
+        var x=xmlHttp30.responseText;
+  // alert(x);
+
+	//getUrl2(x);
+   
+        document.getElementById("size_exceeds"+loop).value=xmlHttp30.responseText;
+        	//alert("sssss");
+             
+        }
+        };
+    xmlHttp30.send(null);
+    }
+
+
+function GetXmlHttpObject30()
+{
+        var xmlHttp30=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp30=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp30=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp30=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp30;
+}
+
+
+function ajax_savetodraft(id,typ)
+{
+
+var to=document.getElementById('to_'+id).value;//alert("b");
+var cc=document.getElementById('cc_'+id).value;//alert("b");
+var bcc=document.getElementById('bcc_'+id).value;//alert("b");
+var subject=document.getElementById('sub_'+id).value;//alert("b");
+//alert(body);
+var draftid=document.getElementById('draftid_'+id).value;//alert("b");
+save_draft(to,cc,bcc,subject,id,draftid,typ);
+
+}
+
+
+var xmlHttp71
+function save_draft(to,cc,bcc,subject,id,draftid)
+{
+//alert(draftid);
+xmlHttp71=GetXmlHttpObject71();
+ var body=document.getElementById('capturediv_'+id).innerHTML;
+ body=encodeURIComponent(body);
+ subject=encodeURIComponent(subject);
+    if (xmlHttp71==null)
+      {
+      alert ("Your browser does not support AJAX!");
+      return;
+      }
+   
+ //alert(body);
+    var url3="{url:(mail/save_draft)}";
+var params = "to="+to+"&cc="+cc+"&bcc="+bcc+"&subject="+subject+"&body="+body+"&draftid="+draftid;
+xmlHttp71.open("POST", url3, true);
+
+//Send the proper header information along with the request
+xmlHttp71.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlHttp71.setRequestHeader("Content-length", params.length);
+xmlHttp71.setRequestHeader("Connection", "close");
+
+xmlHttp71.onreadystatechange = function() {//Call a function when the state changes.
+	if(xmlHttp71.readyState == 4 )
+	 {
+		if(typ==1)
+		document.getElementById("message").innerHTML="{cfn:getmessage(207)}";
+		 parent.parent.mailleftframe.getnewcount();
+		
+	 }
+}
+xmlHttp71.send(params);
+    
+    
+    
+    
+  
+}
+
+
+function messageview()
+{
+setTimeout ( "messagehide()", 10000 );
+//settimeout("messagehide()",3000);
+
+} 
+function messagehide()
+{
+document.getElementById("msg_div").style.display="none";
+}
+messageview();
+function GetXmlHttpObject71()
+{
+        var xmlHttp71=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp71=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp71=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp71=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp71;
+}
+
+function hide_livesearch()
+{
+{loopstart:mail:10000}
+
+var lp={loop:mail};
+
+
+ document.getElementById('livesearch_'+lp).style.display="none";
+  document.getElementById('livesearch_'+lp).style.border="0px";
+             document.getElementById('livesearch_'+lp).style.padding="0px";
+            
+             document.getElementById('livesearchcc_'+lp).style.display="none";
+  document.getElementById('livesearchcc_'+lp).style.border="0px";
+             document.getElementById('livesearchcc_'+lp).style.padding="0px";
+            
+             document.getElementById('livesearchbcc_'+lp).style.display="none";
+  document.getElementById('livesearchbcc_'+lp).style.border="0px";
+             document.getElementById('livesearchbcc_'+lp).style.padding="0px";
+   {loopend:mail}       
+}
+
+var xmlHttp9
+    function mark_star(mail_id,folder_id,flag1)
+    {
+    
+var foldr=getCookievalue("folderid");
+    xmlHttp9=GetXmlHttpObject9();
+   //alert("aaaaa");
+    if (xmlHttp9==null)
+      {
+      alert ("Your browser does not support AJAX!");
+      return;
+      }
+      
+   if(foldr!=6)
+   var star=0;
+   else
+   var star=1;
+    
+    var url3="{url:(mail/star_shortmail)}/"+mail_id+"/"+folder_id+"/"+flag1+"/"+star;
+     
+    xmlHttp9.open("GET",url3,true); 
+     xmlHttp9.onreadystatechange=function(){
+     if (xmlHttp9.readyState==4)
+        {
+        
+        var x=xmlHttp9.responseText;
+        document.getElementById("star_"+mail_id).innerHTML=x;
+	}
+     }
+    xmlHttp9.send(null);
+    }
+
+
+function GetXmlHttpObject9()
+{
+        var xmlHttp9=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp9=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp9=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp9=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp9;
+}
+
+
+</script>
+</head>
+<body  {if($display==2)} style="background:url(images/borderGrey.png) repeat-y;" class="bodyMargin" {endif} >
+
+
+<div onClick="hide_livesearch()"  {if(($display==2)&& ($total!=0))} class="row greyBg"  {endif}>
+	<div id="preloadmail_image" style="display: none;"><img src="images/loading.gif"></div>
+	<div id="preloadmail_div"  >
+		 <div class="messageTab" id="msg_div" {if($msg=="")} style="display: none;" {endif}>
+       <span class="messageTabL"></span>
+       <span class="messageTabM" id="message">{$msg}</span>
+       <span class="messageTabR"></span>
+       </div>
+		<h2>{if($subject!="")}{$subject}{endif}</h2>
+		
+		<div class="mailBox">
+		{loopstart:mail:10000}
+		
+			
+		
+		
+			{if((($total-1)!=$mail) && ($mail[10]!=0))}
+		
+			<div class="mailBoxTitle" id="shortdiv_{loop:mail}" > 
+			<span class="mailBoxLT"></span>
+			<span class="mailBoxMT">
+			<span id="star_{$mail[0]}" class="titleStar"> {if($searchflag==1 || $folderid==6)}{cfn:getstar($mail[0],$mail[13])} {elseif($folderid!=5)} {cfn:getstar($mail[0],$folderid)} {endif} </span> <span id="mail" class="fromName" ><a href="#focusdiv1_{loop:mail}" onClick="opendiv({loop:mail})">{noescape:$mail[2]}</a></span> <span class="titleContent"><a href="#focusdiv1_{loop:mail}" onClick="opendiv({loop:mail})">{cfn:briefmessage($mail[7],30)}</a></span>	
+</span>
+			<span class="mailBoxRT"></span>
+			<span class="fromDate"><a href="#focusdiv1_{loop:mail}" onClick="opendiv({loop:mail})">{cfn:getdetaildate($mail[8])}</a></span> 
+			</div><!-- end of title for non opening mails-->
+{endif}
+		<div id="focusdiv1_{loop:mail}" ></div>
+	
+			<div id="mail_{loop:mail}"  class="mailBoxOpened"{if((($total-1)!=$mail)&&($mail[10]!=0))}  style="display: none; " {endif} >
+			<form name="reply{loop:mail}" id="reply{loop:mail}" enctype="multipart/form-data" method="POST"  action="{url:(mail/replymail/{$mail[13]}/{$mail[0]}/{loop:mail})}" >
+				<div class="mailBoxTitle" id="show_details{loop:mail}" style="background-color:#0099FF;"> <span class="mailBoxLT"></span> 
+					<span class="mailBoxMT">
+						<div class="row">
+						<input type="hidden" id="idz" name="idz" value="">
+						<span class="titleStar" id="star_{$mail[0]}"> {if($folderid!=5)}{cfn:getstar($mail[0],$mail[13])}{endif}</span> 
+						<span id="mail" class="fromName"><a href="#focusdiv2_{loop:mail}" onClick="closediv({loop:mail})">{noescape:$mail[2]}</a></span>
+						 <span class="titleContent">{if($mail[13]==3)}{cfn:briefids($mail[3],$mail[4],$mail[5],30)}{else}{cfn:briefids($mail[3],$mail[4],0,30)}{endif}</span>
+						  <span class="showDetailBtn"><a href="#focusdiv2_{loop:mail}" onClick="show_details({loop:mail})">{cfn:getmessage(282)}</a></span> 
+						</div>
+					</span> 
+					<span class="mailBoxRT"></span> <span class="fromDate"><a href="#focusdiv2_{loop:mail}" onClick="closediv({loop:mail})">{cfn:getdetaildate($mail[8])}</a></span> 
+				</div><!--end of mail title opened mail-->
+			
+				<div id="focusdiv2_{loop:mail}" ></div>
+				
+			
+				<div id="hide_details{loop:mail}" style="display: none; ">
+					<div class="mailBoxTitle"> 
+						<span class="mailBoxLT"></span> 
+						<span class="mailBoxMT">
+							<div>
+								<span class="titleStar"	id="star_{$mail[0]}">
+								{if($searchflag==1 || $folderid==6)}{cfn:getstar($mail[0],$mail[13])}{elseif($folderid!=5)}{cfn:getstar($mail[0],$folderid)}{endif}</span>				
+								<span id="mail" class="fromName"><a href="javascript:closediv({loop:mail})">{cfn:getmessage(54)}:{noescape:$mail[2]}</a></span> 
+								<span class="showDetailBtn"> <a href="javascript:hide_details({loop:mail})">{cfn:getmessage(283)}</a></span>
+							</div>
+						</span>
+						<span class="mailBoxRT"></span> 
+						<span class="fromDate"><a href="javascript:closediv({loop:mail})">{cfn:getdetaildate($mail[8])}</a></span>
+					</div>
+				</div>	
+						<input type="hidden" id="draftid_{loop:mail}" name="draftid_{loop:mail}" value="">	
+				<div class="mailBoxM"   >
+				
+			
+				<div class="row" style="display:none;" id="showDetails{loop:mail}">
+					<!--detailedList-->
+					<div class="detailedList" > {if($mail[13]==3)}{cfn:arrange_ids($mail[3],$mail[4],$mail[5],$mail[8],$mail[6])}{else}{cfn:arrange_ids($mail[3],$mail[4],0,$mail[8],$mail[6])}{endif}
+					</div>
+				</div>
+				  	{if(($mail[19]==1)&&($mail[13]!=3))}
+				
+				<div class="row imageDisplay"  align="center" id="imagez">
+				<span style="font-weight:700;">{cfn:getmessage(216)}
+				<br></span>
+				
+				<a href="javascript:display_image({$mail[0]})">{cfn:getmessage(217)}</a><span style="padding:2px;">|</span>
+					<a href="javascript:display_imagealltime({$mail[0]})">{cfn:getmessage(218)}{$mail[2]}</a>
+					
+					</div>
+					
+				{endif}
+				
+				  <div class="row" >
+				  	
+					<span class="mailContent" id="mail_display_{$mail[0]}"  >{if(($mail[19]==0)||($mail[13]==3))}{noescape:$mail[7]}{else}{noescape:$mail[14]}{endif}</span>
+			<div class="row"  >{cfn:getattachment($mail[0],$mail[13])}</div>
+				</div>
+				
+				
+				<input type="hidden" id="size_exceeds{loop:mail}" name="size_exceeds{loop:mail}" value="">
+					<!-- reply window-->
+					<div id="replylink_{loop:mail}" ></div>
+					<input type="hidden" name="search_{loop:mail}" id="search_{loop:mail}" value="">
+					<input type="hidden" name="searchbcc_{loop:mail}" id="searchbcc_{loop:mail}" value="">
+					<input type="hidden" name="searchcc_{loop:mail}" id="searchcc_{loop:mail}" value="">
+				
+					<div id="action_{loop:mail}" style="display: none" class="replyWindow" >						
+						<div class="row" id="replyFooter2_{loop:mail}"> 
+						<span style="cursor: pointer"><img src="images/reply.png" onclick="javascript:replyFunction({loop:mail},1,{$mail[17]})"></span>
+						<span class="replyLink"><a href="javascript:replyFunction({loop:mail},1,{$mail[17]})">{cfn:getmessage(15)}</a></span>
+						<span style="cursor: pointer"><img src="images/replyAll.png" onclick="javascript:replyFunction({loop:mail},2,{$mail[17]})"></span>
+						<span class="replyLink"><a href="javascript:replyFunction({loop:mail},2,{$mail[17]})">{cfn:getmessage(16)}</a></span> 
+						 <span style="cursor: pointer"><img src="images/forward.png" onclick="javascript:replyFunction({loop:mail},3,{$mail[17]})"></span>
+						 <span class="replyLink"> <a href="javascript:replyFunction({loop:mail},3,{$mail[17]})">{cfn:getmessage(17)}</a></span>
+		</div>
+						
+							
+		<div class="row marginT10" id="sendFooter2_{loop:mail}"> <span class="sendBtn"><a  id="submit_{loop:mail}" href="javascript:setnoenter({loop:mail},1)" name="submit_{loop:mail}">{cfn:getmessage(37)}</a></span> <span class="commonBtn"><a  id="draft_{loop:mail}"  name="draft_{loop:mail}" href="javascript:setnoenter({loop:mail},2)" >{cfn:getmessage(36)}</a></span> <span class="commonBtn"><a  id="discard_{loop:mail}"  name="discard_{loop:mail}" href="javascript:setnoenter({loop:mail},3)">{cfn:getmessage(59)}</a></span>
+		</div>
+		<div class="row marginT10" >
+			<div class="row">
+				<div class="coloum70 floatL"> <span class="boldTxt">{cfn:getmessage(31)}:</span></div>
+				<div class="coloum floatL" style="width:90%;">
+					
+					<input autocomplete="off" type="text" name="to_{loop:mail}" id="to_{loop:mail}" 	value="" onKeyUp="javascript:keymovement(event,this.value,{loop:mail});"onblur="hideoptions()" onChange="show()" style="width:99%;height: 50px;">{showpage:mail/ajaxlivesearch/$mail}
+					<div id="livesearch_{loop:mail}" class="member_text_box livesearch" 	style="border: 0px; float: left; background-color: #FFFFFF"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row marginT10">
+			<div class="coloum70 floatL" > <span class="boldTxt">{cfn:getmessage(34)}:</span></div>
+			<div class="coloum floatL" style="width:90%;">
+				<input type="text" name="sub_{loop:mail}" 	id="sub_{loop:mail}" 	value="" style="width:99%;height: 25px;">
+			</div>
+		</div>
+		
+		<div class="row marginT10" id="cc_bcc{loop:mail}"> 
+			<span id="spancc_{loop:mail}" class="commonLink"><a href="#replylink_{loop:mail}" onClick="showccfun({loop:mail})">{cfn:getmessage(201)}</a></span><span class="normalTxt floatL">|</span><span  id="spanbcc_{loop:mail}"  class="commonLink"><a href="#replylink_{loop:mail}" onClick="showbccfun({loop:mail})">{cfn:getmessage(202)}</a></span>
+		</div>
+		
+		<div class="row marginT10" id="showcc_{loop:mail}"style="display: none;">			 
+			<div class="coloum70 floatL" ><span  class="boldTxt">{cfn:getmessage(32)}:</span></div>
+			<div class="coloum floatL" style="width:90%;">
+<input autocomplete="off" type="text" name="cc_{loop:mail}" id="cc_{loop:mail}" value="" onKeyUp="javascript:keymovement1(event,this.value,{loop:mail});"    onChange=			 										"show()" style="width:99%;height: 30px;">{showpage:mail/ajaxlivesearchcc/$mail}
+			<div id="livesearchcc_{loop:mail}"   class="member_text_box livesearch" style="border:0px;float: left; background-color:#FFFFFF"></div>
+			</div>		
+		</div>
+			
+		<div class="row marginT10" id="showbcc_{loop:mail}" style="display: none;">
+			<div class="coloum70 floatL" ><span class="boldTxt">{cfn:getmessage(33)}:</span></div>
+			<div class="coloum floatL" style="width:90%;">
+				<input  autocomplete="off" type="text" name="bcc_{loop:mail}" id="bcc_{loop:mail}" value="" onKeyUp="javascript:keymovement2(event,this.value,{loop:mail});"    onChange=
+	"show()" style="width:99%;height: 30px;">
+	{showpage:mail/ajaxlivesearchbcc/$mail}
+				<div id="livesearchbcc_{loop:mail}"   class="member_text_box livesearch" style="border:0px;float: left; background-color:#FFFFFF"></div>
+			</div>
+		</div>
+		
+		<div class="row marginT10"  id="cc_only{loop:mail}" style="display:none;"> 
+			<span id="spancc_{loop:mail}" class="commonLink"><a href="#replylink_{loop:mail}" onClick="showccfun2({loop:mail})">{cfn:getmessage(201)}</a></span>
+		</div>
+		<div class="row marginT10"  id="bcc_only{loop:mail}" style="display:none;">  
+			<span  id="spanbcc_{loop:mail}"  class="commonLink"><a href="#replylink_{loop:mail}" onClick="showbccfun2({loop:mail})">{cfn:getmessage(202)}</a></span>
+		</div>
+		
+		
+		
+		<div id="forward_{loop:mail}" ></div>
+			<span  class="attachLink"><a href="#replylink_{loop:mail}" onClick="addfilefield({loop:mail})">
+				<div id="attachlink_{loop:mail}"><span><img src="images/attach1.png" border=""></span><span class="boldTxt">{cfn:getmessage(35)}</span></div>
+				</a>
+			</span>
+			<input type="hidden" value="" id="attachcount_{loop:mail}" name="attachcount_{loop:mail}">
+			<div id="filedivcontainer_{loop:mail}_0"></div>
+			<div id="additionalattach_{loop:mail}" class="attachLink" style="display: none"><a href="#replylink_{loop:mail}"  onclick="addfilefield({loop:mail})"><img src="images/attach1.png" border="">{cfn:getmessage(60)} </a></div>
+			<div onKeyPress="savetodraft({loop:mail})" style=" width: 100%; background-color:#FFFFFF;" >
+				<script type="text/javascript" src="js/nicEdit.js"></script>
+				<script type="text/javascript">
+
+bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>
+<style type="text/css">
+.nicEdit-main {
+  overflow-x: auto !important;
+  white-space: nowrap;
+}
+</style>
+<textarea name="message_{loop:mail}" id="message_{loop:mail}"	style="  width: 100%;height:500px; background-color:#FFFFFF;">
+<br>
+{fn:nl2br($sign)}<blockquote class="gmail_quote" style="border-left: 1px solid rgb(204, 204, 204); margin: 0pt 0pt 0pt 0.8ex; padding-left: 1ex;">{noescape:$mail[7]}</blockquote>
+</textarea>
+			</div>
+<input type="hidden" name="type_{loop:mail}" value="" id="type_{loop:mail}">
+<input type="hidden" name="newbody_{loop:mail}" value="" id="newbody_{loop:mail}">
+			
+
+				
+		</div> <!-- end of reply window-->
+	</div> <!-- end of mailBox M-->
+	
+		<div class="mailBoxFooter" id="replyFooter1_{loop:mail}" > 
+			<span class="mailBoxLF"></span> 
+			<span class="mailBoxBM">
+				<div class="replyLink floatL"> <span style="cursor: pointer"><img src="images/reply.png" onclick="javascript:replyFunction({loop:mail},1,{$mail[17]})"></span><a href="javascript:replyFunction({loop:mail},1,{$mail[17]})">{cfn:getmessage(15)}</a> </div> 
+				<div class="replyLink floatL"><span style="cursor: pointer"><img src="images/replyAll.png" onclick="javascript:replyFunction({loop:mail},2,{$mail[17]})"></span><a href="javascript:replyFunction({loop:mail},2,{$mail[17]})"> {cfn:getmessage(16)}</a> </div>
+				<div class="replyLink floatL"> <span style="cursor: pointer"><img src="images/forward.png" onclick="javascript:replyFunction({loop:mail},3,{$mail[17]})"></span><a href="javascript:replyFunction({loop:mail},3,{$mail[17]})">{cfn:getmessage(17)}</a></div> 
+			 </span>  
+			 <span class="mailBoxRF"></span> 
+		</div><!-- end of footer of mailBox-->
+		<!-- mail footer-->
+		<div class="mailBoxFooter"  id="sendFooter1_{loop:mail}" style= "display:none;"> 
+			<span class="mailBoxLF"></span> 
+			<span class="mailBoxBM">
+				<div class="sendBtn floatL"><a id="submit_{loop:mail}" href="javascript:setnoenter({loop:mail},1)" name="submit_{loop:mail}">{cfn:getmessage(37)}</a></div>
+				<div class="commonBtn floatL"><a  id="draft_{loop:mail}"  name="draft_{loop:mail}" href="javascript:setnoenter({loop:mail},2)" >{cfn:getmessage(36)}</a></div> 
+				<div class="commonBtn floatL"><a  id="discard_{loop:mail}"  name="discard_{loop:mail}" href="javascript:setnoenter({loop:mail},3)">{cfn:getmessage(59)}</a></div>
+			</span>
+			<span class="mailBoxRF"></span>		
+		</div><!-- end of footer of mailBox-->	
+			<!--<div class="row">&nbsp;</div>	-->					
+	</form></div><!-- end of opened mail-->
+
+
+{loopend:mail}
+
+</div><!-- end of mailBox-->
+
+</div>
+</div>
+
+<script type="text/javascript">
+					 
+					
+									
+					var byenter=1;
+					
+				function verifyForm(){
+					
+					//alert("hi"+byenter);
+					
+					if(byenter==1)
+					return false;
+					else
+					return true;
+				
+				
+					}
+						
+				function setnoenter(id,type)
+				{
+				
+					byenter=0;
+					//alert("bb");
+				//alert(document.getElementById('capturediv_'+id).innerHTML);
+				//alert("jhh");
+					document.getElementById('type_'+id).value=type;
+			
+			
+					document.getElementById('newbody_'+id).value=document.getElementById('capturediv_'+id).innerHTML;
+					
+					if(type==2)
+					{
+					//alert("a");
+						 ajax_savetodraft(id,1);
+					}
+					else
+					{
+					if(verifyForm())
+					{
+					//alert(id);
+					var no_attach=document.getElementById('attachcount_'+id).value;					//alert(id);
+					//alert(no_attach);
+					if(type==1)
+					{
+						var to=document.getElementById('to_'+id).value;//alert("b");
+						var cc=document.getElementById('cc_'+id).value;//alert("b");
+						var bcc=document.getElementById('bcc_'+id).value;//alert("b");
+						var subject=document.getElementById('sub_'+id).value;
+						var body=document.getElementById('capturediv_'+id).value;
+						if(to==""&&bcc==""&&cc=="")
+						{
+							alert("{cfn:getmessage(330)}");
+							document.getElementById('to_'+id2).focus();
+							return ;
+						}
+						
+						if(subject=="")
+						{
+							var answer=confirm("{cfn:getmessage(331)}");
+							if(!answer)
+							return ;
+						}
+					
+						if(body=="")
+						{
+							var answer=confirm("{cfn:getmessage(332)}");
+							if(!answer)
+							return ;
+						}
+					}
+					
+					for(var p=1;p<=no_attach;p++)
+					{
+					
+					while(1)
+					{
+					var cook="file_"+id+"_"+p;
+					
+					if(document.cookie.indexOf(cook)!=-1)
+					{
+					if(getdetailcookie(cook)==1)
+					{
+					
+					break;
+					}
+					
+					}
+					else
+					{
+					 break;
+					}
+					}
+					}
+					
+					if(no_attach!=0)
+					{
+					    var idz="{$mailid0}";
+					    
+						getAttachSize(idz,id);
+						
+						
+						while(1==1)
+						{
+						var size=document.getElementById('size_exceeds'+id).value;
+						 if((size==0)||(size==1))
+						 {
+						 break;
+						 }
+						}
+						
+						if(size==0)
+						{
+							document.getElementById('reply'+id).submit();	
+							return false;	
+						}
+						else
+						{
+							document.getElementById("message").innerHTML="{cfn:getmessage(319)}";
+						}
+					}	
+					else
+					{	
+					//alert("kkkkk");	
+					document.getElementById('reply'+id).submit();	
+					return false;			
+					}
+					
+				 }
+				
+				}
+					}
+
+
+
+function getdetailcookie(c_name)
+{
+
+
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+  
+    if (c_end==-1) c_end=document.cookie.length;
+  if( unescape(document.cookie.substring(c_start,c_end))=="1")
+  {
+
+ return 1;
+
+
+  }
+    }
+  }
+
+}
+
+
+function getCookievalue(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+    if (c_end==-1) c_end=document.cookie.length;
+    return unescape(document.cookie.substring(c_start,c_end));
+    }
+  }
+return "";
+}
+
+			
+
+//preloadmailfun();
+
+function getCookie(c_name)
+{
+
+
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+  
+    if (c_end==-1) c_end=document.cookie.length;
+  if( unescape(document.cookie.substring(c_start,c_end))=="1")
+  {
+
+ document.getElementById("preloadmail_image").style.display="none";  
+ document.getElementById("preloadmail_div").style.display="";
+
+
+
+
+var page=getCookievalue("page");
+if(page!="")
+SetCookie("page",page,1);
+else
+SetCookie("page",1,1);
+if(page==1)
+{
+
+SetCookie("preload_mail",0,1);
+var folder=getCookievalue("folderid");
+if(folder!="")
+SetCookie("folderid",folder,1);
+else
+SetCookie("folderid",1,1);
+
+}
+  }
+    }
+  }
+
+}
+   
+   
+   
+  // function getCookiez(c_name)
+//{
+
+
+//if (document.cookie.length>0)
+//{
+//document.cookie.indexOf(searchstring, start)
+//return 1;
+//}
+//else
+//return 0;
+//}
+   
+   
+   function getforwardCookie(c_name)
+{
+
+
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+  
+    if (c_end==-1) c_end=document.cookie.length;
+  if( unescape(document.cookie.substring(c_start,c_end))=="1")
+  {
+
+ return 1;
+
+
+  }
+    }
+  }
+
+}
+function SetCookie(name,value,days)
+ {
+//alert("2");
+ if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+
+}
+	
+	if(getforwardCookie("reload"))
+	{
+	 SetCookie("reload",0,1);
+	//alert("1");
+	var url6="{url:(mail/detailmail/{$folderid}/{$mailid0})}";
+
+//window.open(url6,"detailmailframe");
+	
+	}	
+	function preloadmailfun()
+{
+
+
+getCookie("preload_mail");
+
+
+
+preloadmailfun();
+
+
+}
+
+
+SetCookie("preload",1,1);
+
+
+function SetCookie(name,value,days)
+ {
+
+ if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+
+}
+var xmlHttp22
+
+
+ var res=new Array();
+function create_dratfid(id2,type,mail_id,flder,att_count)
+{
+
+
+    xmlHttp22=GetXmlHttpObject22();
+  
+    if (xmlHttp22==null)
+      {
+      alert ("Your browser does not support AJAX!");
+      return;
+      }
+  
+
+    var url3="{url:(mail/createdraftid/)}"+id2+"/"+type+"/"+mail_id+"/"+flder;
+
+    xmlHttp22.open("GET",url3,true);
+     xmlHttp22.onreadystatechange=function()
+     {
+      if (xmlHttp22.readyState==4)
+        { 
+        var x=xmlHttp22.responseText;
+     res=x.split(",");
+     draft1[res[0]]=res[1];
+var index=res[0];
+var valuez=res[1];
+    document.getElementById('draftid_'+index).value=valuez;
+  
+load_replywindow(id2,type,att_count);
+        }
+     }
+    xmlHttp22.send(null);
+  
+}
+function GetXmlHttpObject22()
+{
+
+        var xmlHttp22=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp22=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp22=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp22=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp22;
+}
+
+
+</script>
+					
+</body>
+</html>

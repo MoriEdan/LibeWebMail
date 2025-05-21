@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>{$servicename}</title>
+<link rel="stylesheet" href="css/mob-style.css" type="text/css" media="screen" />
+<script src="js/jquery.js" type="text/javascript"></script>
+</head>
+<script>
+
+$(document).ready(function() {
+$('.popmenuwrap').hide();
+ $(".topbarMenu").click(function(){
+ $(".popmenuSub").animate({marginRight:"-70px"});
+ $(".popmenuSub").fadeOut()
+$(".popmenuwrap").slideToggle();
+});
+$(".moreLink").click(function(){
+$(".popmenuSub").fadeToggle(50);
+$(".popmenuSub").animate({marginRight:"0px"});
+});
+
+$(".shdtls").click(function(){
+$(".shdtlsdiv").fadeIn(50);
+$(".shdtls").fadeToggle(50);
+});
+
+$(".hidedtls").click(function(){
+$(".shdtlsdiv").fadeOut(50);
+$(".shdtls").fadeToggle(50);
+});
+
+
+});
+
+</script>
+<body {if($mob==0)}style="background:none" {endif}>
+<div {if($mob==0)}style="width:300px; background:url(../images/contentbg.gif) repeat scroll 0 0 #2A3848; overflow:hidden;position:relative;" {endif}>
+<div class="header">
+	<div class="header">
+		<img src="images/logo.png" alt="Logo" class="left" />
+		<a href="{url:(mime/getmail)}" class="right" style="margin-left:5px;margin-top:13px;"><img src="images/theme.png" alt="Refresh" /></a>
+		<a href="{url:(index/logout)}" class="right" >{cfn:getmessage(39)}</a>
+	</div>
+</div>
+<div class="popmenuwrap" style="display:none">
+<div class="popmenuSub" style="display:none">
+{loopstart:customfolders:10000}
+<a href="{url:(mail/mailbox/)}{$customfolders[0]}">{$customfolders[1]}{cfn:getunreadcountnew($uid,$customfolders[0])}</a> 
+{loopend:customfolders}
+</div>
+<div class="popmenu">
+     {if($mpcount!=0)}<a href="#" class="moreLink">{cfn:getmessage(761)}</a>{endif}
+	<a href="{url:(mail/replylink/newmail/1/1/m)}">{cfn:getmessage(10)}</a>
+	<a href="{url:(mail/mailbox/1)}">{cfn:getmessage(19)}</a>
+	<a href="{url:(mail/mailbox/6)}">{cfn:getmessage(205)}</a>
+	<a href="{url:(mail/mailbox/2)}">{cfn:getmessage(20)}</a>
+	<a href="{url:(mail/mailbox/3)}">{cfn:getmessage(21)}</a>
+	<a href="{url:(mail/mailbox/4)}">{cfn:getmessage(12)}</a>
+	<a href="{url:(mail/mailbox/5)}">{cfn:getmessage(22)}</a>
+	<a href="{url:(mail/contacts)}">{cfn:getmessage(2)}</a>
+</div>
+</div>
+
+<div class="mailHeading">
+
+		<b>{$heading}</b>
+		
+		<a class="topbarMenu">{cfn:getmessage(762)}</a>
+		<a href="{url:(mail/replylink/newmail/1/1/m)}" class="topbarHome">{cfn:getmessage(764)}</a>
+		<a href="{url:(mail/mailbox/1)}" class="topbarHome">{cfn:getmessage(19)}{cfn:getunreadcountnew($uid,1)}</a>
+		<a href="{url:(mail/home)}" class="topbarHome"><img src="images/homeButtom.png" alt="Home" /></a>
+</div>	
+<div class="clear"></div>
+

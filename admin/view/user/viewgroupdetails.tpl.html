@@ -1,0 +1,54 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" width="100%" style="padding:10px;" align="left">
+
+	 <tr align="center">
+
+         <td>	{showpage:include/contactsheader}</td>
+
+  </tr>
+
+  </table>	
+	
+	
+			<table width=100% border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">  
+			
+				<tr>
+				<td >
+			{if($num==0)}
+		<tr><td align="center" >	<font color="#0066CC" style="font-size:16px;font-weight:bold;">-&nbsp;No Contacts in This Groups&nbsp;- </font></td></tr>
+			{else}
+			
+			<table width=75% border="0" cellpadding="0" cellspacing="0" align="center">  
+					  <tr  height="30" bgcolor="#565466" style="color: white;font-weight: bold;" align="left">  	 
+						  <td style="padding:8px;border-right: 1px ;color:white;" width="5%">&nbsp;</td>
+						  <td style="padding:8px;border-right: 1px ;color:white;" width="40%">Contacts</td>
+						  <td style="padding:8px;border-right: 1px ;color:white;" width="30%">Action </td>
+					  </tr>
+							
+							{loopstart:contacts:100}
+							
+			<tr {if($contacts % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+				<td style="padding-left:8px; border-bottom: 1px solid #b7b5b3;border-left: 1px solid #b7b5b3;border-right: 0px solid #b7b5b3;"><input type="checkbox" name="check" id="check{loop:groups}" value="{$groups[0]}"/></td>
+				<td  style="padding-left:0px; border-bottom: 1px solid #b7b5b3;border-left: 0px solid #b7b5b3;"><a href="{url:(user/viewcontactdetails/{$contacts[1]})}" class="action">{$contacts[2]}</a></td>
+				<td style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3;"><a href="javascript:confirmation({$count})" class="action">Delete</a> </td> 		
+		</tr>
+							  {loopend:contacts}
+							 
+						</table>	
+			{endif}
+				 </td>
+				</tr>
+		   </table>
+		  		 
+				   <br /><br /><br />
+</td></tr></table></td></tr></table>
+
+{showpage:include/footer}
+
+
+

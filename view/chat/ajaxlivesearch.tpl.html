@@ -1,0 +1,218 @@
+<script type="text/javascript">
+// JavaScript Document
+
+
+var total_result_count_ch;
+
+function setvaluefortb_ch(str){
+dividfrom=str.split("||");
+divid=dividfrom[1];
+id0="chatuser"+divid;
+id1="livesearch_ch_"+divid;
+
+
+var name=dividfrom[0];//alert(no);
+	document.getElementById(id0).value=name;
+	
+	document.getElementById(id0).focus();
+	var search_ch="search_ch_"+divid;
+  document.getElementById(search_ch).value=name;
+	document.getElementById(id1).style.display="none";
+}
+
+
+function showResult_ch(str,divid,userid)
+{
+id1="livesearch_ch_"+divid;
+if (str.length==0)
+
+  {
+  document.getElementById(id1).style.display="";
+
+  document.getElementById(id1).innerHTML="";
+
+  document.getElementById(id1).style.border="0px";
+
+  return;
+
+  }
+
+var url="{url:(chat/livesearch/)}"+divid+"/"+userid;
+
+url=url+"&q="+str;
+
+url=url+"&sid="+Math.random();
+
+$.ajax({
+
+type: "GET",cache: false,
+url: url,
+
+success: function(data) {
+  
+   document.getElementById(id1).style.display="";
+
+  document.getElementById(id1).innerHTML=data;
+
+  total_result_count_ch=document.getElementById("count_ch").value;
+
+  document.getElementById(id1).style.border="1px solid #A5ACB2";
+
+  }
+  });
+
+}
+</script>
+
+<script language="javascript" type="text/javascript">
+//document.body.onclick= getMouseXY;
+
+function getMouseXY(e) 
+{
+
+	 document.getElementById('livesearch_ch').style.display="none";
+ 	 document.getElementById("livesearch_ch").style.border="0px";
+ 	 document.getElementById("livesearch_ch").style.padding="0px";
+
+
+
+
+}
+
+var searchtext_ch="";
+var counter_ch=new Array();
+var old_char_count_ch=0;
+
+
+counter_ch[0]=0;
+
+function keymovement_ch(evt,textval,divid,userid) 
+{
+
+	
+	 	var charCode = (evt.which) ? evt.which : event.keyCode
+id1="livesearch_ch_"+divid;id0="chatuser"+divid;
+		if(charCode==40)
+		{
+				
+						 document.getElementById(id1).style.display="";
+						 document.getElementById(id1).style.border="1px solid #A5ACB2";
+						 document.getElementById(id1).style.padding="0px";
+	
+						counter_ch=counter_ch+1;//alert(counter);
+						id2="livesearch_ch_a_"+divid+"_"+counter_ch;//alert(id2);
+						if(!document.getElementById(id2))
+						{
+							counter_ch=0;
+						}
+
+
+						for(var i=0;i<=total_result_count_ch;i++)
+						{
+						id3="livesearch_ch_a_"+divid+"_"+i;
+							if(document.getElementById(id3))
+							{ 
+								document.getElementById(id3).style.background="#fff";  
+							 }      
+							
+						}
+			
+						if(document.getElementById(id2))
+						{
+								document.getElementById(id2).style.background="#ccc";
+								id4="livesearch_ch_h_"+divid+"_"+counter;var search_ch="search_ch_"+divid;
+								document.getElementById(search_ch).value=document.getElementById(id4).value;
+						}
+						else
+						{
+								var search_ch="search_ch_"+divid;
+								document.getElementById(search_ch).value=searchtext;
+						}
+						
+			
+ 		
+	
+		}
+		else if(charCode==38)
+		{
+						 document.getElementById(id1).style.display="";
+						 document.getElementById(id1).style.border="1px solid #A5ACB2";
+						 document.getElementById(id1).style.padding="0px";
+
+						counter_ch=counter_ch-1;
+						id2="livesearch_ch_a_"+divid+"_"+counter_ch;
+						if(!document.getElementById(id2) && counter_ch!=0)
+						{
+							for(i=total_result_count_ch;i>0;i--)
+							{
+							id3="livesearch_ch_a_"+divid+"_"+i;
+							if(document.getElementById(id3))
+							{ counter_ch=i; break; }
+							}
+							
+						}
+
+			
+						for(i=1;i<=total_result_count_ch;i++)
+						{
+							id3="livesearch_ch_a_"+divid+"_"+i;
+							if(document.getElementById(id3))
+							{ 
+								document.getElementById(id3).style.background="#fff";  
+							 }      
+							
+						}
+
+						if(document.getElementById(id2))
+						{
+								document.getElementById(id2).style.background="#ccc";
+								id4="livesearch_ch_h_"+divid+"_"+counter_ch;search_ch="search_ch_"+divid;
+								document.getElementById(search_ch).value=document.getElementById(id4).value;
+						}
+						else
+						{
+								var search_ch="search_ch_"+divid;
+								document.getElementById(search_ch).value=searchtext;
+						}
+		
+		}
+		else if(charCode==37 || charCode==39 || charCode==17  || charCode==18)
+		{
+
+		}
+
+		else if(charCode==27 )
+		{
+			 document.getElementById(id1).style.display="none";
+			 document.getElementById(id1).style.border="0px";
+			 document.getElementById(id1).style.padding="0px";var search_ch="search_ch_"+divid;
+			 document.getElementById(search_ch).value=searchtext;
+
+		}
+		else if(charCode==13 )
+		{
+		
+ 
+			 id5="livesearch_ch_m_"+divid+"_"+counter_ch;
+			 document.getElementById(id0).value=document.getElementById(id5).value;
+		 	 document.getElementById(id1).style.display="none";
+			 document.getElementById(id1).style.border="0px";
+			 document.getElementById(id1).style.padding="0px";
+			 
+			id4="livesearch_ch_h_"+divid+"_"+counter_ch;var search_ch="search_ch_"+divid;
+			 document.getElementById(search_ch).value=document.getElementById(id4).value;
+			 
+		
+
+		}
+		else
+		{
+			var search_ch="search_ch_"+divid;
+			searchtext=document.getElementById(search_ch).value;
+			showResult_ch(textval,divid,userid);
+			
+
+		}
+	
+}
+</script>

@@ -1,0 +1,140 @@
+{showpage:include/header}
+<script type="text/javascript">
+function checkfn(count)
+{
+for(var i=0;i<count;i++)
+{
+document.getElementById('check'+i).checked='checked';
+//string+=document.getElementById('check'+i).value+",";
+}
+
+}
+function uncheckfn(count)
+{
+for(var i=0;i<count;i++)
+{
+document.getElementById('check'+i).checked='';
+//string=string.replace(",document.getElementById('check'+i).value,",",");
+}
+//alert(string);
+
+}
+
+function confirmationnew(count)
+{
+
+var string='';var ct=0;
+
+for(var i=0;i<count;i++)
+{
+
+if(document.getElementById('check'+i))
+   {
+       if(document.getElementById('check'+i).checked==true)
+        {
+           string+=document.getElementById('check'+i).value+",";
+           ct++;
+       }
+  }
+else
+break;
+}
+
+	if(ct==0)
+alert("Please select a contact.");
+else 
+{
+  var answer = confirm("You want to delete the user. Press OK to continue.")
+	if(answer)
+	{
+   window.location.href = "{url:(user/deleteuser/)}"+string;
+    }	
+}
+
+}
+
+function confirmation(p1)
+ {
+           var answer = confirm("You want to delete this User. Press OK to continue.")
+           if (answer)
+            {
+                window.location.href = "{url:(user/deleteuser/)}"+p1+",";
+                
+            }
+
+}
+function confirmation2(p1)
+ {
+           var answer = confirm("You want to block this User. Press OK to continue.")
+           if (answer)
+            {
+                window.location.href = "{url:(user/activateuser/)}"+p1;
+                
+            }
+
+}
+
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}
+</script>
+<br> 
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/userheader}</td>
+
+  </tr>
+
+  </table>	
+{if($empty!='')}<br><br>
+<div align="center" class="info_div">-&nbsp;No Users Registered Yet&nbsp;-</div><br>
+{else}<font class="page_title"><center>View All Users Below</center></font>
+<table cellpadding="0" cellspacing="0" class="userview_table" align="center">
+	<font color="#990000">{$status}	</font>
+	<tr><td align="center" >	
+			{loopstart:users:1}
+			
+			<table cellpadding="0" cellspacing="0" class="userview_table" align="center">  
+					  <tr class="table_header_tr" align="left">
+					   <td class="table_header_td" width="5%">&nbsp;</td>  	 
+						  <td width="35%" >User Name </td>
+						 <td width="8%"  align="center">Status</td>
+						  <td width="">Action </td>
+					  </tr>{loopend:users}
+					
+					{loopstart:users:100}
+					{if($portal_status==0)}
+					<tr {if($users % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:users})" id="{loop:users}" onmouseout="dispfn(1,{loop:users})">
+						<td class="detail_td"><input type="checkbox" name="check" id="check{loop:users}" value="{$users[0]}"/></td>
+						<td style="border-bottom: 1px solid #b7b5b3;"><a href="{url:(user/viewprofile/{$users[0]})}"  class="action2" title="{$users[3]}{cfn:getextension()}">{$users[1]}{cfn:getuseridformat($users[0])}</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;" {if($users[2]==1)} class="enable"{endif} align="center"
+			    	{if($users[2]==0)} class="disable" {endif}>{if($users[2]==1)}<img src="images/active.png" title="Active" alt="active">{else}<img src="images/blocked.png" title="Blocked" alt="blocked">{endif}</td>
+						<td class="border_bottomright"> {if($users[2]==1)}<a href="javascript:confirmation2({$users[0]})" class="action" title="Block user">Block</a>{else}<a href="{url:(user/activateuser/{$users[0]})}" class="action" title="Activate user">Activate</a>{endif}&nbsp;|&nbsp;<a href="javascript:confirmation({$users[0]})" class="action" title="Delete user">Delete</a>&nbsp;|&nbsp;<a href="{url:(user/viewprofile/{$users[0]})}" class="action" title="View user details">View Profile</a>&nbsp;|&nbsp;<a href="{url:(user/changepassword/{$users[0]})}" class="action" title="Change user password">Change Password</a>&nbsp;|&nbsp;<a href="{url:(user/statitics/{$users[0]})}" class="action" title="View user statistics">Statistics</a>&nbsp;|&nbsp;<a href="{url:(user/contacts/0/{$users[0]})}" class="action" title="View user contacts">Contacts</a>&nbsp;</td> 
+					  </tr>
+					  {else}
+					  <tr {if($users % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:users})" id="{loop:users}" onmouseout="dispfn(1,{loop:users})">
+						<td class="detail_td"><a href="{url:(user/viewprofile/{$users[0]})}"  class="action2" title="{$users[3]}{cfn:getextension()}">{$users[1]}{cfn:getuseridformat($users[0])}</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;" {if($users[2]==1)} class="enable"{endif} align="center"
+				  {if(($users[2]==0)||($users[2]==5))} class="disable" {endif}>{if($users[2]==1)}<img src="images/active.png" title="Active" alt="active">{elseif($users[2]==0)}<img src="images/blocked.png" title="Blocked" alt="blocked">{else}deleted{endif}</td>
+						<td class="border_bottomright"> <a href="javascript:confirmation2({$users[0]})" class="action" title="Delete user">Delete</a>&nbsp;|&nbsp;<a href="{url:(user/viewprofile/{$users[0]})}" class="action" title="View user details">View Profile</a>&nbsp;|&nbsp;<a href="{url:(user/statitics/{$users[0]})}" class="action" title="View user statistics">Statistics</a>&nbsp;|&nbsp;<a href="{url:(user/contacts/0/{$users[0]})}" class="action" title="View user contacts">Contacts</a>&nbsp;</td> 
+					  </tr>
+					  {endif}
+					{loopend:users}
+			</table>
+			<br />
+<tr><td class="left_td"><a href="#" class="action2" onclick="checkfn({$count});">Check All</a>&nbsp;|&nbsp;<a href="#" class="action2" onclick="uncheckfn({$count});">Uncheck All</a></td></tr>
+		<tr><td class="left_td"><br><a href="#" onclick="javascript:confirmationnew({$count})" ><img src="images/delete.gif" title="delete the contact" border=""/></a></td></tr>
+<tr> <td align="center">		
+		
+			{noescape:$pagingtop}
+ </td></tr></table>
+ 	{endif}
+ <br><br><br>
+{showpage:include/footer}

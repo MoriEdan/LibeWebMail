@@ -1,0 +1,129 @@
+{showpage:include/header}
+<script type=text/javascript>
+
+function deletefn(id)
+{ 
+  var answer = confirm("You are about to delete the tip of the day. Press OK to continue.")
+if(answer)
+{
+
+	 window.location.href = "{url:(tipoftheday/deletetips/)}"+id+",";
+}	
+}
+
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}
+
+function checkfn(count)
+{
+	 for(var i=0;i<count;i++)
+	 {
+	  document.getElementById('check'+i).checked='checked';
+	 }
+}
+function uncheckfn(count)
+{
+  for(var i=0;i<count;i++)
+  {
+  document.getElementById('check'+i).checked='';
+  }
+}
+
+function confirmation(count)
+{
+
+
+   var string='';var ct=0;
+   
+   for(var i=0;i<count;i++)
+	{
+	
+	if(document.getElementById('check'+i))
+	   {
+	       if(document.getElementById('check'+i).checked==true)
+	        {
+	           string+=document.getElementById('check'+i).value+",";
+	           ct++;
+	       }
+	  }
+	else
+	break;
+	}
+	
+		if(ct==0)
+	alert("Please select a tip of the day.");
+	else 
+	{
+	  var answer = confirm("You want to delete the tip of the day. Press OK to continue.")
+		if(answer)
+		{
+	   window.location.href = "{url:(tipoftheday/deletetips/)}"+string;
+        }	
+    }
+
+}
+</script>
+
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+<tr align="center">
+
+      <td>{showpage:include/eventsheader} </td>
+  </tr>
+<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+	 <tr align="center">
+
+      <td>{showpage:include/tipheader} </td>
+  </tr>
+
+  </table>	
+	<table width="100%" cellpadding="0" cellspacing="0" border="0">  
+			<tr><td align="center" class="page_title">Manage Tip of the Day</td></tr>
+				<tr>
+				<td >
+				
+			<table cellpadding="0" cellspacing="0" class="userview_table" >
+	
+	
+	
+	
+			{if($count==0)}
+			
+		<tr><td align="center" ><font  class="info_title">- No Tips -</font></td></tr>
+			{else}
+			
+			<table  border="0" cellpadding="0" cellspacing="0" class="userview_table">  
+					  <tr  class="table_header_tr" align="left">  	 
+						  <td class="table_header_td" width="5%">&nbsp;</td>
+						  <td  width="20%">Title</td>
+						 <td  width="45%">Message </td>
+						  <td width="50%">Action </td>
+					  </tr>
+		
+					{loopstart:tips:1000}
+		
+					<tr {if($tips % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr"  onmouseover="dispfn(0,{loop:tips})" id="{loop:tips}" onmouseout="dispfn(1,{loop:tips})">
+						<td class="detail_td"><input type="checkbox" name="check" id="check{loop:tips}" value="{$tips[0]}"/></td>
+						<td class="border_bottom">{$tips[1]}</td>
+						<td class="border_bottom">{fn:substr($tips[2],0,20)} </td> 
+						<td class="border_bottomright"><a  href="{url:(tipoftheday/edit_tips/{$tips[0]})}"  class="action" title="Edit Tips">Edit</a>&nbsp;|&nbsp;<a href="javascript:deletefn({$tips[0]})" class="action" title="Delete Tip">Delete</a> </td> 
+					  </tr>
+					{loopend:tips}
+			</table><br />
+			<tr><td class="left_td"><a href="#" class="action2" onclick="checkfn({$count});">Check All</a>&nbsp;|&nbsp;<a href="#" class="action2" onclick="uncheckfn({$count});">Uncheck All</a></td></tr>
+		<tr><td class="left_td"><br><a href="#" onclick="javascript:confirmation({$count})" ><img src="images/delete.gif" title="delete" border=""/></a></td></tr>
+			
+			<tr> <td align="center">{noescape:$pagingtop}</td></tr>
+			{endif}
+			
+			<br /><br />
+		  	</td></tr></table>
+
+
+{showpage:include/footer}

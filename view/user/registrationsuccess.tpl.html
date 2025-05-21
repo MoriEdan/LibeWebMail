@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<title>{cfn:getmessage(757)}</title>
+<style type="text/css">
+.forgotpasswordtitle { font-size:18px !important; color:#333; padding-left:0 !important}
+</style>
+</head>
+<body>
+<div class="loginHeader">
+<div class="loginheaderWrapper">
+<img src="{$imgpath}"  border="0" class="left">
+
+ 
+	 <div class="right">
+		
+		<a href="{url:(index/index)}" class="darkSignup"><div class="link">{cfn:getmessage(309)}</div></a>
+		<div class="left"> {cfn:getmessage(150)}? </div>
+	</div>
+	</div>
+</div>
+<div class="clear"></div>
+<div class="mainTop">
+<table  class="signup_table" align="center" cellspacing="0" cellpadding="0">
+	<tr><td>&nbsp;</td></tr>
+	  
+		<tr>
+		<td  align="left"  class="forgotpasswordtitle">{cfn:getmessage(757)}</td>
+	</tr>
+<tr><td>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+	<tr>
+		
+		<td style="padding-left:150px;">
+		{cfn:getmessage(312)} <a {if($portal_status==1)} href="{url:(mail/mailbox)}" {else} href="{url:(index/index)}"{endif} class="action"> {cfn:getmessage(288)}</a> {cfn:getmessage(759)}<br>
+		</td>
+	</tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+</td></tr></table>
+
+
+<table width="70%" border="0" align="center" >
+  <tr>
+    <td><div align="center"><span class="copyright">{$footer}</span></div></td>
+  </tr>
+</table>
+ </div>  
+</body>
+</html>

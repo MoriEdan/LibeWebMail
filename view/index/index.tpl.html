@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>{$servicename}</title>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script type="text/javascript">
+if (parent.frames.length > 0) {
+   parent.location.href = self.document.location
+}
+function langdisplayfn()
+{
+document.getElementById("langdisplay").style.display="";
+}
+
+function langhidefn()
+{
+
+document.getElementById("langdisplay").style.display="none";
+}
+function setlangcookiefn(lang)
+{
+ SetCookie("lang_mail",lang,1);
+ window.location.reload();
+   } 
+  function SetCookie(name,value,days)
+ {
+
+ if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+
+}
+var ddmenuitem	= 0;
+var timeout	= 300;
+var closetimer	= 0;
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+function mopen(id)
+{	
+	
+	// cancel close timer
+	mcancelclosetime();
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+	 ddmenuitem = document.getElementById(id);
+	 //alert(ddmenuitem);
+	 ddmenuitem.style.visibility = 'visible';
+}
+
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+	
+}
+
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+</script>
+<script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+</head>
+<body onLoad="document.login.username.focus();">
+
+<div class="loginHeader">
+<div class="loginheaderWrapper">
+<img src="{$imgpath}"  border="0" class="left">
+  {if($signupvalue==1)}
+ 
+	 
+		 <a href="{url:(user/registration)}" title="{cfn:getmessage(350)}"  class="darkSignup right"><div class="link">{cfn:getmessage(350)}</div></a> 
+	
+	{endif}
+	</div>
+</div>
+<div class="clear"></div>
+<div class="webmailWrap">
+
+
+<div class="LoginleftBox">
+	<div class="leftside">
+	 <span class="indextitle">{cfn:getmessage(341)} </span>
+	 <div class="column">
+	 	<span class="indexsubtitle">{cfn:getmessage(343)} </span>
+<span class="indexnote" >{cfn:getmessage(344)} </span>
+	 </div>
+	 
+	 <div class="column">
+	 <span class="indexsubtitle">{cfn:getmessage(345)} </span>
+<span class="indexnote" >{cfn:getmessage(346)} </span>
+</div>
+<div class="column">
+<span class="indexsubtitle">{cfn:getmessage(347)}</span>
+<span class="indexnote" >{cfn:getmessage(348)}</span>
+</div>
+	</div>
+	<div class="rightSide">
+	<img src="images/mobdisplay.png" alt="Mobil Version" />
+	</div>
+</div>
+
+{formstart:login:{url:(index/logincheck)}:POST}
+<div class="loginRight">
+<div class="allwrapingtop">
+<span class="loginBoxttl">{cfn:getmessage(9)}</span>
+<div class="selectLanguage">
+    <ul class="main_engines">
+        <li><a href="#"   onMouseOver="mopen('langdisplay')" onMouseOut="mclosetime()" style="text-decoration: none;" class="homepagelink">{cfn:getmessage(328)}</a>
+		<div style="clear:both;"></div>
+       <div id="langdisplay" class="roundDropdown" style="visibility:hidden;position:absolute;" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime()" > 
+	   <div class="in">
+		 <a  class="inactivetablink"  href="javascript:setlangcookiefn('{$defaultlang}')">{cfn:getmessage(329)}</a>
+{loopstart:lang:100}
+           <a  class="inactivetablink" href="javascript:setlangcookiefn('{$lang[0]}')">{$lang[1]}</a>
+ {loopend:lang}
+ </div>
+              </div>
+    </li>
+</ul>
+</div>
+</div>
+<div class="allwraping">
+<span class="messageerrdisplay" style="padding: 0px;!important">{fn:nl2br($msg)}</span><b>{cfn:getmessage(6)}</b>
+<input type="text" name="username" id="username" value="{$user}" autocomplete="off"><div class="clear"></div><b>{cfn:getmessage(7)}</b><div class="clear"></div>
+<input type="password" name="password" value="{$pass}" id="password"  autocomplete="off">
+<div class="clear"></div>
+<div class="logininputBtn"><input type="submit" name="submit" value="{cfn:getmessage(9)}">  </div>
+<a href="{url:(index/forgotpassword)}"  class="homepagelink" title="{cfn:getmessage(264)}"> {cfn:getmessage(263)}</a>
+</div>
+<div class="clear"></div>
+{if($signupvalue==1)}
+<div class="signUpBox" style="margin: 40px 0 0 -40px;!important">
+<h2>{cfn:getmessage(349)} </h2>
+
+ <a href="{url:(user/registration)}" title="{cfn:getmessage(350)}"  class="blueButton"><div class="link">{cfn:getmessage(288)}</div></a> 
+ <div class="clickHere">{cfn:getmessage(758)}</div>
+</div>
+{endif}
+
+	</div>
+{formend:login}
+
+<div class="clear"></div>
+<div align="center"><span class="copyright">{$footer} </span></div>
+<!-- {validate:login:isNotNull("username","{cfn:getmessage(103)}")}
+{validate:login:isNotNull("password","{cfn:getmessage(104)}")} -->
+</div>
+</body>
+</html>

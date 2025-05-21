@@ -1,0 +1,39 @@
+{showpage:include/header}<br />
+
+<center>{showpage:include/languageheader}</center>
+<table align="center" width="90%" cellpadding="0" cellspacing="0">
+<tr>
+<td colspan="3" align="center" height="45" ><font style="color:#336699; font-size:18px;"><center>Message Codes</center></font></td>
+</tr>
+<tr><td colspan="3"  height="45" align="left"><span style="font-size: 13px;">If you ever need to use the messages in the public pages you may copy the template code and paste it in the public pages.
+</span> <td></tr>
+<tr bgcolor="e1e1e1">
+<td width="15%" align="left" height="35"  style="padding-left:5px;border-bottom-color:#cccccc;border-bottom-style:solid;border-bottom-width:1px;
+border-left-color:#cccccc;border-left-style:solid;border-left-width:1px;
+border-top-color:#cccccc;border-top-style:solid;border-top-width:1px;">
+<span style="font-size:14px;font-weight:bold;">Message ID</span></td>
+<td width="62%" align="left" height="35"  style="padding-left:10px;
+border-bottom-color:#cccccc;border-bottom-style:solid;border-bottom-width:1px;
+border-top-color:#cccccc;border-top-style:solid;border-top-width:1px;"><span style="font-size:14px;font-weight:bold;">Message in English</span></td>
+<td width="23%" align="left" height="35"  style="padding-left:10px;
+border-bottom-color:#cccccc;border-bottom-style:solid;border-bottom-width:1px;
+border-right-color:#cccccc;border-right-style:solid;border-right-width:1px;
+border-top-color:#cccccc;border-top-style:solid;border-top-width:1px;"><span style="font-size:14px;font-weight:bold;">Template Code</span></td>
+</tr>
+{loopstart:codes:10000}
+<tr  bgcolor="eeeeee">
+<td align="left" height="25"   style="padding-left:10px;border-bottom-color:#cccccc;border-bottom-style:solid;border-bottom-width:1px;
+border-left-color:#cccccc;border-left-style:solid;border-left-width:1px;">{$codes[0]}</td>
+<td align="left"  height="25" style="padding-left:10px;
+border-bottom-color:#cccccc;border-bottom-style:solid;border-bottom-width:1px;
+">{$codes[1]} </td>
+<td  align="left"  height="25" style="padding-left:10px;border-bottom-color:#cccccc;border-bottom-style:solid;border-bottom-width:1px;
+border-right-color:#cccccc;border-right-style:solid;border-right-width:1px;">{cfn:gettemplatecode($codes[0],$codes[1])}&nbsp;</td>
+</tr>
+{loopend:codes}
+</table>
+<br>
+<center>
+{noescape:$pagingtop}
+</center>
+{showpage:include/footer}

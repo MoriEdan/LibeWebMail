@@ -1,0 +1,36 @@
+{showpage:include/header}
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr align="center">
+		<td colspan="2"><br />
+{showpage:include/shortcutsheader}</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2" height="42"><font style="color:#336699; font-size:18px;"><center>Keyboard Shortcuts</center></<br />
+
+</td>
+	</tr>
+	<tr><td colspan="2">
+	{formstart:message:{url:(shortcuts/storeinfo)}:post}
+	<table width="70%" cellpadding="0" cellspacing="0" style="border-width: 1px;border-color: #cccccc;border-style: solid;" align="center">
+	
+	
+	<tr bgcolor="#e1e1e1">
+	<td align="center" style="padding-left: 0px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc " height="48" width="20%"><span style="font-weight: bold;font-size: 13px">Key Value</span></td>
+	<td align="center" width="40%" style="padding-left: 25px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc "><span style="font-weight: bold;font-size: 13px">Description</span></td>
+	</tr>
+	
+	{loopstart:messages:1000}
+	<tr bgcolor="#eeeeee" >
+		<td align="left" style="padding-left: 25px; border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc " height="48">{noescape:$messages[0]}</td>
+		<td align="left" style="padding-left: 45px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc "><textarea name="script{$messages[2]}" rows="2" cols="53" >{noescape:$messages[1]}</textarea></td>
+	</tr>
+	{loopend:messages}
+	<tr bgcolor="#eeeeee"><td></td><td align="left" height="48" style="padding-left: 5px"><input type="submit" name="submit" value="Update!"></td></tr>
+	
+</table>
+{formend:message}
+</td></tr></table>
+{showpage:include/footer}

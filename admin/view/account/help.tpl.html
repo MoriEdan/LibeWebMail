@@ -1,0 +1,404 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Libe Web Mail Help</title>
+<style type="text/css">
+body,td,th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+body {
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.maintitle
+{
+font-weight: bold;
+font-size:18px;
+
+}
+.subtitle
+{
+font-size:16px;
+font-weight: bold;
+
+}
+
+.normaltitle
+{
+font-size:13px;
+font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+ <p>
+  {if($helpid==1)}
+      
+   <span class="maintitle"> Users and Mails </span><br>
+   User details and mail details can be viewed and each user's details can be updated in this section.<br>
+   <br>
+   <span class="subtitle">1. Add New User </span>
+   <br>
+	New Users can be added from this section. For creating a new user, you must enter userpassword with minimum password strength. The strength will be displayed both in words and color styles. The strength must at least be good and color should be green. Also you must specify the current timezone for each user.<br>
+<br>
+
+
+         <span class="subtitle">2. Search Users </span> <br>
+
+      In Search Users, all users will be listed in accordance with the search keyword. You are also allowed to restrict these search by some time limits(say Today,Last week etc.) If you select 'Last week', you will get the user list with the given search condition and the ones who registered within one week from current time. Admin is also allowed to block/delete users, view userprofiles,view statistics and change settings. <br>
+      <br>
+
+      <span class="subtitle"> 3. Browse Users</span><br>
+
+In this section,admin can view all users,each user status and view userprofiles statistics. Also he can block/delete users and edit usersettings. <br>
+<br>
+  <br>
+  
+  
+  
+  
+  {elseif($helpid==2)}
+      
+   <span class="maintitle"> Reserved Emails </span><br>
+ Admin can reserve some email acounts for his/her own personnel/professional use. Admin can do the mail reservation here.<br>
+   <br>
+   <span class="subtitle">1. New Reserved Mails </span>
+   <br>
+	New Reserved Mails(egs: webmaster@yourdomain.com) can be added from this section so that you can restrict your users from  choosing these reserved mailids. At the time of registration if any user selects the particular username or mailid,an error message 'username already exists' will appear on the screen, guiding him/her to another one. <br>
+<br>
+
+
+         <span class="subtitle">2. Manage Reserved Mails </span> <br>
+
+      In manage reserved mails all reserved mails,their status will be listed. Also you may block/edit/delete your reserved mails from here. The block link allows you to block a particular reserved mail. The edit link allows you to update a particular reserved mail. The delete will delete that particular reserved mail. <br>
+      
+<br>
+  <br>
+  
+  
+  
+  
+  {elseif($helpid==3)}
+      
+   <span class="maintitle"> Spam </span><br>
+   Admin can set up advanced spam filter methods .These settings are done here.Spam rules contain spam mail rules and spam server rules.<br>
+   <br>
+   <span class="subtitle">1. Manage Spam Rules </span>
+   <br>
+	Spam Rules are managed in this section.Here all Spam Rules(both spam mails and spam server rules) will be listed. You may edit/delete your Spam Rules from here. The edit link allows you to update a particular Spam Rules while the delete link deletes that particular Spam Rule.  <br>
+<br>
+
+
+         <span class="subtitle">2. Add Spam Rules </span> <br>
+
+    Admin can add Spam rules here. Here you can add both spam mails and spam server by choosing rule type in the dropdownlist. If you are trying to a add new spam mail then, mention the  contents of either FROM or SUBJECT or BODY or a combination of these in the corresponding fields. You can use a dropdown list(Exact match, Starts with, Ends with, Contains) to mention the given string's position.  For creating a spam server , enter the name of the server (eg: www.example.com)<br>
+      <br>
+
+      <span class="subtitle"> 3. Spam Mails</span><br>
+
+Here view all your spam mail details. This will show you the sender, subject and time of the junk mail. Also you can delete existing spam mails. <br>
+<br>
+  <br>
+  
+  
+{elseif($helpid==4)}
+      
+   <span class="maintitle"> Display Themes </span><br>
+   Client Themes can be used to manage the Themes .<br>
+   <br>
+   <span class="subtitle">1. Add a New Theme </span>
+   <br>
+A theme is a particular set of style used in the public pages for a particular part. You can provide a name for your theme and can enter your desired css style in the style section. Then by clicking 'Save' button you can add your new style for the chosen type. <br>
+<br>
+
+
+         <span class="subtitle">2. Manage Themes </span> <br>
+
+      In manage themes all themes will be listed. You may edit/delete your themes from here. The edit link allows you to update a particular theme while the delete link deletes that particular theme. <br>
+      <br>
+
+      <span class="subtitle"> 3. Theme Settings</span><br>
+
+You can choose default theme and allow users to choose themes in this section. <br>
+<br>
+  <br>
+  
+  
+  
+ {elseif($helpid==5)}
+      
+   <span class="maintitle"> Contacts </span><br>
+   View and manage users contact groups and contacts.<br>
+   <br>
+   <span class="subtitle">1. All Contacts </span>
+   <br>
+	All user contacts can be viewed from this section.You can edit/delete the contacts.  <br>
+<br>
+
+
+         <span class="subtitle">2. Contact Groups </span> <br>
+
+      Here comes all contact groups listed in the order of creation. Admin can see the groupname, creator's username, all contacts contained in that particular contact group. Also he can manage the contact group and its contacts.  <br>
+      
+<br>
+  <br>
+  
+  
+  
+    
+{elseif ($helpid==6)}
+
+
+ <span class="maintitle"> Languages</span></p>
+ <p>Client Languages can be used to manage the messages.
+<br>
+   <br>
+
+    <span class="subtitle">1. Add New Language</span><br>
+
+If you want to display the messages (shown in public areas) in a different language which is currently not available in the admin area, you can add the new language from 'Add New Language' section.  Please enter the Language name in English in 'Language Name' field  and  in its native script in 'Name in Regional language' field. Please specify the character encoding of the language in the 'Character Encoding' text field(Not mandatory). Usually the character encoding utf-8 will support almost all languages. A Language Icon can be added with each language. Once you have added a new language, you may need to add messages and translations.<br>
+<br>
+
+    <span class="subtitle">2. Manage Languages </span><br>
+
+All languages are listed here. Language names with  details like name in native script, character encoding and status are listed. Options like manage messages, edit language details, delete language and disable/enable  language are given along with each language. If you want to add a new message, please provide the message in the 'New message' link for English language. Once you have added the message in English, you can later translate it to its corresponding message in other languages. You can also manage the months worktype and categories. <br>
+<br>
+
+   <span class="subtitle"> 3. Manage Messages</span><br>
+
+Please select the language for which you want to manage the messages. Click on 'Manage !' button, all the messages (in English and in the selected language) will be listed.You can modify the messages for the selected language in this page. Click on 'Update !' button to save the details you have entered.<br>
+<br>
+
+   <span class="subtitle"> 4. Add New Message</span><br>
+
+You can add new messages from here. Newly added message should be given in English. The message in other languages corresponding to the newly added message can be entered from 'Manage Messages' section. <br>
+Note: You will never need to add a new message unless you want to add more details/messages in the public section.<br>
+<br>
+
+   <span class="subtitle"> 5. Message Codes</span><br>
+
+Template code of all messages which are used in public area are given here. If you have added a new message, the  template code for that also will be displayed here. To display the  messages  in public pages, please copy and paste the corresponding template code in public pages. <br>
+<br>
+<br>
+
+{elseif ($helpid==9)}
+
+
+<span class="maintitle"> Logs </span><br>
+View all client logins.
+<br>
+
+<span class="subtitle">1. Client Logs</span><br>
+This section list all client logins. Client Logs allows you to view all the operations performed by the clients. Logs can also be viewed on basis of time/operation type by selecting the time period/operation type from the drop down.<br>
+<br>
+<br>
+
+
+
+{elseif ($helpid==8)}
+
+<span class="subtitle"> Ads Settings</span><br>
+Here you done the Ads settings.  <br><br>
+<span class="subtitle">1. Ad Codes</span><br>
+You may put in your third party ad display code here. Ad code configured here will show corresponding ads in the right panel of the result pages for web, news and all other special searches. To display ads in any other location other than the right of the results, you may just need to put the code in the corresponding template file. <br><br>
+ 
+<span class="subtitle">2. Sponsored Links</span><br>
+<br>If you want to display your Libe Adserver ads on the top and right of result pages, you can add the necessary details from here. Along with this, you might activate the ad type to show sponsored links, under the basic settings section. If you enable the option "Show public service ads from Libe Adserver if the right panel is empty", then public service ads will be displayed. <br><br>
+ 
+<br>
+<br>
+
+{elseif ($helpid==10)}
+
+ 
+<span class="subtitle"> Chat Settings</span><br>
+Here you done the chat settings.  <br><br>
+<span class="subtitle">1. Chat Settings</span><br><br>
+Here you can set up the chat is enable/diasble, chat history is saved or not,chat message alert sounds and emoticons (smileys) on/off using radio buttons. Also configure the message alert sounds and user chat image formats. <br><br>
+ 
+<span class="subtitle">2. Chat Window Settings</span><br>
+<br>Here you can set the chat listing (chat left panel) window settings. Here we provide 4 options and you can set up your own values.You can edit and make default option for set the default window size for each options.  <br><br>
+ 
+<br>
+<br>
+
+
+{elseif ($helpid==11)}
+
+ 
+<span class="subtitle"> To-do List Settings</span><br><br>
+To-do list is a leading online task manager that's useful, fast and easy to use.  
+We manage millions of to-do list and we are ready to manage yours as well. Here you done the to-do list settings.  <br><br>
+<span class="subtitle">1. Manage To-do List Settings </span><br><br>
+Here admin can set the options for enable/disable the to-do list feature. <br><br>
+
+<br>
+<br>
+
+
+{elseif ($helpid==12)}
+
+ 
+<span class="subtitle"> Keyboard Shortcuts</span><br>
+Here you done the keyboard shortcuts settings as well as the manage the keyboard shortcuts.Keyboard shortcuts help you save time by allowing you to never take your hands off the keyboard to use the mouse.  <br><br>
+<span class="subtitle">1. Settings</span><br><br>
+Here you can set up the keyboard shortcut is enable/diasble for the users. <br><br>
+ 
+<span class="subtitle">2. Manage Keyboard Shortcuts</span><br>
+<br>Here you can set the keyboard short cuts for the public. Here we allready select a particular key combination for the short cuts purpose. Here admin can give the valid information for the user to, that particular key combination is used for which purpose. These details are display in the public area. So this one is very helpful to our users.   <br><br>
+ 
+<br>
+<br>
+
+
+
+{elseif ($helpid==13)}
+
+ 
+<span class="subtitle"> Calendar Settings</span><br>
+Here you done the calendar settings.  <br><br>
+<span class="subtitle">1. Calendar Settings </span><br><br>
+Here you can set up the calendar is available on the public,email remainder of the calendar event,event view on mouseover settings are enable/disable .<br><br>
+
+<br>
+<br>
+
+{elseif ($helpid==14)}
+
+ 
+<span class="subtitle">Events</span><br>
+Here you done the events settings.Here we set up the tip of the day,birthday mail and the event settings.  <br><br>
+<span class="subtitle">1. Tip of the Day</span><br><br>
+Add,manage tip of the day settings are done here<br><br>
+ 
+<span class="subtitle">2. Birth Day Mail</span><br>
+<br>Here you can set up the birth day email for the users. Admin can give the subject as well as the message body for the birth day mail.<br><br>
+ 
+<span class="subtitle">3. Settings</span><br>
+<br>Admin can set up the birth day,tip of the day events are avialbel or not in the public section. Here you can set up the enable/disable options for the users about the events.  <br><br>
+ 
+<br>
+<br>
+
+{elseif ($helpid==15)}
+
+ 
+<span class="subtitle"> User Statistics</span><br>
+ Allows the admin to view account creation and login statistics of clients. The logs show recent login details as well as IP details of users.   <br><br>
+<span class="subtitle">1. Registered Users</span><br><br>
+Admin can view detailed statistics of user registration for different timeperiod with the help of graphs.<br><br>
+ 
+<span class="subtitle">2. Logined Users</span><br>
+<br>Admin can view detailed statistics of login users for different timeperiod with the help of graphs.  <br><br>
+ 
+ 
+<span class="subtitle">3. Account Activity</span><br>
+<br>Displays IP, country and time details of user's login.   <br><br>
+ 
+<br>
+<br>
+
+
+{elseif ($helpid==7)}
+
+
+
+<span class="maintitle"> Settings </span><br>
+<br>
+  
+
+         <span class="subtitle">1. Basic Settings</span> <br>
+         
+   <span class="normaltitle">Your Web Mail  service name:-</span> You can add your Web Mail  service name here. This name will be displayed in all public pages.<br><br>
+   
+   <span class="normaltitle">Libescripts affiliate ID:- </span> Here you can enter the affiliate ID provided by Libescripts. This ID will be added in the 'Powered by Libescripts' link shown in the footer.<br><br>
+   
+   <span class="normaltitle">Administrator Email:- </span>Please enter your email address here. Any notification to the admin, will be sent to this email address. So give extreme care while filling this field.<br><br>
+
+     <span class="normaltitle">Charset: - </span>Here you must set the default charecter set(egs: UTF-8, ISO-8859-1 etc.). <br><br>
+	 
+	 <span class="normaltitle">Restricted Attachment Types: - </span>Here you can specify the restricted attachment formats. This will prevent users from sending/recieving unwanted or problematic files. You have to add the extentions separated by commas here(egs: .jpg,.gif etc.) <br><br>
+  
+   <span class="normaltitle">Email extension:- </span>Here you must specify the extension of your own(eg: @yourdomain.com). You are also allowed to set the extention without the starting symbol,@.<br><br>
+   
+   <span class="normaltitle">Global Address Book:- </span>Here you can set whether global address book can be  displayed or not in the client side.A ticked check box will allow the users to access the global address book. <br><br>
+   
+   <span class="normaltitle">SMTP HOST  :- </span>Specify the SMTP host name.  <br><br>
+   
+   <span class="normaltitle">SMTP PORT :- </span>Specify the SMTP port number. <br><br>
+   
+   
+   <span class="normaltitle">Account Type:- </span>Specify the account type(catch all/individual).In catch all account all account can be created in a common account, while in individual account all acccounts are created as specific accounts. If you are setting it as individual, you have to submit two fields('Control Panel Configuration' and 'Automatic Account Creation') and if it is catch all, the fields are('Pop3 Server Email','Pop3 Server Password','SMTP Username','SMTP Password')<br><br>
+   
+   
+   <span class="normaltitle">Control Panel Configuration :- </span>Here you have to specify the control panel details. The two options available are cpanel and plesk. You also have to fill some more information regarding these in the following fields. If you are using plesk control panel, you need to fill two additional fields named 'Packet Version' and 'Plesk Domain Id'.<br><br>
+   
+   <span class="normaltitle">Version :- </span>Specify the current version of the control panel(egs:plesk-9.5.2,cpanel-1.0). <br><br>
+   
+   <span class="normaltitle">Domain Username :- </span>Specify your control panel username.<br><br>
+   
+   <span class="normaltitle">Domain Password :- </span>Specify your control panel password. These two fields(Domain username and Domain password) are used to fetch mails from your server.<br><br>
+   
+   <span class="normaltitle">Domain Name :- </span>Specify your domain name(it might be your site name itself). <br><br>
+   
+   <span class="normaltitle">Domain IP :- </span>Specify the IP address of your domain here.<br><br>
+   
+   <span class="normaltitle">Packet Version :- </span>Specify the packet version of your control panel(plesk).<br><br>
+   
+   <span class="normaltitle">Plesk Domain Id :- </span>Specify the domain id of your control panel(plesk).<br><br>
+     
+   <span class="normaltitle">Automatic Account Creation :- </span>Here you can set the Automatic Account Creation is on or off. A ticked check box indicates  the status is 'on'. <br><br>
+   
+   
+   <span class="normaltitle">Pop3 Server Email :- </span>YSpecify your Pop3 Server Email.<br><br>
+   
+   <span class="normaltitle">Pop3 Server Password :- </span>Specify your Pop3 Server Password. <br><br>
+   
+   <span class="normaltitle">SMTP Username :- </span>Specify your SMTP Username. <br><br>
+   
+   <span class="normaltitle">SMTP Password :- </span>Specify your SMTP Password. The SMTP details are used to fetch mails from your server.<br><br>
+   
+   
+   
+   <span class="normaltitle">Pop3 Server Name :- </span>Specify your Pop3 Server Name. <br><br>
+   
+   
+   
+   <span class="normaltitle">Public Registration :- </span>Here you can set the Public registration is on or off.  A ticked check box indicates  the status is 'on'. <br><br>
+   
+   <span class="normaltitle">Default View :- </span>Specify the default view of the user email section.View can either 1pane or 2pane or 3pane.<br><br>
+   
+   <span class="normaltitle">Default Language :- </span>Here you can set the default language of the user section.<br><br>
+   
+   <span class="normaltitle">Default Theme :- </span>Here you can set the default theme of the user section.<br><br>
+   
+   <span class="normaltitle">Public Page Logo :- </span>Here you can upload your logo. This logo will be visible in the index page(User login). <br><br>
+   
+   <span class="normaltitle">User Page Logo :- </span>Here you can upload a logo this will be visible in the user page.This logo can either be the same or different from Public page logo. <br><br>
+   
+   <span class="normaltitle">No. of emails per page :- </span>Here you can set the No. of emails per page displayed in user section(in 1pane only).<br><br>
+   
+   <span class="normaltitle">Users Allowed Memory Size (MB) :- </span>Here You can set the user's maximum allotted memory size(user quota).<br><br>
+   
+   <span class="normaltitle">View Memory Usage Details In Client Area :- </span>Admin can set up the memory usage details in public area(optional). Admin can set memory usage either in Percentage(%) or MegaBytes(MB) format.This can set either at settings page only or both the settings as well as the footer page.<br><br>
+   
+   <span class="normaltitle">Time Zone: :- </span>Here You can set the time zone.Either you can set up the Server time zone or use Specific time zone.If the server time zone is not same as your's,specify the difference from GMT. <br><br>
+   
+   <span class="normaltitle">Admin's Time Zone: :- </span>Set the Admin's Time Zone from the dropdown list. <br><br>
+
+           
+		<span class="subtitle">2. Mail Settings</span><br>
+Admin can set up Welcome mail when  a new user registers. Admin can send a common mail to all users if necessary. Admin can view and edit the welcome email.<br>
+<br>
+
+
+
+  {endif} </p>
+ 
+   <div align="center"> <span style="font-size:11px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#333333 ">Copyright &copy; 2006 - {$year} Liberyus.com. All Rights Reserved.</span>
+
+</body>
+</html>

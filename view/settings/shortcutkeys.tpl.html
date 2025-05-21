@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<!-- <link rel="stylesheet" href="style.php" >  -->
+<style type="text/css">
+{$style}
+ </style>
+ <title>{cfn:getmessage(647)}-{$servicename}</title>
+</head>
+<body style="background-image: url('images/header.png');background-repeat: repeat-x;background-color: #ffffff;">
+
+<table width="50%" height="120px" border="0" align="center">
+  <tr>
+    <td valign="bottom"><a href="{url:(index/index)}"><img src="{$imgpath}"  border=""  ></a></td>
+  </tr>
+
+</table>
+
+<table cellpadding="0" cellspacing="0" align="center" border="0" width="50%" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:12px;" >
+<tr><td>&nbsp;</td></tr>
+<tr><td align="" valign="bottom">
+<span class="info_title">{cfn:getmessage(647)}</span>
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td class="info_title" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:12px;font-weight: normal;padding-left: 50px;"><p>{cfn:getmessage(651)}</p></td></tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+
+
+<table width="50%" cellspacing="0" cellpadding="2" border="0" style="Arial,Helvetica,sans-serif;font-size: 13px;color: #222222;line-height: 1.5em;border: 1px solid #ccc ;" align="center">
+<tbody><tr bgcolor="#566D7E">
+<th valign="middle" align="center" width="30%" style="color: white;font-family:Verdana, Arial, Helvetica, sans-serif;font-size:12px;font-weight: normal;" >Shortcut Key</th>
+<th valign="middle" align="center" style="color: white;border:1px solid #cccccc;font-family:Verdana, Arial, Helvetica, sans-serif;font-size:12px;font-weight: normal;">Description</th>
+</tr>
+{loopstart:sh:100000}
+<tr >
+<th valign="middle" align="" style="border-bottom:1px solid #cccccc;font-family:Verdana, Arial, Helvetica, sans-serif;font-size:12px;font-weight: normal;">{noescape:$sh[0]}</th>
+<td valign="middle" align="" nowrap="" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding-left: 5px;font-family:Verdana, Arial, Helvetica, sans-serif;font-size:12px;font-weight: normal;">{noescape:$sh[1]}</td>
+</tr>
+{loopend:sh}
+</tbody></table>
+<table cellpadding="0" cellspacing="0" align="center" border="0" width="100%" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:12px;font-weight: normal;"><tr><td align="center" valign="bottom"><div class="footer_table"><div class="footer_txt">{$footer}</div></div></td></tr></table>
+</body>
+</html>

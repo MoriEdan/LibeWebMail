@@ -1,0 +1,37 @@
+{showpage:include/header}
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr align="center">
+		<td colspan="2"><br />
+{showpage:include/languageheader}</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2" height="42"><font style="color:#336699; font-size:18px;"><center>
+		  Manage Category
+		Messages ({cfn:languagename($lang_id)})
+		</center></<br />
+<br />
+</td>
+	</tr>
+	<tr><td colspan="2">
+	{formstart:message:{url:(language/storecategoryinfo/{$lang_id})}:post}
+	<table width="100%" cellpadding="0" cellspacing="0" style="border-width: 1px;border-color: #cccccc;border-style: solid;">
+	<tr bgcolor="#e1e1e1">
+	<td align="left" style="padding-left: 5px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc " height="48" width="50%"><span style="font-weight: bold;font-size: 13px">Message in English</span></td>
+	<td align="left" width="50%" style="padding-left: 5px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc "><span style="font-weight: bold;font-size: 13px">Message in {cfn:languagename($lang_id)}</span></td>
+	</tr>
+	
+	{loopstart:messages:1000}
+	<tr bgcolor="#eeeeee" >
+		<td align="left" style="padding-left: 5px; border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc " height="48">{$messages[1]}</td>
+		<td align="left" style="padding-left: 5px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc "><textarea name="script{$messages[0]}" rows="2" cols="53" >{cfn:getcategorymessage($messages[0],$lang_id)}</textarea></td>
+	</tr>
+	{loopend:messages}
+	<tr bgcolor="#eeeeee"><td></td><td align="left" height="48" style="padding-left: 5px"><input type="submit" name="submit" value="Update!"></td></tr>
+	
+</table>
+{formend:message}
+</td></tr></table>
+{showpage:include/footer}

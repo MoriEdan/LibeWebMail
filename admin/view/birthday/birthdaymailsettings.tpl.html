@@ -1,0 +1,47 @@
+{showpage:include/header}
+
+	<script type="text/javascript" src="js/nicEdit.js"></script>
+<script type="text/javascript">
+	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/eventsheader}</td>
+
+  </tr>
+
+  </table>	
+	{formstart:edit:{url:(birthday/birthdaymailsettingsprocess)}:POST}
+	
+			<table class="fullwidth"  cellpadding="0" cellspacing="0" align="center" >  
+			<tr><td colspan="2">&nbsp;</td></tr>
+				
+				<tr>	
+				<td  colspan="2" align="center" class="page_title"><b>Birthday Mail</b></td></tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr><td style="padding-left: 60px"><b>Subject</b> </td><td><input style="width:380px" name="birthdaysubject" id="birthdaysubject" type="text" value="{$birthdaysubject}"></td></tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr><td style="padding-left: 60px"><b>Message</b> </td><td>
+				
+		
+					<textarea name="birthdaybody" id="birthdaybody" style="width: 100%;height: 300px;">{$birthdaybody}</textarea>		
+			
+				 </td>
+				</tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				 <tr>
+				
+				<td>&nbsp;</td><td><input type="submit" name="Update" value="Update"></td>
+			</tr>	
+			<tr><td colspan="2">&nbsp;</td></tr>
+		   </table>
+		  		
+
+{validate:edit:isNotNull("birthdaysubject","Subject cannot be left blank.")}
+{validate:edit:isNotNull("birthdaybody","Message cannot be left blank.")}
+{formend:edit}
+{showpage:include/footer}

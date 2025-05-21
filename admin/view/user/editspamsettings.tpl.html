@@ -1,0 +1,129 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" width="100%" style="padding:10px;">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/spamheader}</td>
+
+  </tr>
+
+  </table>	
+	
+	
+			<table width=100% border="0" cellpadding="0" cellspacing="0">  
+			
+				<tr>
+				<td >
+			
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr><td>
+{formstart:newspam:{url:(user/editspamsettings)}:post}
+<br />
+{loopstart:spams:100}
+ <tr>
+
+				   <td width="31%">&nbsp;</td>
+
+					<td width="16%" align="left">From </td>
+
+					
+
+					<td width="53%"  colspan="2"><input name="from_id" type="text" id="from_id" size="33" value="{$spams[1]}"> &nbsp;&nbsp;
+					
+					<select name="fromflag">
+					<option value="1" {if($spams[4]==1 || $spams[4]==0)} selected="selected" {endif}>Exact Match</option>
+					<option value="2" {if($spams[4]==2)} selected="selected" {endif}>Starts With</option>
+					<option value="3" {if($spams[4]==3)} selected="selected" {endif}>Ends With</option>
+					<option value="4" {if($spams[4]==4)} selected="selected" {endif}>Contains</option>
+					</select>
+					</td>
+
+				  </tr>
+
+				  <tr>
+<input type="hidden" value="{$id}" name="id" />
+ 				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+
+				  <tr>
+
+				    <td>&nbsp;</td>
+
+					<td align="left">Subject</td>
+
+				   
+
+					<td  colspan="2"><input name="subject" type="text" id="subject" size="33" value="{$spams[2]}">&nbsp;&nbsp;
+					
+					<select name="subjectflag">
+					<option value="1" {if($spams[5]==1 || $spams[5]==0)} selected="selected" {endif}>Exact Match</option>
+					<option value="2" {if($spams[5]==2)} selected="selected" {endif}>Starts With</option>
+					<option value="3" {if($spams[5]==3)} selected="selected" {endif}>Ends With</option>
+					<option value="4" {if($spams[5]==4)} selected="selected" {endif}>Contains</option>
+					</select> </td>
+
+				  </tr>
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+
+				  <tr>
+
+					 <td>&nbsp;</td>
+
+					<td align="left">Body</td>
+
+					
+
+					<td  colspan="2"><input type="text" name="body" id="body" value="{$spams[3]}"  size="33">&nbsp;&nbsp;
+					
+					<select name="bodyflag">
+					<option value="1"  {if($spams[6]==1 || $spams[5]==0)} selected="selected" {endif}>Exact Match</option>
+					<option value="2"  {if($spams[6]==2)} selected="selected" {endif}>Starts With</option>
+					<option value="3"  {if($spams[6]==3)} selected="selected" {endif}>Ends With</option>
+					<option value="4"  {if($spams[6]==4)} selected="selected" {endif}>Contains</option>
+					</select></td>
+
+				  </tr>
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td>&nbsp;</td>
+
+					<td colspan="2"> <input type="submit" name="setasspam" value="Update" style="height: 25px; width: 100px">
+					{loopend:spams}
+{formend:newspam}
+			<br /><br /><br />
+				 </td>
+				</tr>
+		   </table>
+		  		
+</td></tr></table>
+
+{showpage:include/footer}
+
+
+

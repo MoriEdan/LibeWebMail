@@ -1,0 +1,153 @@
+{showpage:include/header}
+<script>
+
+function display()
+{
+
+
+var flag=document.getElementById('timeperiod').value;
+
+if(flag=="")
+{
+  window.location.href = "{url:(user/searchuser/)}"+flag;
+}
+
+
+else if(flag=='today')
+{
+
+  window.location.href = "{url:(user/searchuser/)}"+flag;
+  }
+  
+ else  if(flag=='lastweek')
+  {
+  window.location.href = "{url:(user/searchuser/)}"+flag;
+  }
+  
+ else  if(flag=='lastmonth')
+  { 
+window.location.href = "{url:(user/searchuser/)}"+flag;
+  }
+  
+  
+else  if(flag=='lastyear')
+  {  
+window.location.href = "{url:(user/searchuser/)}"+flag;
+  }
+  
+}
+
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}
+</script>
+<br> 
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/logsheader}</td>
+
+  </tr>
+
+  </table>
+  {formstart:logsform:{url:(user/clientlogs)}:POST}
+<table cellpadding="0" cellspacing="0" class="clientlog_table" >
+<tr>
+  <td height="20" colspan="4" align="center" ><div class="page_title">Please specify your log search criteria below </div></td> </tr></table>
+  
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding-left:40px;padding-right:40px">
+ <tr class="table_header">
+<td width="30%" height="20" align="center" style="padding-left:10px"><div align="left">Operation  Type
+
+   
+
+    <select name="operationtype">
+
+      <option value="" selected>Select Operation </option>
+	  	
+	 {noescape:$operationoption}
+	{loopstart:operation:1000}	
+    {if($operationoption!=$operation[0])}
+      <option value="{$operation[0]}">{$operation[0]}</option>
+        {endif}  
+	{loopend:operation}
+
+
+      <option value="">Any Type</option>
+
+    </select>
+
+</div></td>
+
+<td width="18%" height="20" align="center"><div align="left">Time Period
+
+  <select name="timeperiod">
+
+      <option value="" selected>All Time</option>
+
+        <option value="86400" {if($time=="86400")} selected {endif}>Today</option>
+
+        <option value="604800"{if($time=="604800")} selected {endif}>Last Week</option>
+
+        <option value="2678400" {if($time=="2678400")} selected {endif}>Last Month</option>
+
+        <option value="31536000" {if($time=="31536000")} selected {endif}>Last Year</option>
+
+        </select>
+
+</div></td>
+
+<td width="13%" height="20" align="center"><div align="left">
+
+  <input type="submit" name="go" value="Show Logs!">
+
+</div></td></tr>
+
+
+</table>
+{formend:logsform}
+ {if($empty!="")}
+<div align="center" class="info_title" style="color: #FF0000">{$empty}</div><br>
+{else}
+
+<br>
+
+<table  class="clientlog_main_table" cellpadding="0" cellspacing="0" >
+<tr><td>
+    
+			
+			<table class="clientlog_main_table_header" cellpadding="0" cellspacing="0">
+					  <tr   class="table_header"><td height="30" width="149" style="padding-left:10px">Operation</td>  
+
+  <td width="230" height="10" align="center">Time</td>   
+
+    <td width="157" height="10" align="center">Affected user</td>     
+
+    <td width="385" height="10" align="center">Comment</td>
+
+  </tr>
+					
+					{loopstart:clientlogs:100}
+					<tr {if($clientlogs % 2==1 )}  bgcolor="#E8E8E8" {endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:clientlogs})" id="{loop:clientlogs}" onmouseout="dispfn(1,{loop:clientlogs})">
+					<td class="detail_td">{$clientlogs[2]}</td>
+						<td class="border_bottom"> {fn:date("jS, F Y,g:i a",$clientlogs[4])}</td>
+						<td class="border_bottom">{if($clientlogs[1]!=0)}{cfn:getusername($clientlogs[1])}{else}-{endif}</td>
+						<td class="border_bottomright">{$clientlogs[3]}</td>
+					  </tr>
+					{loopend:clientlogs}
+
+</table></td></tr>
+			
+<tr> <td align="center">		
+		<br />
+			{noescape:$pagingtop}
+ </td></tr></table>
+ 	{endif}
+
+{showpage:include/footer}

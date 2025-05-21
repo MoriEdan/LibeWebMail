@@ -1,0 +1,117 @@
+{showpage:include/header}
+<script language="javascript" type="text/javascript">
+function confirmation(p1)
+ {
+          
+           var answer = confirm("You are about to delete this language. All the messages associated with this language will also be deleted. Press OK to continue.")
+           if (answer)
+            {
+                window.location.href = "{url:(language/delete/)}"+p1;
+                
+            }
+
+}
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" >
+	<tr align="center">
+		<td><br />
+{showpage:include/languageheader}</td>
+	</tr>
+	<tr align="center">
+		<td>&nbsp;</td>
+	</tr>
+	{if($msg!="")}
+	<tr align="center">
+		<td><span
+			style="color: green; font-weight: bold; padding: 5px; border-color: green; border-style: dotted; border-width: 1px">{$msg}</span><br />
+<br />
+</td>
+	</tr>
+	{endif}
+	<tr align="center">
+		<td height="42"><font style="color:#336699; font-size:18px;"><center>Manage Languages</center></font><br />
+<br />
+</td>
+	</tr>
+	
+	
+	{if($msg1!="")}
+	<tr align="center">
+		<td colspan="1" height="42"><font style="color:red; font-size:16px;"><center>{$msg1}</center></font></td>
+	</tr>
+	{else}
+	
+	<tr>
+		<td align="center"><!--- inner table start --->
+
+		<table width="95%" border="0" cellpadding="0" cellspacing="0"
+			style="border-width: 1px; border-color: #cccccc; border-style: solid; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #cccccc">
+			<tr bgcolor="#e1e1e1">
+				<td align="left" style="padding-left: 5px;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color:#cccccc" height="48">
+				<span style="font-weight: bold; font-size: 13px">Language </span></td>
+				<td
+					align="left" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"><span
+					style="font-weight: bold; font-size: 13px">Language Script</span></td>
+				<td
+					align="left" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"><span
+					style="font-weight: bold; font-size: 13px">Charset </span></td>
+				<td
+					align="left" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"><span
+					style="font-weight: bold; font-size: 13px">Language Code</span></td>
+				<td
+					align="left" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"><span
+					style="font-weight: bold; font-size: 13px">Status</span></td>
+				
+				<td
+					align="left" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc;border-right:5px;"><span
+					style="font-weight: bold; font-size: 13px">Actions</span></td>
+					
+			</tr>
+			{loopstart:languages:100}
+			<tr {if($languages[3]==1)} bgcolor="#eeeeee"
+				{endif}{if($languages[3]==0)} bgcolor="#FEF7ED"{endif}>
+				<td
+				    align="left" style="padding-left: 5px; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"
+					height="38" width="15%">{$languages[1]}</td>
+
+				<td
+					align="left" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"
+					width="15%">{noescape:$languages[2]}</td>
+				<td
+					align="left" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"
+					width="9%">{$languages[4]}</td>
+				<td
+					align="left" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"
+					width="15%">{if($languages[5]!="")}{$languages[5]}{else}&nbsp;{endif}</td>
+				  <td
+					align="left" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"
+					width="9%">{if($languages[3]==1)}Enabled{else}<span
+					style="color: red;">Disabled</span>{endif}</td>
+					
+				<td   
+					align="left" nowrap="nowrap"  style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #cccccc"
+					width="35%"><a href="{url:(language/messages/{$languages[0]})}">Messages</a>
+				| <a href="{url:(language/edit/{$languages[0]})}">Edit</a> |
+				{if($languages[0]==1)}<a href="{url:(language/new_messages/{$languages[0]})}">New Message</a>{endif}
+				{if($languages[0]!=1)}<a
+					href="javascript:confirmation({$languages[0]})">Delete</a> |
+				{if($languages[3]==1)}<a
+					href="{url:(language/disable/{$languages[0]})}">Disable</a>{else}<a
+					href="{url:(language/enable/{$languages[0]})}">Enable</a>{endif}{endif}
+					&nbsp;|&nbsp;<a href="{url:(language/months/{$languages[0]})}">Months</a>&nbsp;&nbsp;
+					</td>
+			</tr>
+			{loopend:languages} {if($languages==0)}
+			<tr bgcolor="#eeeeee">
+				<td align="left" colspan="5" height="38">-No records found-</td>
+			</tr>
+			{endif}
+		</table>
+		</td>
+	</tr>
+	{endif}
+	<tr><td height="30">&nbsp; </td></tr>
+</table><br />
+
+{showpage:include/footer}

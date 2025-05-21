@@ -1,0 +1,107 @@
+{showpage:include/header}
+<script type="text/javascript" language="javascript">
+function display()
+{
+var flag=document.getElementById('listtype').value;
+
+if(flag==0)
+{
+
+  window.location.href = "{url:(user/listings/{$uid}/)}"+flag;
+  }
+  if(flag==1)
+  {
+  //document.getElementById('listtype').options[document.getElementById('flag').options.SelectedIndex]=true;
+  window.location.href = "{url:(user/listings/{$uid}/)}"+flag;
+  }
+  if(flag==2)
+  {  
+ //document.getElementById('listtype').options[document.getElementById('flag').SelectedIndex]=true;alert("haiiiiiiiiiiiiiiiii");
+  // var sel= document.getElementById('listtype').options[document.getElementById('flag').SelectedIndex].value;
+window.location.href = "{url:(user/listings/{$uid}/)}"+flag;
+  }
+
+  
+}
+</script>
+
+{showpage:user/userleftpanel/$uid} 
+	
+{if($empty!='')}<br>
+<div align="center" style="color:#336699; font-size:18px;">No Users Registered Yet.</div><br>
+{else}<font style="color:#336699; font-size:18px;"><center>
+
+{if($flag==0)}View All Listings Of {cfn:getauthorname($uid)}{elseif($flag==1)}View All Active Listings Of {cfn:getauthorname($uid)}{elseif($flag==2)}View All Inactive Listings Of {cfn:getauthorname($uid)}{endif}
+</center></font>
+<div style="color:#CC3300;margin-right:20px;" align="right" >
+List Type:<select  id="listtype" name="listtype" onchange="display();">
+<option value="">Select</option>
+<option id="0" value="0" {if($flag==0)} selected="selected" {endif}>All</option>
+<option id="1" value="1" {if($flag==1)} selected="selected" {endif}>Active</option>
+<option id="2" value="2" {if($flag==2)} selected="selected" {endif}>Inactive</option>
+</select></div>
+
+<table cellpadding="0" cellspacing="0" width="100%" style="padding:10px;">
+	
+	<tr><td align="center"  >	<font color="#990000"></font>
+			
+			
+			<table width=100% border="0" cellpadding="0" cellspacing="0">  
+					  <tr  height="30" bgcolor="#565466" style="color: white;font-weight: bold;" align="left">  	 
+						  <td width="40%" style="padding:8px;border-left: 1px solid #b7b5b3;">Category</td>
+						 <td width="40%"> &nbsp; No.Of  Liistngs </td>
+						 
+					  </tr>
+				
+					
+					<tr {if($article % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						<td style="padding-left:8px; border-bottom: 1px solid #b7b5b3;border-left: 1px solid #b7b5b3;"><a href="{url:(user/categorylisting/{$uid}/1)}"  class="mainmenu">Real Estate</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3; padding-left:40px;">{if($flag==0)}{$rall}{elseif($flag==1)}{$a_realestate_no}{elseif($flag==2)}{$i_realestate_no}{endif}</td> 
+						
+						
+					  </tr>
+					  	<tr {if($article % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						<td style="padding-left:8px; border-bottom: 1px solid #b7b5b3;border-left: 1px solid #b7b5b3;"><a href="{url:(user/categorylisting/{$uid}/2)}"  class="mainmenu">Vehicles</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3; padding-left:40px;">{if($flag==0)}{$vall}{elseif($flag==1)}{$a_vechile_no}{elseif($flag==2)}{$i_vechile_no}{endif}</td>  
+						
+						
+					  </tr>
+					  	<tr {if($article % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						<td style="padding-left:8px; border-bottom: 1px solid #b7b5b3;border-left: 1px solid #b7b5b3;"><a href="{url:(user/categorylisting/{$uid}/3)}"  class="mainmenu">Jobs</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3; padding-left:40px;">{if($flag==0)}{$jall}{elseif($flag==1)}{$a_jobs_no}{elseif($flag==2)}{$i_jobs_no}{endif}</td> 
+						
+						
+					  </tr>
+					  	<tr {if($article % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						<td style="padding-left:8px; border-bottom: 1px solid #b7b5b3;border-left: 1px solid #b7b5b3;"><a href="{url:(user/categorylisting/{$uid}/4)}"  class="mainmenu">Anything Else</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3; padding-left:40px;">{if($flag==0)}{$aall}{elseif($flag==1)}{$a_anythingelse_no}{elseif($flag==2)}{$i_anythingelse_no}{endif}</td>  
+						
+					  </tr>
+					  	<tr {if($article % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						<td style="padding-left:8px; border-bottom: 1px solid #b7b5b3;border-left: 1px solid #b7b5b3;"><a href="{url:(user/categorylisting/{$uid}/5)}"  class="mainmenu">Events</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3; padding-left:40px;">{if($flag==0)}{$eall}{elseif($flag==1)}{$a_events_no}{elseif($flag==2)}{$i_events_no}{endif}</td>  
+						
+						
+					  </tr>
+					  	<tr {if($article % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						<td style="padding-left:8px; border-bottom: 1px solid #b7b5b3;border-left: 1px solid #b7b5b3;"><a href="{url:(user/categorylisting/{$uid}/6)}"  class="mainmenu">Business Directory</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3; padding-left:40px;">{if($flag==0)}{$ball}{elseif($flag==1)}{$a_business_no}{elseif($flag==2)}{$i_business_no}{endif}</td>  
+						
+						
+					  </tr>
+					  	<tr {if($article % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						<td style="padding-left:8px; border-bottom: 1px solid #b7b5b3;border-left: 1px solid #b7b5b3;"><a href="{url:(user/categorylisting/{$uid}/6)}"  class="mainmenu">Health Service</a></td>
+						<td style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3; padding-left:40px;">{if($flag==0)}{$ball}{elseif($flag==1)}{$a_business_no}{elseif($flag==2)}{$i_business_no}{endif}</td>  
+						
+						
+					  </tr>
+				
+			</table>
+			
+<tr> <td align="center">		
+		
+		
+ </td></tr></table>
+ 	{endif}
+</td></tr></table>
+{showpage:include/footer}

@@ -1,0 +1,396 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script type="text/javascript" language="javascript">
+var smileypath="{$path}";
+var portal_status="{$portal_status}";
+function settingsClck()
+{
+var shortcuts="";
+   if({$admin_sh}!=0)
+	{
+	if(document.getElementById("shortcuts").checked==true)
+			shortcuts=1;
+			else
+			shortcuts=0;
+	}
+	else
+	shortcuts=0;
+var signflagvalue=document.getElementById("signcheck").value;
+if(signflagvalue==1)
+{
+var contenT=nicEditors.findEditor('signature').getContent();
+}
+else
+{
+var contenT="";
+parent.setSignature();
+}
+document.getElementById("sign_hidden").value=contenT;
+    if(portal_status==0)
+    {
+	var language=document.getElementById("language").value;
+	SetCookie('lang_mail',language,1); 
+    }
+    else
+    var language="";
+  var themes="";
+    if({$override_themes}==1)
+{
+	themes=document.getElementById("themes").value;
+}
+	
+	var mailsperpage=document.getElementById("mails_per_page").value;
+	var timezone=document.getElementById("timezone").value;  
+	
+ 			xmlHttp304=GetXmlHttpObject304();
+            if (xmlHttp304==null)
+              {
+              alert ("Your browser does not support AJAX!");
+              return;
+              } 
+             var currentTime = new Date();
+		var crttime = currentTime.getTime();
+		
+   var signval=document.getElementById("signcheck").value;
+	var url1="{url:(settings/updatewebsettings/)}"+crttime; 
+	var params = "language="+language+"&themes="+themes+"&mails_per_page="+mailsperpage+"&timezone="+timezone+"&content="+contenT+"&signval="+signval+"&shortcuts="+shortcuts;
+
+    xmlHttp304.open("POST", url1, true);
+	xmlHttp304.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlHttp304.setRequestHeader("Content-length", params.length);
+	xmlHttp304.setRequestHeader("Connection", "close");
+     xmlHttp304.send(params);	
+			
+			
+				
+ xmlHttp304.onreadystatechange=function countChanged304() 
+{
+
+        if (xmlHttp304.readyState==4)
+        {
+         var x=xmlHttp304.responseText;
+		 x=x.replace(/^[\s]+/,'').replace(/[\s]+$/,'').replace(/[\s]{2,}/,' ');//for trimming 
+		if(x=="success")
+       	{
+       		parent.reloadWindow();
+       	}
+        }
+        
+};
+         
+}
+ 
+ 
+ function GetXmlHttpObject304()
+{
+        var xmlHttp304=null;
+        try
+          {
+          // Firefox, Opera 9.0+, Safari
+          xmlHttp304=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp304=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp304=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp304;
+}
+function messageview()
+{
+setTimeout("doSomething()",5000);
+}
+function doSomething() 
+    {
+       document.getElementById('msgviewed').style.display ='none';
+    }
+
+
+function SetCookie(name,value,days)
+ {
+
+ if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+
+}
+var xmlHttp
+function setlangcookiefn(lang)
+{
+            xmlHttp=GetXmlHttpObject();
+            if (xmlHttp==null)
+              {
+              alert ("Your browser does not support AJAX!");
+              return;
+              } 
+              SetCookie('lang_id',lang,1); 
+            var url="{url:(settings/setlanguage/)}"+lang;
+         
+
+            xmlHttp.onreadystatechange=countChanged;
+            xmlHttp.open("GET",url,true);  
+            xmlHttp.send(null);
+   } 
+
+function countChanged() 
+{ 
+
+        if (xmlHttp.readyState==4)
+        { 
+        var x=xmlHttp.responseText;
+        
+        var url="{url:(settings/settings/1)}";
+        window.open(url,"_parent");
+        	
+         
+        }
+}
+ 
+function GetXmlHttpObject()
+{
+        var xmlHttp=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp;
+}
+
+</script>
+</head>
+<body>
+ <div class="messageTab" id="msgviewed" style="display: none;padding-left: 30px;padding-top: 5px;" align="center">
+<span class="messageTabL"></span>
+<span class="messageTabM">{$msg}</span>
+<span class="messageTabR"></span>
+</div>
+<div  class="settings_details_table" >
+ <table cellpadding="0" cellspacing="0" style="padding: 0px;">
+ <tr><td style="padding-bottom:30px;padding-top:0px;" valign="top"><font class="info_title">{cfn:getmessage(463)}</font></td></tr>
+{loopstart:settings:1}
+<tr><td>
+<div class="row marginT10" >
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(167)}</span></div>
+	<div class="coloum floatL"  >
+		<span class="normalTxt marginL10">{cfn:getmailid($uid)}
+		</span>
+	</div>
+</div>
+ 
+ </td></tr>
+ <tr><td>&nbsp;</td></tr>
+{if($memoryusage_publicview_area==1)}
+<tr><td>
+<div class="row marginT10" >
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(316)}</span></div>
+		<div class="coloum floatL"  ><span class="normalTxt marginL10">{$memorymsg}</span>
+	</div>
+</div>
+</td></tr>
+ <tr><td>&nbsp;</td></tr>
+{endif}
+ <tr><td>&nbsp;</td></tr>
+{if(($numl!=0)&&($portal_status==0))}
+<tr><td>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(169)}</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10"> <select	name="language" id="language" class="SelectContact">
+		{loopstart:medium:100}
+			<option value="{$medium[0]}"  {if($qq==$medium[0])} style="color: red" selected="selected" {endif} >{$medium[1]}</option>
+			{loopend:medium}
+</select></div>
+	</div>
+</div>
+
+ </td></tr>
+  <tr><td>&nbsp;</td></tr>
+{endif}
+{if($override_themes==1)}
+<tr><td>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(170)}</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10"><select	 name="themes" id="themes" class="SelectContact">
+		{loopstart:themes:100}
+			<option value={$themes[0]}  {if($settings[5]==$themes[0])} selected="selected" {endif}>{noescape:$themes[1]}</option>
+			{loopend:themes}
+			</select></div>
+	</div>
+</div>
+ </td></tr>
+  <tr><td>&nbsp;</td></tr>
+{endif}
+
+<tr><td>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(337)}</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10">
+		<select name="mails_per_page" id="mails_per_page" class="SelectContact">
+<option value="15" {if($settings[14]==15)} selected="selected" {endif}>15</option>
+<option value="20" {if($settings[14]==20)} selected="selected" {endif}>20</option>
+<option value="50" {if($settings[14]==50)} selected="selected" {endif}>50</option>
+</select></div>
+	</div>
+</div>
+</td></tr>
+ <tr><td>&nbsp;</td></tr>
+ {if($admin_sh!=0)}
+<tr><td>
+<div class="row marginT10" >
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(647)}</span><br><a href="{url:(settings/shortcutkeys)}" target="_blank" class="options">{cfn:getmessage(650)}</a></div>
+	<div class="coloum floatL"  >
+		<span class="normalTxt marginL10">
+		<input type="radio" name="shortcuts" id="shortcuts" value="1" {if($shval==1)} checked="checked" {endif} >{cfn:getmessage(648)}
+		</span>
+	</div>
+</div>
+ 
+ </td></tr>
+ 
+ <tr><td>&nbsp;</td></tr>
+<tr><td>
+<div class="row marginT5">
+	<div class="coloum200 floatL"  ><span class="boldTxt">&nbsp;</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10"><input type="radio" id="shortcuts" name="shortcuts" value="0" {if($shval==0)} checked="checked" {endif} >{cfn:getmessage(649)}</div>
+	</div>
+</div>
+</td></tr>
+ <tr><td>&nbsp;</td></tr>
+ 
+ {endif}
+{if($numz!=0)}
+<tr><td>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(232)}</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10"><select	 name="timezone" id="timezone" class="SelectContact">
+		{loopstart:tmzone:1000}
+			<option value={$tmzone[0]}  {if($usertimezone==$tmzone[0])} selected="selected" {endif}>({cfn:getmessage(353)}&nbsp;{$tmzone[2]})&nbsp;{$tmzone[1]}</option>
+			{loopend:tmzone}
+			</select></div>
+	</div>
+</div>
+</td>
+</tr>
+ <tr><td>&nbsp;</td></tr>
+ {endif}
+	
+<tr><td>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(171)}</span></div>
+	<div class="coloum floatL"  ><div class="normalTxt marginL10"><input type="radio" name="signflag" value="0" {if($settings[3]==0)} checked="checked" {endif} onClick="signfn(this.value)">{cfn:getmessage(157)}</div>
+	</div>	
+</div>
+</td></tr>
+ <tr><td>&nbsp;</td></tr>
+<tr><td>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">&nbsp;</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10"><input type="radio" name="signflag" value="1" {if($settings[3]==1)} checked="checked" {endif} onClick="signfn(this.value)" ><span >{cfn:getmessage(52)}</div>
+	</div><input type="hidden" value="{$settings[3]}" name="signcheck" id="signcheck">
+	<input type="hidden" value="" name="" id="sign_hidden">
+</div>
+</td></tr>
+ <tr><td>&nbsp;</td></tr>
+<tr><td>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">&nbsp;</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10"><span id="signdisplay">
+		 <script type="text/javascript" src="js/nicEdit.js.php"></script>
+		<textarea rows="8" cols="50" name="signature" id="signature">{$settings[2]}</textarea></span></div>
+	</div>
+</div>
+</td></tr>
+ <tr><td>&nbsp;</td></tr>
+<tr><td>
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt"></span><input type="submit" value="{cfn:getmessage(79)}" name="submit" class="cursor_select" onClick="settingsClck()"></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10"><input type="hidden" name="uid" value="{$uid}" /></div>
+	</div>
+</div>
+ </td></tr>
+{loopend:settings}
+</table>
+</div>
+
+
+</body>
+</html>
+<script type="text/javascript">
+signfns();
+SetCookie("preload",1,1);
+function SetCookie(name,value,days)
+ {
+
+ if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+
+}
+parent.showPreloadDiv();
+parent.showPreloadDivGif();
+
+function signfns()
+{
+var s="{$msg}";
+if(s!="")
+{
+document.getElementById("msgviewed").style.display="";
+messageview();
+}
+var value1=document.getElementById("signcheck").value;
+if(value1==0)
+{
+document.getElementById("signdisplay").style.display="none";
+}
+else if(value1==1)
+{
+
+document.getElementById("signdisplay").style.display="";
+bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+document.getElementById("signature").focus();
+}
+}
+
+function signfn(value)
+{
+document.getElementById("signcheck").value=value;
+if(value==0)
+document.getElementById("signdisplay").style.display="none";
+else if(value==1)
+{
+document.getElementById("signdisplay").style.display="";
+var nicEditor1= new nicEditor({fullPanel : true}).panelInstance("signature");
+document.getElementById("signature").focus();
+}
+
+}
+
+</script>

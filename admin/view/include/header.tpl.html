@@ -1,0 +1,93 @@
+<html>
+<head>
+<link rel="stylesheet" href="lightbox.css" type="text/css" media="screen" /> 
+<script type="text/javascript" src="js/prototype.lite.js"></script> 
+<script type="text/javascript" src="js/moo.fx.js"></script> 
+<script type="text/javascript" src="js/litebox-1.0.js"></script> 
+<link href="style.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$servicename}!</title>
+</head>
+
+<body >
+
+<center>
+<div style="border-color:#999999;border-style:solid;border-width:4px; margin-bottom:10px; width:1000px;">
+<!-- 
+<table  class="controlpanel_main_table"  cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="left">
+	<table class="controlpanel_header_table"  cellpadding="0" cellspacing="0"  >
+	<tr><td>&nbsp;</td></tr>
+      <tr>
+      
+        <td  align="left" height="48"><a href="{url:(home/controlpanel)}" border="0"><img src="../images/libemail_logo.png"   align="absmiddle" border="0"></a></td>
+        <td  align="right" valign="top"><a href="{url:(index/logout)}" class="normal"><strong>Logout</strong></a>	</td>
+      </tr>
+
+      	<tr><td>{if($portal_status==1)}
+<div align="right"; style="padding-right:66px;">
+		<img src="images/home.gif"   align="absmiddle"> <a href="{$portal_url}" class="normal"><strong>Portal Home</strong></a>
+</div>
+		{endif}</td></tr>
+    </table>
+  <table class="controlpanel_header_table_link" cellpadding="0" cellspacing="0" style="padding-left:8px;" >
+    
+    <tr>
+      <td align="center">
+
+<img src="images/home_sml.jpg"   align="absmiddle"> <a href="{url:(home/controlpanel)}" class="normal"><strong>Home</strong></a>
+ | <img src="images/users_sml.png"   align="absmiddle"> <a href="{url:(user/userview)}" class="normal"><strong>Users and Emails</strong></a>
+        | <img src="images/reserved_sml.png"  align="absmiddle"> <a href="{url:(user/reservedmails)}" class="normal"><strong>Reserved Emails</strong></a>
+		| <img src="images/theme_sml.png"  align="absmiddle">  <a href="{url:(themes/manage)}" class="normal"><strong>Themes</strong></a> 
+		| <img src="images/contacts_sml.png"  align="absmiddle">  <a href="{url:(user/contacts/0)}" class="normal"><strong>Contacts</strong></a> 
+		| <img src="images/language_sml.png"  align="absmiddle">  <a href="{url:(language/manage)}" class="normal"><strong>Languages</strong></a> 
+		| <img src="images/custom _sml.png"  align="absmiddle">  <a href="{url:(user/spamsettings)}" class="normal"><strong>Spam</strong></a> 
+		| <img src="images/clientlog_sml.png"  align="absmiddle">  <a href="{url:(user/clientlogs)}" class="normal"><strong>Client Logs</strong></a> 
+		| <img src="images/setting_sml.png"  align="absmiddle">  <a href="{url:(settings/basicsettings)}" class="normal"><strong>Settings</strong></a> 
+		</td>
+      </tr>
+<li><a href="{url:(home/controlpanel1)}" ><img src="images/home.gif" align="absmiddle">Home</a></li>
+<li><a href="{url:(user/userview)}" ><img src="images/staff_small.png" align="absmiddle">Users and Emails</a></li>
+<li><a href="{url:(user/reservedmails)}" ><img src="images/private_small.png" align="absmiddle">Reserved Emails</a></li>
+<li><a href="{url:(themes/manage)}" ><img src="images/s_theme.gif" align="absmiddle">Themes</a></li>
+<li><a href="{url:(user/contacts/0)}" ><img src="images/client_small.png" align="absmiddle">Contacts</a></li>
+<li><a href="{url:(language/manage)}" ><img src="images/s_language.gif" align="absmiddle">Languages</a></li>
+<li><a href="{url:(user/spamsettings)}" ><img src="images/custom _sml.png" align="absmiddle">Spam</a></li>
+<li><a href="{url:(user/clientlogs)}" ><img src="images/s_stat.gif" align="absmiddle">Client Logs</a></li>
+<li><a href="{url:(settings/basicsettings)}" ><img src="images/s_settings.png" align="absmiddle">Settings</a></li>
+<li><a href="{url:(index/logout)}" ><img src="images/logout.gif" align="absmiddle">Logout</a></li>
+  </table>-->
+
+ <table  border="0" cellpadding="0" cellspacing="0" class="box">
+<tr>
+<td>
+<table   border="0" cellpadding="0" cellspacing="0" width="980px;" align="center" >
+<tr>
+  <td colspan="3" class="header_logo"><a href="{url:(home/controlpanel)}"><img src="../images/libemail_logo.png" alt="Libe Web Mail Admin Area Home"  title="Libe Web Mail Admin Area Home"  border="0"></a><div style="right">{if($portal_status==1)}
+<div align="right"; style="padding-right:66px;">
+		<img src="images/home.gif"   align="absmiddle"> <a href="{$portal_url}" class="normal"><strong>Portal Home</strong></a>
+</div>
+		{endif}</div></td>
+</tr>
+<tr>
+  <td class="boxhead" colspan="3">
+<ul >
+
+<li><a href="{url:(home/controlpanel)}" ><img src="images/home.gif" align="absmiddle">Home</a></li>
+<li><a href="{url:(user/userview)}" ><img src="images/client_small.png" align="absmiddle">Users and Emails</a></li>
+<li><a href="{url:(user/reservedmails)}" ><img src="images/reserved_sml.png" align="absmiddle">Reserved Emails</a></li>
+<li><a href="{url:(themes/manage)}" ><img src="images/theme_sml.png" align="absmiddle">Themes</a></li>
+<li><a href="{url:(user/contacts/0)}" ><img src="images/contacts_sml.png" align="absmiddle">Contacts</a></li>
+<li><a href="{url:(language/manage)}" ><img src="images/s_language.gif" align="absmiddle">Languages</a></li>
+<li><a href="{url:(user/spamsettings)}" ><img src="images/custom _sml.png" align="absmiddle">Spam</a></li>
+<li><a href="{url:(user/clientlogs)}" ><img src="images/clientlog_sml.png" align="absmiddle">Client Logs</a></li>
+<li><a href="{url:(settings/basicsettings)}" ><img src="images/settings_sml.png" align="absmiddle">Settings</a></li>
+<li><a href="{url:(index/logout)}" ><img src="images/logout.gif" align="absmiddle">Logout</a></li>
+
+</ul>
+</td>
+<!-- <td width="2%">&nbsp;</td> -->
+</tr>
+
+</table>

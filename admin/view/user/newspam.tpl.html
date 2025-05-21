@@ -1,0 +1,339 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+function display(value)
+{
+document.getElementById('flag').value=value;
+ if(value==1)
+{
+
+document.getElementById('server').style.display="none";
+document.getElementById('mail').style.display="";
+}
+
+else if(value==2)
+{
+document.getElementById('mail').style.display="none";
+
+document.getElementById('server').style.display="";
+
+}
+}
+function checkDomain(nname)
+{
+
+var arr = new Array(
+'.com','.net','.org','.biz','.coop','.info','.museum','.name',
+
+'.pro','.edu','.gov','.int','.mil','.ac','.ad','.ae','.af','.ag',
+'.ai','.al','.am','.an','.ao','.aq','.ar','.as','.at','.au','.aw',
+
+'.az','.ba','.bb','.bd','.be','.bf','.bg','.bh','.bi','.bj','.bm',
+'.bn','.bo','.br','.bs','.bt','.bv','.bw','.by','.bz','.ca','.cc',
+
+'.cd','.cf','.cg','.ch','.ci','.ck','.cl','.cm','.cn','.co','.cr',
+'.cu','.cv','.cx','.cy','.cz','.de','.dj','.dk','.dm','.do','.dz',
+
+'.ec','.ee','.eg','.eh','.er','.es','.et','.fi','.fj','.fk','.fm',
+'.fo','.fr','.ga','.gd','.ge','.gf','.gg','.gh','.gi','.gl','.gm',
+
+'.gn','.gp','.gq','.gr','.gs','.gt','.gu','.gv','.gy','.hk','.hm',
+'.hn','.hr','.ht','.hu','.id','.ie','.il','.im','.in','.io','.iq',
+
+'.ir','.is','.it','.je','.jm','.jo','.jp','.ke','.kg','.kh','.ki',
+'.km','.kn','.kp','.kr','.kw','.ky','.kz','.la','.lb','.lc','.li',
+
+'.lk','.lr','.ls','.lt','.lu','.lv','.ly','.ma','.mc','.md','.mg',
+'.mh','.mk','.ml','.mm','.mn','.mo','.mp','.mq','.mr','.ms','.mt',
+
+'.mu','.mv','.mw','.mx','.my','.mz','.na','.nc','.ne','.nf','.ng',
+'.ni','.nl','.no','.np','.nr','.nu','.nz','.om','.pa','.pe','.pf',
+
+'.pg','.ph','.pk','.pl','.pm','.pn','.pr','.ps','.pt','.pw','.py',
+'.qa','.re','.ro','.rw','.ru','.sa','.sb','.sc','.sd','.se','.sg',
+
+'.sh','.si','.sj','.sk','.sl','.sm','.sn','.so','.sr','.st','.sv',
+'.sy','.sz','.tc','.td','.tf','.tg','.th','.tj','.tk','.tm','.tn',
+
+'.to','.tp','.tr','.tt','.tv','.tw','.tz','.ua','.ug','.uk','.um',
+'.us','.uy','.uz','.va','.vc','.ve','.vg','.vi','.vn','.vu','.ws',
+
+'.wf','.ye','.yt','.yu','.za','.zm','.zw');
+
+var mai = nname;
+var val = true;
+
+var dot = mai.lastIndexOf(".");
+var dname = mai.substring(0,dot);
+
+var ext = mai.substring(dot,mai.length);
+//alert(ext);
+
+if(dot>2 && dot<57)
+{
+	for(var i=0; i<arr.length; i++)
+	{
+	  if(ext == arr[i])
+	  {
+	 	val = true;
+		break;
+	  }	
+
+	  else
+	  {
+	 	val = false;
+	  }
+	}
+	if(val == false)
+	{
+	  	 var msg1="Your domain extension {extension} is not correct ";
+	  	 var msg=msg1.replace("{extension}",ext);
+	  	 alert(msg);
+	  	
+		 return false;
+	}
+	else
+	{
+		for(var j=0; j<dname.length; j++)
+
+		{
+		  var dh = dname.charAt(j);
+		  var hh = dh.charCodeAt(0);
+		  if((hh > 47 && hh<59) || (hh > 64 && hh<91) || (hh > 96 && hh<123) || hh==45 || hh==46)
+		  {
+			 if((j==0 || j==dname.length-1) && hh == 45)	
+
+		  	 {
+		 	  	 alert("Server name should not begin are end with '-' ");
+			      return false;
+		 	 }
+		  }
+		else	{
+		  	 alert("Your Server name should not have special characters ");
+
+			 return false;
+		  }
+		}
+	}
+}
+else
+{
+ alert("Invalid Server name ");
+ return false;
+}	
+
+return true;
+}
+
+function checkfn()
+{
+
+var domain=document.getElementById("servername").value;
+if(domain=="")
+{
+alert("Please enter the Servername.");
+document.getElementById("servername").focus();
+return false;
+}
+else
+{
+if(checkDomain(domain)==false)
+{
+
+document.getElementById("servername").focus();return false;
+}
+else
+return true;
+}
+}
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/spamheader}</td>
+
+  </tr>
+
+  </table>	
+	
+	
+			<table class="userview_table"  cellpadding="0" cellspacing="0">  
+			
+				
+	
+	<tr><td align="center">	<font class="page_title">Spam Settings</font><br /><br />
+			
+		<table cellpadding="0" cellspacing="0"  width="90%">
+		  <tr class="table_header" >
+		<td width="100%" height="20" align="left"><div align="left" style="padding-left:32px;">Rule Type
+
+  <select id="ruletype" name="ruletype" onchange="display(this.value)">
+  
+  		<option selected="selected">Select</option>
+  
+        <option value="1" {if($flag=="1")} selected {endif}>Spam Mail</option>
+
+        <option value="2" {if($flag=="2")} selected {endif}>Spam Server</option>
+
+        </select>
+
+</div></td></tr></table> 
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+{formstart:newspam:{url:(user/newspam/{$flag})}:post}
+		<tr><td style="padding-left: 48px;">
+		<input type="hidden" value="{$flag}" name="flag" id="flag"/>
+		<div id="mail"><table  cellpadding="0" cellspacing="0"  class="newspam_table" >  
+			
+				<tr>
+				<td >
+
+<br />
+ <tr>
+
+				  
+					<td width="16%" align="left">From </td>
+
+					
+
+					<td width="70%"><input name="from_id" type="text" id="from_id" size="33" value="">&nbsp;&nbsp;
+					
+					<select name="fromflag">
+					<option value="1" selected="selected">Exact Match</option>
+					<option value="2">Starts With</option>
+					<option value="3">Ends With</option>
+					<option value="4">Contains</option>
+					</select>
+					
+					 </td>
+
+				  </tr>
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td >&nbsp;</td>
+
+					</tr>
+
+				  <tr>
+
+				  
+
+					<td align="left" width="16%">Subject</td>
+
+				   
+
+					<td width="70%"><input name="subject" type="text" id="subject" size="33" value="">&nbsp;&nbsp;
+					
+					<select name="subjectflag">
+					<option value="1" selected="selected">Exact Match</option>
+					<option value="2">Starts With</option>
+					<option value="3">Ends With</option>
+					<option value="4">Contains</option>
+					</select>
+					 </td>
+
+				  </tr>
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td>&nbsp;</td>
+
+					</tr>
+
+				  <tr>
+
+					
+
+					<td align="left" width="16%">Body</td>
+
+					
+
+					<td  width="70%"><input type="text" name="body" id="body" value=""  size="33">&nbsp;&nbsp;
+					
+					<select name="bodyflag">
+					<option value="1" selected="selected">Exact Match</option>
+					<option value="2">Starts With</option>
+					<option value="3">Ends With</option>
+					<option value="4">Contains</option>
+					</select>
+					</td>
+
+				  </tr>
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td>&nbsp;</td>
+
+					</tr>
+
+				  <tr>
+
+				   
+
+					<td>&nbsp;</td>
+
+					<td > <input type="submit" name="movetospam" value="Move to Spam"  >
+
+			<br /><br /><br />
+				 </td>
+				</tr>
+		   </table></div>
+		</td></tr>
+		<tr><td style="padding-left: 48px;">
+		   
+		 <div style="display:none" id="server"><table class="newspam_table" cellpadding="0" cellspacing="0"  >
+		<tr><td>
+
+<br />
+ <tr>
+
+				  
+
+					<td width="16%" align="left">Server Name </td>
+
+					
+
+					<td width="53%"  colspan="2"><input name="servername" type="text" id="servername" size="33" value=""><span> (eg:example.com)</span> </td>
+
+				  </tr>
+
+				  <tr>
+
+				  
+
+					<td colspan="2">&nbsp;</td>
+
+					</tr>
+
+				 
+
+				  <tr>
+
+				
+
+					<td>&nbsp;</td>
+
+					<td colspan="2"> <input type="submit" name="movetospam" value="Move to Spam"  onClick="return checkfn()">
+{formend:newspam}
+			<br /><br /><br />
+				 </td>
+				</tr>
+		   </table> </div> 
+		   
+		  		
+</td></tr></table>
+ <br><br><br>
+{showpage:include/footer}
+
+
+

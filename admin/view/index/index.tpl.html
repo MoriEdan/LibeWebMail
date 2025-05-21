@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>{$servicename}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+body {
+background-color: #cae2ff;
+}
+a{text-decoration:none; color:#FFF; }
+-->
+</style>
+</head>
+<body>
+<table width="100%"  border="0" cellpadding="0" cellspacing="0" class="loginbox">
+{formstart:login:{url:(index/login)}:post}
+<tr>
+<td >&nbsp;</td><td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td colspan="2" class="login_header">{$servicename}!</td>
+</tr>
+<tr>
+<td width="3%">&nbsp;</td>
+<td width="25%">&nbsp;</td>
+<td width="72%">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Username</td>
+<td><input name="username" type="text"  class="login_textarea"  value="{$username}" id="username">
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Password</td>
+<td><input name="password" type="password" class="login_textarea"  value="{$password}" id="password">
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><input type="submit" name="Submit" value="Login!">&nbsp;&nbsp;&nbsp;&nbsp;{if($msg!="")}<span style="color:red;">{$msg}</span>{endif}</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><a href="http://www.liberyus.com/">Liberyus Home </a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+{validate:login:isNotNull(username,"Username cannot be null.")}
+{validate:login:isNotNull(password,"Password cannot be null.")}
+{formend:login}
+</table>
+</body>
+</html>

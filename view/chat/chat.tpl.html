@@ -1,0 +1,886 @@
+<script type="text/javascript">
+function setparsestring(parsestring)
+{
+			var nam1=this['chats'];
+            var values=new Array(100); var values1=new Array(100); var values2=new Array(100);var cnt=0;
+            if(parsestring=="")
+            values="";
+            else
+            {
+             values1=parsestring.split("&&");
+             cnt=values1[1];
+              values2=values1[0].split("{n_sep}");
+        	}
+           
+            //var number=parsestring.length/17;
+            for(var i=0;i<cnt;i++)
+            {
+                var arry=new Array(17);
+                 values=values2[i].split("{nesote_t}");
+                for(var j=0;j<17;j++)
+                {
+                    arry[j]=values[j];
+                }
+                var avail=isArrayAvailable('chats');
+                    if(avail==1)
+                    {
+                      nam1.insert('chats',1,arry,'id','desc');
+                    }
+            }
+           if(cnt>0)
+           {
+            totalchat=parseInt(totalchat)+parseInt(cnt);
+            
+SetCookie("chats",totalchat,1);
+}
+var crnt_folder=getCookievalue("folder");
+if(crnt_folder=="chats" && cnt>0)
+{
+//var crnt_total=getCookievalue("chats");
+var crnt_page=getCookievalue("chat_page");
+var mails_per_page=parent.getmails_per_page();
+parent.mainWindowChat("chats",crnt_page,mails_per_page,totalchat,2)
+}
+}
+var customstatflag=0;
+function setOverDiv(detail,div_id,flag)
+{
+
+	document.getElementById("overdiv").style.display="";
+	if(flag==0)
+	var varHeight="-1px";
+	else 
+	var varHeight=65+div_id*35+"px";
+	
+	document.getElementById("overdiv").style.marginTop=varHeight;//alert(detail);
+	document.getElementById("overdiv").innerHTML=detail;
+}
+function closeOverDiv()
+{
+	document.getElementById("overdiv").style.display="none";
+}
+function closeOverDivnew()
+{
+	document.getElementById("overdiv").style.display="none";
+}
+function maximise()
+{
+if(document.getElementById("submain").style.display=="")
+{
+document.getElementById("submain").style.display="none";
+document.getElementById("chatmainbox").style.border=0;
+document.getElementById("minus").style.display="none";
+document.getElementById("plus").style.display="";
+}
+else
+{
+document.getElementById("submain").style.display="";
+document.getElementById("minus").style.display="";
+document.getElementById("plus").style.display="none";
+}
+}
+function divopen1()
+{
+
+document.getElementById("overdiv").style.display="none";
+
+}
+function bor()
+{
+if(customstatflag==0)
+{
+var s="statustable";
+document.getElementById(s).className="ss";
+}
+
+}
+function bor1()
+{
+document.getElementById("statustable").className="ss1";
+}
+
+
+function opendiv()
+{
+if(document.getElementById("upstatus").style.display=="none")
+{
+if(document.getElementById("kann"))
+{
+document.getElementById("kann").style.display="";
+}
+
+document.getElementById("upstatus").style.display="";
+document.getElementById("statustable").className="ss1";
+customstatflag=1;
+}
+else
+{
+
+document.getElementById("upstatus").style.display="none";
+document.getElementById("statustable").className="ss";
+customstatflag=0;
+}
+}
+
+
+function updatestatus(k,flag) {
+	
+ 			var t=k;
+ var img=getCookievalue("self_img");
+ var cusmessage=getCookievalue("self_cusmessage");
+ if(cusmessage=="")
+ cusmessage="{cfn:getmessage(373)}";
+ if(flag==1)
+  {
+   document.getElementById("signstatus").innerHTML=status;
+  					
+   document.getElementById("option_bar").style.display="none";
+   if(document.getElementById("upstatus"))
+   document.getElementById("upstatus").style.display="none";
+ if(k==0)
+     {
+        if(document.getElementById('theimg'))
+      	{
+     		//document.getElementById('theimg').src="chatimages/status-offline.png";
+     		document.getElementById('theimg').src="images/filler.gif";
+     		document.getElementById('theimg').className="iconsCornner chat-o";
+     	}
+       if(document.getElementById('minimg'))
+        {
+			//document.getElementById('minimg').src="chatimages/status-offline.png";
+			
+     		document.getElementById('minimg').src="images/filler.gif";
+     		document.getElementById('minimg').className="iconsCornner chat-o";
+     	}
+     var sign="{cfn:getmessage(364)}";
+     var status="<a href=\"javascript:updatestatus(1,1);\" class=\"options\">"+sign+"</a>";
+     var signtagid=" <img src=\"images/filler.gif\" border=\"0\" align=\"absmiddle\" class=\"iconsCornner chat-o\"><a href=\"javascript:updatestatus(1,1);\" class=\"options\">"+sign+"</a>";
+      var signoutid="<span style=\"height: 0px;padding-top: 5px;padding-left: 15px;\"><a href=\"#\" class=\"options1\" onclick=\"javascript:updatestatus(1,1);\">{cfn:getmessage(364)}</a></span>";
+       document.getElementById("signoutid").style.display="";
+ 	   document.getElementById("signoutid").innerHTML=signoutid;
+ 	   document.getElementById("signstatus").innerHTML=status;
+ 	  document.getElementById("signtagid").innerHTML=signtagid;
+ 	  
+ 	  
+      }
+   else if(k==1)
+    {
+     if(document.getElementById('theimg'))
+     {
+    
+        document.getElementById('theimg').src="images/filler.gif";
+        document.getElementById('theimg').className=img;
+        }
+         if(document.getElementById('minimg'))
+         {
+		 document.getElementById('minimg').src="images/filler.gif";
+		 document.getElementById('minimg').className=img;
+		}
+    SetCookie("self_img",img,1);
+     var img=getCookievalue("self_img");
+    var sign="{cfn:getmessage(368)}";
+     var status="<a href=\"javascript:updatestatus(0,1);\" class=\"options\">"+sign+"</a>";
+       var signtagid=" <img src=\"images/filler.gif\" style=\"border: none; vertical-align: middle\" class=\""+img+"\"><a href=\"javascript:updatestatus(0,1);\" class=\"options\">"+sign+"</a>";
+     document.getElementById("signoutid").style.display="none";
+      document.getElementById("signstatus").innerHTML=status;
+ 	   document.getElementById("signtagid").innerHTML=signtagid;
+ 	  }
+ }
+ else
+ {
+  if(k==1)
+{
+ SetCookie("self_img","iconsCornner chat-a",1);
+ //document.getElementById("kann").innerHTML="{cfn:getmessage(373)}";
+  if(document.getElementById("signoutid"))
+ document.getElementById("signoutid").style.display="none";
+  if(document.getElementById('theimg'))
+  {
+document.getElementById('theimg').src="images/filler.gif";
+document.getElementById('theimg').className="iconsCornner chat-a";
+}
+ if(document.getElementById('minimg'))
+ {
+document.getElementById('minimg').src="images/filler.gif";
+document.getElementById('minimg').className="iconsCornner chat-a";
+}
+}
+else if(k==2)
+{
+  SetCookie("self_img","iconsCornner chat-b",1);
+   //document.getElementById("kann").innerHTML="{cfn:getmessage(373)}";
+   if(document.getElementById("signoutid"))
+ document.getElementById("signoutid").style.display="none";
+   if(document.getElementById('theimg'))
+   {
+document.getElementById('theimg').src="images/filler.gif";
+document.getElementById('theimg').className="iconsCornner chat-b";
+}
+ if(document.getElementById('minimg'))
+ {
+document.getElementById('minimg').src="images/filler.gif";
+document.getElementById('minimg').className="iconsCornner chat-b";
+}
+}
+else if(k==4)
+{
+  SetCookie("self_img","iconsCornner chat-o",1);
+   //document.getElementById("kann").innerHTML="{cfn:getmessage(373)}";
+   if(document.getElementById("signoutid"))
+ document.getElementById("signoutid").style.display="none";
+   if(document.getElementById('theimg'))
+   {
+document.getElementById('theimg').src="images/filler.gif";
+document.getElementById('theimg').className="iconsCornner chat-o";
+}
+ if(document.getElementById('minimg'))
+ {
+document.getElementById('minimg').src="images/filler.gif";
+document.getElementById('minimg').className="iconsCornner chat-o";
+}
+}
+else if(k==7)
+{
+k=1;
+  SetCookie("self_img","iconsCornner chat-a",1);
+    if(document.getElementById("signoutid"))
+ document.getElementById("signoutid").style.display="none";
+    if(document.getElementById('theimg'))
+    {
+document.getElementById('theimg').src="images/filler.gif";
+document.getElementById('theimg').className="iconsCornner chat-a";
+}
+ if(document.getElementById('minimg'))
+ {
+document.getElementById('minimg').src="images/filler.gif";
+document.getElementById('minimg').className="iconsCornner chat-a"; 	
+}		
+			document.getElementById("statustable").className="ss1";
+			customstatflag=1;
+			document.getElementById("cusmsgdiv").style.display="";
+			document.getElementById("kann").style.display="none";
+			document.getElementById("moreoptlink").style.display="none";
+
+ var prevmsg1=document.getElementById("statmsg").value;
+if(prevmsg1!="")
+     {
+    prevmsg = prevmsg1.replace(/^\s+|\s+$/g,"");
+    prevmsg = prevmsg.replace(/^\s*|\s*$/g,'');
+    prevmsg= prevmsg.replace(/\r\n|\n|\r/g, " ");
+    prevmsg = prevmsg.replace(/^(\r\n\s*)/g, "");
+    prevmsg=prevmsg.trim();
+    prevmsg=prevmsg.replace("\n", "");
+    prevmsg=prevmsg.replace("<br>", "");
+    var b=prevmsg; 
+ document.getElementById("statmsg").value=b;
+    }
+ document.getElementById("statmsg").focus();
+}
+
+else if(k==8)
+{
+k=2;
+  SetCookie("self_img","iconsCornner chat-b",1);
+   if(document.getElementById("signoutid"))
+ document.getElementById("signoutid").style.display="none";
+document.getElementById('theimg').src="images/filler.gif";
+document.getElementById('theimg').className="iconsCornner chat-b"; 
+document.getElementById('minimg').src="images/filler.gif";
+document.getElementById('minimg').className="iconsCornner chat-b"; 
+			document.getElementById("statustable").className="ss1";
+			customstatflag=1;
+			document.getElementById("cusmsgdiv").style.display="";
+			document.getElementById("kann").style.display="none";
+			document.getElementById("moreoptlink").style.display="none";
+ var prevmsg1=document.getElementById("statmsg").value;
+    if(prevmsg1!="")
+     {
+    prevmsg = prevmsg1.replace(/^\s+|\s+$/g,"");
+    prevmsg = prevmsg.replace(/^\s*|\s*$/g,'');
+    prevmsg= prevmsg.replace(/\r\n|\n|\r/g, " ");
+    prevmsg = prevmsg.replace(/^(\r\n\s*)/g, "");
+    prevmsg=prevmsg.trim();
+    prevmsg=prevmsg.replace("\n", "");
+    prevmsg=prevmsg.replace("<br>", "");
+    var b=prevmsg; 
+    document.getElementById("statmsg").value=b;
+    }
+document.getElementById("statmsg").focus();
+}
+  else
+  {
+  document.getElementById("kann").innerHTML="{cfn:getmessage(373)}";
+  }
+  
+} 
+		    
+		var currentTime = new Date();
+		var crttime = currentTime.getTime();
+		var n=k;
+		 $.ajax({
+
+type: "GET",cache: false,
+url: "{url:(chat/statusupdate/)}"+n+"/"+flag+"/"+t+"/"+crttime,
+
+success: function(data) {
+
+ 		
+          			var text=data;
+          			if(document.getElementById("upstatus"))
+ document.getElementById("upstatus").style.display="none";
+          			if(flag==0)
+          			{
+          			 	customstatflag=0;
+ 			        }
+            
+}
+});
+	
+   
+}
+
+function textboxopen()
+{
+document.getElementById("statustable").className="ss1";
+customstatflag=1;
+document.getElementById("cusmsgdiv").style.display="";
+document.getElementById("kann").style.display="none";
+document.getElementById("moreoptlink").style.display="none";
+
+document.getElementById("statmsg").focus();
+
+}
+function textboxhide()
+{
+
+customstatflag=0;
+//document.getElementById("textboxdiv").style.display="none";
+document.getElementById("cusmsgdiv").style.display="none";
+document.getElementById("kann").style.display="";
+document.getElementById("moreoptlink").style.display="";
+
+
+}
+
+    String.prototype.trim = function () {
+        var reExtraSpace = /^\s+(.*?)\s+$/;
+        return this.replace(reExtraSpace, "$1");
+    };
+
+function runScript(e,prevmsg1) {
+ 		
+  if (e.keyCode == 13 && e.shiftKey == 0) 
+  {
+    var message=document.getElementById("statmsg").value;
+    message = message.replace(/^\s+|\s+$/g,"");
+    message = message.replace(/^\s*|\s*$/g,'');
+    message= message.replace(/\r\n|\n|\r/g, " ");
+    message = message.replace(/^(\r\n\s*)/g, "");
+    message= message.trim(); 
+   
+    
+    message=message.replace("\n", "");
+    message=message.replace("<br>", "");
+     
+    prevmsg = prevmsg1.replace(/^\s+|\s+$/g,"");
+    prevmsg = prevmsg.replace(/^\s*|\s*$/g,'');
+    prevmsg= prevmsg.replace(/\r\n|\n|\r/g, " ");
+    prevmsg = prevmsg.replace(/^(\r\n\s*)/g, "");
+    prevmsg=prevmsg.trim();
+    
+    prevmsg=prevmsg.replace("\n", "");
+    prevmsg=prevmsg.replace("<br>", "");
+    
+    
+    var b=message; 
+  // b=b.slice(0,-1);
+		var currentTime = new Date();
+		var crttime = currentTime.getTime();
+		document.getElementById("statustable").className="ss1";
+		if(b!=prevmsg)
+		{
+		b=encodeURIComponent(b);
+		
+		$.ajax({
+
+type: "POST",cache: false,
+url: "{url:(chat/customstatus)}",
+data: "b="+b+"&crttime="+crttime,
+success: function(data) {
+		
+		var url="{url:(chat/customstatus)}";
+			 var params = "b="+b+"&crttime="+crttime;
+
+ 
+	 		
+             var text1=data;
+        var str1=text1.split("$*&*$");
+        
+    	  	customstatflag=0;
+    	  	document.getElementById("statustable").className="ss1";
+    	    document.getElementById("statmsg").value=str1[1];
+			document.getElementById("cusmsgdiv").style.display="none";
+			document.getElementById("kann").style.display="";
+			document.getElementById("kann").innerHTML=str1[0];
+			document.getElementById("moreoptlink").style.display="";
+            
+		 }
+		 });
+		 }
+		 else
+		 {
+		 customstatflag=0;
+		document.getElementById("statustable").className="ss1";
+		document.getElementById("statmsg").value=prevmsg;	 
+		document.getElementById("cusmsgdiv").style.display="none";
+		document.getElementById("kann").style.display="";
+		document.getElementById("moreoptlink").style.display="";
+		
+	     }
+	
+	 		
+      }	
+}
+
+function options()
+{
+
+	if(document.getElementById("option_bar").style.display=="")
+	{
+	
+	
+	document.getElementById("option_bar").style.display="none";
+	}
+	else
+	{
+	
+	
+	document.getElementById("option_bar").style.display="";
+}
+}
+
+function dimensions(id,w,h)
+{
+if(w=="" || h=="")
+{
+{loopstart:divdetials:100000000000}
+var s="{$divdetials[0]}";
+if(s==id)
+{
+w="100%";
+h="{$divdetials[3]}";
+}
+{loopend:divdetials}
+
+}
+
+if(id=="1")
+	{
+	document.getElementById('my_iframe').height =h;
+	document.getElementById('my_iframe').width =w;
+	}
+	else if(id=="2")
+	{
+	document.getElementById('my_iframe').height =h;
+	document.getElementById('my_iframe').width =w;
+	}
+	else if(id=="3")
+	{
+	document.getElementById('my_iframe').height =h;
+	document.getElementById('my_iframe').width =w;
+	}
+	else if(id=="4")
+	{
+	document.getElementById('my_iframe').height =h;
+	document.getElementById('my_iframe').width =w;
+	}
+	document.getElementById("option_bar").style.display="none";
+	setchatwindowsize(id);
+}
+
+
+
+function setchatwindowsize(chatwindowsize)
+{
+		var currentTime = new Date();
+		var crttime = currentTime.getTime();
+		
+		$.ajax({
+
+type: "GET",cache: false,
+url: "{url:(chat/setchatwindowsize/)}"+chatwindowsize+"/"+crttime,
+
+success: function(data) {
+
+//alert(data);
+}
+});
+	
+   
+}
+
+
+function popinvite(value) {
+if(value!="")
+var URL=value;
+else
+var URL="{url:(chat/invite)}";
+day = new Date();
+id = day.getTime();
+eval("page" + id + " = window.open(URL, '" + id + "', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,width=500,height=266px,left =5,top =10');");
+
+}
+
+
+function adding1(val1,id) {
+	
+ 			
+              var currentTime = new Date();
+		      var crttime = currentTime.getTime();
+	 		 $.ajax({
+
+type: "GET",cache: false,
+url: "{url:(chat/contactadding)}/"+val1+"/"+id+"/"+crttime,
+
+success: function(data) {
+//alert(data);
+}
+});
+}
+function chatclick(userid)
+{
+
+chatclick1(userid);
+
+}
+
+//setInterval("history('{$id}')",15000);//1000
+
+function history(l) {
+   
+            
+          var n=l;
+        var nam1=this['chats'];
+        var currentTime = new Date();
+        var crttime = currentTime.getTime();
+        $.ajax({
+
+type: "GET",cache: false,
+url: "{url:(chat/parsing/)}"+n+"/"+crttime,
+
+success: function(data) {
+
+          var x=data;
+           
+            var values=new Array(100);
+            if(x=="")
+            values="";
+            else
+        values=x.split("{nesote_t}");
+           
+            var number=values.length/17;
+            for(var i=0;i<number;i++)
+            {
+                var arry=new Array(17);
+                for(var j=0;j<17;j++)
+                {
+                    arry[j]=values[j];
+                }//alert(arry);
+               
+               
+                var avail=isArrayAvailable('chats');
+                    if(avail==1)
+                    {
+   
+                      nam1.insert('chats',1,arry,'id','desc');
+                    }
+            }
+           
+            totalchat=parseInt(totalchat)+parseInt(number);
+           
+        }
+});
+}
+
+function displayfn1()
+{
+document.getElementById("receiver_invite").className="searchbox";
+var searchvalue=document.getElementById("receiver_invite").value;
+var ppt="{cfn:getmessage(462)}";
+if(searchvalue==""||searchvalue==ppt)
+document.getElementById("receiver_invite").value=ppt;
+
+}
+function searchfn1()
+{
+
+var searchvalue=document.getElementById("receiver_invite").value;
+var ppt="{cfn:getmessage(462)}";
+if(searchvalue==""||searchvalue==ppt)
+{
+document.getElementById("receiver_invite").value="";
+document.getElementById("receiver_invite").className="searchbox";
+}
+document.getElementById("receiver_invite").className="livesrch";
+}
+
+function gethideoptvalue()
+{
+var tt=document.getElementById("hideopt").value;
+
+return tt;
+}
+
+
+function sethideoptvalue(val)
+{
+document.getElementById("hideopt").value=val;
+}
+
+
+function hideoptdiv()
+{
+document.getElementById("upstatus").style.display="none";
+}
+function divopen_self1()
+{
+ var uid=getCookievalue("self_userid");
+ var img=getCookievalue("self_img");
+ var cusmessage=getCookievalue("self_cusmessage");
+ var title=getCookievalue("self_title");
+ var uname=getCookievalue("self_uname");
+ var userimage=getCookievalue("self_userimage");
+ var userfullname=getCookievalue("self_userfullname");
+ var ext="{cfn:getextension()}";
+ var pp1=userfullname.length;
+ if(pp1>20)
+ var title1=userfullname.substring(0,20)+"...";
+ else
+ var title1=userfullname;
+ 
+ 
+					
+					
+var str="<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\"><tr><td style=\"vertical-align:top;height:80px;\"><font style=\"padding-left:3px;\"><img src=\"images/filler.gif\" class=\""+img+"\"></font><font style=\"color:#045FB4;padding-left:5px;font-size: 3.5mm;\">"+title1+"</font><div style=\"clear:both;\"></div>";
+			if(cusmessage!="")
+			{
+			str+="<font style=\"font-size: 3.5mm;color:#A4A4A4;padding-left:20px;padding-top:5px;display:block;overflow:hidden;\">"+cusmessage+"</font><div style=\"clear:both;\"></div><font style=\"font-size: 3mm;color:#A4A4A4;padding-left:20px;\">"+uname+ext+"</font></td><td style=\"padding:5px;width:62px;\"><img src=\""+userimage+"\" style=\"width:60px;height:60px;\" border=\"0\"></td></tr>";
+			}
+			else
+			{
+			str+="<font style=\"font-size: 3mm;color:#A4A4A4;padding-left:20px;\">"+uname+ext+"</font></td><td  style=\"padding:5px;float:right;width:62px;\"><img src=\""+userimage+"\" style=\"width:60px;height:60px;\" border=\"0\"></td></tr>";
+   			}
+			str+="<tr class=\"overdivbg\"><td colspan=2>&nbsp;</td></tr></table>";
+			
+			
+	parent.document.getElementById("overdiv").style.display="";
+
+	var varHeight="25px";
+
+	
+	parent.document.getElementById("overdiv").style.marginTop=varHeight;//alert(detail);
+	parent.document.getElementById("overdiv").innerHTML=str;
+}
+function SetCookie(nameC,value,days)
+ {
+ if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = nameC+"="+value+expires+"; path=/";
+
+}
+
+
+
+
+function getCookievalue(c_name1)
+{
+if (document.cookie.length>0)
+  {
+  c_start1=document.cookie.indexOf(c_name1 + "=");
+  if (c_start1!=-1)
+    {
+    c_start1=c_start1 + c_name1.length+1;
+    c_end1=document.cookie.indexOf(";",c_start1);
+    if (c_end1==-1) c_end1=document.cookie.length;
+    return unescape(document.cookie.substring(c_start1,c_end1));
+    }
+  }
+return "";
+}
+</script>
+
+
+<div style="height: 10px; position: relative;z-index: 1;">
+<div id="overdiv" class="overdiv" style="display: none;"></div></div>
+<div id="chatmainbox" class="chatmainbox" style="width:150px;z-index:0;position:relative;" >
+<input type="hidden" id="hideopt" value="0">
+
+	<div id="minmax" class="minmax" onClick="maximise()"  >
+		
+				<div style="float:left;display: none;width:157px;border: 1px solid #eee;height:30px;line-height: 30px;"  id="plus" onMouseOver="divopen_self1()"		onMouseOut="divopen1()">
+					<table width="100%" cellpadding="0" cellspacing="0"><tr>
+					<td >	<img src="images/filler.gif" border="0" align="absmiddle" {if($chval==1)} class="iconsCornner chat-a" {else if($chval==2)} class="iconsCornner chat-b" {elseif($chval==3)} class="iconsCornner chat-i" {else if($chval==4)} class="iconsCornner chat-o" {endif} id="minimg">
+					</td><td>
+					<font style="font-size: 3.5mm;color: #2892BC;font-weight: bold;line-height: 30px;" id="mintitle">{cfn:shottitle($fname,$lname)}</font></td><td>
+					<img src="images/filler.gif" border="0" align="absmiddle" class="iconsCornner chat-p">
+						</td></tr></table>
+				</div>
+				
+				<div  id="minus" style="float:left;width:150px;" >
+					<table border="0" width="100%" cellpadding="0" cellspacing="0"><tr><td>
+					<font style="font-size: 11px;padding-left:5px;font-weight:700;">{cfn:getmessage(363)}</font></td><td align="right">
+						<img src="images/filler.gif" border="0" align="absmiddle" class="iconsCornner chat-m">
+						</td></tr></table>
+				</div>
+		
+			
+	</div>
+				
+	<span style="float: left;padding-left: 2px;" >
+			 {showpage:chat/ajaxlivesearch1} <input autocomplete="off" type="text" name="receiver" id="receiver_invite"
+			value="{cfn:getmessage(462)}" onKeyUp="javascript:keymovement1_invite(event,this.value);" 
+			class="searchbox" onClick="javascript:searchfn1()" onBlur="javascript:displayfn1()" title="{cfn:getmessage(462)}"  >
+			</span>
+			<div style="clear: both;"></div>
+				<div style="display:none; border: 0px;  float:left;position: absolute;z-index: 1000; "    id="livesearch_invite" class="livesearch"></div>
+		</span>
+	<input type="hidden" id="search_invite" value="" />
+	
+
+	<div id="submain" >
+	
+		<div id="userstatus" style="float: left" >
+		
+			<div onMouseOver="divopen_self1()"	onMouseOut="divopen1()" >
+						<img src="images/filler.gif" border="0" align="absmiddle" {if($chval==1)} class="iconsCornner chat-a" {elseif($chval==2)} class="iconsCornner chat-b" {elseif($chval==3)} class="iconsCornner chat-i" {elseif($chval==4)} class="iconsCornner chat-o" {endif} id="theimg" >
+						
+							<font style="font-size: 3.5mm;color: #2892BC;font-weight: bold;" id="thetitle">{cfn:shottitle($fname,$lname)}</font>
+			</div>
+			<div id="status" onMouseOver="bor()" onMouseOut="bor1()">
+							<table id="statustable" cellpadding="0" cellspacing="0" class="ss1" width="150px;" >
+								<tr id="heat">
+								<td width="100" onClick="textboxopen()">
+									<div id="kann" style="padding:2px; padding-left: 8px;height: 18px;float:left;font-size:11px;overflow:hidden;">{if($status=="")}{cfn:getmessage(373)}{else}
+														{cfn:shorten($status)}{endif}			
+														
+														</div>
+																	
+														<div id="cusmsgdiv" style="padding-left: 0px;display: none;"><input type="text" name="statmsg" id="statmsg" value="{$status}" class="custommsgbox" onBlur="textboxhide()" onKeyPress="return runScript(event,'{$status}')"></div>
+													
+													
+														
+														
+										</td><td width="10"  onClick="opendiv()">	
+		
+			<div id="moreoptlink" style="width:20px;float:right;"><img src="images/filler.gif" border="0" align="absmiddle" class="iconsCornner arrow-d"></div>
+		
+
+						
+														
+									</td>
+								</tr>
+							</table>
+			</div>
+			<div id="textboxdiv" class="textboxdiv" style="display:none;float:right;position:absolute;z-index:1000;">
+							<textarea id="cusmessage" cols=15  onkeypress="return runScript(event,'{$status}')" onBlur="textboxhide()" style="height:auto;">{if($status!="")}{$status}{endif}
+					</textarea>
+								
+			</div>
+			<table   id="upstatus"  style="display: none; padding:0; margin:0px; width:100%;" cellpadding="0" cellspacing="0">
+								<tr >
+									<td class="upstatus " style="z-index:9999;position:absolute;clear: both;">
+									
+										<table style="font-size: 3mm;">
+											<tr>
+												<td>
+												<a href="javascript:updatestatus(1,0);" class="options"><img src="images/filler.gif" border="0" align="absmiddle" class="iconsCornner chat-a">{cfn:getmessage(365)}</a>
+												</td>
+											</tr>
+											<tr>
+												<td><a href="javascript:updatestatus(7,0);"  class="options"><img src="images/filler.gif" border="0" align="absmiddle" class="iconsCornner chat-a">{cfn:getmessage(366)}</a>
+												</td>
+											</tr>
+											<tr>
+												<td><a href="javascript:updatestatus(2,0);"  class="options"><img src="images/filler.gif" border="0" align="absmiddle" class="iconsCornner chat-b">{cfn:getmessage(367)}</a>
+												</td>
+											</tr>
+											<tr>
+												<td><a href="javascript:updatestatus(8,0);"  class="options"><img src="images/filler.gif" border="0" align="absmiddle" class="iconsCornner chat-b">{cfn:getmessage(366)}</a>
+												</td>
+											</tr>
+											<tr>
+												<td><a href="javascript:updatestatus(4,0);"  class="options"><img src="images/filler.gif" border="0" align="absmiddle" class="iconsCornner chat-o">{cfn:getmessage(369)}</a>
+												</td>
+											</tr>
+											<tr>
+												<td id="signtagid"><a href="javascript:updatestatus('{$signout}',1);"  class="options"><img src="images/filler.gif" border="0" align="absmiddle" class="iconsCornner chat-o">{if($signout==1)}{cfn:getmessage(364)}{else}{cfn:getmessage(368)}{endif}</a>
+												</td>
+											</tr>
+											
+										</table>
+										
+										
+									</td>
+								</tr>
+							</table>
+							
+							</div>
+							
+							<div id="signoutid">{if($signout==1)}<span style="height: 0px;padding-top: 5px;padding-left: 15px;"><a href="#" class="options1" onClick="javascript:updatestatus('{$signout}',1);">{cfn:getmessage(364)}</a></span>{endif}</div>
+		
+		
+		
+
+		 	
+		
+		<div id="mydiv" style="width: 100%;padding:0;margin:0px;padding-top:10px;margin-top:10px;">
+		
+				<iframe id="my_iframe" name="my_iframe" src="{url:(chat/listing)}" width="100%" frameborder="0" marginheight="0" cellspacing="0" allowtransparency="true">
+				</iframe>
+		</div>
+		<div class="option_bar" style="display: none;" id="option_bar">
+				{loopstart:divdetials:100000000000}
+				<table>
+				<tr>
+					<td><a
+								href="javascript:dimensions('{$divdetials[0]}','{$divdetials[2]}','{$divdetials[3]}');" class="options">{$divdetials[1]}</a></td>
+						</tr>
+		
+		
+				</table>
+		
+				{loopend:divdetials}
+				
+				
+				
+				<table>
+						<tr>
+						<td id="signstatus"><a
+								href="javascript:updatestatus('{$signout}',1);" class="options">{if($signout==1)}{cfn:getmessage(364)} {else}{cfn:getmessage(368)}  {endif}</a></td>
+						</tr>
+		
+		
+			</table>
+			
+				
+		</div>
+		<div>	
+				<a href="javascript:options()" style="text-decoration: none" class="options">
+				<div id="option"  style="float: left;z-index:1;"><font
+					style="font-size: 3mm;" title="{cfn:getmessage(371)}">{cfn:getmessage(371)}</font>
+					
+				</div>
+				</a>
+				<a href="javascript:popinvite('')" style="text-decoration: none" class="options">
+				<div id="invite" 
+					style="float: right;"><font style="font-size: 3mm;" title="{cfn:getmessage(381)}">{cfn:getmessage(372)}</font>
+				</div>
+				</a>
+			</div>
+	</div>
+	
+</div>

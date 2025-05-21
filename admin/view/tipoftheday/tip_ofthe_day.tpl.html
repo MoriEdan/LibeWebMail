@@ -1,0 +1,43 @@
+{showpage:include/header}
+
+  <table class="sublink_table">
+   <tr>	
+				<td  colspan="2" align="center" class="page_title">{showpage:include/eventsheader}</td></tr>
+  <tr><td>&nbsp;</td></tr>
+  
+  <tr>	
+				<td  colspan="2" align="center" class="page_title">{showpage:include/tipheader}</td></tr>
+				<tr><td>&nbsp;</td></tr>
+				<tr>	
+				<td  colspan="2" align="center" class="page_title">Add Tip of the Day</td></tr>
+  </table>
+	{formstart:add:{url:(tipoftheday/add_tip_ofthe_day)}:POST}
+	
+			<table class="settings_table"  cellpadding="0" cellspacing="0" align="center" border="0">  
+			<tr><td colspan="2">&nbsp;</td></tr>
+				
+				<tr><td colspan="2">&nbsp;</td></tr>
+				
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr><td style="padding-left: 150px"; ><b>Title</b> </td><td><input style="width:290px" name="title" id="title" type="text" value="" maxlength="20"></td></tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr><td style="padding-left: 150px"><b>Message</b> </td><td>
+				
+		
+					<textarea name="message" id="message" style="width: 65%;height: 100px;"></textarea>		
+			
+				 </td>
+				</tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				 <tr>
+				
+				<td>&nbsp;</td><td><input type="submit" name="add" value="Add"></td>
+			</tr>	
+			<tr><td colspan="2">&nbsp;</td></tr>
+		   </table>
+		  		
+
+{validate:add:isNotNull("title","Title cannot be left blank.")}
+{validate:add:isNotNull("message","Message cannot be left blank.")}
+{formend:add}
+{showpage:include/footer}

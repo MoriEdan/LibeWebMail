@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>{$servicename}</title>
+<link rel="stylesheet" href="css/mob-style.css" type="text/css" media="screen" />
+</head>
+
+<body {if($mob==0)}style="background:none" {endif}>
+<div {if($mob==0)}style="width:300px; background:url(../images/contentbg.gif) repeat scroll 0 0 #2A3848; overflow:hidden" {endif}>
+<div class="header">
+	<div class="header">
+		<img src="images/logo.png" alt="Logo" class="left" />
+		<a href="#" class="right"><img src="images/theme.png" /></a>
+	</div>
+</div>
+<div class="logDetails">
+		<div class="left">{cfn:getmessage(760)} {$uname}</div>
+		<a href="{url:(index/logout)}" class="right">{cfn:getmessage(39)}</a>
+	</div>
+<div class="contentdiv">
+		<div class="contentdivin">
+			<div class="gridview">
+		<a href="{url:(mail/replylink/newmail/1/1/m)}" class="homeicon"><img src="images/newicon.png" /><span>{cfn:getmessage(10)}</span></a>
+			<a href="{url:(mail/mailbox/1)}" class="homeicon"><img src="images/inboxicon.png" /><span>{cfn:getmessage(19)}</span>{cfn:getunreadcount($uid,1)}</a>
+			<a href="{url:(mail/mailbox/3)}" class="homeicon"><img src="images/senticon.png" /><span>{cfn:getmessage(21)}</span></a>
+			<a href="{url:(mail/mailbox/4)}" class="homeicon"><img src="images/spamicon.png" /><span>{cfn:getmessage(12)}</span>{cfn:getunreadcount($uid,4)}</a>
+			<a href="{url:(mail/mailbox/5)}" class="homeicon"><img src="images/customicon.png" /><span>{cfn:getmessage(22)}</span>{cfn:getunreadcount($uid,5)}</a>
+			<a href="{url:(mail/contacts)}" class="homeicon"><img src="images/contactsicon.png" /><span>{cfn:getmessage(2)}</span></a>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="ftr">{$footer}</div>
+	</div>
+</body>
+</html>

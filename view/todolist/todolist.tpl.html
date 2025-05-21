@@ -1,0 +1,1771 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{cfn:getmessage(626)}</title>
+<style type="text/css">
+{$style}
+ </style>
+ <script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+ <script type="text/javascript" src="js/jquery-1.3.2.min.js.php"></script>
+<script type="text/javascript" src="jslib/table.js.php"></script>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="js_cal/epoch_styles.css" />
+<script type="text/javascript" src="js_cal/epoch_classes.js"></script>
+<script type="text/javascript">
+
+function SetCookie(nameC,value,days)
+ {
+ if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = nameC+"="+value+expires+"; path=/";
+
+}
+
+function getCookievalue(c_name1)
+{
+if (document.cookie.length>0)
+  {
+  c_start1=document.cookie.indexOf(c_name1 + "=");
+  if (c_start1!=-1)
+    {
+    c_start1=c_start1 + c_name1.length+1;
+    c_end1=document.cookie.indexOf(";",c_start1);
+    if (c_end1==-1) c_end1=document.cookie.length;
+    return unescape(document.cookie.substring(c_start1,c_end1));
+    }
+  }
+return "";
+}
+
+var chkidz="",nchkidz="";
+function listover(id)
+{
+
+	if(document.getElementById("more_"+id))
+	{
+		if(document.getElementById("more_"+id).style.display=="none")
+		document.getElementById("more_"+id).style.display="";
+	}
+}
+function listout(id)
+{
+	if(document.getElementById("more_"+id))
+	{
+		if(document.getElementById("more_"+id).style.display=="")
+		document.getElementById("more_"+id).style.display="none";
+	}
+}
+function clickchk(id,id2,listid)
+{
+passhideval=document.getElementById("hideval_"+listid).value;
+if(document.getElementById(id).checked==true)
+{
+document.getElementById(id2).style.textDecoration="line-through";
+if(chkidz.indexOf(listid+",")!=1)
+chkidz+=listid+",";
+if(nchkidz.indexOf(listid+",")!=1)
+nchkidz=nchkidz.replace(listid+",","");
+
+
+if(passhideval!="")
+updateliststatus(0,listid);
+}
+else
+{
+document.getElementById(id2).style.textDecoration="none";
+if(chkidz.indexOf(listid+",")!=1)
+chkidz=chkidz.replace(listid+",","");
+if(nchkidz.indexOf(listid+",")!=1)
+nchkidz+=listid+",";
+if(passhideval!="")
+updateliststatus(1,listid);
+}
+
+}
+
+
+function clickchknew()
+{
+
+if(document.getElementById("currnt_id").value==0)
+var id=document.getElementById("newtodoid").value;
+else
+var id=document.getElementById("currnt_id").value;
+
+
+passhideval=document.getElementById("hideval_"+id).value;
+if(document.getElementById("todo_checkbox").checked==true)
+{
+document.getElementById("todo_value").style.textDecoration="line-through";
+if(chkidz.indexOf(id+",")!=1)
+chkidz+=id+",";
+if(nchkidz.indexOf(id+",")!=1)
+nchkidz=nchkidz.replace(id+",","");
+if(passhideval!="")
+updateliststatus(0,id);
+}
+else
+{
+document.getElementById("todo_value").style.textDecoration="none";
+if(chkidz.indexOf(id+",")!=1)
+chkidz=chkidz.replace(id+",","");
+if(nchkidz.indexOf(id+",")!=1)
+nchkidz+=id+",";
+if(passhideval!="")
+updateliststatus(1,id);
+}
+
+}
+
+
+
+function updateliststatus(value,id)
+{
+ var todoarray=getCookievalue("todoarray");
+if(value==0)
+{
+var todo="";
+total_c=parseInt(total_c)+parseInt(1);
+total_p=parseInt(total_p)-parseInt(1);
+var aryAvail=isArrayAvailable("todocomplete");
+	if(aryAvail==1)
+	{
+		var aryAvail=isArrayAvailable("todopending");
+		if(aryAvail==1)
+		todo="todopending";
+		else if(aryAvail==0)
+		{
+			var aryAvail=isArrayAvailable("today");
+			if(aryAvail==1)
+			todo="today";
+			else if(aryAvail==0)
+			{
+				var aryAvail=isArrayAvailable("todoall");
+				if(aryAvail==1)
+				todo="todoall";
+				else
+				todo="";
+			}
+		}
+	if(todo!="")
+	{
+		if(this[todo].isItemAvailable(todo,id))
+			{	
+		var h=this[todo].getResultItem(todo,id);
+		xx=this[todo].fetchRow(h);
+		var arry=new Array(6);
+		arry[0]=xx[0];
+		arry[1]=xx[1];
+		arry[2]=xx[2];
+		arry[3]=0;
+		arry[4]=xx[4];
+		arry[5]=xx[5];
+		
+		this["todocomplete"].insert("todocomplete",2,arry,'time','asc');
+		this["todocomplete"].totl2=parseInt(this["todocomplete"].totl2)+parseInt(1);
+		
+		
+	
+	      }
+	}	
+		
+
+	}
+var aryAvail=isArrayAvailable("todopending");
+	if(aryAvail==1)
+	{
+		if(this["todopending"].isItemAvailable("todopending",id))
+			{				
+	var idz1=new Array(1);
+	idz1[0]=id;
+	this["todopending"].deleteEntry("todopending");
+	this["todopending"].where('id=?',idz1);
+	this["todopending"].action();
+	
+	
+	}
+}
+
+var aryAvail=isArrayAvailable("todoall");
+	if(aryAvail==1)
+	{
+		if(this["todoall"].isItemAvailable("todoall",id))
+			{
+			var fieldz=new Array(1);
+			fieldz[0]="status";
+			var aValues=new Array(1);
+			aValues[0]=value;
+			var idz1=new Array(1);
+			idz1[0]=id;
+			this["todoall"].update("todoall",fieldz,aValues);
+			this["todoall"].where('id=?',idz1);
+			this["todoall"].action();
+	}
+}
+
+var aryAvail=isArrayAvailable("today");
+	if(aryAvail==1)
+	{
+		if(this["today"].isItemAvailable("today",id))
+			{
+			var fieldz=new Array(1);
+			fieldz[0]="status";
+			var aValues=new Array(1);
+			aValues[0]=value;
+			var idz1=new Array(1);
+			idz1[0]=id;
+			this["today"].update("today",fieldz,aValues);
+			this["today"].where('id=?',idz1);
+			this["today"].action();
+			}
+	}
+}
+else if(value==1)
+{
+var todo="";
+total_p=parseInt(total_p)+parseInt(1);
+total_c=parseInt(total_c)-parseInt(1);
+var aryAvail=isArrayAvailable("todopending");
+	if(aryAvail==1)
+	{
+	
+	var aryAvail=isArrayAvailable("todocomplete");
+		if(aryAvail==1)
+		todo="todocomplete";
+		else if(aryAvail==0)
+		{
+			var aryAvail=isArrayAvailable("today");
+			if(aryAvail==1)
+			todo="today";
+			else if(aryAvail==0)
+			{
+				var aryAvail=isArrayAvailable("todoall");
+				if(aryAvail==1)
+				todo="todoall";
+				else
+				todo="";
+			}
+		}
+	if(todo!="")
+	{
+	
+		if(this[todo].isItemAvailable(todo,id))
+			{	
+		var h=this[todo].getResultItem(todo,id);
+		xx=this[todo].fetchRow(h);
+		var arry=new Array(6);
+		arry[0]=xx[0];
+		arry[1]=xx[1];
+		arry[2]=xx[2];
+		arry[3]=1;
+		arry[4]=xx[4];
+		arry[5]=xx[5];
+		
+		this["todopending"].insert("todopending",2,arry,'time','asc');
+		this["todopending"].totl2=parseInt(this["todopending"].totl2)+parseInt(1);
+		
+		
+	
+	 }
+		
+		}
+	}
+	
+	
+var aryAvail=isArrayAvailable("todocomplete");
+	if(aryAvail==1)
+	{
+		if(this["todocomplete"].isItemAvailable("todocomplete",id))
+			{				
+	var idz1=new Array(1);
+	idz1[0]=id;
+	this["todocomplete"].deleteEntry("todocomplete");
+	this["todocomplete"].where('id=?',idz1);
+	this["todocomplete"].action();
+	
+	
+	}
+	
+	
+}
+
+//rearrange(0);
+var aryAvail=isArrayAvailable("todoall");
+	if(aryAvail==1)
+	{
+		if(this["todoall"].isItemAvailable("todoall",id))
+			{
+			var fieldz=new Array(1);
+			fieldz[0]="status";
+			var aValues=new Array(1);
+			aValues[0]=value;
+			var idz1=new Array(1);
+			idz1[0]=id;
+			this["todoall"].update("todoall",fieldz,aValues);
+			this["todoall"].where('id=?',idz1);
+			this["todoall"].action();
+	}
+}
+
+var aryAvail=isArrayAvailable("today");
+	if(aryAvail==1)
+	{
+		if(this["today"].isItemAvailable("today",id))
+			{
+			var fieldz=new Array(1);
+			fieldz[0]="status";
+			var aValues=new Array(1);
+			aValues[0]=value;
+			var idz1=new Array(1);
+			idz1[0]=id;
+			this["today"].update("today",fieldz,aValues);
+			this["today"].where('id=?',idz1);
+			this["today"].action();
+			}
+	}
+
+			
+			
+}
+		
+		
+$.ajax({
+
+type: "POST",cache: false,
+url: "{url:(todolist/updateliststatus)}",
+data: "value="+value+"&id="+id,
+success: function(data) { //alert(data);
+				todofocus(todoarray);
+   					 }
+  			});
+}
+
+function find_day(dy)
+{
+	if(dy==0)
+dy="Sunday";
+else if(dy==1)
+dy="Monday";
+else if(dy==2)
+dy="Tuesday";
+else if(dy==3)
+dy="Wednesday";
+else if(dy==4)
+dy="Thursday";
+else if(dy==5)
+dy="Friday";
+else if(dy==6)
+dy="Saturday";
+
+return dy;
+}
+
+function find_month(dy)
+{
+	if(dy==0)
+dy="Jan";
+else if(dy==1)
+dy="Feb";
+else if(dy==2)
+dy="Mar";
+else if(dy==3)
+dy="Apr";
+else if(dy==4)
+dy="May";
+else if(dy==5)
+dy="June";
+else if(dy==6)
+dy="Jul";
+else if(dy==7)
+dy="Aug";
+else if(dy==8)
+dy="Sept";
+else if(dy==9)
+dy="Oct";
+else if(dy==10)
+dy="Nov";
+else if(dy==11)
+dy="Dec";
+
+return dy;
+}
+//#A9D0F5
+var size=100000,total_a="{$total_a}",total_c="{$total_c}",total_p="{$total_p}",total_t="{$total_t}",todop="todopending",todoc="todocomplete",todoa="todoall",today="today";
+function fetchtodolistAjax(todolist,pageNo,size,fieldz,totl,insrt,name,page)
+{
+	//var uagent = navigator.userAgent.toLowerCase();alert(uagent);
+    var currentTime=new Date();
+    var crntime=currentTime.getTime();
+   var todoarray=getCookievalue("todoarray");
+   var todolist=this[todoarray];
+  $.ajax({
+
+type: "GET",cache: false,
+url: "{url:(todolist/getlist)}/"+page+"/"+crntime+"/"+todoarray,
+
+success: function(data) {;
+//var newtodoid="{$newtodoid}"; 
+var newtodoid=document.getElementById("newtodoid").value;  
+		var values=new Array(100),data1=data.split(":::");
+		
+		var inr=getarrcntname(todoarray);
+		 inr=addarrcnt(todoarray,data1[0]);
+		getarrtitle(name);
+		
+        	var x=data1[1];
+        	if(x=="")
+    			values="";
+    		else
+    			values=x.split("{nesote_c}");
+    		var number=values.length/6;
+    		
+    		//var insrtPstn=parseInt((parseInt(pageNo)-parseInt(1))*size)+parseInt(1);
+    		
+    			for(var i=0;i<number;i++)
+    			{
+    				var arry=new Array(6);
+    				for(var j=0;j<6;j++)
+    				{
+    					arry[j]=values[j];
+    				}
+    				
+    				values.splice(0,6);	
+    				
+    				//todolist.insertToposition("todolist",insrtPstn,arry);
+				
+				//insrtPstn++;
+				//todolist.totl++;
+				todolist.totl2=parseInt(todolist.totl2)+parseInt(1);
+    			todolist.insert(todoarray,insrt,arry,'time','asc');
+    			}
+    				var dflag=0,ct="";	
+    			var opj=todolist.getResultPage(name,pageNo,size);	
+    			while(list=todolist.fetchRow(opj))
+    			{
+    
+var date = new Date(list[4]*1000);var dd = date.getDate();var mm = find_month(date.getMonth());var yy = date.getFullYear();
+var dy =find_day(date.getDay());
+var formattedDate = dy+", "+mm + ' ' + dd + ', ' + yy,formattedDate1=""; 
+if(ct!="")
+{
+var date1 = new Date(ct*1000);var dd1 = date1.getDate();var mm1 = find_month(date1.getMonth());var yy1 = date1.getFullYear();var dy1 =find_day(date1.getDay());
+var formattedDate1 = dy1+", "+mm1 + ' ' + dd1 + ', ' + yy1;
+}
+
+if(ct!="")
+{
+if(formattedDate1==formattedDate)
+{dflag=1;}
+else
+{ct=list[4];dflag=0;}
+}
+else
+{ct=list[4];dflag=0;}
+var tstr="";
+			var toID="chk_"+list[0],toDoVal="todoval_"+list[0],liID="liID_"+list[0],value=list[2],listid=list[0],hideval="hideval_"+list[0],more_id="more_"+list[0],contentDiv="",notes=list[5];
+	    	 var container = document.getElementById('todolist');
+			 var new_element = document.createElement('li');
+			 new_element.setAttribute('id', liID);
+			 if(dflag==0)
+			contentDiv="<span style=\"color: #222222;font-weight: bold;font-size: 10pt;\">"+formattedDate+"</span><br>";
+			
+			contentDiv+="<span id=\""+liID+"\" onmouseover=\"javascript:listover("+listid+")\" onmouseout=\"javascript:listout("+listid+")\"><input type=\"hidden\" id=\""+hideval+"\" value=\""+listid+"\">";
+			
+			if(list[3]==1)
+			{
+			if(chkidz.indexOf(listid+",")!=1)
+			chkidz=chkidz.replace(listid+",","");
+			if(nchkidz.indexOf(listid+",")!=1)
+			nchkidz+=listid+",";
+			contentDiv+="<input type=\"checkbox\" name=\""+toID+"\" id=\""+toID+"\" style=\"vertical-align: middle;\" onclick=\"javascript:clickchk('"+toID+"','"+toDoVal+"',"+listid+");\"><input type=\"text\" name=\""+toDoVal+"\" id=\""+toDoVal+"\" value=\""+value+"\" style=\"font-size: 12px;height: 15px;line-height: 15px;margin: 12px 0 0 12px;overflow: hidden;padding: 0;width: 220px;border: 1px dotted #888;Verdana, Arial, Helvetica, sans-serif;text-decoration:none;\" onKeyUp=\"javascript:todo_keyup(event,this.value,"+listid+");\">";}
+			else
+			{
+			if(chkidz.indexOf(listid+",")!=1)
+			chkidz+=listid+",";
+			if(nchkidz.indexOf(listid+",")!=1)
+			nchkidz=nchkidz.replace(listid+",","");
+			contentDiv+="<input type=\"checkbox\" checked=checked name=\""+toID+"\" id=\""+toID+"\" style=\"vertical-align: middle;\" onclick=\"javascript:clickchk('"+toID+"','"+toDoVal+"',"+listid+");\"><input type=\"text\" name=\""+toDoVal+"\" id=\""+toDoVal+"\" value=\""+value+"\" style=\"font-size: 12px;height: 15px;line-height: 15px;margin: 12px 0 0 12px;overflow: hidden;padding: 0;width: 220px;border: 1px dotted #888;Verdana, Arial, Helvetica, sans-serif;text-decoration:line-through;\" onKeyUp=\"javascript:todo_keyup(event,this.value,"+listid+");\">";}
+			
+			contentDiv+="<img src=\"images/more3.gif\" border=\"0\" style=\"padding-left:5px;height: 16px;vertical-align: middle;width: 16px;cursor:pointer;display:none;\" onclick=\"javascript:viewlist("+listid+")\" title=\"{cfn:getmessage(625)}\" id=\""+more_id+"\">";
+			contentDiv+="<div style=\"margin-left:34px;color: #777777;font-size: 8pt;width=33%;cursor:pointer;\" onclick=\"javascript:viewlist("+listid+")\" title=\"{cfn:getmessage(625)}\"><nobr style=\"\">&lrm;"+notes.substring(0,37)+"&lrm;</nobr></div>";
+			contentDiv+="</span>";
+			new_element.innerHTML = contentDiv;		 
+			container.appendChild(new_element);	
+			}
+ 			 var toID="chk_"+newtodoid,toDoVal="todoval_"+newtodoid,liID="liID_"+newtodoid,hideval="hideval_"+newtodoid,more_id="more_"+newtodoid;
+	    	 var container = document.getElementById('todolist');
+			 var new_element = document.createElement('li');
+			 new_element.setAttribute('id', liID);
+			
+			contentDiv="<span id=\""+liID+"\" onmouseover=\"javascript:listover("+newtodoid+")\" onmouseout=\"javascript:listout("+newtodoid+")\"><input type=\"hidden\" id=\""+hideval+"\" value=\"\"><input type=\"checkbox\" name=\""+toID+"\" id=\""+toID+"\" style=\"vertical-align: middle;\" onclick=\"javascript:clickchk('"+toID+"','"+toDoVal+"',"+newtodoid+");\"><input type=\"text\" name=\""+toDoVal+"\" id=\""+toDoVal+"\" value=\"\" style=\"font-size: 12px;height: 15px;line-height: 15px;margin: 12px 0 0 12px;overflow: hidden;padding: 0;width: 220px;border: 1px dotted #888;Verdana, Arial, Helvetica, sans-serif;\" onKeyUp=\"javascript:todo_keyup(event,this.value,"+newtodoid+");\"><img src=\"images/more3.gif\" border=\"0\" style=\"padding-left:5px;height: 16px;vertical-align: middle;width: 16px;cursor:pointer;\" onclick=\"javascript:viewlist("+newtodoid+")\" title=\"{cfn:getmessage(627)}\" id=\""+more_id+"\"></span>";		 
+			tstr=contentDiv;
+			new_element.innerHTML =contentDiv;		 
+			container.appendChild(new_element);	
+			//document.getElementById(toDoVal).focus();
+			
+			$(document).load().scrollTop(0);// set to top postn
+			//document.getElementById("newtodoid").value=parseInt(newtodoid)+parseInt(1);
+    			
+    			
+
+}
+});
+}
+function todofocus(aname)
+{
+
+SetCookie("todoarray",aname,1);
+getarrtitle(aname);
+	var arry=new Array(6);
+	arry[0]='id';
+	arry[1]='userid';
+	arry[2]='list';
+	arry[3]='status';
+	arry[4]='time';
+	arry[5]='notes';
+	var todolist=this[aname];
+	var avail=isArrayAvailable(aname);
+	if(avail==1)
+	{
+	                       
+	var opj=todolist.getResultPage(todolist,1,size);
+	
+	var dflag=0,ct="";	document.getElementById('todolist').innerHTML="";
+	while(list=todolist.fetchRow(opj))
+    			{//alert(list);
+    			
+var newtodoid=document.getElementById("newtodoid").value;  			
+var date = new Date(list[4]*1000);var dd = date.getDate();var mm = find_month(date.getMonth());var yy = date.getFullYear();
+var dy =find_day(date.getDay());
+var formattedDate = dy+", "+mm + ' ' + dd + ', ' + yy,formattedDate1=""; 
+if(ct!="")
+{
+var date1 = new Date(ct*1000);var dd1 = date1.getDate();var mm1 = find_month(date1.getMonth());var yy1 = date1.getFullYear();var dy1 =find_day(date1.getDay());
+var formattedDate1 = dy1+", "+mm1 + ' ' + dd1 + ', ' + yy1;
+}
+
+if(ct!="")
+{
+if(formattedDate1==formattedDate)
+{dflag=1;}
+else
+{ct=list[4];dflag=0;}
+}
+else
+{ct=list[4];dflag=0;}
+
+			var toID="chk_"+list[0],toDoVal="todoval_"+list[0],liID="liID_"+list[0],value=list[2],listid=list[0],hideval="hideval_"+list[0],more_id="more_"+list[0],contentDiv="",notes=list[5];
+	    	 var container = document.getElementById('todolist');
+			 var new_element = document.createElement('li');
+			 new_element.setAttribute('id', liID);
+			 if(dflag==0)
+			contentDiv="<span style=\"color: #222222;font-weight: bold;font-size: 10pt;\">"+formattedDate+"</span><br>";
+			
+			contentDiv+="<span id=\""+liID+"\" onmouseover=\"javascript:listover("+listid+")\" onmouseout=\"javascript:listout("+listid+")\"><input type=\"hidden\" id=\""+hideval+"\" value=\""+listid+"\">";
+			if(list[3]==1)
+			{contentDiv+="<input type=\"checkbox\" name=\""+toID+"\" id=\""+toID+"\" style=\"vertical-align: middle;\" onclick=\"javascript:clickchk('"+toID+"','"+toDoVal+"',"+listid+");\"><input type=\"text\" name=\""+toDoVal+"\" id=\""+toDoVal+"\" value=\""+value+"\" style=\"font-size: 12px;height: 15px;line-height: 15px;margin: 12px 0 0 12px;overflow: hidden;padding: 0;width: 220px;border: 1px dotted #888;Verdana, Arial, Helvetica, sans-serif;text-decoration:none;\" onKeyUp=\"javascript:todo_keyup(event,this.value,"+listid+");\">";}
+			else
+			{contentDiv+="<input type=\"checkbox\" checked=checked name=\""+toID+"\" id=\""+toID+"\" style=\"vertical-align: middle;\" onclick=\"javascript:clickchk('"+toID+"','"+toDoVal+"',"+listid+");\"><input type=\"text\" name=\""+toDoVal+"\" id=\""+toDoVal+"\" value=\""+value+"\" style=\"font-size: 12px;height: 15px;line-height: 15px;margin: 12px 0 0 12px;overflow: hidden;padding: 0;width: 220px;border: 1px dotted #888;Verdana, Arial, Helvetica, sans-serif;text-decoration:line-through;\" onKeyUp=\"javascript:todo_keyup(event,this.value,"+listid+");\">";}
+			
+			contentDiv+="<img src=\"images/more3.gif\" border=\"0\" style=\"padding-left:5px;height: 16px;vertical-align: middle;width: 16px;cursor:pointer;display:none;\" onclick=\"javascript:viewlist("+listid+")\" title=\"{cfn:getmessage(625)}\" id=\""+more_id+"\">";
+			contentDiv+="<div style=\"margin-left:34px;color: #777777;font-size: 8pt;width=33%;cursor:pointer;\" onclick=\"javascript:viewlist("+listid+")\" title=\"{cfn:getmessage(625)}\"><nobr style=\"\">&lrm;"+notes.substring(0,37)+"&lrm;</nobr></div>";
+			contentDiv+="</span>";
+			new_element.innerHTML = contentDiv;		 
+			container.appendChild(new_element);	
+			}
+
+ 			 var toID="chk_"+newtodoid,toDoVal="todoval_"+newtodoid,liID="liID_"+newtodoid,hideval="hideval_"+newtodoid,more_id="more_"+newtodoid;
+	    	 var container = document.getElementById('todolist');
+			 var new_element = document.createElement('li');
+			 new_element.setAttribute('id', liID);
+			 
+			contentDiv="<span id=\""+liID+"\" onmouseover=\"javascript:listover("+newtodoid+")\" onmouseout=\"javascript:listout("+newtodoid+")\"><input type=\"hidden\" id=\""+hideval+"\" value=\"\"><input type=\"checkbox\" name=\""+toID+"\" id=\""+toID+"\" style=\"vertical-align: middle;\" onclick=\"javascript:clickchk('"+toID+"','"+toDoVal+"',"+newtodoid+");\"><input type=\"text\" name=\""+toDoVal+"\" id=\""+toDoVal+"\" value=\"\" style=\"font-size: 12px;height: 15px;line-height: 15px;margin: 12px 0 0 12px;overflow: hidden;padding: 0;width: 220px;border: 1px dotted #888;Verdana, Arial, Helvetica, sans-serif;\" onKeyUp=\"javascript:todo_keyup(event,this.value,"+newtodoid+");\"><img src=\"images/more3.gif\" border=\"0\" style=\"padding-left:5px;height: 16px;vertical-align: middle;width: 16px;cursor:pointer;\" onclick=\"javascript:viewlist("+newtodoid+")\" title=\"{cfn:getmessage(627)}\" id=\""+more_id+"\"></span>";		 
+			
+			new_element.innerHTML = contentDiv;		 
+			container.appendChild(new_element);	
+			document.getElementById(toDoVal).focus();
+	}
+	else
+	{
+	
+		//var inr=getarrcntname(aname);
+		var inr=addarrcnt(aname,1);
+	var ct=parseInt(inr);
+	this[aname]=new Table(aname,arry,ct,20);
+	fetchtodolistAjax(this[aname],1,size,arry,ct,2,aname,0);
+	}
+
+			
+}
+
+function addarrcnt(arrname,cnt)
+{
+	if(arrname=="today")
+	return parseInt(total_t)+parseInt(cnt);
+	else if(arrname=="todocomplete")
+	return parseInt(total_c)+parseInt(cnt);
+	else if(arrname=="todopending")
+	return parseInt(total_p)+parseInt(cnt);
+	else if(arrname=="todoall")
+	return parseInt(total_a)+parseInt(cnt);
+}
+
+function subarrcnt(arrname,cnt)
+{
+	if(arrname=="today")
+	return parseInt(total_t)-parseInt(cnt);
+	else if(arrname=="todocomplete")
+	return parseInt(total_c)-parseInt(cnt);
+	else if(arrname=="todopending")
+	return parseInt(total_p)-parseInt(cnt);
+	else if(arrname=="todoall")
+	return parseInt(total_a)-parseInt(cnt);
+}
+
+function getarrtitle(arrname)
+{
+	if(arrname=="today")
+	document.getElementById("list_title").innerHTML="{cfn:getmessage(630)}";
+	else if(arrname=="todocomplete")
+	document.getElementById("list_title").innerHTML="{cfn:getmessage(631)}";
+	else if(arrname=="todopending")
+	document.getElementById("list_title").innerHTML="{cfn:getmessage(632)}";
+	else if(arrname=="todoall")
+	document.getElementById("list_title").innerHTML="{cfn:getmessage(61)}";
+}
+
+function getarrcntname(arrname)
+{
+	if(arrname=="today")
+	return "total_t";
+	else if(arrname=="todocomplete")
+	return "total_c";
+	else if(arrname=="todopending")
+	return "total_p";
+	else if(arrname=="todoall")
+	return "total_a";
+}
+
+function todo_keyup(evt,value,id)
+{	
+var newtodoid=document.getElementById("newtodoid").value,passhideval=document.getElementById("hideval_"+id).value;
+
+var charCode = (evt.which) ? evt.which : event.keyCode;
+	    	if(charCode==13 || charCode==1)
+	    	{
+	    	
+	    	var todoarray=getCookievalue("todoarray");
+	    	if(passhideval=="")
+	    	{
+	    	  var toID="chk_"+newtodoid,toDoVal="todoval_"+newtodoid,liID="liID_"+newtodoid,hideval="hideval_"+newtodoid,more_id="more_"+newtodoid;
+	    	 var container = document.getElementById('todolist');
+			 var new_element = document.createElement('li');
+			 new_element.setAttribute('id', liID);
+			
+			contentDiv="<span id=\""+liID+"\" onmouseover=\"javascript:listover("+newtodoid+")\" onmouseout=\"javascript:listout("+newtodoid+")\"><input type=\"hidden\" id=\""+hideval+"\" value=\"\"><input type=\"checkbox\" name=\""+toID+"\" id=\""+toID+"\" style=\"vertical-align: middle;\" onclick=\"javascript:clickchk('"+toID+"','"+toDoVal+"',"+newtodoid+");\"><input type=\"text\" name=\""+toDoVal+"\" id=\""+toDoVal+"\" value=\"\" style=\"font-size: 12px;height: 15px;line-height: 15px;margin: 12px 0 0 12px;overflow: hidden;padding: 0;width: 220px;border: 1px dotted #888;Verdana, Arial, Helvetica, sans-serif;\" onKeyUp=\"javascript:todo_keyup(event,this.value,"+newtodoid+");\"><img src=\"images/more3.gif\" border=\"0\" style=\"padding-left:5px;height: 16px;vertical-align: middle;width: 16px;cursor:pointer;display:;\" onclick=\"javascript:viewlist("+newtodoid+")\" title=\"{cfn:getmessage(627)}\" id=\""+more_id+"\"></span>";		 
+			
+			new_element.innerHTML = contentDiv;		 
+			container.appendChild(new_element);
+					
+			document.getElementById("newtodoid").value=parseInt(newtodoid)+parseInt(1);	
+			document.getElementById(toDoVal).focus();
+			listout(id);
+			
+			var inr=getarrcntname(todoarray);
+		    inr=addarrcnt(todoarray,1);
+		
+			//total_no++;
+			
+			}
+			//container.removeChild(document.getElementById(liID1));	
+					
+			var todo=this[todoarray],todop="todopending",todoc="todocomplete",todoa="todoall",today="today",obj_todop=this["todopending"],obj_todoc=this["todocomplete"],obj_todoa=this["todoall"],obj_today=this["today"];	 
+				 
+					
+	    	$.ajax({
+
+type: "POST",cache: false,
+url: "{url:(todolist/addlist)}",
+data: "value="+value+"&passhideval="+passhideval,
+success: function(data) { 
+if(passhideval=="")
+{
+var str=data.split("{nesote_c}");
+				var arry=new Array(6);
+				arry[0]=str[0];
+				arry[1]=str[1];
+				arry[2]=str[2];
+				arry[3]=1;
+				arry[4]=str[3];
+				arry[5]=str[4];
+
+			//todo.insert(todoarray,2,arry,'time','asc');
+
+			//todo.totl2=parseInt(todo.totl2)+parseInt(1);
+			
+			
+			var aryAvail=isArrayAvailable(todop);
+			if(aryAvail==1)
+			{
+				if(!(obj_todop.isItemAvailable(todop,str[0])))
+				{
+				obj_todop.insert(todop,2,arry,'time','asc');
+				obj_todop.totl2=parseInt(obj_todop.totl2)+parseInt(1);
+			    total_p=parseInt(total_p)+parseInt(1);
+			    }
+		    }
+		    
+			var aryAvail=isArrayAvailable(todoa);
+			if(aryAvail==1)
+			{
+				if(!(obj_todoa.isItemAvailable(todoa,str[0])))
+				{
+				obj_todoa.insert(todoa,2,arry,'time','asc');
+				obj_todoa.totl2=parseInt(obj_todoa.totl2)+parseInt(1);
+			    total_a=parseInt(total_a)+parseInt(1);
+			    }
+		    }
+		    
+		    var aryAvail=isArrayAvailable(today);
+			if(aryAvail==1)
+			{
+			if(!(obj_today.isItemAvailable(today,str[0])))
+				{
+				
+				obj_today.insert(today,2,arry,'time','asc');//alert(obj_today.totl2);
+				obj_today.totl2=parseInt(obj_today.totl2)+parseInt(1);//alert(obj_today.totl2);
+			    total_t=parseInt(total_t)+parseInt(1);
+			    }        	
+		    }
+			
+			todofocus(todoarray);
+			
+			
+		}
+		else
+		{
+			var fieldz=new Array(1);
+			fieldz[0]="list";
+			var aValues=new Array(1);
+			aValues[0]=value;
+			var idz1=new Array(1);
+			idz1[0]=passhideval;
+			
+			var aryAvail=isArrayAvailable(todop);
+			if(aryAvail==1)
+			{
+				if(obj_todop.isItemAvailable(todop,passhideval))
+				{
+				obj_todop.update(todop,fieldz,aValues);
+				obj_todop.where('id=?',idz1);
+				obj_todop.action();
+			    }
+		    }
+		    
+		    var aryAvail=isArrayAvailable(todoc);
+			if(aryAvail==1)
+			{
+			    if(obj_todoc.isItemAvailable(todoc,passhideval))
+				{
+				obj_todoc.update(todoc,fieldz,aValues);
+				obj_todoc.where('id=?',idz1);
+				obj_todoc.action();
+			    }
+		    }
+			 var aryAvail=isArrayAvailable(todoa);
+			if(aryAvail==1)
+			{
+			    if(obj_todoa.isItemAvailable(todoa,passhideval))
+				{
+				obj_todoa.update(todoa,fieldz,aValues);
+				obj_todoa.where('id=?',idz1);
+				obj_todoa.action();
+			    }
+		    }
+			 var aryAvail=isArrayAvailable(today);
+			if(aryAvail==1)
+			{
+			    if(obj_today.isItemAvailable(today,passhideval))
+				{
+				obj_today.update(today,fieldz,aValues);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+			    }
+		    }
+			
+			if(document.getElementById("hideval_"+data))
+    		document.getElementById("hideval_"+data).value=data;
+			
+		}				 
+   					 }
+
+  			});
+	    	}
+}
+
+function listaction()
+{
+
+	if(document.getElementById("option_bar").style.display=="")
+	{
+	
+	
+	document.getElementById("option_bar").style.display="none";
+	}
+	else
+	{
+	
+	
+	document.getElementById("option_bar").style.display="";
+	var todoarray=getCookievalue("todoarray");
+	
+	if(((total_c<3) && todoarray=="todocomplete") || ((total_a<3) && todoarray=="todoall") || ((total_p<3) && todoarray=="todopending") || ((total_t<3) && todoarray=="today"))
+	{
+	document.getElementById("option_bar").style.marginTop="18px";
+	}
+	else
+	document.getElementById("option_bar").style.marginTop="-172px";
+	
+}
+}
+ function closedetails()
+ {
+ 	if(document.getElementById("todo_details").style.display=="")
+	{
+	document.getElementById("todo_details").style.display="none";
+	document.getElementById("todolist").style.display="";
+	}
+ }
+ 
+ function viewlist(id)
+ {
+ var passhideval=document.getElementById("hideval_"+id).value;
+ 	if(document.getElementById("todolist").style.display=="")
+	{
+	document.getElementById("todolist").style.display="none";
+	document.getElementById("todo_details").style.display="";
+	}
+	var todoarray=getCookievalue("todoarray");
+	var todo=this[todoarray];
+	
+	if(passhideval!="")
+	{
+					var aryAvail=isArrayAvailable(todoarray);
+							if(aryAvail==1)
+							{
+								if(todo.isItemAvailable(todoarray,id))
+								{
+								
+								var h=todo.getResultItem(todoarray,id);
+					        	xx=todo.fetchRow(h);
+					        	document.getElementById("todo_value").value=xx[2];
+					        	if(xx[3]==0)
+					        	{
+					        	document.getElementById("todo_checkbox").checked=true;
+					        	document.getElementById("todo_value").style.textDecoration="line-through";
+					        	}
+					        	else
+					        	{
+					        	document.getElementById("todo_checkbox").checked=false;
+					        	document.getElementById("todo_value").style.textDecoration="none";
+					        	}
+					        	if(xx[5]!="")
+					        	document.getElementById("notes").value=xx[5];
+					        	else
+					        	document.getElementById("notes").value="{cfn:getmessage(628)}";
+					        	document.getElementById("notes").focus();
+					        	document.getElementById("currnt_id").value=xx[0];
+					        	if(xx[4]!="")
+					        	var a = new Date(xx[4]*1000);
+					        	else
+					        	var a = new Date();
+								var year1 = a.getFullYear();
+							     var month1 = a.getMonth()+parseInt(1);
+							     if(month1<10)
+							     month1="0"+month1;
+							     var date1 = a.getDate();
+							     if(date1<10)
+							     date1="0"+date1;
+								 var str_date=date1+"/"+month1+"/"+year1;
+								 
+	//alert(str_date);
+	//document.getElementById('from').value=xx[4]*1000;
+	
+			 dp_cal1  = new Epoch('epoch_popup','popup',document.getElementById('from'),'',a.getTime());
+			  document.getElementById('from').value=str_date;
+			//1315560382000
+		//	 alert("hh");
+		
+		
+		
+								}
+								
+							}
+						}
+						else
+						{
+							document.getElementById("todo_value").value="";
+							//if(document.getElementById("todo_checkbox").checked==true)
+							//document.getElementById("todo_checkbox").checked=true;
+							//else
+							document.getElementById("todo_checkbox").checked=false;
+						    document.getElementById("notes").value="{cfn:getmessage(628)}";
+						    document.getElementById("notes").focus();
+						    document.getElementById("currnt_id").value=0;
+						   
+					        	var a = new Date();
+								var year1 = a.getFullYear();
+							     var month1 = a.getMonth()+parseInt(1);
+							     if(month1<10)
+							     month1="0"+month1;
+							     var date1 = a.getDate();
+							     if(date1<10)
+							     date1="0"+date1;
+								 var str_date=date1+"/"+month1+"/"+year1;
+						     dp_cal1  = new Epoch('epoch_popup','popup',document.getElementById('from'),'',a.getTime());
+			  				 document.getElementById('from').value=str_date;
+			  
+			  
+						}	
+							
+ }
+ 
+ function todosubmit()
+ {
+ var todoarray=getCookievalue("todoarray");
+ var newtodoid=document.getElementById("newtodoid").value;
+
+	    	if(passhideval=="")
+	    	{
+	    	 					
+			document.getElementById("newtodoid").value=parseInt(newtodoid)+parseInt(1);	
+			//document.getElementById(toDoVal).focus();
+			//listout(id);
+			
+			var inr=getarrcntname(todoarray);
+		    inr=addarrcnt(todoarray,1);
+			//total_no++;
+			
+			}
+			var todo=this[todoarray],todop="todopending",todoc="todocomplete",todoa="todoall",today="today",obj_todop=this["todopending"],obj_todoc=this["todocomplete"],obj_todoa=this["todoall"],obj_today=this["today"];	 
+			
+			
+				if(document.getElementById("todo_checkbox").checked==true)
+				var todo_checkbox=0;
+				else
+				var todo_checkbox=1;
+						    
+				var value=document.getElementById("todo_value").value,notes=document.getElementById("notes").value,cid=document.getElementById("currnt_id").value,from=document.getElementById("from").value;
+	    	if(cid!="" && cid!=0)
+	    	var passhideval=document.getElementById("hideval_"+cid).value;
+	    	else
+	    	var passhideval=document.getElementById("hideval_"+newtodoid).value;
+	    	//alert("value="+value+"&passhideval="+passhideval+"&todo_checkbox="+todo_checkbox+"&notes="+notes+"&cid="+cid+"&from="+from);
+	    	$.ajax({
+
+type: "POST",cache: false,
+url: "{url:(todolist/insertlistdetails)}",
+data: "value="+value+"&passhideval="+passhideval+"&todo_checkbox="+todo_checkbox+"&notes="+notes+"&cid="+cid+"&from="+from,
+success: function(data) { 
+
+if(passhideval=="")
+{
+var str=data.split("{nesote_c}");
+				var arry=new Array(6);
+				arry[0]=str[0];
+				arry[1]=str[1];
+				arry[2]=str[2];
+				arry[3]=str[3];
+				arry[4]=str[4];
+				arry[5]=str[5];
+				
+				
+			//todo.insert(todoarray,2,arry,'time','asc');
+			//todo.totl2=parseInt(todo.totl2)+parseInt(1);
+			
+			var aryAvail=isArrayAvailable(todop);
+			if(aryAvail==1)
+			{
+				if(!(obj_todop.isItemAvailable(todop,str[0])))
+				{
+				obj_todop.insert(todop,2,arry,'time','asc');
+				obj_todop.totl2=parseInt(obj_todop.totl2)+parseInt(1);
+			    total_p=parseInt(total_p)+parseInt(1);
+			    }
+		    }
+		    
+			var aryAvail=isArrayAvailable(todoa);
+			if(aryAvail==1)
+			{
+				if(!(obj_todoa.isItemAvailable(todoa,str[0])))
+				{
+				obj_todoa.insert(todoa,2,arry,'time','asc');
+				obj_todoa.totl2=parseInt(obj_todoa.totl2)+parseInt(1);
+			    total_a=parseInt(total_a)+parseInt(1);
+			    }
+		    }
+		    
+		    var aryAvail=isArrayAvailable(today);
+			if(aryAvail==1)
+			{
+				if(!(obj_today.isItemAvailable(today,str[0])))
+				{
+				obj_today.insert(today,2,arry,'time','asc');
+				obj_today.totl2=parseInt(obj_today.totl2)+parseInt(1);
+			    total_t=parseInt(total_t)+parseInt(1);
+			    }
+		    }
+		    
+			todofocus(todoarray);
+		}
+		else
+		{
+				var str=data.split("{nesote_c}");
+				
+				var arry=new Array(6);
+				arry[0]=str[0];
+				arry[1]=str[1];
+				arry[2]=str[2];
+				arry[3]=str[3];
+				arry[4]=str[4];
+				arry[5]=str[5];
+
+			var idz1=new Array(1);
+			idz1[0]=str[0];	
+			
+			/*var fieldz=new Array(1);
+			fieldz[0]="time";
+			var aValues=new Array(1);
+			aValues[0]=str[4];*/
+			
+			 var aryAvail=isArrayAvailable(todop);
+			if(aryAvail==1)
+			{
+				if(obj_todop.isItemAvailable(todop,str[0]))
+				{
+				
+				var fieldz=new Array(1);
+				fieldz[0]="list";
+				var aValues=new Array(1);
+				aValues[0]=str[2];
+				
+				obj_todop.update(todop,fieldz,aValues);
+				obj_todop.where('id=?',idz1);
+				obj_todop.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="status";
+				var aValues=new Array(1);
+				aValues[0]=str[3];
+				
+				obj_todop.update(todop,fieldz,aValues);
+				obj_todop.where('id=?',idz1);
+				obj_todop.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="time";
+				var aValues=new Array(1);
+				aValues[0]=str[4];
+				
+				obj_todop.update(todop,fieldz,aValues);
+				obj_todop.where('id=?',idz1);
+				obj_todop.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="notes";
+				var aValues=new Array(1);
+				aValues[0]=str[5];
+				
+				obj_todop.update(todop,fieldz,aValues);
+				obj_todop.where('id=?',idz1);
+				obj_todop.action();
+				
+				obj_todop.sortnew(todop,2,arry,'time','asc');
+			    }
+		    }
+		    
+		    var aryAvail=isArrayAvailable(todoc);
+			if(aryAvail==1)
+			{
+			    if(obj_todoc.isItemAvailable(todoc,str[0]))
+				{
+				var fieldz=new Array(1);
+				fieldz[0]="list";
+				var aValues=new Array(1);
+				aValues[0]=str[2];
+				
+				obj_todoc.update(todoc,fieldz,aValues);
+				obj_todoc.where('id=?',idz1);
+				obj_todoc.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="status";
+				var aValues=new Array(1);
+				aValues[0]=str[3];
+				
+				obj_todoc.update(todoc,fieldz,aValues);
+				obj_todoc.where('id=?',idz1);
+				obj_todoc.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="time";
+				var aValues=new Array(1);
+				aValues[0]=str[4];
+				
+				obj_todoc.update(todoc,fieldz,aValues);
+				obj_todoc.where('id=?',idz1);
+				obj_todoc.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="notes";
+				var aValues=new Array(1);
+				aValues[0]=str[5];
+				
+				obj_todoc.update(todoc,fieldz,aValues);
+				obj_todoc.where('id=?',idz1);
+				obj_todoc.action();
+				
+				obj_todoc.sortnew(todoc,2,arry,'time','asc');
+			    }
+		    }
+			 var aryAvail=isArrayAvailable(todoa);
+			if(aryAvail==1)
+			{
+			    if(obj_todoa.isItemAvailable(todoa,str[0]))
+				{
+				var fieldz=new Array(1);
+				fieldz[0]="list";
+				var aValues=new Array(1);
+				aValues[0]=str[2];
+				
+				obj_todoa.update(todoa,fieldz,aValues);
+				obj_todoa.where('id=?',idz1);
+				obj_todoa.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="status";
+				var aValues=new Array(1);
+				aValues[0]=str[3];
+				
+				obj_todoa.update(todoa,fieldz,aValues);
+				obj_todoa.where('id=?',idz1);
+				obj_todoa.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="time";
+				var aValues=new Array(1);
+				aValues[0]=str[4];
+				
+				obj_todoa.update(todoa,fieldz,aValues);
+				obj_todoa.where('id=?',idz1);
+				obj_todoa.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="notes";
+				var aValues=new Array(1);
+				aValues[0]=str[5];
+				
+				obj_todoa.update(todoa,fieldz,aValues);
+				obj_todoa.where('id=?',idz1);
+				obj_todoa.action();
+				
+				obj_todoa.sortnew(todoa,2,arry,'time','asc');
+			    }
+		    }
+			 var aryAvail=isArrayAvailable(today);
+			if(aryAvail==1)
+			{
+			    if(obj_today.isItemAvailable(today,str[0]))
+				{
+				var fieldz=new Array(1);
+				fieldz[0]="list";
+				var aValues=new Array(1);
+				aValues[0]=str[2];
+				
+				obj_today.update(today,fieldz,aValues);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="status";
+				var aValues=new Array(1);
+				aValues[0]=str[3];
+				
+				obj_today.update(today,fieldz,aValues);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="time";
+				var aValues=new Array(1);
+				aValues[0]=str[4];
+				
+				obj_today.update(today,fieldz,aValues);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+				
+				var fieldz=new Array(1);
+				fieldz[0]="notes";
+				var aValues=new Array(1);
+				aValues[0]=str[5];
+				
+				obj_today.update(today,fieldz,aValues);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+				
+				
+				if(str[6]==1)
+				{
+				var aValues=new Array(1);
+				aValues[0]=passhideval;
+				
+				obj_today.deleteEntry(todoa);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+				}
+				
+				
+				obj_today.sortnew(today,2,arry,'time','asc');
+			    }
+		    }
+			
+			if(document.getElementById("hideval_"+str[0]))
+    	     document.getElementById("hideval_"+str[0]).value=str[0];
+			todofocus(todoarray);
+			
+			
+		}	
+    		closedetails();				
+							//alert(data);				 
+   					 }
+
+  			});
+	    	
+ 
+ }
+ 
+ 
+ function displayfn1()
+{
+var searchvalue=document.getElementById("notes").value;
+var ppt="{cfn:getmessage(628)}";
+if(searchvalue==""||searchvalue==ppt)
+document.getElementById("notes").value=ppt;
+
+}
+function searchfn1()
+{
+
+var searchvalue=document.getElementById("notes").value;
+var ppt="{cfn:getmessage(628)}";
+if(searchvalue=="" || searchvalue==ppt)
+{
+document.getElementById("notes").value="";
+}
+
+}
+
+function actions(id)
+{
+var todoarray=getCookievalue("todoarray");
+var todo=this[todoarray],allow=0,todop="todopending",todoc="todocomplete",todoa="todoall",today="today",obj_todop=this["todopending"],obj_todoc=this["todocomplete"],obj_todoa=this["todoall"],obj_today=this["today"];
+
+listaction();
+if(id==1)  // for clear all
+{
+ var answer = confirm("{cfn:getmessage(633)}")
+ if (answer)
+ {           
+ var aryAvail=isArrayAvailable(todoa);
+			if(aryAvail==1)
+			{
+				 var opj=obj_todoa.getResultPage(todoa,1,size);
+    			while(xx=obj_todoa.fetchRow(opj))
+    			{
+	  			 var idz1=new Array(1);
+				idz1[0]=xx[0];
+			    if(obj_todoa.isItemAvailable(todoa,xx[0]))
+				{
+				obj_todoa.deleteEntry(todoa);
+				obj_todoa.where('id=?',idz1);
+				obj_todoa.action();
+				total_a=parseInt(total_a)-parseInt(1);
+				}
+			
+			}
+			}
+			
+			var aryAvail=isArrayAvailable(todop);
+			if(aryAvail==1)
+			{
+				 var opj=obj_todop.getResultPage(todop,1,size);
+    			while(xx=obj_todop.fetchRow(opj))
+    			{
+	  			 var idz1=new Array(1);
+				idz1[0]=xx[0];
+			    if(obj_todop.isItemAvailable(todop,xx[0]))
+				{
+				obj_todop.deleteEntry(todop);
+				obj_todop.where('id=?',idz1);
+				obj_todop.action();
+				total_p=parseInt(total_p)-parseInt(1);
+				}
+			
+			}
+			}
+			
+			
+			var aryAvail=isArrayAvailable(todoc);
+			if(aryAvail==1)
+			{
+				 var opj=obj_todoc.getResultPage(todoc,1,size);
+    			while(xx=obj_todoc.fetchRow(opj))
+    			{
+	  			 var idz1=new Array(1);
+				idz1[0]=xx[0];
+			    if(obj_todoc.isItemAvailable(todoc,xx[0]))
+				{
+				obj_todoc.deleteEntry(todoc);
+				obj_todoc.where('id=?',idz1);
+				obj_todoc.action();
+				total_c=parseInt(total_c)-parseInt(1);
+				}
+			
+			}
+			}
+			
+			var aryAvail=isArrayAvailable(today);
+			if(aryAvail==1)
+			{
+				 var opj=obj_today.getResultPage(today,1,size);
+    			while(xx=obj_today.fetchRow(opj))
+    			{
+	  			 var idz1=new Array(1);
+				idz1[0]=xx[0];
+			    if(obj_today.isItemAvailable(today,xx[0]))
+				{
+				obj_today.deleteEntry(today);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+				total_t=parseInt(total_t)-parseInt(1);
+				}
+			
+			}
+			}
+
+   allow=1,nchkidz="",chkidz="";
+  }
+   else
+   allow=0;    
+}
+else if(id==2) //clear pending
+{
+var answer = confirm("{cfn:getmessage(633)}")
+ if (answer)
+ {
+ if(nchkidz!="")
+{
+var newStr = nchkidz.substring(0,nchkidz.length-1);
+var newStr1=new Array();
+newStr1=newStr.split(",");
+for(var i=0;i<newStr1.length;i++)
+{
+	var idz1=new Array(1);
+	idz1[0]=newStr1[i];idz1[1]=1;
+	
+	var aryAvail=isArrayAvailable(todoa);
+			if(aryAvail==1)
+			{
+			    if(obj_todoa.isItemAvailable(todoa,newStr1[i]))
+				{
+				obj_todoa.deleteEntry(todoa);
+				obj_todoa.where('id=?',idz1);
+				obj_todoa.action();
+				 total_a=parseInt(total_a)-parseInt(1);
+				}
+			}
+			var aryAvail=isArrayAvailable(today);
+			if(aryAvail==1)
+			{
+			    if(obj_today.isItemAvailable(today,newStr1[i]))
+				{
+				obj_today.deleteEntry(today);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+				 total_t=parseInt(total_t)-parseInt(1);
+				}
+			}
+			
+			var aryAvail=isArrayAvailable(todop);
+			if(aryAvail==1)
+			{
+			    if(obj_todop.isItemAvailable(todop,newStr1[i]))
+				{
+				obj_todop.deleteEntry(todop);
+				obj_todop.where('id=?',idz1);
+				obj_todop.action();
+				 total_p=parseInt(total_p)-parseInt(1);
+				}
+			}
+
+}
+nchkidz="";	
+}
+allow=1;
+  }
+  else
+   allow=0; 
+}
+else  if(id==3)  // clear completed
+{
+
+var answer = confirm("{cfn:getmessage(633)}")
+ if (answer)
+ {           
+  
+if(chkidz!="")
+{
+var newStr = chkidz.substring(0,chkidz.length-1);
+var newStr1=new Array();
+newStr1=newStr.split(",");
+for(var i=0;i<newStr1.length;i++)
+{
+var idz1=new Array(1);
+	idz1[0]=newStr1[i];
+	
+var aryAvail=isArrayAvailable(todoa);
+			if(aryAvail==1)
+			{
+			    if(obj_todoa.isItemAvailable(todoa,newStr1[i]))
+				{
+				obj_todoa.deleteEntry(todoa);
+				obj_todoa.where('id=?',idz1);
+				obj_todoa.action();
+				//obj_todoa.totl2=parseInt(obj_todoa.totl2)-parseInt(1);
+				 total_a=parseInt(total_a)-parseInt(1);
+				}
+			}
+			var aryAvail=isArrayAvailable(today);
+			if(aryAvail==1)
+			{
+			    if(obj_today.isItemAvailable(today,newStr1[i]))
+				{
+				obj_today.deleteEntry(today);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+				//obj_today.totl2=parseInt(obj_today.totl2)-parseInt(1);
+				total_t=parseInt(total_t)-parseInt(1);
+				}
+			}
+			
+			var aryAvail=isArrayAvailable(todoc);
+			if(aryAvail==1)
+			{
+			    if(obj_todoc.isItemAvailable(todoc,newStr1[i]))
+				{
+				obj_todoc.deleteEntry(todoc);
+				obj_todoc.where('id=?',idz1);
+				obj_todoc.action();
+				//obj_todoc.totl2=parseInt(obj_todoc.totl2)-parseInt(1);
+				total_c=parseInt(total_c)-parseInt(1);
+				}
+			}
+
+}
+chkidz="";
+}
+ allow=1;	
+}
+ else
+   allow=0; 
+}
+else if(id==4)  //clear today
+{
+var answer = confirm("{cfn:getmessage(633)}")
+ if (answer)
+ {  
+        	var opj=obj_today.getResultPage(today,1,size);
+    			while(xx=obj_today.fetchRow(opj))
+    			{
+  			 var idz1=new Array(1);
+			idz1[0]=xx[0];
+	
+		var aryAvail=isArrayAvailable(todoa);
+			if(aryAvail==1)
+			{
+			    if(obj_todoa.isItemAvailable(todoa,xx[0]))
+				{
+				obj_todoa.deleteEntry(todoa);
+				obj_todoa.where('id=?',idz1);
+				obj_todoa.action();
+				//obj_todoa.totl2=parseInt(obj_todoa.totl2)-parseInt(1);
+				total_a=parseInt(total_a)-parseInt(1);
+				}
+			}
+			var aryAvail=isArrayAvailable(today);
+			if(aryAvail==1)
+			{
+			    if(obj_today.isItemAvailable(today,xx[0]))
+				{
+				obj_today.deleteEntry(today);
+				obj_today.where('id=?',idz1);
+				obj_today.action();
+				//obj_today.totl2=parseInt(obj_today.totl2)-parseInt(1);
+				total_t=parseInt(total_t)-parseInt(1);
+				}
+			}
+			
+			var aryAvail=isArrayAvailable(todop);
+			if(aryAvail==1)
+			{
+			    if(obj_todop.isItemAvailable(todop,xx[0]))
+				{
+				obj_todop.deleteEntry(todop);
+				obj_todop.where('id=?',idz1);
+				obj_todop.action();
+				//obj_todop.totl2=parseInt(obj_todop.totl2)-parseInt(1);
+				total_p=parseInt(total_p)-parseInt(1);
+				}
+			}
+			
+			var aryAvail=isArrayAvailable(todoc);
+			if(aryAvail==1)
+			{
+			    if(obj_todoc.isItemAvailable(todoc,xx[0]))
+				{
+				obj_todoc.deleteEntry(todoc);
+				obj_todoc.where('id=?',idz1);
+				obj_todoc.action();
+				//obj_todoc.totl2=parseInt(obj_todoc.totl2)-parseInt(1);
+				total_c=parseInt(total_c)-parseInt(1);
+				}
+			}
+			
+			if(chkidz.indexOf(xx[0]+",")!=1)
+			chkidz=chkidz.replace(xx[0]+",","");
+			if(nchkidz.indexOf(xx[0]+",")!=1)
+			nchkidz=nchkidz.replace(xx[0]+",","");
+	
+	
+   		}
+   		// var aryAvail=isArrayAvailable(today);if(aryAvail==1){obj_today.truncate();}
+   		allow=1;
+  }
+}
+else if(id==5)// View All
+{
+   allow=0; 
+   document.getElementById('todolist').innerHTML="";
+   todofocus("todoall");
+}
+else if(id==6)// View Pending List
+{
+
+   allow=0; 
+   document.getElementById('todolist').innerHTML="";
+   todofocus("todopending");
+}
+else if(id==7)// View Completed List
+{
+   allow=0; 
+   document.getElementById('todolist').innerHTML="";
+   todofocus("todocomplete");
+}
+else if(id==8)// Today list
+{
+	allow=0; 
+	document.getElementById('todolist').innerHTML="";
+   todofocus("today");
+}
+
+
+if(allow==1)
+{
+$.ajax({
+
+type: "POST",cache: false,
+url: "{url:(todolist/actions)}",
+data: "id="+id,
+success: function(data) { 
+//todoarray
+
+todofocus("today");
+				 
+   				 }
+
+  			});
+  			
+  			}
+}
+
+</script>
+<style type="text/css">
+
+.todolistmenu ul li { margin: 0px 0px 2px 0px; padding: 0px;}
+
+.todolistmenu ul li a { font-size: 12px; display: block; padding: 0px 0px 0px 25px; text-decoration: none; color: #000; height:23px; line-height:23px;}
+.todolistmenu ul { list-style: none; margin: 0px; padding: 0px; border: none; width:auto;  }  
+
+.LT{text-decoration: line-through;}
+.LN{text-decoration: none;}
+
+
+
+
+.DC {
+    display: block;
+    padding: 8px 0 8px 8px;
+    text-align: left;
+}
+.EI .DC {
+    color: #090909;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.EI .DU {
+    background-position: -240px -4px;
+    cursor: pointer;
+    height: 12px;
+    vertical-align: middle;
+    width: 12px;
+}
+.EI .DF, .EI .DG {
+    cursor: pointer;
+}
+.EB {
+    color: #222222;
+    padding: 5px 11px 4px;
+}
+.EG {
+    -moz-box-sizing: border-box;
+    background-color: #FFFFFF;
+    border: 1px solid #161616;
+    color: #222222;
+    line-height: 15px;
+    margin: 0;
+    outline: medium none;
+    overflow: auto;
+    padding: 1px;
+    resize: none;
+    width: 100%;
+}
+.VW {
+    background-color: #FFFFFF;
+    border: 1px solid #161616;
+    color: #222222;
+    height: 17px;
+    line-height: 15px;
+    margin: 0;
+    max-width: 80%;
+    outline: medium none;
+    overflow: hidden;
+    padding: 1px;
+    resize: none;
+}
+.EC {
+    background-color: #FFFFFF;
+    border: 1px solid #161616;
+    color: #222222;
+    margin: 0;
+    max-width: 80%;
+    padding: 1px;
+}
+
+.EW{ background-repeat: no-repeat;
+    float: right;
+    height: 15px;
+    padding: 0 2px;
+    width: 6px;
+}
+
+
+
+</style>
+<script type="text/javascript">
+/*You can also place this code in a separate file and link to it like epoch_classes.js*/
+	var dp_cal1,dp_cal2,ms_cal;      
+
+</script>
+
+</head>
+<body class="chatboxinput" style="padding:0px; border-width:4px; width:auto; height:auto; margin:0px; font-family:Verdana, Arial, Helvetica, sans-serif;margin:0px:padding:0;overflow: auto;" onLoad="todofocus('today')">
+<div id="maininvitationdiv"><input type="hidden" name="newtodoid" id="newtodoid" value="{$newtodoid}">
+
+
+<div id="chatdiv" class="chatboxhead" style="border:0px; width:auto;">
+<span style="width: 100%;">{cfn:getmessage(626)}</span>
+
+</div>
+
+
+<div id="submaindiv" class="submaindiv">
+<table style="margin-top: 2px;margin-left: 10px;">
+	<tr>
+		<td><font style="font-size: 12px;font-weight: bold;" id="list_title">{cfn:getmessage(626)}</font></td>
+	</tr>
+	
+	<tr><td>
+<div class="option_bar" style="position: relative;width: 270px;height: 290px;margin-top: 0px;display: none;" id="todo_details">
+<span class="" style="color: #090909; cursor: pointer;font-size: 10pt;text-decoration: underline; display: block;padding: 8px 0 8px 8px;text-align: left;" onClick="javascript:closedetails();">‹ {cfn:getmessage(629)}</span>
+<div style="color: #222222;padding: 5px 11px 4px;">
+<div style="float: left;"></div>
+<div id=""  style="margin-left:0px" dir="ltr"><input type="checkbox" name="todo_checkbox" id="todo_checkbox" onClick="javascript:clickchknew();" ><input type="text" name="todo_value" id="todo_value" value="" style="padding:2px 2px 0 0;font-size: 12px;height: 15px;line-height: 15px;margin: 0 0 0 0;overflow: hidden;padding: 0;width: 220px;border: 0px dotted #888;Verdana, Arial, Helvetica, sans-serif;text-decoration:none;"></div>
+<div style="float: left;">&nbsp;</div><div style="clear: both;"></div>
+<div id="" style="margin-left:0px" dir="ltr">
+<input name="from" id="from" style=" background-color: #FFFFFF; border: 1px solid #161616;color: #222222;margin: 0;max-width: 80%;padding: 1px;" size="22" autocomplete="off" readonly value=""></div>
+<!-- <textarea id=":sr.task-editor" class="EW D9" style="top: -2000px; left: -2000px;" rows="1"></textarea> -->
+</div>
+
+<div style=" color: #222222;padding: 15px 11px 4px;">
+<textarea id="notes" style="font-size: 100%;color: #222222 !important;font-family:Verdana, Arial, Helvetica, sans-serif;" class="EG" rows="5" dir="" onClick="javascript:searchfn1()" onBlur="javascript:displayfn1()">{cfn:getmessage(628)}</textarea>
+<div style="margin-top: 10px;"><input type="button" name="submit" value="Submit"  class="cursor_select" onClick="javascript:todosubmit();"></div>
+<input type="hidden" value="" id="currnt_id">
+</div>
+
+
+<span class="" style="color: #090909; cursor: pointer;font-size: 10pt;text-decoration: underline; display: block;padding: 5px 0 8px 8px;text-align: left;" onClick="javascript:closedetails();">‹ {cfn:getmessage(629)}</span>
+</div>
+				
+</td></tr>
+
+<tr><td>
+<span class="todolistmenu" >
+<ul id="todolist" >
+</ul>
+</span>
+</td></tr>
+
+
+<tr><td>
+<div class="option_bar" style="display: none;width: 155px;margin-top: -172px;height:190px;" id="option_bar">
+<table style="margin-top: 7px;margin-left:5px;"><tr><td ><a href="javascript:actions(8);" class="options">{cfn:getmessage(634)}</a></td></tr></table>
+<table style="margin-left:5px;"><tr><td><a href="javascript:actions(7);" class="options">{cfn:getmessage(635)}</a></td></tr></table>
+<table style="margin-left:5px;"><tr><td><a href="javascript:actions(6);" class="options">{cfn:getmessage(636)}</a></td></tr></table>
+<table style="margin-left:5px;"><tr><td><a href="javascript:actions(5);" class="options">{cfn:getmessage(637)}</a></td></tr></table>
+<table style="margin-left:5px;"><tr><td><a href="javascript:actions(4);" class="options">{cfn:getmessage(638)}</a></td></tr></table>
+<table style="margin-left:5px;"><tr><td ><a href="javascript:actions(3);" class="options">{cfn:getmessage(639)}</a></td></tr></table>
+<table style="margin-left:5px;"><tr><td ><a href="javascript:actions(2);" class="options">{cfn:getmessage(640)}</a></td></tr></table>
+<table style="margin-left:5px;"><tr><td ><a href="javascript:actions(1);" class="options">{cfn:getmessage(641)}</a></td></tr></table>
+</div>
+				
+</td></tr>
+<tr><td><a href="javascript:listaction();" title="Actions" class="options" >
+<div id="todoactiondiv" style="float:left;z-index:1;border: 0px solid red;"><font style="font-size: 3mm;" title="{cfn:getmessage(72)}">{cfn:getmessage(72)}</font></div>
+</a></td></tr>
+
+
+<tr><td>&nbsp;</td></tr>
+<tr><td class="footer_txt" >{$footer}</td></tr>
+</table>
+
+
+</div>
+</div>
+
+</body>
+</html>

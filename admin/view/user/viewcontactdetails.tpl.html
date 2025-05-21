@@ -1,0 +1,151 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+         <td>	{if($userid=="")}{showpage:include/contactsheader} {else}
+<div class="sub_link_style"><a href="{url:(user/contacts/0/{$userid})}" >All Contacts</a>&nbsp;|&nbsp;<a href="{url:(user/groups/{$userid})}" >Contact Groups</a></div> {endif}
+</td>
+
+  </tr>
+
+  </table>	
+	
+	
+			<table width="100%"  cellpadding="0" cellspacing="0" >  
+			
+				<tr>
+				<td >
+			{if($num==0)}
+		<tr><td align="center" class="info_title" >-&nbsp;No Contacts&nbsp;-</td></tr>
+			{else}
+			<table width="500px" cellspacing="0" cellpadding="0" align="center" ><tr><td style="padding-bottom: 3px;">{if(($flag==0)||($id==0) ||($flag==""))}<a {if($userid=="")} href="{url:(user/contacts/0)}" {else} href="{url:(user/contacts/0/{$userid})}" {endif} class="sub_link_style">All Contacts</a>>>{$contactname}{elseif($flag>0)}<a {if($userid=="")} href="{url:(user/groups)}" {else}  href="{url:(user/groups/{$userid})}" {endif} class="sub_link_style">Contact Groups</a>  >><a {if($userid=="")} href="{url:(user/contacts/{$flag})}" {else} href="{url:(user/contacts/{$flag}/{$userid})}" {endif} class="sub_link_style">{cfn:getgroupname($flag)}</a>  >> {$contactname}{endif}</td></tr></table>
+							<table cellspacing="0" cellpadding="0"  align="center" class="viewcontactdetails_table" bgcolor="#F1F1F1">
+							{loopstart:contacts:100}
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							  <tr  >
+									<td>Contacts</td>
+									<td>{$contacts[1]}</td>
+							  </tr>
+							  
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							  <tr>
+								<td>Added By</td> 
+								<td>{cfn:getusername($contacts[2])}</td>
+							  </tr>
+							  
+							
+							{if($contacts[3]!=0)}
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							  <tr >
+								<td >Group Name</td> 
+								<td>{cfn:getgroupname($contacts[3])}</td>
+							  </tr>
+							  {endif}
+							  
+							  {if($groupcount!=0)}
+							 
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							  <tr>
+								<td>Existing Groups</td> 
+								<td>{loopstart:groups:1000} {cfn:getfoldername($groups[3],$groupcount,$groups)} {loopend:groups}</td>
+							  </tr>
+							  {endif}
+							  
+							  {if($contacts[4]!="")}
+							  
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							   <tr>
+								<td>First Name</td> 
+								<td> {$contacts[4]}</td>
+							  </tr>
+							  {endif}
+							  
+							  {if($contacts[5]!="")}
+							  
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							 <tr>
+							<td>Last Name</td> 
+								<td> {$contacts[5]}</td>
+							  </tr>
+							  {endif}
+							  
+							  {if($contacts[6]!="")}
+							  
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							 <tr>
+								<td>Date Of Birth</td> 
+								<td> {fn:date("j M,Y",$contacts[6])}</td>
+							  </tr>
+							  {endif}
+							  
+							  {if($contacts[7]!="")}
+							  
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							   <tr>
+								<td>Title</td> 
+								<td>{$contacts[7]}</td>
+							  </tr>
+							  {endif}
+							  
+							  {if($contacts[8]!="")}
+							  
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							 <tr>
+								<td>Company</td> 
+								<td> {$contacts[8]}</td>
+							  </tr>
+							  {endif}
+							  
+							   {if($contacts[9]!=0)}
+							   
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							  <tr>
+								<td>Phone</td> 
+								<td> {$contacts[9]}</td>
+							  </tr>
+							  {endif}
+							  
+							   {if($contacts[10]!="")}
+							   
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							  <tr>
+							<td>Address</td> 
+								<td>{fn:nl2br($contacts[10])}</td>
+							  </tr>
+							  {endif}
+							  
+							   {if($contacts[11]!="")}
+							   
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							 <tr>
+								<td>Website</td> 
+								<td> {$contacts[11]}</td>
+							  </tr>
+							  {endif}
+							  
+							  {loopend:contacts}
+							 
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+							<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+						</table>	
+			{endif}
+		
+			<br><br>
+				 </td>
+				</tr>
+		   </table>
+		  		 
+				   
+
+{showpage:include/footer}
+
+
+

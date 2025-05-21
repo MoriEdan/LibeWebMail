@@ -1,0 +1,256 @@
+{showpage:include/header}
+<script language="javascript" type="text/javascript">
+function checkfn()
+{
+var s=0;var check=-1;
+var username=document.getElementById("email").value;
+if(username=="")
+{
+alert("Please enter the email account!!!");
+document.getElementById("email").focus();
+ return false;
+}
+else
+{
+
+//var at = username.lastIndexOf("@");
+//if(at>0)
+//{
+//var dname = username.substring(0,at);
+
+//var ext = username.substring(at,username.length);
+//if(ext=="@")
+//{
+//alert("Invalid Mail address");
+   // document.getElementById("email").focus();
+//return false;
+//}
+//var s=document.getElementById("extension").value;
+//if(ext!=s && ext!="")
+//{
+	//alert(" This is Third party domain name.Please choose valid email address with/without your domain address.");
+   // document.getElementById("email").focus();
+    //return false;
+//}
+//username=dname;
+//}
+s=username.indexOf('@');
+if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+    s=username.indexOf('#');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+  s=username.indexOf('!');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+       s=username.indexOf('$');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('%');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+     s=username.indexOf('^');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('&');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+     s=username.indexOf('*');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('(');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+    s=username.indexOf(')');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+       s=username.indexOf('-');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('+');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('/');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('=');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+       s=username.indexOf(' ');
+      if(s>0)
+
+	 {
+	  check=0;
+      } 
+      
+       s=username.indexOf('?');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      
+  
+       s=username.indexOf(',');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      if(check==2)
+      {
+     	alert(" This is Third party domain name.Please choose valid email address with/without your domain address.");
+      	document.getElementById("email").focus();
+      	return false;
+      }
+      
+       if(check==3)
+      {
+     	alert(" Invalid Mail address.");
+      	document.getElementById("email").focus();
+      	return false;
+      }
+      
+      else if(check==0)
+      {
+      alert("Mail address contain invalid character.");
+      document.getElementById("email").focus();
+      return false;
+      }
+      
+      else
+      {
+      
+     var min_usernamelength="{$min_usernamelength}";
+         if(username.length<min_usernamelength)
+      {
+      alert("{$minlengtherr}");
+      document.getElementById("email").focus();
+      return false;
+      }
+      else if(username.length>32)
+      {
+      alert("Mail address  can't be exceed 32 characters.");
+      document.getElementById("email").focus();
+      return false;
+      }
+      
+      return true;
+      
+      }
+      }
+      
+}
+</script>
+
+<br />
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/reservedmailsheader}</td>
+
+  </tr>
+
+  </table>	
+<br>
+<div align="center"><font class="page_title">New Reserved Email</font></div><br /><br />
+
+{formstart:newreservedmail:{url:(user/newreservedmail)}:POST}		
+		<table cellpadding="0"  cellspacing="0" align="center"  class="newreservedmail_table">	
+		    
+			<tr>
+			  <td >&nbsp;</td>
+			  <td >&nbsp;</td>
+		  </tr>
+		  <tr>
+			  <td >&nbsp;</td>
+			  <td >&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td valign="middle" >Mail Address</td>
+			  <td ><input style="width:380px" name="email" type="text" id="email" value="" maxlength="200">&nbsp;{cfn:getextension()} <strong><span class="mandatory">&nbsp;*</span></strong></td>
+<input type="hidden" id="extension" value="{cfn:getextension()}">
+		  </tr>
+			
+			<tr>
+			<td>&nbsp;</td>
+			<td valign="middle"><br /><br />
+			  <input type="submit" name="Submit" value="Submit" class="buttonstyle" onclick="return checkfn()">
+			  <br /></td>
+			</tr>	
+			<tr>
+			  <td>&nbsp;</td>
+			  <td >&nbsp;</td>
+		  </tr>
+		  <tr>
+			  <td>&nbsp;</td>
+			  <td >&nbsp;</td>
+		  </tr>
+		</table>
+		
+		
+
+		
+ {formend:newreservedmail}	
+ 
+ <br /><br />
+{showpage:include/footer}
+

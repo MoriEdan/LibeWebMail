@@ -1,0 +1,84 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" width="100%" style="padding:10px;">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/userheader}</td>
+
+  </tr>
+ <tr>
+    <td>
+	<div align="right">{showpage:user/userleftpanel/$uid}</div>
+	</td>
+  </tr>
+  </table>	
+	
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">  
+			
+				<tr>
+				<td >
+			<table cellpadding="0" cellspacing="0" width="100%" style="padding:10px;">
+	
+	<tr><td align="center" >	<span class="page_title">Statistics</span>
+			
+			
+			<table width="500px" border="0" cellpadding="0" cellspacing="0"  style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3;">  
+			<tr  height="30" bgcolor="#565466" style="color: white;font-weight: bold;" align="left"  style="border-bottom: 1px solid #b7b5b3;"> 
+						  <td width="25%" style="padding:8px;border-left: 1px solid #b7b5b3;">Folder</td>
+						 <td width="15%">No of Mails </td>
+						 </tr>
+					 <tr bgcolor="#E8E8E8" bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						  <td width="25%" style="padding:8px;border-left: 1px solid #b7b5b3;">Inbox</td>
+						 <td width="15%">{$inbox} </td>
+						 </tr>
+						 
+						 <tr bgcolor="#E8E8E8" bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						  <td width="25%" style="padding:8px;border-left: 1px solid #b7b5b3;"> Sent </td>
+						  <td width="15%"> {$sent}</td>
+						  </tr>
+						  
+						 <tr bgcolor="#E8E8E8" bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						  <td width="25%" style="padding:8px;border-left: 1px solid #b7b5b3;">Draft</td>
+						 <td width="15%">{$draft} </td>
+						 </tr>
+						 
+						 <tr bgcolor="#E8E8E8" bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						  <td width="25%" style="padding:8px;border-left: 1px solid #b7b5b3;"> Spam </td>
+						  <td width="15%"> {$spam}</td>
+						  </tr>
+						  
+						 <tr bgcolor="#E8E8E8" bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						  <td width="25%" style="padding:8px;border-left: 1px solid #b7b5b3;">Trash</td>
+						 <td width="15%">{$trash} </td>
+						 </tr>
+						 
+						 {if($numfolder!=0)}
+						 {loopstart:custfolder:1000}
+						  <tr bgcolor="#E8E8E8" bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						  <td width="25%" style="padding:8px;border-left: 1px solid #b7b5b3;">{$custfolder[1]}</td>
+						 <td width="15%">{$custfolder[13]} </td>
+						 </tr>
+						 {loopend:custfolder}
+						 {endif}
+					</table>
+					
+					<table width="500px" border="0" cellpadding="0" cellspacing="0"  style="border: 1px solid #b7b5b3;">  
+					<br />
+					 <tr bgcolor="#E8E8E8" bgcolor="#ffffff"  height="35" align="left" style="">
+						  <td width="25%" style="padding:8px;">Currently Used</td>
+						 <td width="15%">{$size} MB</td>
+			      </tr>
+					</table>
+			<br /><br />
+		  	</td></tr></table>
+</td></tr></table>
+
+{showpage:include/footer}
+
+
+

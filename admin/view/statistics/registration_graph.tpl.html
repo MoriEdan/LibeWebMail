@@ -1,0 +1,83 @@
+<script language='javascript' src='graph/FusionCharts/FusionCharts.js'></script>
+<!-- <script type="text/javascript">
+function showresult(id)
+{
+if(id==1)
+{
+var flag="today";
+var url="{url:(statistics/graph/)}"+flag;
+}
+else
+{
+var month=document.getElementById("month").value;
+var year=document.getElementById("year").value;
+//alert(month+year);
+if((month!="" && year=="") || (month!="" && year!=""))
+var flag="month";//current month
+else if(month=="" && year!="")
+var flag="year";//12 months
+else 
+var flag="all";//yearwise
+
+var url="{url:(statistics/graph/)}"+flag+"/"+month+"/"+year;
+}
+window.location.href=url;
+// $.ajax({ type:"GET", cache: false,
+	       //  url:"{url:(statistics/graph/)}"+flag,
+	      //   success: function(data)
+	      //  {
+	       //  
+	       // }
+	       // });
+
+}
+</script>
+<html><head></head>
+<body><br><br>
+<table cellpadding="0" cellspacing="0"  align="center" style="padding-left: 20px;padding-right:20px;padding-top: 0px;" width="98%" border="0">
+
+
+  <tr class="table_header">
+<td height="20" align="left">
+<span style="padding-left: 50px"><a href="javascript:showresult(1)" >Today</a></span>
+<!--<span align="left" style="padding-left:10px">Time Period
+
+  <select id="timeperiod" name="timeperiod" onChange="display(0)">
+
+      <option value="" selected>All Time</option>
+
+        <option value="today" {if($time=="today")} selected {endif}>Today</option>
+
+        <option value="lastweek"{if($time=="lastweek")} selected {endif}>Last 7 days</option>
+        
+           </select></span>
+           <span align="right"><a href="#" onClick="show()">show</a></span>-->
+       <!-- <span  align="center" style="padding-left: 100px;float: right;">
+			<select name="month" id="month" >
+				<option value="" selected>Month</option>
+				{loopstart:month:100}
+				<option value="{$month[0]}" {if($setmonth==$month[0])} selected {endif}>{$month[1]}</option>
+				{loopend:month}
+			</select> 
+			
+			<select name="year" id="year" >
+				<option value="" selected>Year</option>
+				{loopstart:year:1000000}
+				<option value="{$year[0]}" {if($setyear==$year[0])} selected {endif}>{$year[0]}</option>
+				{loopend:year}
+			</select>
+			<input type="button" onclick="showresult(0)" value="show">
+			</span>
+		
+    
+       
+        
+</td>
+</tr>
+
+<tr><td></td></tr>
+
+</table>
+
+</body>
+</html>-->

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script type="text/javascript" language="javascript">
+
+function messageview()
+{
+
+setTimeout("doSomething()",5000);
+}
+function doSomething() 
+    {
+       document.getElementById('msgviewed').style.display = 'none';
+    }
+
+function checkfn()
+{
+
+var s="{$msg}";
+if(s!="")
+{
+document.getElementById("msgviewed").style.display="";
+messageview();
+}
+
+
+}
+</script>
+</head>
+<body onLoad="checkfn()" >
+{formstart:calendar:{url:(settings/calendar)}:post}
+
+<div class="messageTab" id="msgviewed" style="display: none;padding-left: 30px;padding-top: 5px;" align="center">
+<span class="messageTabL"></span>
+<span class="messageTabM">{$msg}</span>
+<span class="messageTabR"></span>
+</div>
+
+<div class="mailoptions_details_table">
+<div style="padding-bottom:30px;padding-top:0px;" valign="top"><font class="info_title">{cfn:getmessage(621)}</font></div>
+<input type="hidden" name="msgdisplay" id="msgdisplay" value="{$msg}">
+{if($remainder_flag==1)}
+<div class="row">
+	<div class="coloum200 floatL"  ><span class="boldTxt"> {cfn:getmessage(622)}</span></div>
+	<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"><input type="radio" name="emailremainder" id="emailremainder"  {if($emailremainder==1)}  checked="checked"   {endif} value="1">{cfn:getmessage(52)}  <input type="radio" name="emailremainder" id="emailremainder"  {if($emailremainder==0)} checked="checked" {endif} value="0" >{cfn:getmessage(157)}</span>
+		</div>
+	</div>
+</div>
+<div class="row marginT5">&nbsp;</div>
+{endif}
+
+	
+	{if($overflag==1)}
+<div class="row marginT5">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(623)} </span></div>
+	<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"> <input type="radio" name="viewevent"  id="viewevent"  value="1"  {if($viewevent==1)}  checked="checked"   {endif} >{cfn:getmessage(52)} <input type="radio" name="viewevent"  id="viewevent" value="0" {if($viewevent==0)} checked="checked" {endif} > {cfn:getmessage(157)} </span>
+		</div>
+	</div>
+</div>
+{endif}
+{if($remainder_flag==1 ||$overflag==1)}
+<div class="row marginT5">&nbsp;</div>
+
+	
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt"><input type="submit" value="{cfn:getmessage(79)}" name="submit" class="cursor_select"></span></div>
+	<div class="coloum floatL"  >
+		<div class="normalTxt marginL10">&nbsp;
+		</div>
+	</div>
+</div>
+{endif}
+
+
+{formend:calendar}
+</body>
+</html>
+<script type="text/javascript">
+parent.showPreloadDiv();
+parent.showPreloadDivGif();
+</script>

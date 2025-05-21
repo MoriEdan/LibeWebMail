@@ -1,0 +1,103 @@
+{showpage:include/header}
+<SCRIPT LANGUAGE="JavaScript">
+function popUp(URL) {
+
+day = new Date();
+id = day.getTime();
+eval("page" + id + " = window.open(URL, '" + id + "', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,width=350,height=200,left = 520,top = 175');");
+}
+</script>
+<script language="javascript" type="text/javascript">
+function display()
+{
+var flag=document.getElementById('listtype').value;
+
+
+   window.location.href = "{url:(user/mailtrack/{$uid}/)}"+flag;
+
+  
+}
+
+function confirmation(p1)
+ {
+           var answer = confirm("You are about to delete this mail. Press OK to continue.")
+           if (answer)
+            {
+                window.location.href = "{url:(user/deletemail/{$uid}/{$flag}/)}"+p1;
+                
+            }
+	}	
+	
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}	
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" class="userview_table">
+
+	 <tr align="center">
+
+      <td>	{showpage:include/userheader}</td>
+
+  </tr>
+  
+   <tr>
+    <td>
+	<div align="right">{showpage:user/userleftpanel/$uid}</div>
+	</td>
+  </tr>
+
+  </table>	
+
+	
+			<table class="fullwidth" border="0" cellpadding="0" cellspacing="0">  
+			
+				<tr>
+				<td >
+				
+			<table cellpadding="0" cellspacing="0" class="userview_table">
+	{if($num==0)}
+		<tr><td align="center" >	<font color="#FF0000" style="font-size:16px;font-weight:bold;">No Mails In The {$status} Folder</font></td></tr>
+			{else}
+	
+	<tr><td align="center" > <center> <font class="page_title">Folder {$status} Contains The Following Mails </font></center><br />
+	
+			
+			<table class="userview_table" cellpadding="0" cellspacing="0">  
+					  <tr  class="table_header_tr" align="left">  	 
+						  <td width="15%" class="table_header_td" align="center">From</td>
+						 <td width="20%"  align="center">To </td>
+						  <td width="20%"  align="center">CC </td>
+						  <td width="25%" align="center">Subject</td>
+						  <td width="15% align="center"">Time</td>
+						  <td width="5%" align="center">Action</td>
+					  </tr>
+					
+					{loopstart:listings:100}
+					<tr {if($listings % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:listings})" id="{loop:listings}" onmouseout="dispfn(1,{loop:listings})">
+						<td class="userdetail_td" width="15%" align="center">{if($listings[1]!="")}{$listings[1]} {else}&nbsp;-&nbsp;{endif}</td>
+						<td class="border_bottomright" width="20%" align="center">{if($listings[2]!="")}<a href="javascript:popUp('{url:(user/viewdetails/{$listings[6]}/{$folderid}/1/{$uid})}')" title="{$listings[2]}" style="text-decoration: none;color: black;">{cfn:getaddressformat($listings[2])}</a>{else}&nbsp;-&nbsp;{endif}</td>
+						<td class="border_bottomright" width="20%" align="center">{if($listings[3]!="")}<a href="javascript:popUp('{url:(user/viewdetails/{$listings[6]}{$folderid}/2/{$uid})}')" title="{$listings[3]}" style="text-decoration: none;color: black;">{cfn:getaddressformat($listings[3])}</a>{else}&nbsp;-&nbsp;{endif}</td>
+						<td class="border_bottomright" width="25%" align="center">{if($listings[4]!="")}{cfn:getsubject($listings[4])}{else}&nbsp;-&nbsp;{endif}</td>
+						<td class="border_bottomright" width="15%" align="center"> {fn:date("j/M/Y,g:i a",$listings[5])} </td>
+						<td class="border_bottomright" width="5%" align="center"> <a href="javascript:confirmation({$listings[6]})" class="action">Delete</a></td> 
+					  </tr>
+					{loopend:listings}
+			</table>
+			{endif}
+		  	</td></tr><tr> <td align="center">		
+		<br />
+			{noescape:$pagingtop}
+ </td></tr></table>
+</td></tr></table>
+
+{showpage:include/footer}
+
+
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/JavaScript" src="js/jquery-1.4.2.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+var dsgnid="{$designid}";
+	tim_out();
+	//var xmlHttp11
+	
+function delete_item()
+{
+var url="{$url}";
+ $.ajax({
+
+type: "GET",cache: false,
+url: url,
+success: function(data) {
+  
+      
+var filevar="{$filevar}";
+
+        parent.document.getElementById("upload_target"+filevar).style.height=0; 
+        parent.filevar_count=parent.filevar_count-1;
+		if(parent.filevar_count==0)
+{
+
+parent.document.getElementById("attachlink_"+dsgnid).style.display="";
+parent.document.getElementById("additionalattach_"+dsgnid).style.display="none";
+}
+else
+{
+
+parent.document.getElementById("attachlink_"+dsgnid).style.display="none";
+parent.document.getElementById("additionalattach_"+dsgnid).style.display="";
+}
+}
+
+});
+}
+ function tim_out()
+ {
+ 	var asd="{$filename}";
+ 	setTimeout("messagehide()",10000);
+ }
+ function messagehide()
+ {
+ var g="{$filename}";
+ 	if(g==-1)
+ 	document.getElementById("message").style.display="none";
+ }
+	</script>
+	</head>
+<body style="background-color: transparent;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+{if($filename==-1)}
+<div class="messageTab" id="msg_div">
+       <span class="messageTabL"></span>
+       <span class="messageTabM" id="message">{cfn:getmessage(234)}</span>
+       <span class="messageTabR"></span>
+       </div>{elseif($filename==-2)}
+<div class="messageTab" id="msg_div">
+       <span class="messageTabL" id="messageL"></span>
+       <span class="messageTabM" id="message">{cfn:getmessage(766)}</span>
+       <span class="messageTabR" id="messageR"></span>
+       </div>{elseif($filename==-3)}
+<div class="messageTab" id="msg_div">
+       <span class="messageTabL" id="messageL"></span>
+       <span class="messageTabM" id="message">{cfn:getmessage(767)}</span>
+       <span class="messageTabR" id="messageR"></span>
+       </div>{else}
+<div id="attachments"><table><tr><td><input type="checkbox" name="check1" id="check1" checked="true"  onclick="delete_item()"></td><td>{$filename}</td></tr></table></div>
+	{endif}		
+</body>
+</html>

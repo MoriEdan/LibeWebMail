@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script type="text/JavaScript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+function submit_file()
+{
+var filevar="{$filevar}";
+
+	SetCookie("file_"+filevar,0,1);
+	document.getElementById('add_file').submit();	
+	document.getElementById('attaching').style.display="";	
+	document.getElementById('remove').style.display="none";	
+	return false;			
+
+}
+
+function removefn()
+{   
+var filevar="{$filevar}";var dsgnid="{$designid}";
+
+        parent.document.getElementById("upload_target"+filevar).style.height=0; 
+        parent.filevar_count=parent.filevar_count-1;
+		if(parent.filevar_count==0)
+{
+
+parent.document.getElementById("attachlink_"+dsgnid).style.display="";
+parent.document.getElementById("additionalattach_"+dsgnid).style.display="none";
+}
+else
+{
+
+parent.document.getElementById("attachlink_"+dsgnid).style.display="none";
+parent.document.getElementById("additionalattach_"+dsgnid).style.display="";
+}
+
+
+
+}
+
+function SetCookie(name,value,days)
+ {
+
+ if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+
+}
+
+
+</script>
+</head>
+<body style="background-color: transparent;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+<div style="float: left;">
+{formstart:add_file:{url:(mail/file_addprocess)}:POST}
+<input type="hidden" name="draftid" id="draftid" value="{$draftid}">
+<input type="hidden" name="designid" id="designid" value="{$designid}">
+<input type="hidden" name="filevar" id="filevar" value="{$filevar}">
+<input type="file" onChange="submit_file()" name="filez" id="filez" style="background-color:#FFF">&nbsp;<a href="javascript:removefn()" title="Remove" class="options2" id="remove">Remove</a>
+</div>
+<div id="attaching" style="display: none;padding: 5px;" ><img src="images/cMap_loading.gif"></div>
+{formend:add_file}
+</body>
+</html>

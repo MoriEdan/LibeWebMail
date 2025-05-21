@@ -1,0 +1,262 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+
+
+	
+	function checkfn(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='checked';
+	//string+=document.getElementById('check'+i).value+",";
+	}
+	
+	}
+	function uncheckfn(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='';
+	//string=string.replace(",document.getElementById('check'+i).value,",",");
+	}
+	//alert(string);
+	
+}
+function confirmation(count)
+{
+
+ var string='';var ct=0;
+   
+   for(var i=0;i<count;i++)
+	{
+	
+	if(document.getElementById('check'+i))
+	   {
+	       if(document.getElementById('check'+i).checked==true)
+	        {
+	           string+=document.getElementById('check'+i).value+",";
+	           ct++;
+	       }
+	  }
+	else
+	break;
+	}
+	
+		if(ct==0)
+	alert("Please select a spammail rule.");
+	else 
+	{
+	  var answer = confirm("You want to delete this Spam mail rule. Press OK to continue.")
+		if(answer)
+		{
+	     window.location.href = "{url:(user/deletespams/)}"+string;
+        }	
+    }
+    
+    
+}
+
+function deletefn(id)
+{
+ var answer = confirm("You want to delete this Spam mail rule. Press OK to continue.")
+if(answer)
+{
+window.location.href = "{url:(user/deletespams/)}"+id+",";
+}
+}
+
+
+
+function checkfn1(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check1'+i).checked='checked';
+	//string+=document.getElementById('check'+i).value+",";
+	}
+	
+	}
+	function uncheckfn1(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check1'+i).checked='';
+	//string=string.replace(",document.getElementById('check'+i).value,",",");
+	}
+	//alert(string);
+	
+}
+function confirmation1(count)
+{ 
+
+   var string='';var ct=0;
+   
+   for(var i=0;i<count;i++)
+	{
+	
+	if(document.getElementById('check'+i))
+	   {
+	       if(document.getElementById('check'+i).checked==true)
+	        {
+	           string+=document.getElementById('check'+i).value+",";
+	           ct++;
+	       }
+	  }
+	else
+	break;
+	}
+	
+		if(ct==0)
+	alert("Please select a spamserver rule.");
+	else 
+	{
+	  var answer = confirm("You want to delete this spamserver rule. Press OK to continue.")
+		if(answer)
+		{
+	     window.location.href = "{url:(user/deletespamserver/)}"+string;
+        }	
+    }
+}
+
+function deletefn1(id)
+{
+  var answer = confirm("You are about to delete this mail. Press OK to continue.")
+if(answer)
+{
+window.location.href = "{url:(user/deletespamserver/)}"+id+",";
+}
+}
+
+
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}
+
+</script>
+
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/spamheader}</td>
+
+  </tr>
+
+  </table>	
+	
+	
+			<table cellpadding="0" cellspacing="0" class="userview_table" border="0">  
+			
+				<tr>
+				<td >
+			
+						<table cellpadding="0" cellspacing="0" class="userview_table" border="0">
+	
+	
+	<tr><td align="center">	<span class="page_title">Spam Settings</span><br /><br />
+	
+			
+			
+			<table   class="spamheader_title" border="0">
+<tr><td  align="left" >
+<div class="spamHeading">Spam Mail Rules</div>
+</td></tr>
+</table>
+{if($num==0)}
+<tr><td>&nbsp;</td></tr>
+		<tr><td align="center"><font class="info_title" style="color: red">-&nbsp;No Spam Mails&nbsp;-</font></td></tr>
+			{else}
+			
+			{loopstart:spams:1}
+			<table  cellpadding="0" cellspacing="0" class="userview_table">  
+					  <tr  class="table_header_tr" align="left">  	 
+						  <td class="table_header_td" width="5%">&nbsp;</td>
+						  <td  width="30%">From</td>
+						 <td  width="20%">Subject </td>
+						  <td width="30%">Body </td>
+						  <td width="15%">Action </td>
+					  </tr>
+					  {loopend:spams}
+					{loopstart:spams:1000}
+				
+					<tr {if($spams % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:spams})" id="{loop:spams}" onmouseout="dispfn(1,{loop:spams})">
+						<div id="spamcheckall"></div><td class="detail_td"><input type="checkbox" name="check" id="check{loop:spams}" value="{$spams[0]}"/></td>
+				<td style="border-bottom: 1px solid #b7b5b3;">{if($spams[1]!="")}{if($spams[4]==1)}{$spams[1]}{elseif($spams[4]==2)}
+				{$spams[1]}{cfn:getsymbol()}{elseif($spams[4]==3)}{cfn:getsymbol()}{$spams[1]}{elseif($spams[4]==4)}{cfn:getsymbol()}{$spams[1]}{cfn:getsymbol()}{else}-{endif}{else}&nbsp;-&nbsp;{endif}&nbsp;&nbsp;</td>
+						<td class="border_bottom">{if($spams[2]!="")}{if($spams[5]==1)}{$spams[2]}{elseif($spams[5]==2)}{$spams[2]}{cfn:getsymbol()}{elseif($spams[5]==3)}{cfn:getsymbol()}{$spams[2]}{elseif($spams[5]==4)}{cfn:getsymbol()}{$spams[2]}{cfn:getsymbol()}{else}-{endif}{else}&nbsp;-&nbsp;{endif} </td> 
+						<td class="border_bottom">{if($spams[3]!="")}{if($spams[6]==1)}{$spams[3]}{elseif($spams[6]==2)}{$spams[3]}{cfn:getsymbol()}{elseif($spams[6]==3)}{cfn:getsymbol()}{$spams[3]}{elseif($spams[6]==4)}{cfn:getsymbol()}{$spams[3]}{cfn:getsymbol()}{else}-{endif}{else}&nbsp;-&nbsp;{endif} </td> 
+						<td class="border_bottomright"><a href="{url:(user/editspamsettings/{$spams[0]})}" class="action" title="Edit Spam mail rule">Edit</a>&nbsp;|&nbsp;<a href="javascript:deletefn({$spams[0]})" class="action" title="Delete Spam mail rule">Delete</a> </td> 
+					  </tr>
+					{loopend:spams}
+			</table>
+			<tr><td class="left_td"><span class="checkallDiv"><a href="#spamcheckall" class="action2" onclick="checkfn({$count});" title="Check all">Check All</a>&nbsp;|&nbsp;<a href="#spamcheckall" class="action2" onclick="uncheckfn({$count});" title="Uncheck all">Uncheck All</a></span><br></td></tr>
+			
+			<tr><td class="left_td"><a href="#spamcheckall" onclick="javascript:confirmation({$count})" title="Delete Spam mail rule" ><img src="images/delete.gif" border="" /></a></td></tr>
+			<tr> <td align="center">{noescape:$pagingtopmail}</td></tr>
+			{endif}
+			
+		  	</table>
+</td></tr></table>	
+
+<table cellpadding="0" cellspacing="0" class="userview_table" border="0">  
+<tr>
+  <td align="center">
+  <table cellpadding="0" cellspacing="0" class="userview_table" border="0">
+	
+	<tr><td align="center">	<span class="page_title">&nbsp;</span>
+				
+<table class="spamheader_title" border="0">
+<tr><td  align="left" >
+<div class="spamHeading">Spam Server Rules</div>
+</td></tr>
+</table>	
+
+
+<table cellpadding="0" cellspacing="0" class="userview_table">
+	
+	
+	<tr><td align="center" ><font class="page_title"> </font>
+	
+			{if($num1==0)}
+			
+		<tr><td align="center"><font class="info_title" style="color: #FF0000">-&nbsp;No Spam Servers&nbsp;-</font></td></tr>
+			{else}
+			{loopstart:spamserver:1}
+			<div id="#spamservercheckall"></div><table cellpadding="0" cellspacing="0" class="userview_table">  
+					  <tr class="table_header_tr">  	 
+						  <td class="table_header_td" width="5%">&nbsp;</td>
+						  <td width="30%">From</td>
+						  <td width="15%">Action </td>
+					  </tr>
+					  {loopend:spamserver}
+					{loopstart:spamserver:1000}
+				
+					<tr {if($spamserver % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,'spamserver{loop:spamserver}')" id="spamserver{loop:spamserver}" onmouseout="dispfn(1,'spamserver{loop:spamserver}')">
+						<td class="detail_td"><input type="checkbox" name="check1" id="check1{loop:spamserver}" value="{$spamserver[0]}"/></td>
+						<td class="border_bottom">{if($spamserver[1]!="")}{$spamserver[1]}{else}&nbsp;{endif}&nbsp;&nbsp;</td>
+						
+						<td class="border_bottomright"><a href="{url:(user/editspamserversettings/{$spamserver[0]})}" class="action" title="Edit Spamserver rule">Edit</a>&nbsp;|&nbsp;<a href="javascript:deletefn1({$spamserver[0]})" class="action" title="Delete Spamserver rule">Delete</a> </td> 
+					  </tr>
+					{loopend:spamserver}
+			</table>
+			<tr><td  class="left_td" ><span class="checkallDiv"><a href="#spamservercheckall" class="action2" onclick="checkfn1({$count1});" title="Check all">Check All</a>&nbsp;|&nbsp;<a href="#spamservercheckall" class="action2" onclick="uncheckfn1({$count1});" title="Uncheck all">Uncheck All</a><br></span></td></tr>
+			
+			<tr><td class="left_td"><span class="deleteBtn"><a href="#spamservercheckall" onclick="javascript:confirmation1({$count1})" title="Delete Spamserver rule" ><img src="images/delete.gif" border=""/></a></span></td></tr>
+			<tr> <td align="center">{noescape:$pagingtopserver}</td></tr>
+			{endif}
+			</table>
+		  	</td></tr></table>
+		<div>&nbsp;</div>
+</td></tr></table>
+
+{showpage:include/footer}
+
+

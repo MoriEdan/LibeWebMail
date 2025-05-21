@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>{$servicename}</title>
+<link rel="stylesheet" href="css/mob-style.css" type="text/css" media="screen" />
+</head>
+
+<body {if($mob==0)} style="background:none" {endif}>
+<div {if($mob==0)}style="width:300px; background:url(../images/contentbg.gif) repeat scroll 0 0 #2A3848; overflow:hidden" {endif}>
+<div class="header" style="border-bottom:1px solid #1A4978">
+	<div class="header">
+		<img src="images/logo.png" alt="Logo" class="left" />
+		<a href="#" class="right"><img src="images/theme.png" /></a>
+	</div>
+</div>
+
+
+{formstart:login:{url:(index/logincheck)}:POST}
+<div class="contentdiv">
+<div class="mob-login">
+<div class="mobile_advanced_maintitletd">{cfn:getmessage(342)}</div>
+<div class="messageerrdisplay">{fn:nl2br($msg)}</div>
+<div class="contentdivin">
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" > 
+
+
+<tr><td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(6)}<span id="mob_mandatory">*</span></td></tr>
+<tr><td align="left"  class="mobile_advanced_feildtd">
+<input class="field" type="text" name="username" id="username" size="20" value="{$demouser}" />
+</td></tr>
+
+<tr><td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(7)}<span id="mob_mandatory">*</span></td></tr>
+<tr><td align="left"  class="mobile_advanced_feildtd">
+<input class="field" type="password" name="password" id="password" size="20" value="{$demopass}" />
+</td></tr>
+
+
+<tr><td align="left" class="mobile_advanced_feildtd">
+{if($signupvalue==1)}<a href="{url:(index/registration)}" title="{cfn:getmessage(350)}"  class="left signupnow">{cfn:getmessage(350)}</a>{endif}
+<input class="loginbutton" type="submit" name="submit" value="{cfn:getmessage(9)}"></td></tr>
+</table>
+
+</div>
+{formend:login}
+</div>
+</div>
+<div class="ftr">{$footer}</div>
+</div>
+</body>
+</html>

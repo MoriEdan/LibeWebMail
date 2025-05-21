@@ -1,0 +1,82 @@
+{showpage:include/header}
+<script>
+function confirmation(p1)
+ {
+           var answer = confirm("You are about to delete this Email Account. Press OK to continue.")
+           if (answer)
+            {
+                window.location.href = "{url:(user/deleteemail/)}"+p1;
+                
+            }
+
+}
+function confirmation2(p1)
+ {
+           var answer = confirm("You are about to block this Email Account. Press OK to continue.")
+           if (answer)
+            {
+                window.location.href = "{url:(user/activateemail/)}"+p1;
+                
+            }
+
+}
+
+
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}
+</script>
+<br> 
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/reservedmailsheader}</td>
+
+  </tr>
+
+  </table>	
+<table cellpadding="0" cellspacing="0" class="userview_table" align="center">
+	
+<tr><td align="center" >	<font class="page_title"><center>Reserved Email	</center></font>
+			
+			
+			<table  cellpadding="0" cellspacing="0"  class="userview_table"> 
+			{if($num==0)}
+			<br /><br>
+			<tr><td colspan="3"></td><font class="info_title"><center>-&nbsp;Reserved Emails Are Empty&nbsp;-</center></font></tr> 
+			{else}
+			<br /><br>
+					  <tr align="left"  class="table_header_tr">  	 
+						  <td width="25%" class="table_header_td">Name</td>
+						 <td width="15%">Status </td>
+						  <td width="15%"> Action </td>
+					  </tr>
+					{loopstart:reservedemails:1000}
+					
+					<tr {if($reservedemails% 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:reservedemails})" id="{loop:reservedemails}" onmouseout="dispfn(1,{loop:reservedemails})">
+						
+						<td class="detail_td">{$reservedemails[1]}</td>
+						<td style="border-bottom: 1px solid #b7b5b3;" {if($reservedemails[2]==1)} class="enable"{endif}
+				{if($reservedemails[2]==0)} class="disable" {endif}>{if($reservedemails[2]==1)}<img src="images/active.png" title="Active" alt="active">{else}<img src="images/blocked.png" title="Blocked" alt="blocked">{endif}</td> 
+						<td class="border_bottomright"> {if($reservedemails[2]==1)}<a href="javascript:confirmation2({$reservedemails[0]})" class="action" title="Block mail account">Block</a>{else}<a href="{url:(user/activateemail/{$reservedemails[0]})}" class="action" title="Activate mail account">Activate</a>{endif} | <a href="{url:(user/editmail/{$reservedemails[0]})}" class="action" title="Edit mail">Edit</a>&nbsp; | <a href="javascript:confirmation({$reservedemails[0]})" class="action" title="Delete mail">Delete</a>&nbsp;</td> 
+					  </tr>
+					{loopend:reservedemails}
+					{endif}
+			</table>
+			
+
+		<tr> <td align="center">		
+		<br />
+			{noescape:$pagingtop}
+ </td></tr>
+		
+ </td></tr></table>
+ 	
+ <br>
+{showpage:include/footer}

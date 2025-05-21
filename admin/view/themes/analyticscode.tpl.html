@@ -1,0 +1,45 @@
+{showpage:include/header}
+<table cellpadding="0" cellspacing="0" width="100%x">
+<tr align="center">	<td align="center" class="sub_link_style" ><br>
+{showpage:include/ads_analystics_codeheader}
+
+		</td>
+</tr>
+</table>
+<br>	
+<div align="center"><font style="color:#336699; font-size:18px;">Manage Analystics Code </font></div>
+<br /><br />
+
+{formstart:add:{url:(themes/analyticscodeprocess)}:POST}
+		<table cellpadding="0" width="70%" cellspacing="0" align="center" border="0" style="padding: 12px; background-color: #F1F1F1; border-color: #bdbdbd; border-style: solid; border-width: 1px;">	
+		    <tr>
+				<td width="48%"></td>
+				<td width="52%" ><b></b><br>
+			    <br>				</td>		
+			</tr>
+						
+			
+		        <tr>
+		          <td>Analystics code </td>
+		          <td><textarea name="analystics_code" cols="55" rows="13">{$analystics_code}</textarea>
+				  </td>
+          </tr>
+		        <tr>
+		          <td></td>
+		          <td>&nbsp;</td>
+          </tr>
+		        
+		        <tr>
+		          <td></td>
+		          <td>&nbsp;</td>
+          </tr>
+	        <tr>
+				<td></td>
+				<td><input type="submit" name="Save" value="Save"></td>
+			</tr>	
+		</table>
+			
+{formend:add}		
+<br><br><br>
+{showpage:include/footer}
+

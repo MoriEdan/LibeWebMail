@@ -1,0 +1,26 @@
+
+
+
+
+<table  style="width:100%; padding:6px;margin-top:15px;" class="user_leftpanel_table" align="right" bgcolor="#f3f3f3">
+<tr><td   style="padding-left:50px;font-size:18px;color:#669900;font-family:Arial, Helvetica, sans-serif;font-style:italic;">{cfn:getusernameformat($uid)}</td>
+<td   style="margin-right:20px;padding-right:20px;padding-left: 200px;" class="folder_name">
+<a href="{url:(user/mailtrack/{$uid}/1)}" class="action3">Inbox{if($inbox!=0)}({$inbox}){endif}</a><span style="color: #0066CC">,</span>
+{showpage:chatuser/chat/$uid}
+<a href="{url:(user/mailtrack/{$uid}/2)}" class="action3">Sent Mail{if($sent!=0)}({$sent}){endif}</a><span style="color: #0066CC">,</span>
+<a href="{url:(user/mailtrack/{$uid}/3)}" class="action3">Drafts{if($draft!=0)}({$draft}){endif}</a><span style="color: #0066CC">,</span>
+<a href="{url:(user/mailtrack/{$uid}/4)}" class="action3">Spam{if($spam!=0)}({$spam}){endif}</a><span style="color: #0066CC">,</span>
+<a href="{url:(user/mailtrack/{$uid}/5)}" class="action3">Trash{if($trash!=0)}({$trash}){endif}</a>
+</td></tr>
+<tr><td style="padding-left:45px;font-size:"> <div class="sub_link_style">
+<a href="{url:(user/viewprofile/{$uid})}" >Profile</a>&nbsp;{if($portal_status==0)}|&nbsp;<a href="{url:(user/changepassword/{$uid})}">Change Password</a>&nbsp;{endif}|&nbsp;<a href="{url:(user/statitics/{$uid})}">Quick Statistics</a></div></td><td class="folder_name" style="margin-right:20px;padding-right:20px;padding-left: 200px;"> Folders: {if($numfolder==0)} None {else}
+{loopstart:customfolders:1000}
+<a href="{url:(user/folder/{$uid}/{$customfolders[0]})}" class="action3">{$customfolders[1]}{if($customfolders[14]!=0)}({$customfolders[14]}){endif}</a><span style="color: #0066CC">,</span>
+{loopend:customfolders}{endif}
+</td></tr>
+</table>
+
+
+
+
+

@@ -1,0 +1,148 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+
+
+	
+	function checkfn(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='checked';
+	//string+=document.getElementById('check'+i).value+",";
+	}
+	
+	}
+	function uncheckfn(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='';
+	//string=string.replace(",document.getElementById('check'+i).value,",",");
+	}
+	//alert(string);
+	
+}
+
+function confirmation(count)
+{
+
+
+   var string='';var ct=0;
+   
+   for(var i=0;i<count;i++)
+	{
+	
+	if(document.getElementById('check'+i))
+	   {
+	       if(document.getElementById('check'+i).checked==true)
+	        {
+	           string+=document.getElementById('check'+i).value+",";
+	           ct++;
+	       }
+	  }
+	else
+	break;
+	}
+	
+		if(ct==0)
+	alert("Please select a contact.");
+	else 
+	{
+	  var answer = confirm("You want to delete the contact. Press OK to continue.")
+		if(answer)
+		{
+	   window.location.href = "{url:(user/deletecontacts/)}"+string;
+        }	
+    }
+
+}
+
+
+function deletefn(count)
+{ 
+  var answer = confirm("You are about to delete the contact. Press OK to continue.")
+if(answer)
+{
+
+	 window.location.href = "{url:(user/deletecontacts/)}"+count+",";;
+}	
+}
+
+
+function viewfn(id,flag)
+{
+window.location.href = "{url:(user/viewcontactdetails/)}"+id+"/"+flag+"/{$userid}";
+
+}
+
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+      <td>{if($userid=="")}{showpage:include/contactsheader} {else}
+<div class="sub_link_style"><a href="{url:(user/contacts/0/{$userid})}" >All Contacts</a>&nbsp;|&nbsp;<a href="{url:(user/groups/{$userid})}" >Contact Groups</a>&nbsp;</a></div> {endif}
+</td>
+  </tr>
+
+  </table>	
+	
+	
+			<table width="100%" cellpadding="0" cellspacing="0" border="0">  
+			
+				<tr>
+				<td >
+				
+			<table cellpadding="0" cellspacing="0" class="userview_table" >
+	
+	
+	<tr><td align="center" class="page_title"> {if($userid=="")} User Contacts {else} Contacts of {cfn:getusername($userid)} 
+	<tr><td align="right" style="padding-right: 20px;"><a href="{url:(user/viewprofile/{$userid})}" class="sub_link_style">{cfn:getusername($userid)}{$extension}</a></td></tr>{endif}
+	<table width="600px" cellspacing="0" cellpadding="0" ><tr><td style="padding-left: 12px;">{if($flag>0)} {if($userid=="")} <a  href="{url:(user/groups)}"  class="sub_link_style"> Contact Groups</a> {else}<a href="{url:(user/groups/{$userid})}"  class="sub_link_style">Contact Groups</a> {endif}  >> {cfn:getgroupname($flag)}{endif}</td></tr></table>
+			{if($num==0)}
+			<tr><td>&nbsp;</td></tr>
+		<tr><td align="center" ><font  class="info_title">- No Contacts -</font></td></tr>
+			{else}
+			{loopstart:contacts:1}
+			<table  border="0" cellpadding="0" cellspacing="0" class="userview_table">  
+					  <tr  class="table_header_tr" align="left">  	 
+						  <td class="table_header_td" width="5%">&nbsp;</td>
+						  <td  width="40%">Contacts</td>
+						 <td  width="25%">Added By </td>
+						  <td width="30%">Action </td>
+					  </tr>
+					  {loopend:contacts}
+					{loopstart:contacts:1000}
+		
+					<tr {if($contacts % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:contacts})" id="{loop:contacts}" onmouseout="dispfn(1,{loop:contacts})">
+						<td class="detail_td"><input type="checkbox" name="check" id="check{loop:contacts}" value="{$contacts[0]}"/></td>
+						<td class="border_bottom"><a href="#" onclick="viewfn({$contacts[0]},{$flag})" title="View Details" class="action2">{$contacts[1]}</td>
+						<td class="border_bottom">{cfn:getusername($contacts[2])} </td> 
+						<td class="border_bottomright"><a {if($userid=="")} href="{url:(user/editcontactdetails/{$contacts[0]})}" {else}  href="{url:(user/editcontactdetails/{$contacts[0]}/{$userid})}" {endif} class="action" title="Edit contact details">Edit</a>&nbsp;|&nbsp;<a href="javascript:deletefn({$contacts[0]})" class="action" title="Delete contact">Delete</a> </td> 
+					  </tr>
+					{loopend:contacts}
+			</table><br />
+			<tr><td class="left_td"><a href="#" class="action2" onclick="checkfn({$count});">Check All</a>&nbsp;|&nbsp;<a href="#" class="action2" onclick="uncheckfn({$count});">Uncheck All</a></td></tr>
+		<tr><td class="left_td"><br><a href="#" onclick="javascript:confirmation({$count})" ><img src="images/delete.gif" title="delete the contact" border=""/></a></td></tr>
+			<tr> <td align="center">{noescape:$pagingtop}</td></tr>
+			{endif}
+			
+			<br /><br />
+		  	</td></tr></table>
+
+
+{showpage:include/footer}
+
+
+

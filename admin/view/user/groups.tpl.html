@@ -1,0 +1,148 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+
+
+	
+	function checkfn(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='checked';
+	//string+=document.getElementById('check'+i).value+",";
+	}
+	
+	}
+	function uncheckfn(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='';
+	//string=string.replace(",document.getElementById('check'+i).value,",",");
+	}
+	//alert(string);
+	
+}
+function confirmation(count)
+{ 
+
+   var string='';var ct=0;
+   
+   for(var i=0;i<count;i++)
+	{
+	
+	if(document.getElementById('check'+i))
+	   {
+	       if(document.getElementById('check'+i).checked==true)
+	        {
+	           string+=document.getElementById('check'+i).value+",";
+	           ct++;
+	       }
+	  }
+	else
+	break;
+	}
+	
+		if(ct==0)
+	alert("Please select a group.");
+	else 
+	{
+	  var answer = confirm("You want to delete the group. Press OK to continue.")
+		if(answer)
+		{
+	   window.location.href = "{url:(user/deletegroups/)}"+string;
+        }	
+    }
+}
+
+function deletefn(count)
+{ 
+  var answer = confirm("You are about to delete the group. Press OK to continue.")
+if(answer)
+{
+
+	 window.location.href = "{url:(user/deletegroups/)}"+count+",";;
+}	
+}
+
+
+function viewfn(id)
+{
+
+window.location.href = "{url:(user/contacts/)}"+id+"/{$userid}";
+
+
+}
+
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}
+
+
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+      <td>{if($userid=="")}{showpage:include/contactsheader} {else}
+<div class="sub_link_style"><a href="{url:(user/contacts/0/{$userid})}" >All Contacts</a>&nbsp;|&nbsp;<a href="{url:(user/groups/{$userid})}" >Contact Groups</a></div> {endif}
+</td>
+
+  </tr>
+
+  </table>	
+	
+	
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">  
+			
+				<tr>
+				<td >
+				
+			<table cellpadding="0" cellspacing="0" class="userview_table">
+	
+	
+	<tr><td align="center" ><font class="page_title"> {if($userid=="")} Contact Groups {else} Contact Groups of {cfn:getusername($userid)}{endif}</font><br /><br />
+
+			{if($num==0)}
+		<tr><td align="center" >	<font class="info_title" style="color: red">- No Contact Groups -</font></td></tr>
+			{else}
+			{loopstart:groups:1}
+			<table  cellpadding="0" cellspacing="0" class="userview_table">  
+					  <tr class="table_header_tr" align="left">  	 
+						  <td class="table_header_td" width="5%">&nbsp;</td>
+						  <td width="40%">Groups</td>
+						 <td  width="25%">Added By </td>
+						  <td  width="30%">Action </td>
+					  </tr>
+					  {loopend:groups}
+					{loopstart:groups:1000}
+				
+					<tr {if($groups%2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:groups})" id="{loop:groups}" onmouseout="dispfn(1,{loop:groups})">
+						<td class="detail_td"><input type="checkbox" name="check" id="check{loop:groups}" value="{$groups[0]}"/></td>
+						<td style="border-bottom: 1px solid #b7b5b3;"><a href="#"  onclick="viewfn({$groups[0]})" title="View Details" class="action2">{$groups[1]} ({cfn:getgroupcount($groups[0])} contacts)</a> </td>
+						<td style="border-bottom: 1px solid #b7b5b3;">{if($groups[2]!="")}{cfn:getusername($groups[2])} {endif}</td> 
+						<td class="border_bottomright"><a {if($userid=="")}href="{url:(user/editgroup/{$groups[0]})}" {else} href="{url:(user/editgroup/{$groups[0]}/{$userid})}" {endif} class="action" title="Edit group details">Edit</a>&nbsp;|&nbsp;<a href="javascript:deletefn({$groups[0]})" class="action" title="Delete group">Delete</a> </td> 
+					  </tr>
+					{loopend:groups}
+			</table><br />
+			<tr><td class="left_td"><a href="#" class="action2" onclick="checkfn({$count});">Check All</a>&nbsp;|&nbsp;<a href="#" class="action2" onclick="uncheckfn({$count});">Uncheck All</a></td></tr>
+			
+			<tr><td class="left_td"><br><a href="#" onclick="javascript:confirmation({$count})" ><img src="images/delete.gif" border=""/></a></td></tr>
+			<tr> <td align="center">{noescape:$pagingtop}</td></tr>
+			{endif}
+			
+		  	</td></tr></table>
+			<br /><br /><br />
+</td></tr></table>
+
+{showpage:include/footer}
+
+
+

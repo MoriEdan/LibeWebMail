@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script type="text/javascript" language="javascript">
+
+	function checkfn(count)
+	{
+
+	var chk=document.getElementById('checking').value;
+	if(chk==0)
+	{	
+	document.getElementById('checking').value=1;
+	
+	
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='checked';
+	}
+	
+	}
+	
+	else
+	{
+	
+	document.getElementById('checking').value=0;
+		
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='';
+	}
+	
+	}
+	
+	}
+function confirmation(count)
+{ 
+
+  
+
+   var string='';
+   
+   for(var i=0;i<count;i++)
+	{
+	
+	if(document.getElementById('check'+i))
+	   {
+	       if(document.getElementById('check'+i).checked==true)
+	        {
+	           string+=document.getElementById('check'+i).value+",";
+	       }
+	  }
+	else
+	break;
+	}
+	
+	
+	if(string!="")
+	{
+	var answer = confirm("{cfn:getmessage(240)}")
+		if(answer)
+		{
+		 window.location.href = "{url:(settings/deleteemailfilters/)}"+string;
+	 	}
+	}	
+	else
+	alert("{cfn:getmessage(338)}");
+}
+
+
+function deletefn1(id)
+{
+	
+	       //if(document.getElementById('check'+i).checked==true)
+	        //{
+	          var answer = confirm("{cfn:getmessage(240)}")
+				if(answer)
+					window.location.href = "{url:(settings/deleteemailfilters/)}"+id+",";
+	        //}
+	      // else
+	       //alert("{cfn:getmessage(338)}");
+	 
+
+}
+
+
+var filevar=0;
+var deletevar=0;
+
+function addfilefield()
+{
+
+
+if((document.getElementById('values0').value)!="")
+{
+var count=document.getElementById("attachcount").value;
+if(count=="")
+{
+filevar=filevar+1;
+
+filestring="<table id=\"tablefiledivcontainer"+filevar+"\"><tr><td>{cfn:getmessage(93)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td><select name=\"ruletype"+filevar+"\" class=\"SelectContact\"><option value=\"1\">{cfn:getmessage(54)}</option><option value=\"2\">{cfn:getmessage(34)}</option><option value=\"3\">{cfn:getmessage(88)}</option></select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><select name=\"matches"+filevar+"\" class=\"SelectContact\"><option value=\"1\" selected=\"selected\">{cfn:getmessage(89)}</option><option value=\"2\">{cfn:getmessage(90)}</option><option value=\"3\">{cfn:getmessage(91)}</option><option value=\"4\">{cfn:getmessage(92)}</option></select></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td><input type=\"text\"  name=\"values"+filevar+"\"  id=\"values"+filevar+"\"  value=\"\"></td><td><a href=\"#\" onclick=\"addfilefield()\" ><img src=\"images/Add.png\" border=\"0\"></a><a href=\"javascript:deletefilefield("+filevar+")\" ><img src=\"images/Delete.png\" border=\"0\"></a></td></tr></table><div id=\"filedivcontainer"+filevar+"\">";
+
+filevartemp=filevar-1;
+document.getElementById("filedivcontainer"+filevartemp).innerHTML=filestring;
+document.getElementById("attachcount").value=filevar;
+document.getElementById("attachlink").style.display="none";
+}
+if(count!=0)
+{
+
+if((document.getElementById('values'+count).value)!="")
+{
+
+filevar=filevar+1;
+
+filestring="<table id=\"tablefiledivcontainer"+filevar+"\"><tr><td>{cfn:getmessage(93)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td><select name=\"ruletype"+filevar+"\" class=\"SelectContact\"><option value=\"1\">{cfn:getmessage(54)}</option><option value=\"2\">{cfn:getmessage(34)}</option><option value=\"3\">{cfn:getmessage(88)}</option></select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><select name=\"matches"+filevar+"\" class=\"SelectContact\"><option value=\"1\" selected=\"selected\">{cfn:getmessage(89)}</option><option value=\"2\">{cfn:getmessage(90)}</option><option value=\"3\">{cfn:getmessage(91)}</option><option value=\"4\">{cfn:getmessage(92)}</option></select></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td><input type=\"text\"  name=\"values"+filevar+"\"  id=\"values"+filevar+"\"  value=\"\"></td><td><a href=\"#\" onclick=\"addfilefield()\" ><img src=\"images/Add.png\" border=\"0\"></a><a href=\"javascript:deletefilefield("+filevar+")\" ><img src=\"images/Delete.png\" border=\"0\"></a></td></tr></table><div id=\"filedivcontainer"+filevar+"\">";
+
+filevartemp=filevar-1;
+document.getElementById("filedivcontainer"+filevartemp).innerHTML=filestring;
+document.getElementById("attachcount").value=filevar;
+document.getElementById("attachlink").style.display="none";
+}
+else
+
+document.getElementById('values'+count).focus();
+}
+
+}
+else
+document.getElementById('values0').focus();
+
+}
+
+function deletefilefield(fieldcount)
+{
+deletevar=deletevar+1;
+document.getElementById("tablefiledivcontainer"+fieldcount).style.display="none";
+
+if(filevar==deletevar)
+{
+document.getElementById("attachlink").style.display="";
+}
+
+}
+
+
+
+var xmlHttp;
+function editemailfilter(id)
+{
+document.getElementById("execute").value=1;
+       xmlHttp=GetXmlHttpObject();
+            if (xmlHttp==null)
+              {
+              alert ("Your browser does not support AJAX!");
+              return;
+              } 
+             
+            var url1="{url:(settings/editemailfilter/)}"+id;
+
+            xmlHttp.onreadystatechange=countChanged;
+            xmlHttp.open("GET",url1,true);  
+            xmlHttp.send(null);
+
+}
+
+function countChanged() 
+{ 
+
+var t=xmlHttp.readyState;
+        if (xmlHttp.readyState==4)
+        { 
+        	 document.getElementById("addfilter").style.display="none";
+        	 var p=xmlHttp.responseText;
+      		 document.getElementById("editfilter").innerHTML=p;
+      		 
+       }
+      
+}
+
+function GetXmlHttpObject()
+{
+        var xmlHttp=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp;
+}
+
+function clickfn()
+{
+
+var from=document.getElementById("from_id").value;
+var subject=document.getElementById("subject").value;
+var body=document.getElementById("body").value;
+
+if(from=="" && subject=="" && body=="")
+{
+
+alert("{cfn:getmessage(196)}");
+document.getElementById("from_id").focus();
+return false;
+}
+
+var folder=document.getElementById("moveto").value;
+if(folder==0)
+{
+alert("{cfn:getmessage(165)}");
+document.getElementById("moveto").focus();
+return false;
+}
+else
+return true;
+}
+
+function messageview()
+{
+
+var s="{$msg}";
+if(s!="")
+{
+document.getElementById("msgviewed").style.display="";
+setTimeout("doSomething()",5000);
+}
+}
+function doSomething() 
+    {
+       document.getElementById('msgviewed').style.display = 'none';
+    }
+</script>
+</head>
+<body onLoad="messageview()">
+{formstart:emailfilter:{url:(settings/emailfilter)}:post}
+
+<!-- <div class="row">
+<span class="fullwidth">{if($msg!="")}<div id="msgviewed" class="messagedisplay">{$msg}</div>{endif} </span>
+</div> -->
+
+ <div class="messageTab" id="msgviewed" style="display: none;padding-left: 30px;padding-top: 5px;" align="center">
+<span class="messageTabL"></span>
+<span class="messageTabM">{$msg}</span>
+<span class="messageTabR"></span>
+</div>
+
+<div class="settings_details_table">
+	<div style="padding-bottom:30px;padding-top:0px;" valign="top"><font class="info_title">{cfn:getmessage(465)}</font></div>
+
+
+	
+	<input type="hidden" name="msgdisplay" id="msgdisplay" value="{$msg}">
+	{if($cnt==0)}
+	<tr>
+		<td align="center"><font class="warningTxt">{cfn:getmessage(81)}</font></td>
+	</tr>
+	
+	{else} 
+	<table class="emailfilter_detail_table" cellpadding="0" cellspacing="0">
+	{loopstart:filteredmails:1}
+		<!--<div class="filterdetail_tr">
+			<div class="coloum50 floatL"><img src="images/check.png" onClick="checkfn({$cnt});" class="cursor_select"  ></div>
+			<div class="coloum floatL">{cfn:getmessage(94)}</div>
+			<div class="coloum100 floatR">{cfn:getmessage(13)}</div>
+			<div class="coloum100 floatR">{cfn:getmessage(95)}</div>
+			<input type="hidden" value="0" id="checking">
+		</div>-->
+	
+		<tr align="left" class="filterdetail_tr" >
+			<td align="left" style="border-left: 1px solid #b7b5b3;padding-left:12px; "><img src="images/check.png" onClick="checkfn({$cnt});" class="cursor_select"  ></td>
+			<td class="filter_padding_td" style="border-right: 1px solid #b7b5b3;">{cfn:getmessage(94)}</td>
+			<td align="center" style="border-right: 1px solid #b7b5b3;" >{cfn:getmessage(13)}</td>
+			<td align="center"  style="border-right: 1px solid #b7b5b3;">{cfn:getmessage(95)}
+			<input type="hidden" value="0" id="checking">
+			</td>			
+		</tr>
+		{loopend:filteredmails} 
+		{loopstart:filteredmails:1000}
+		<!--<div {if($filteredmails % 2==1 )}  bgcolor="#E8E8E8" {endif}  bgcolor="#ffffff" height="35" class="row bottom_td">
+			<div class="coloum50 floatL"><input type="checkbox" name="check" id="check{loop:filteredmails}" value="{$filteredmails[0]}" /></div>
+			<div class="coloum floatL">{cfn:getfilters($filteredmails[0])}</div>
+			<div class="coloum100 floatR"><a href="javascript:deletefn1({$filteredmails[0]})" class="action">{cfn:getmessage(14)}</a>&nbsp;|&nbsp;<a href="#filtersedit_{$filteredmails[0]}" class="action" onClick="editemailfilter({$filteredmails[0]})">{cfn:getmessage(100)}</a></div>
+			<div class="coloum100 floatR" ><span class="movedfolder"><b>{cfn:getfilterfolders($filteredmails[0])}</b></span></div>
+		</div>-->
+		
+		 <tr {if($filteredmails % 2==1 )}  bgcolor="#E8E8E8" {endif}  bgcolor="#ffffff" height="35" align="left"	class="bottom_td">
+			<td class="filter_bottom_left_td"><input type="checkbox" name="check" id="check{loop:filteredmails}" value="{$filteredmails[0]}" /></td>
+			<td class="filter_bottom_right_td" style="line-height:20px;">{cfn:getfilters($filteredmails[0])}</td>
+			<td align="center" class="movedfolder" ><b>{cfn:getfilterfolders($filteredmails[0])}</b></td>
+			<td align="center" class="filter_bottom_right_td" >
+				<a href="javascript:deletefn1({$filteredmails[0]})" class="action">{cfn:getmessage(14)}</a>&nbsp;|&nbsp;<a href="#filtersedit_{$filteredmails[0]}" class="action" onClick="editemailfilter({$filteredmails[0]})">{cfn:getmessage(100)}</a>
+			</td>
+		</tr>
+		{loopend:filteredmails}
+
+		<tr  >
+		
+			<td class="filter_padding_td" colspan="4" align="right" style="padding-top:20px;"><input type="button" value="{cfn:getmessage(80)}"
+				onclick="javascript:confirmation({$cnt})" class="cursor_select"> 
+		</td>
+			
+		</tr>
+
+		
+	
+	{endif}
+</table>
+</div>
+
+<div id="addfilter" class="settings_details_table">
+
+	<div class="row" >
+		<div class="coloum120 floatL">{cfn:getmessage(87)}</div>
+		<div class="coloum300 floatL">&nbsp;</div>
+		<div class="coloum100 floatL">{cfn:getmessage(13)}</div>
+		<div class="coloum200 floatL"><span class="padding_td2" >  <select name="moveto" id="moveto" class="SelectContact">
+		     <option value="0" selected="selected">{cfn:getmessage(136)}</option>
+			<option value="1">{cfn:getmessage(19)}</option>
+			<option value="4">{cfn:getmessage(12)}</option>
+			<option value="5">{cfn:getmessage(22)}</option>
+			{loopstart:customfolders:1000}
+			<option value="{$customfolders[0]}">{$customfolders[1]}</option>
+			{loopend:customfolders}
+		</select></span></div>
+	</div>
+	<div class="row" style="border-bottom:1px solid #CCCCCC;width: 90%">&nbsp;</div>
+	<div class="row marginT10">
+	</div>
+	<div class="row marginT10">
+		
+		<div class="coloum100 floatL">{cfn:getmessage(54)}</div>
+		<div class="coloum300 floatL"><input name="from_id" type="text" id="from_id" size="30" value=""></div>
+		<div class="coloum200 floatL"><select name="fromflag" class="SelectContact">
+					<option value="1" selected="selected">{cfn:getmessage(89)}</option>
+					<option value="2">{cfn:getmessage(90)}</option>
+					<option value="3">{cfn:getmessage(91)}</option>
+					<option value="4">{cfn:getmessage(92)}</option>
+					</select></div>
+	</div>
+	<div class="row marginT10">
+	
+		<div class="coloum100 floatL">{cfn:getmessage(34)}</div>
+		<div class="coloum300 floatL"><input name="subject" type="text" id="subject" size="30" value=""></div>
+		<div class="coloum200 floatL"><select name="subjectflag" class="SelectContact">
+					<option value="1" selected="selected">{cfn:getmessage(89)}</option>
+					<option value="2">{cfn:getmessage(90)}</option>
+					<option value="3">{cfn:getmessage(91)}</option>
+					<option value="4">{cfn:getmessage(92)}</option>
+					</select></div>
+	</div>
+	<div class="row marginT10">
+	
+		<div class="coloum100 floatL">{cfn:getmessage(88)}</div>
+		<div class="coloum300 floatL"><input type="text" name="body" id="body" value=""  size="30"></div>
+		<div class="coloum200 floatL"><select name="bodyflag" class="SelectContact">
+					<option value="1" selected="selected">{cfn:getmessage(89)}</option>
+					<option value="2">{cfn:getmessage(90)}</option>
+					<option value="3">{cfn:getmessage(91)}</option>
+					<option value="4">{cfn:getmessage(92)}</option>
+					</select></div>
+	</div>
+	<div class="row marginT10">
+	</div>
+	
+	<div class="row" style="border-bottom:1px solid #CCCCCC;width: 90%">&nbsp;</div>
+	<div class="row marginT10"></div>
+	<div class="coloum30 floatL">&nbsp;</div>
+	<div class="coloum30 floatL">&nbsp;</div>
+	<div class="coloum30 floatL">&nbsp;</div>
+	<div class="coloum30 floatL">&nbsp;</div>
+<div class="row marginT10">
+	<input type="hidden" name="execute" id="execute" value="0"></td>
+	<input type="submit" value="{cfn:getmessage(79)}" name="submit" onClick="return  clickfn()" class="cursor_select">
+</div>
+</div>
+<div id="editfilter"></div>
+
+
+{formend:emailfilter}
+</body>
+</html>
+<script type="text/javascript">
+
+parent.showPreloadDiv();
+parent.showPreloadDivGif();
+</script>

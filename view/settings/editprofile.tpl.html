@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script type="text/javascript" language="javascript">
+function messageview()
+{
+setTimeout("doSomething()",5000);
+}
+function doSomething() 
+    {
+      if(document.getElementById('msgviewed'))
+       document.getElementById('msgviewed').style.display ='none';
+    }
+</script>
+</head>
+<body onLoad="messageview()">
+{formstart:editprofile:{url:(settings/editprofile)}:post}
+
+{if($msg!="")}
+ <div class="messageTab" id="msgviewed" style="display:;padding-left: 30px;padding-top: 5px;" align="center">
+<span class="messageTabL"></span>
+<span class="messageTabM">{$msg}</span>
+<span class="messageTabR"></span>
+</div>
+{endif}
+<div  class="settings_details_table" >
+ <div style="padding-bottom:30px;padding-top:0px;" valign="top"><font class="info_title">{cfn:getmessage(468)}</font></div>
+  
+{loopstart:profile:1}
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(752)}</span></div>
+		<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"><input type="text" name="name" id="name" value="{$profile[0]}" size="26">&nbsp;<strong><span class="mandatory">*</span></strong></div>
+	</div>
+</div>
+
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(122)}</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10">
+		<select name="gender" class="SelectContact">
+			<option value="" selected="selected">{cfn:getmessage(136)}</option>
+			<option value="{$male}"  {if($profile[1]==$male)} selected="selected" {endif}>{cfn:getmessage(137)}</option>
+			<option value="{$female}"  {if($profile[1]==$female)} selected="selected" {endif}>{cfn:getmessage(138)}</option>
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong>
+		
+		</div>
+	</div>
+</div>
+
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(43)}</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10"> <select name="day" class="SelectContact">
+			<option value="" selected="selected">{cfn:getmessage(133)}</option>
+			{loopstart:days:100000000}
+			<option value="{$days[0]}" {if($days[0]==$dd)} selected="selected" {endif} >{$days[0]}</option>
+			{loopend:days}
+			
+
+		</select>
+		<select name="month" class="SelectContact">
+			<option value="" selected="selected">{cfn:getmessage(134)}</option>
+			{loopstart:month:100}
+			<option value="{$month[0]}" {if($month[0]==$mn)} selected="selected" {endif} >{$month[1]}</option>
+			{loopend:month}
+		</select>
+		<select name="year" class="SelectContact">
+			<option value="" selected="selected">{cfn:getmessage(135)}</option>
+			{loopstart:yrs:100000000}
+			<option value="{$yrs[0]}" {if($yrs[0]==$yr123)} selected="selected" {endif}>{$yrs[0]}</option>
+			{loopend:yrs}
+			
+
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong>
+		</div>
+	</div>
+</div>
+ 
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(123)}</span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10">
+		
+<select name="country" class="SelectContact">
+			<option value="">{cfn:getmessage(139)}</option>
+			{loopstart:country:10000}
+			<option value="{$country[0]}" {if($country[0]==$profile[3])} selected="selected" {endif}>{$country[0]}</option>
+			{loopend:country}
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong>
+		
+		</div>
+	</div>
+</div>
+
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt">{cfn:getmessage(272)}</span></div>
+		<div class="coloum floatL"  >
+		<div class="normalTxt marginL10"><input type="text" name="alternatemail" id="alternatemail" value="{$profile[4]}" size="26"></div>
+	</div>
+</div>
+
+<div class="row marginT10">
+	<div class="coloum200 floatL"  ><span class="boldTxt"><input type="submit" value="{cfn:getmessage(79)}" name="submit" class="cursor_select"></span></div>
+		<div class="coloum floatL"  ><div class="normalTxt marginL10"><input type="hidden" name="uid" value="{$uid}" /></div>
+	</div>
+</div>
+
+{loopend:profile}
+</div>
+
+{validate:editprofile:isNotNull("name","{cfn:getmessage(753)}")}
+
+{validate:editprofile:isNotNull("gender","{cfn:getmessage(127)}")}
+{validate:editprofile:isNotNull("day","{cfn:getmessage(128)}")}
+{validate:editprofile:isNotNull("month","{cfn:getmessage(129)}")}
+{validate:editprofile:isNotNull("year","{cfn:getmessage(130)}")}
+{validate:editprofile:isNotNull("country","{cfn:getmessage(131)}")}
+
+{formend:editprofile}
+
+</body>
+</html>
+<script type="text/javascript">
+
+parent.showPreloadDiv();
+parent.showPreloadDivGif();
+</script>

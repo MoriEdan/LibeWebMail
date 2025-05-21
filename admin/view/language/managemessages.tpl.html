@@ -1,0 +1,32 @@
+{showpage:include/header}
+{formstart:language:{url:(language/messages)}:post}
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr align="center">
+		<td colspan="2"><br />
+{showpage:include/languageheader}</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2" height="42"><font style="color:#336699; font-size:18px;"><center>Manage Messages<br />
+<br />
+</center></font></td>
+	</tr>
+	<tr>
+		<td align="right" width="50%" style="padding-right: 10px">Select
+		Language:&nbsp;&nbsp;&nbsp;&nbsp; <select name="lang" id="lang">
+			<option value="">Select</option>
+			{loopstart:lang:100}
+			<option value="{$lang[0]}">{$lang[1]}</option>
+			{loopend:lang}
+		</select></td>
+		<td style="padding-left: 10px" align="left" width="50%"><input
+			type="submit" name="submit" value="Manage!"></td>
+	</tr>
+</table>
+{formend:language} 
+{validate:language:isNotNull(lang,"Please select a language.")} <br />
+<br />
+
+{showpage:include/footer}

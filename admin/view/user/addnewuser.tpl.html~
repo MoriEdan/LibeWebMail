@@ -1,0 +1,692 @@
+
+ {showpage:include/header}
+ <script type="text/javascript">
+ 
+ 
+function passwordStrength(password)
+
+{
+
+        var desc = new Array();
+        
+        desc[0] = "Very Weak";
+
+        desc[1] = "Weak";
+        
+        desc[2] = "Good";
+
+        desc[3] = "Strong";
+        
+  		desc[4] = "Very Strong";
+
+
+        var score=0;
+
+var val=0; 
+var logname=document.getElementById("username").value;
+if(logname==password)
+  {
+  score=0;
+   document.getElementById("pwdcnt").value=0;   
+  document.getElementById("passwordDescription").className ="errordisplay";
+   document.getElementById("passwordDescription").innerHTML ="Password cannot be same as username";
+   document.getElementById("passwordStrength").className = "strength1";
+  }
+  else
+  {
+var lower=getlower_count(password);
+  var upper=getupper_count(password); 
+var num_count=getnumber_count(password);
+var special=getspecialch_count(password);
+var total=lower+upper+num_count+special;
+var length=password.length;
+if(length==0)
+document.getElementById("pwdcnt").value=0;
+var min_passwordlength="{$min_passwordlength}";
+if(min_passwordlength==1)
+{
+if(length<1)
+	score=0;
+	else if(length==1)
+	score=1;
+	else if(length==2)
+	score=2;
+	else if(length==3)
+	score=3;
+	else if(length>3)
+	score=4;
+}
+else if(min_passwordlength==2)
+{
+	if(total<2 || length<3)
+	score=0;
+	else if(total==2 && length==3)
+	score=1;
+	else if(total<=3 && length>3)
+	score=2;
+	else if(total<=5 && length>=4)
+	score=3;
+	else if(length<32 && total>5)
+	score=4;
+}
+else if(min_passwordlength==3)
+{
+	if(total<3 || length<5)
+	score=0;
+	else if(total==3 && length==5)
+	score=1;
+	else if(total<=4 && length>5)
+	score=2;
+	else if(total<=6 && length>=5)
+	score=3;
+	else if(length<32 && total>7)
+	score=4;
+}
+else if(min_passwordlength==4)
+{
+	if(total<8 || length<6)
+	score=0;
+	else if(total==8 && length==6)
+	score=1;
+	else if(total<=9 && length>7)
+	score=2;
+	else if(total<=12 && length>=7)
+	score=3;
+	else if(length<32 && total>13)
+	score=4;
+}
+ /*var controlpanel="{$controlpanel}";
+  if(controlpanel==1)//cpanel
+  {
+
+	if(total<3 || length<3)
+	score=0;
+	else if(total<4 || length<5)
+	score=1;
+	else if(total<=6)
+	score=2;
+	else if(total<=8)
+	score=3;
+	else if(length<32)
+	score=4;
+  }
+   else //plesk or catch all
+  {
+  
+ //if password greater than or equal to 5 give 1 point
+  
+  if(length>=5)
+  total+=1;
+
+	 if(total<1 || length<3)
+	score=0;
+	else if(total<2 || length<5)
+	score=1;
+	else if(total<=6)
+	score=2;
+	else if(total<=8)
+	score=3;
+	else if(length<32)
+	score=4;
+
+}
+*/
+ document.getElementById("passwordDescription").className ="passwordstrength_details";
+       document.getElementById("passwordDescription").innerHTML = desc[score];
+document.getElementById("pwdcnt").value=score;
+document.getElementById("passwordStrength").className = "strength" + score;
+}
+}
+function getlower_count(password)
+{
+if ( password.match(/[a-z]/))
+return 1;
+else
+return 0;
+}
+function getupper_count(password)
+{
+if (password.match(/[A-Z]/) )
+return 1;
+else
+return 0;
+}
+function getnumber_count(password)
+{
+ 
+
+var numbers = new  Array()
+
+ var l=0;
+for(var x = 0,length = password.length; x < length; x++)
+ {
+    var s = password.charAt(x);
+    var flag=0;
+    if (isInteger(s))
+    {
+   
+    for(var j=0;j<numbers.length;j++)
+    {
+   
+    if(s==numbers[j])
+    {
+    flag=1;
+   
+   
+    }
+   
+   
+    }
+    if(flag==0)
+    {
+   
+    numbers[l]=s;l++;
+    }
+   
+   
+}
+var t=numbers[l];
+
+}
+var v=numbers.length;
+if(v>=3)
+return 2;
+else if(v==2)
+return 1;
+else if(v==1)
+return 1;
+else
+return 0;
+}
+function getspecialch_count(password)
+{
+ 
+
+var special = new  Array()
+
+ var l=0;
+for(var x = 0,length = password.length; x < length; x++)
+ {
+    var s = password.charAt(x);
+    var flag=0;
+    if (isSpclChar(s) )
+    {
+
+    for(var j=0;j<special.length;j++)
+    {
+   
+    if(s==special[j])
+    {
+    flag=1;
+   
+   
+    }
+   
+   
+    }
+    if(flag==0)
+    {
+   
+    special[l]=s;l++;
+    }
+   
+   
+}
+
+
+}
+var v=special.length;
+
+return v;
+}
+
+function isSpclChar(s){
+var iChars = "!@#$%^&*()+=-[]\\\';,./{}|\":<>?";
+                for (var i = 0; i < s.length; i++) {
+                                if (iChars.indexOf(s.charAt(i)) != -1) {
+                              
+                                return true;
+                }
+                else
+                return false;
+                                }
+}
+
+
+
+
+function isInteger(val)
+                {
+                   // alert(val.value);
+                  if(val==null)
+                    {
+                    //alert(val);
+                    return false;
+                    }
+                if (val.length==0)
+                    {
+                   // alert(val);
+                    return false;
+                    }
+                 if (trim(val).length == 0)
+                     {
+                     return false;
+                     }
+                for (var i = 0; i < val.length; i++)
+                    {
+                    var ch = val.charAt(i)
+                    if (i == 0 && ch == "-")
+                        {
+                        continue
+                        }
+                    if (ch < "0" || ch > "9")
+                        {
+                        return false
+                        }
+                    }
+                return true;
+            }
+            
+function checkfn()
+{
+var s=0;var check=-1;
+var username=document.getElementById("username").value;
+if(username=="")
+{
+	  alert("Username can't be left blank.");
+      document.getElementById("username").focus();
+      return false;
+}
+var illegalChars = /\W/;
+  // allow only letters, numbers, and underscores
+  s=username.indexOf('.');
+if(s<0)
+
+	 {
+     if (illegalChars.test(username))
+     {
+      alert("The username contains invalid characters.Please choose another username");
+      document.getElementById("username").focus();
+       return false;
+      }
+    }
+    
+   else if(!isNaN(username))
+   {
+   var t=username.charAt(0);
+   alert("The username contains invalid characters.Please choose another username");
+      document.getElementById("username").focus();
+  return  false;
+   }
+  else 
+   {
+   var t=username.charAt(0);
+   if(!isNaN(t))
+   {
+  
+      alert("The username contains invalid characters.Please choose another username");
+      document.getElementById("username").focus();
+      return  false;
+     }
+   }
+   
+s=username.indexOf('@');
+if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+    s=username.indexOf('#');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+  s=username.indexOf('!');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+       s=username.indexOf('$');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('%');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+     s=username.indexOf('^');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('&');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+     s=username.indexOf('*');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('(');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+    s=username.indexOf(')');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+       s=username.indexOf('-');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('+');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('/');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=username.indexOf('=');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+       s=username.indexOf(' ');
+      if(s>0)
+
+	 {
+	  check=0;
+      } 
+      
+       s=username.indexOf('?');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      
+      if(check==0)
+      {
+      alert("Username contain invalid cahracter.");
+      document.getElementById("username").focus();
+      return false;
+      }
+      
+      else
+      {
+      var min_usernamelength="{$min_usernamelength}";
+      if(username.length<min_usernamelength)
+      {
+      alert("Minimum "+min_usernamelength+" characters required for the username");
+      document.getElementById("username").focus();
+      return false;
+      }
+      else if(username.length>32)
+      {
+      alert("Username can't be exceed 32 characters.");
+      document.getElementById("username").focus();
+      return false;
+      }
+      
+      return true;
+      
+      }
+      
+}
+</script>
+
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/userheader}</td>
+
+  </tr>
+  </table>
+  <br />
+  <font class="page_title"><center>Add New User</center></font><br />
+  <table  cellpadding="0" cellspacing="0" align="center" class="adduser_table"> 
+
+ 
+
+      <tr>
+
+        <td height="25" align="center" colspan="3" ><span id="subheading">Please fill in the following fields to add a new user.</span></td>
+
+      </tr>
+
+      <tr>
+
+        <th height="14" colspan="3" >&nbsp;</th>
+
+      </tr>
+<tr>
+<td align="center" colspan="3" style="color:#FF0000"></td></tr>
+     <tr>
+
+	<td  colspan="3" align="center">
+
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+{formstart:addnewuser:{url:(user/addnewuser)}:post}
+<br />
+ <tr>
+
+				   <td width="20%">&nbsp;</td>
+<input type="hidden" name="pwdcnt" id="pwdcnt" value="">
+					<td width="16%" align="left">User Name </td>
+
+					
+
+					<td width="53%"  colspan="2"><input name="username" type="text" id="username" > {cfn:getextension()} <strong><span class="mandatory">*</span></strong></td>
+
+				  </tr>
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+
+				  <tr>
+
+				    <td>&nbsp;</td>
+
+					<td align="left">Password </td>
+
+				   
+
+					<td  colspan="2"><input name="password" type="password" id="password"  onkeyup="passwordStrength(this.value)" > <strong><span class="mandatory">*</span></strong></td>
+
+				  </tr>
+				  
+				   <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+				  
+				<tr>
+				 <td>&nbsp;</td>
+
+					<td align="left">&nbsp;</td>
+					<td colspan="2"><label for="passwordStrength" class="passwordstrength_details">Password strength </label>
+					<div id="passwordDescription" class="passwordstrength_details">Password not entered </div><div id="passwordStrength" class="strength0"></div>
+					</td>
+					</tr>
+					
+					<tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+					
+					 <tr>
+
+				    <td>&nbsp;</td>
+
+					<td align="left">Confirm Password </td>
+
+				   
+
+					<td  colspan="2"><input name="cpassword" type="password" id="cpassword"> <strong><span class="mandatory">*</span></strong></td>
+
+				  </tr>
+				  
+				  
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+
+				  <tr>
+
+					 <td>&nbsp;</td>
+
+					<td align="left">First Name</td>
+
+					
+
+					<td  colspan="2"><input name="firstname" type="text" id="firstname"> <span class="mandatory">*</span></td>
+
+				  </tr>
+				  
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+					
+				  <tr>
+
+					 <td>&nbsp;</td>
+
+					<td align="left">Last Name</td>
+
+					
+
+					<td  colspan="2"><input name="lastname" type="text" id="lastname"> <span class="mandatory">*</span></td>
+
+				  </tr>
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+					
+					 <tr>
+
+					 <td>&nbsp;</td>
+
+					<td align="left">Time Zone</td>
+
+					
+
+					<td colspan="2">
+						<select name="time_zone">
+							<option value="">Select the time zone</option>
+								{loopstart:timezone:10000}
+								 <option value="{$timezone[0]}">&nbsp;(GMT&nbsp;{$timezone[2]})&nbsp;{$timezone[1]}</option>
+								{loopend:timezone}
+		  				</select>&nbsp;<strong><span class="mandatory">*</span></strong>
+		  			</td>
+
+				  </tr>
+					 <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+					
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td>&nbsp;</td>
+
+					<td colspan="2"> <input type="submit" name="submit" value="Submit" class="buttonstyle" onclick="return checkfn()">
+{formend:addnewuser}
+
+{validate:addnewuser:isNotNull("username","Username can't be left blank")}
+{validate:addnewuser:isNotShort("loginname",{$min_usernamelength},"Minimum "+{$min_usernamelength}+" required for the username")}
+{validate:addnewuser:isNotNull("password","Password can't be left blank")}
+{validate:addnewuser:isNotNull("cpassword","Confirm password can't be left blank")}
+{validate:addnewuser:isSame(password,cpassword,"Password mismatch")}
+{validate:addnewuser:isNotNull("firstname","First name can't be left blank")}
+{validate:addnewuser:isNotNull("lastname","Last name can't be left blank")}
+{validate:addnewuser:isNotNull("time_zone","Please select the time zone")}
+</td>
+
+  </tr>
+
+  </table>
+
+  </td>
+
+  </tr>
+
+  <tr>
+
+    <td colspan="3">&nbsp;</td>
+
+    </tr>
+
+</table>
+
+<br><br><br>
+
+{showpage:include/footer}

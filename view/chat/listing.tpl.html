@@ -1,0 +1,449 @@
+<script type="text/javascript" src="js/jquery-1.3.2.min.js.php"></script>
+
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<style type="text/css">
+
+.left { float:left;}
+.right { float:right;}
+.topmain-Menu { width:100%;}
+.iconsCornner { background:url(images/usedIcons.png) no-repeat 0 0;}
+.chat-p		  { background-position:-4px -129px;  width:14px; height:14px;}
+.chat-m		  { background-position:-33px -129px;  width:14px; height:14px;}
+.chat-a		  { background-position:-29px -11px;  width:9px; height:10px;margin-right:3px;}
+.chat-b		  { background-position:-49px -11px;  width:9px; height:10px;margin-right:3px;}
+.chat-i		  { background-position:-9px -11px;  width:9px; height:10px;margin-right:3px;}
+.chat-o		  { background-position:-69px -11px;  width:9px; height:10px;margin-right:3px;}
+
+ </style>
+<script type="text/javascript">
+var img2 = document.createElement('IMG');
+        img2.src = "images/usedIcons.png"; 
+			var img3 = document.createElement('IMG');
+        img3.src = "images/filler.gif"; 
+
+function connectionlost()
+{
+ document.getElementById("netconnection").style.display="";
+  
+}
+function chatclick(userid)
+{
+
+parent.chatclick(userid);
+}
+function adding(val1,id)
+{
+if(document.getElementById("invite_"+id))
+{
+		      if(document.getElementById("invite_"+id).style.display=="")
+    			{
+    			document.getElementById("invite_"+id).style.display="none";
+    			}
+}
+			  
+			  
+ parent.adding1(val1,id);
+
+}
+
+</script>
+
+<body>
+<div id="main" onMouseOut="closeOverDiv1()">
+<div class="connectionerror" style="display: none;" id="netconnection">{cfn:getmessage(393)}</div>
+<div id="submain1" onMouseOut="closeOverDiv1() " style="float:left;">
+<span style="font-size: 11px;font-family:Verdana, Arial, Helvetica, sans-serif;color:	#777777;padding-left: 35px;font-style: italic;">{cfn:getmessage(451)}...</span></div>
+
+</div>
+
+</body style="background-color:transparent;">
+<script type="text/javascript">
+function closeOverDiv(div_id)
+{
+	parent.closeOverDiv();
+}
+
+function closeOverDiv1()
+{
+	parent.closeOverDivnew();
+}
+
+setInterval("loadXMLDoc()",5000);
+
+//setTimeout("loadXMLDoc()",5000);
+function loadXMLDoc()
+{
+
+	var txt,x,i;
+	var self_list="";
+	var chat_list="";
+	var invite_list="";
+	var parse_list="";
+	
+	 
+	var currentTime = new Date();
+	var crttime = currentTime.getTime();
+	 var ajaxupdation=parent.parent.getajaxupdation();
+	 $.ajax({
+
+type: "GET",cache: false,
+url: "{url:(chat/newparser/)}"+ajaxupdation+"/"+crttime+"/"+{$self_userid},
+success: function(data) {
+	if(data.length!=0)
+		{
+	var retarr=parent.parent.returnuserarr();var recentretarrcount=0; var recentretvalcount=0; var newretarr="";var recentretarr=""; var newretval=""; var recentretval="";
+	    if(retarr!="")
+	    {
+	    newretarr=retarr.substring(0, retarr.length-1);
+	    recentretarr=newretarr.split(",");
+	    recentretarrcount=recentretarr.length;
+	    
+	    var retval=parent.parent.returnarr();
+	    if(retval!="")
+	    {
+		    newretval=retval.substring(0, retval.length-1);
+		    recentretval=newretval.split(",");
+		    recentretvalcount=recentretval.length;
+	    }
+	    }
+
+	    	var xmlDoc=data;
+	    	txt="";
+	   		x=xmlDoc.getElementsByTagName("type");
+	   		var f=0;
+	    	for (i=0;i<x.length;i++)
+	      	{
+			
+			        var userid1=xmlDoc.getElementsByTagName("id");
+					if(userid1[i].childNodes[0])
+	      			var userid=userid1[i].childNodes[0].nodeValue;
+					else
+					var userid="";
+					
+					var uname1=xmlDoc.getElementsByTagName("uname");
+					if(uname1[i].childNodes[0])
+	      			var uname=uname1[i].childNodes[0].nodeValue;
+					else
+					var uname="";
+					
+					var fname1=xmlDoc.getElementsByTagName("fname");
+					if(fname1[i].childNodes[0])	
+		           	var fname=fname1[i].childNodes[0].nodeValue;
+					else 
+					var fname="";
+		           	var title=fname;
+					
+					var logoutstatus1=xmlDoc.getElementsByTagName("logoutstatus");
+					if(logoutstatus1[i].childNodes[0])
+	      			var logoutstatus=logoutstatus1[i].childNodes[0].nodeValue;
+					else
+					var logoutstatus="";
+					
+					var idle1=xmlDoc.getElementsByTagName("idle");
+					if(idle1[i].childNodes[0])
+	      			var idle=idle1[i].childNodes[0].nodeValue;
+					else
+					var idle="";
+					
+					var chatstatus1=xmlDoc.getElementsByTagName("chatstatus");
+					if(chatstatus1[i].childNodes[0])
+	      			var chatstatus=chatstatus1[i].childNodes[0].nodeValue;
+					else
+					var chatstatus="";
+					
+					
+					
+					var img1=xmlDoc.getElementsByTagName("image");
+					if(img1[i].childNodes[0])
+	      			var img=img1[i].childNodes[0].nodeValue;
+					else
+					var img="";
+					
+					
+		           	var cusmessage1=xmlDoc.getElementsByTagName("custommessage");
+		           	if(cusmessage1[i].childNodes[0])
+		           	var cusmessage=cusmessage1[i].childNodes[0].nodeValue;
+					else
+					var cusmessage="";
+					
+					var pp3=cusmessage.length;
+					
+					if(pp3>15)
+					var cusmessage2=cusmessage.substring(0,15);
+					else
+					var cusmessage2=cusmessage;
+					
+			
+					var p1=xmlDoc.getElementsByTagName("loopvariable");
+		           	if(p1[i].childNodes[0])
+	      	   		var p=p1[i].childNodes[0].nodeValue;
+					else
+					var p="";
+	      	   		
+	      			
+	      			var contactstatus1=xmlDoc.getElementsByTagName("contactstatus");
+		           	if(contactstatus1[i].childNodes[0])
+	      			var contactstatus=contactstatus1[i].childNodes[0].nodeValue;
+					else 
+					var contactstatus="";
+					
+	      			
+		           			var userimage1=xmlDoc.getElementsByTagName("userimage");
+		           	if(userimage1[i].childNodes[0])
+	      			var userimage=userimage1[i].childNodes[0].nodeValue;
+					else 
+					var userimage="";
+					
+					var fullname1=xmlDoc.getElementsByTagName("fullname");
+		           	if(fullname1[i].childNodes[0])
+	      			var fullname=fullname1[i].childNodes[0].nodeValue;
+					else 
+					var fullname="";
+					
+					var signout1=xmlDoc.getElementsByTagName("signout");
+		           	if(signout1[i].childNodes[0])
+	      			var signout=signout1[i].childNodes[0].nodeValue;
+					else 
+					var signout="";
+					
+					var stmsg1=xmlDoc.getElementsByTagName("stmsg");
+		           	if(stmsg1[i].childNodes[0])
+	      			var stmsg=stmsg1[i].childNodes[0].nodeValue;
+					else 
+					var stmsg="";
+					
+					
+					var ptring1=xmlDoc.getElementsByTagName("pstring");
+		           	if(ptring1[i].childNodes[0])
+		           	{
+	      			var ptring=ptring1[i].childNodes[0].nodeValue;}
+					else 
+					var ptring="";
+	      			
+		           	 if(x[i].childNodes[0].nodeValue=="invite")
+	      		{
+	      		f++;
+				var quote="{cfn:getmessage(374)}";var y="{cfn:getmessage(375)}";var n="{cfn:getmessage(376)}";
+				
+					chat_list+="<div id=\"invite_"+userid+"\" style=\"padding:2px 2px;font-family:Verdana, Arial, Helvetica, sans-serif;\"><div style=\"font-size: 3mm;float:left;\"><strong>"+uname+"</strong>&nbsp;"+quote+"</div><div style=\"float:left;\"><span><input type=\"button\" value=\""+y+"\" onclick=\"adding('1',"+userid+")\"></span><span><input type=\"button\" value=\""+n+"\" onclick=\"adding('2',"+userid+")\"></span></div></div><div style=\"clear:both;\"></div>";
+				 
+				}
+				
+					
+				if(x[i].childNodes[0].nodeValue=="self")
+	      		{
+				    self_userid=userid;
+					SetCookie("self_userid",self_userid,1);
+					self_img=img;
+					SetCookie("self_img",self_img,1);
+					self_cusmessage=cusmessage;
+					SetCookie("self_cusmessage",self_cusmessage,1);
+ 					self_title=title;
+					SetCookie("self_title",self_title,1);
+					self_uname=uname;
+					SetCookie("self_uname",self_uname,1);
+				    self_userimage=userimage;
+					SetCookie("self_userimage",self_userimage,1);
+					  self_signout=signout;
+					  self_chatstatus=chatstatus;
+					  self_logoutstatus=logoutstatus;
+					
+			 if( parent.document.getElementById("plus").style.display=="")
+	    	  {
+		           	 parent.document.getElementById("minimg").src="images/filler.gif";
+		           	 parent.document.getElementById("minimg").className=img;
+		         	 parent.document.getElementById("mintitle").innerHTML=title;
+	          }
+	          else
+	          {
+	         	  parent.document.getElementById('theimg').src="images/filler.gif";
+		          parent.document.getElementById("theimg").className=img;
+	         	  parent.document.getElementById('thetitle').innerHTML=title;
+	          }
+          
+            var ajaxupdation=parent.parent.getajaxupdation();
+            if(ajaxupdation==1)
+            parent.parent.abc();
+				}
+				
+				
+	     		if(x[i].childNodes[0].nodeValue=="list")
+	      		{
+	      			if(contactstatus==0)
+	      			{
+	      			
+	      				var msg="{cfn:getmessage(417)}";
+	     	      		chat_list+="<div id=\"userDiv_"+p+"\" onMouseOver=\"mouseOverDiv("+p+","+userid+",'"+img+"','"+title+"','"+cusmessage+"','"+uname+"','"+userimage+"',1,'"+fullname+"')\" onMouseOut=\"mouseoutDiv("+p+",1)\" style=\"padding:0px;\"><table class=\"listdiv\" id=\"listdiv\" ><tr><td>&nbsp;</td><td>"+uname+"</td><td><font style=\"font-size: 3mm;color:#585858\">"+msg+"</font></td></tr></table></div>";
+	   				}
+		        	else
+		           	{
+		           
+						chat_list+="<div id=\"userDiv_"+p+"\" onMouseOver=\"mouseOverDiv("+p+","+userid+",'"+img+"','"+title+"','"+cusmessage+"','"+uname+"','"+userimage+"',1,'"+fullname+"')\" onMouseOut=\"mouseoutDiv("+p+")\" style=\"padding:0px;\"><table class=\"listdiv\" id=\"listdiv\" ><tr><td><img src=\"images/filler.gif\" class=\""+img+"\" border=\"0\"  alt=\" \"></td><td><font style=\"font-size: 3mm;\"><a href=\"javascript:chatclick("+userid+");\" class=\"overdivref\">"+title+"</a></font></td></tr>";
+		            	
+		            	if(recentretarrcount!=0)
+		            	{//alert(recentretval);alert(recentretarr);alert(userid);
+		            		for(var j=0;j<recentretarrcount;j++)
+		            			{
+		            				if(userid==recentretarr[j])
+		            				{
+		               				parent.parent.setstatus(recentretval[j],img,title,signout,chatstatus,logoutstatus,self_signout,self_chatstatus,self_logoutstatus,stmsg);
+		            				
+		            				}
+		            		}
+		            	}
+		            	
+		            	if(cusmessage!="")
+		            		chat_list+="<tr><td></td><td><span class=\"custom_status\"><font style=\"font-size: 3mm;\">"+cusmessage2+"</font></span></td></tr>";
+		            		
+		            		chat_list+="</table></div>";
+		            }
+		           
+	      }
+		   
+				
+			 if(x[i].childNodes[0].nodeValue=="pstr")
+	      		{
+	      		if(ptring!="")
+	      		{
+				ptring=decode64(ptring);
+	      		parent.setparsestring(ptring);}
+	      		
+	      		}	
+			 
+	       }
+	     document.getElementById("submain1").innerHTML=chat_list;
+	 
+	    
+		}
+	    
+	    }
+  });
+}
+var keyStr = "ABCDEFGHIJKLMNOP" +
+                "QRSTUVWXYZabcdef" +
+                "ghijklmnopqrstuv" +
+                "wxyz0123456789+/" +
+                "=";
+                
+   function decode64(input) {
+      var output = "";
+      var chr1, chr2, chr3 = "";
+      var enc1, enc2, enc3, enc4 = "";
+      var i = 0;
+
+      // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
+      var base64test = /[^A-Za-z0-9\+\/\=]/g;
+      if (base64test.exec(input)) {
+         alert("There were invalid base64 characters in the input text.");
+      }
+      input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+
+      do {
+         enc1 = keyStr.indexOf(input.charAt(i++));
+         enc2 = keyStr.indexOf(input.charAt(i++));
+         enc3 = keyStr.indexOf(input.charAt(i++));
+         enc4 = keyStr.indexOf(input.charAt(i++));
+
+         chr1 = (enc1 << 2) | (enc2 >> 4);
+         chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+         chr3 = ((enc3 & 3) << 6) | enc4;
+
+         output = output + String.fromCharCode(chr1);
+
+         if (enc3 != 64) {
+            output = output + String.fromCharCode(chr2);
+         }
+         if (enc4 != 64) {
+            output = output + String.fromCharCode(chr3);
+         }
+
+         chr1 = chr2 = chr3 = "";
+         enc1 = enc2 = enc3 = enc4 = "";
+
+      } while (i < input.length);
+
+      return output;
+   }
+
+function mouseOverDiv(p,userid,img,title,cusmessage,uname,userimage,flag,fullname)
+{
+var pp2=fullname.length;
+ if(pp2>20)
+ var title1=fullname.substring(0,20)+"...";
+ else
+ var title1=fullname;
+ 
+var ext="{cfn:getextension()}";
+var str="<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\"><tr><td style=\"vertical-align:top;height:80px;\"><font style=\"padding-left:3px;\"><img src=\"images/filler.gif\" class=\""+img+"\" border=\"0\"  alt=\" \"></font><font style=\"color:#045FB4;padding-left:5px;font-size: 3.5mm;\">"+title1+"</font><div style=\"clear:both;\"></div>";
+			if(cusmessage!="")
+			{
+			str+="<font style=\"font-size: 3.5mm;color:#A4A4A4;padding-left:20px;padding-top:5px;display:block;overflow:hidden;\">"+cusmessage+"</font><div style=\"clear:both;\"></div><font style=\"font-size: 3mm;color:#A4A4A4;padding-left:20px;\">"+uname+ext+"</font></td><td style=\"padding:5px;width:62px;\"><img src=\""+userimage+"\" style=\"width:60px;height:60px;\" border=\"0\"></td></tr>";
+			}
+			else
+			{
+			str+="<font style=\"font-size: 3mm;color:#A4A4A4;padding-left:20px;\">"+uname+ext+"</font></td><td  style=\"padding:5px;float:right;width:62px;\"><img src=\""+userimage+"\" style=\"width:60px;height:60px;\" border=\"0\"></td></tr>";
+   			}
+			str+="<tr class=\"overdivbg\"><td colspan=2>&nbsp;</td></tr></table>";
+			
+			
+	parent.document.getElementById("overdiv").style.display="";
+	if(flag==0)
+	var varHeight="0px";
+	else 
+	var varHeight=p*25+"px";
+	
+	parent.document.getElementById("overdiv").style.marginTop=varHeight;//alert(detail);
+	parent.document.getElementById("overdiv").innerHTML=str;
+}
+
+function mouseoutDiv(p)
+{
+parent.document.getElementById("overdiv").style.display="none";
+}
+
+var self_userid="{$self_userid}";
+SetCookie("self_userid",self_userid,1);
+var self_img="{$self_img}";
+SetCookie("self_img",self_img,1);
+var self_cusmessage="{$self_cusmessage}";
+SetCookie("self_cusmessage",self_cusmessage,1);
+var self_title="{$self_title}";
+SetCookie("self_title",self_title,1);
+var self_uname="{$self_uname}";
+SetCookie("self_uname",self_uname,1);
+var self_userimage="{$self_userimage}";
+SetCookie("self_userimage",self_userimage,1);
+var self_userfullname="{$self_userfullname}";
+SetCookie("self_userfullname",self_userfullname,1);
+
+function divopen_self()
+{
+mouseOverDiv(0,self_userid,self_img,self_title,self_cusmessage,self_uname,self_userimage,0,self_userfullname);
+}
+function SetCookie(nameC,value,days)
+ {
+ if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = nameC+"="+value+expires+"; path=/";
+
+}
+function getCookievalue(c_name1)
+{
+if (document.cookie.length>0)
+  {
+  c_start1=document.cookie.indexOf(c_name1 + "=");
+  if (c_start1!=-1)
+    {
+    c_start1=c_start1 + c_name1.length+1;
+    c_end1=document.cookie.indexOf(";",c_start1);
+    if (c_end1==-1) c_end1=document.cookie.length;
+    return unescape(document.cookie.substring(c_start1,c_end1));
+    }
+  }
+return "";
+}
+</script>

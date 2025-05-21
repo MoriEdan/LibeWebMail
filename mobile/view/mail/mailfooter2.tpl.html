@@ -1,0 +1,74 @@
+<ul id="leftMenu">
+{if($whichpage=='d' && $fid!=2)}
+{cfn:getreaddetails($fid,$page)}
+{endif}
+{if($whichpage=='r')}
+<li><a href="{url:(mail/replylink/newmail)}/{$fid}/{$page}/{$whichpage}/{$crntfold}/{$crntid}"><span class="abc">{cfn:getmessage(470)}</span></a></li>
+{else}
+<li><a href="{url:(mail/replylink/newmail)}/{$fid}/{$page}/{$whichpage}"><span class="abc">{cfn:getmessage(470)}</span></a></li>
+{endif}
+<li id="leftmenu_inbox"><a href="{url:(mime/getmail)}"><span class="abc">{cfn:getmessage(19)}{cfn:getunreadcount($uid,1)}</span></a></li>
+<li id="leftmenu_starred"><a href="{url:(mail/mailbox/6)}"><span class="abc">{cfn:getmessage(205)}</span></a></li>
+<li id="leftmenu_draft"><a href="{url:(mail/mailbox/2)}" ><span class="abc">{cfn:getmessage(20)}{cfn:getunreadcount($uid,2)}</span></a></li>
+<li id="leftmenu_sent"><a href="{url:(mail/mailbox/3)}" ><span class="abc">{cfn:getmessage(21)}</span></a></li>
+<li id="leftmenu_spam"><a href="{url:(mail/mailbox/4)}" ><span class="abc">{cfn:getmessage(12)}{cfn:getunreadcount($uid,4)}</span></a></li>
+<li id="leftmenu_trash"><a href="{url:(mail/mailbox/5)}"><span class="abc">{cfn:getmessage(22)}</span></a></li> 
+{loopstart:customfolders:1000} 
+<li id="customFLI{$customfolders[0]}" ><div style="clear:both"></div>
+<div id="{$customfolders[0]}" style="width:100%;"><a href="{url:(mail/mailbox/)}{$customfolders[0]}" ><span id="custom{$customfolders[0]}_name">{$customfolders[1]}{cfn:getunreadcount($uid,$customfolders[0])}</span></a>
+</div></li> {loopend:customfolders} 
+
+<!-- <li id="leftmenu_trash"><a href="{url:(mail/contacts)}"><span class="abc">{cfn:getmessage(2)}</span></a></li>  -->
+<li>
+
+{if($whichpage=='m')}
+<a href="{url:(mail/mailbox/)}{$fid}/{$page}/0">
+{elseif($whichpage=='d')}
+<a href="{url:(mail/detailmail/)}{$fid}/{$page}/0">
+{elseif($whichpage=='r')}
+<a href="{url:(mail/replylink/)}{$fid}/{$page}/{$rlink}/-2">
+{elseif($whichpage=='c')}
+<a href="{url:(mail/replylink/newmail/)}{$fid}/{$page}/{$rlink}/-2">
+{elseif($whichpage=='t')}
+<a href="{url:(mail/replylink/tomail/)}{$fid}/{$page}/{$rlink}/{$crntfold}/{$crntid}/-2">
+{elseif($whichpage=='dw')}
+<a href="{url:(mail/getattachmentdetails/)}{$fid}/{$page}/0">
+{endif}
+<span class="abc upArrow">{cfn:getmessage(18)}</span></a></li> 
+
+
+{formstart:mailaction1:{url:(mail/mailbox/)}{$fid}/{$page}:post}
+
+<li>
+<div class="floatL">
+<span class="abc" style="padding-left: 3px;display: inline;width: 100%;">
+{if($whichpage=='m')}
+<input type="text" value="" name="search" style="height: 20px;width: 180px;font-size: 12px;font-weight: 500;line-height: 20px;"/>
+{else}
+<input type="text" value="" name="search" style="height: 12px;width: 180px;font-size: 12px;font-weight: 500;line-height: 12px;"/>
+{endif}
+</span>
+
+
+			<select name="folder" class="searchSelect"><option value="0">{cfn:getmessage(164)} </option>
+				<option value="1">{cfn:getmessage(19)}</option>
+			<option value="6">{cfn:getmessage(205)}</option>
+			<option value="4">{cfn:getmessage(12)}</option>
+			<option value="3">{cfn:getmessage(21)}</option>
+		  <option value="2">{cfn:getmessage(20)}</option>
+			 {loopstart:customfolders:1000}
+			<option value="{$customfolders[0]}" >{$customfolders[1]}</option>
+			{loopend:customfolders} 
+			</select>
+	</div>
+<div class="clear"></div>
+	</li>	
+	
+
+</ul><div class="floatL" style="margin-top:3px; width:100%">
+			<span class="commonBtn2"><input type="submit" name="delete" value="{cfn:getmessage(323)}"  class="nosendBtn"/></span>
+</div>
+{formend:mailaction1}
+<div class="clear"></div>
+
+<span style="font-weight:500;font-size: 12px;white-space:normal;color:#000000;width: 300px;"><a href="{url:(mail/contacts)}" style="text-decoration: none;color: #3399FF;">{cfn:getmessage(2)}</a>&nbsp;|&nbsp;<a href="{url:(index/logout)}" style="text-decoration: none;color: #3399FF;">{cfn:getmessage(602)}</a> | {noescape:$footer}</span>

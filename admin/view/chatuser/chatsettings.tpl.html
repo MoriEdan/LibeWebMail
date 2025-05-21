@@ -1,0 +1,257 @@
+
+ {showpage:include/header}
+
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+	<tr align="center">
+
+		<td>{showpage:include/settingsheader}</td>
+
+	</tr>
+	
+</table>
+
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+	<tr align="center">
+
+		<td>{showpage:include/chatsettingsheader}</td>
+
+	</tr>
+</table>
+ 
+  <font class="page_title"><center>Chat Settings</center></font>
+
+	<table class="settings_table" cellpadding="0" cellspacing="0" align="center" border="0">	
+	
+	
+	<tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+		    		<tr>
+						
+						<td align="center" colspan="4"><b>Manage Chat Settings </b></td>
+					</tr>
+					 <tr style="height: 2px;padding: 0px;margin: 0px;">
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+							<td style="height: 2px;padding: 0px;margin: 0px;">&nbsp;</td>
+					</tr>
+					
+					
+					
+					
+	
+	 <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+{formstart:chatsettings:{url:(chatuser/chatsettings)}:post}
+
+
+ <tr>
+
+				   <td width="20%">&nbsp;</td>
+<input type="hidden" name="pwdcnt" id="pwdcnt" value="">
+					<td width="26%" align="left">Chat</td>
+
+					
+
+					<td width="53%"  colspan="2"><input type="radio" name="chat_enable" value="1" {if($chat_enable==1)} checked="checked" {endif}><span class="boldTxt">Enable</span</td>
+
+				  </tr>
+
+				  <tr>
+
+				  <td width="20%">&nbsp;</td>
+	<td width="16%" align="left">&nbsp;</td>
+					
+<td width="53%"  colspan="2"><input type="radio" name="chat_enable" value="0" {if($chat_enable==0)} checked="checked" {endif}><span class="boldTxt">Disable</span></td>
+					</tr>
+
+  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+					
+
+
+ <tr>
+
+				   <td width="20%">&nbsp;</td>
+<input type="hidden" name="pwdcnt" id="pwdcnt" value="">
+					<td width="26%" align="left">Chat History </td>
+
+					
+
+					<td width="53%"  colspan="2"><input type="radio" name="chathistory" value="1" {if($chat_history==1)} checked="checked" {endif}><span class="boldTxt">Save chat history</span</td>
+
+				  </tr>
+
+				  <tr>
+
+				  <td width="20%">&nbsp;</td>
+	<td width="16%" align="left">&nbsp;</td>
+					
+<td width="53%"  colspan="2"><input type="radio" name="chathistory" value="0" {if($chat_history==0)} checked="checked" {endif}><span class="boldTxt">Never save chat history</span></td>
+					</tr>
+
+  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+					
+					
+				  <tr>
+
+				    <td>&nbsp;</td>
+
+					<td align="left">Sounds </td>
+
+				   
+
+					<td  colspan="2"><input type="radio" name="sounds" value="1" {if($sound==1)} checked="checked" {endif}><span class="boldTxt">Sounds on</span></td>
+
+				  </tr>
+				  
+				   <tr>
+
+				  <td width="20%">&nbsp;</td>
+	<td width="16%" align="left">&nbsp;</td>
+					
+<td width="53%"  colspan="2"><input type="radio" name="sounds" value="0" {if($sound==0)} checked="checked" {endif}><span class="boldTxt">Sounds off</span></td>
+					</tr>
+					
+					
+					 <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+					
+					
+				  <tr>
+
+				    <td>&nbsp;</td>
+
+					<td align="left">Smileys </td>
+
+				   
+
+					<td  colspan="2"><input type="radio" name="smileys" value="1" {if($smileys==1)} checked="checked" {endif}><span class="boldTxt">Smileys on</span></td>
+
+				  </tr>
+				  
+				   <tr>
+
+				  <td width="20%">&nbsp;</td>
+	<td width="16%" align="left">&nbsp;</td>
+					
+<td width="53%"  colspan="2"><input type="radio" name="smileys" value="0" {if($smileys==0)} checked="checked" {endif}><span class="boldTxt">Smileys off</span></td>
+					</tr>
+					
+					
+				  
+				   <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+				  
+			
+					
+					 <tr>
+
+				    <td>&nbsp;</td>
+
+					<td align="left">Message Alert </td>
+
+				   
+
+					<td  colspan="2"><input style="width:380px" name="alertsound" type="file" id="alertsound" maxlength="200">
+		<br><span class="notes1">(Valid Format : mp3)</span></td>
+
+				  </tr>
+				  
+				  
+				   
+				    <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+				  
+			
+					
+					 <tr>
+
+				    <td>&nbsp;</td>
+
+					<td align="left">Picture Formats </td>
+
+				   
+
+					<td  colspan="2"><input style="width:280px" name="pictureformats" type="text" id="pictureformats" maxlength="200" value="{$picture_format}"><span class="mandatory">*</span></td>
+
+				  </tr>
+				  
+				  
+
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+
+				
+					 <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+					
+				  <tr>
+
+				   <td>&nbsp;</td>
+
+					<td>&nbsp;</td>
+
+					<td colspan="2"> <input type="submit" name="submit" value="Submit" class="buttonstyle" onclick="return checkfn()">
+
+
+{validate:chatsettings:isNotNull("pictureformats","Picture Formats can't be left blank")}
+{formend:chatsettings}
+</td>
+
+  </tr>
+ <tr>
+
+				   <td>&nbsp;</td>
+
+					<td colspan="3">&nbsp;</td>
+
+					</tr>
+  </table>
+
+  
+<br><br><br>
+
+{showpage:include/footer}

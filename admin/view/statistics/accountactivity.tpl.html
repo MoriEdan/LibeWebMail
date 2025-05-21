@@ -1,0 +1,127 @@
+{showpage:include/header}
+<script type="text/javascript">
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#B4CDCD";
+else
+
+document.getElementById(id).style.background="";
+}
+
+
+
+function show()
+{
+if(document.getElementById("details").style.display=="")
+document.getElementById("details").style.display="none";
+else
+document.getElementById("details").style.display=""
+
+}
+
+function showresult()
+{
+//var flag=document.getElementById('timeperiod').value;
+var month=document.getElementById("month").value;
+var year=document.getElementById("year").value;
+window.location.href="{url:(statistics/accountactivity/)}"+1+"/"+month+"/"+year;
+
+
+}
+</script>
+<html><head></head>
+<body><br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/statisticsheader}</td>
+
+  </tr>
+
+  </table>	
+  
+  <br><br>
+<table cellpadding="0" cellspacing="0"  align="center" style="padding-left: 20px;padding-right:20px;padding-top: 0px;" width="98%" border="0">
+
+
+  <tr class="table_header">
+<td height="20" align="left">
+<span style="padding-left: 50px"><a href="{url:(statistics/accountactivity)}" >Today</a></span>
+<!--<span align="left" style="padding-left:10px">Time Period
+
+  <select id="timeperiod" name="timeperiod" onChange="display(0)">
+
+      <option value="" selected>All Time</option>
+
+        <option value="today" {if($time=="today")} selected {endif}>Today</option>
+
+        <option value="lastweek"{if($time=="lastweek")} selected {endif}>Last 7 days</option>
+        
+           </select></span>
+           <span align="right"><a href="#" onClick="show()">show</a></span>-->
+       <span  align="center" style="padding-left: 100px;float: right;">
+			<select name="month" id="month" >
+				<option value="" selected>Month</option>
+				{loopstart:month:100}
+				<option value="{$month[0]}" {if($month1==$month[0])} selected {endif}>{$month[1]}</option>
+				{loopend:month}
+			</select> 
+			
+			<select name="year" id="year" >
+				<option value="" selected>Year</option>
+				{loopstart:year:1000000}
+				<option value="{$year[0]}" {if($year1==$year[0])} selected {endif}>{$year[0]}</option>
+				{loopend:year}
+			</select>
+			<input type="button" onClick="showresult()" value="show">
+			</span>
+		
+    
+       
+        
+</td>
+</tr>
+
+</table>
+
+<table  width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:10px;" align="center">
+ {if($norslt==0)}
+   <tr><td colspan=4 align="center" class="info_div" >-No results found-</td></tr>
+    {else}
+<tr><td valign="top">
+   
+			<table cellpadding="0" cellspacing="0"  class="userview_table" border=0 >  
+					  <tr class="table_header_tr" align="left">  	 
+						  <td width="25%" class="table_header_td">User Name </td>
+						 <td width="25%">IP address</td>
+						  <td width="20%">Country</td>
+						  <td width="30%">Time </td>
+					  </tr>
+					  {if($count>0)}					
+					{loopstart:ip:100}
+					<tr {if($ip % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:ip})" id="{loop:ip}" onmouseout="dispfn(1,{loop:ip})">
+					<td class="detail_td">{$ip[1]}{cfn:getextension()}</td>
+						<td class="detail_td">{$ip[2]}</td> 
+						<td class="detail_td">{$ip[4]}</td> 
+						<td class="detail_td" style="border-right: 1px solid #B7B5B3">{fn:date("F d Y,h:i:s a ",$ip[3])}</td> 
+					  </tr>
+					{loopend:ip}
+
+          </table>
+	</td></tr>
+<tr> <td align="center">		
+		
+			{noescape:$pagingtop}
+ </td></tr>
+ {else}
+<tr><td colspan="4" align="center" class="info_div" >-No results found-</td></tr>
+ </table>
+ 
+{endif}
+{endif}
+ <br><br><br>
+ </body>
+ </html>
+{showpage:include/footer}

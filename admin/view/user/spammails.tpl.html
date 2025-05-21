@@ -1,0 +1,142 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+
+
+	
+	function checkfn(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='checked';
+	//string+=document.getElementById('check'+i).value+",";
+	}
+	
+	}
+	function uncheckfn(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='';
+	//string=string.replace(",document.getElementById('check'+i).value,",",");
+	}
+	//alert(string);
+	
+}
+function confirmation(count)
+{ 
+
+   var string='';var ct=0;
+   
+   for(var i=0;i<count;i++)
+	{
+	
+	if(document.getElementById('check'+i))
+	   {
+	       if(document.getElementById('check'+i).checked==true)
+	        {
+	           var tble=document.getElementById('tble'+i).value;
+	           string+=document.getElementById('check'+i).value+"::"+tble+",";
+	           ct++;
+	       }
+	  }
+	else
+	break;
+	}
+	
+		if(ct==0)
+	alert("Please select a spam mail.");
+	else 
+	{
+	  var answer = confirm("You are about to delete this mail. Press OK to continue.")
+		if(answer)
+		{
+	     window.location.href = "{url:(user/deletespammails/)}"+string;
+        }	
+    }
+}
+
+function viewfn(id)
+{
+window.location.href = "{url:(user/contacts/)}"+id;
+
+}
+
+function deletefn(count,tableid)
+{ 
+  var answer = confirm("You are about to delete this mail. Press OK to continue.")
+if(answer)
+{
+
+	 window.location.href = "{url:(user/deletespammails/)}"+count+"::"+tableid+",";
+}	
+}
+
+function dispfn(value,id)
+{
+if(value==0)
+document.getElementById(id).style.background="#E0EEEE";
+else
+
+document.getElementById(id).style.background="";
+}
+</script>
+
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/spamheader}</td>
+
+  </tr>
+
+  </table>	
+	<table cellpadding="0" cellspacing="0" class="userview_table">
+	
+	<tr><td align="center" class="page_title">Spam Mails<br>
+
+	
+			<table class="userview_table" cellpadding="0" cellspacing="0" >  
+			
+				<tr>
+				<td >
+				
+							{if($num==0)}
+		<tr><td align="center" >	<font class="info_title" style="color: red">-&nbsp;No Spam Mails&nbsp;-</font></td></tr>
+			{else}
+			{loopstart:spammails:1}
+			<table class="userview_table" cellpadding="0" cellspacing="0" >  
+					  <tr  class="table_header_tr">  	 
+						  <td lass="table_header_td" width="5%">&nbsp;</td>
+						  <td  width="30%">From</td>
+						 <td  width="30%">Subject </td>
+						  <td  width="20%">Time </td>
+						  <td  width="15%">Action </td>
+					  </tr>
+					  {loopend:spammails}
+					{loopstart:spammails:1000}
+				
+					<tr {if($spammails % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" class="detail_tr" onmouseover="dispfn(0,{loop:spammails})" id="{loop:spammails}" onmouseout="dispfn(1,{loop:spammails})">
+						<td class="detail_td"><input type="checkbox" name="check" id="check{loop:spammails}" value="{$spammails[0]}"/></td>
+						<td class="border_bottom">{if($spammails[2]!="")}{$spammails[2]}{else}&nbsp;{endif}&nbsp;&nbsp;</td>
+						<td class="border_bottom">{if($spammails[6]!="")}{$spammails[6]}{else}&nbsp;{endif} </td> 
+						<td class="border_bottom">{if($spammails[8]!="")}{fn:date("jS, F Y,g:i a",$spammails[8])}{else}&nbsp;{endif} </td> 
+						<td class="border_bottomright"><input type="hidden" id="tble{loop:spammails}" value="{$spammails[17]}"><a href="javascript:deletefn({$spammails[0]},{$spammails[17]})" class="action" title="Delete spam mail">Delete</a> </td> 
+					  </tr>
+					{loopend:spammails}
+			</table><br />
+			<tr><td class="left_td"><a href="#" class="action2" onclick="checkfn({$count});" title="Check all">Check All</a>&nbsp;|&nbsp;<a href="#" class="action2" onclick="uncheckfn({$count});" title="Uncheck all">Uncheck All</a></td></tr>
+			
+			<tr><td class="left_td"><a href="#" onclick="javascript:confirmation({$count})" title="Delete sapm mails"><img src="images/delete.gif" border="" /></a></td></tr>
+			<tr> <td align="center">{noescape:$pagingtop}</td></tr>
+			{endif}
+			
+				 </td>
+				</tr>
+		   </table>
+		  		<br /><br /><br />
+</td></tr></table>
+
+{showpage:include/footer}

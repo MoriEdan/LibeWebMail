@@ -1,0 +1,1605 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<title>{$servicename} - {cfn:getmessage(3)}</title>
+<link rel="stylesheet" type="text/css" href="js_cal/epoch_styles.css" />
+<script type="text/javascript" src="js_cal/epoch_classes.js"></script>
+<script type="text/javascript" src="js/jquery-1.3.2.min.js.php"></script>
+
+<script type="text/javascript">
+/*You can also place this code in a separate file and link to it like epoch_classes.js*/
+	var dp_cal1,dp_cal2,ms_cal;      
+
+</script>
+<script type='text/javascript' src='js_cal/_loader.js'></script>
+<script type='text/javascript'>
+var ebv,jsebv,overflag="{$overflag}",remainder_flag="{$remainder_flag}";var geteve="{url:(calendar/getevents)}";var posteve="{url:(calendar/addevents)}";var updateeve="{url:(calendar/updateevents)}";var update1="{url:(calendar/update)}";var deleteve="{url:(calendar/delete)}";
+	$(document).ready(function() {
+	
+	
+var date = new Date();
+var time001=date.getTime();
+		
+ms_cal = new Epoch('epoch_popup','popup',document.getElementById('sml_cal'),'',time001);
+	
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		var calendar = $('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title,desc',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			selectable: true, 
+			selectHelper: true,
+			select: function(start, end, allDay) {
+		
+			var a = new Date(start);
+			  var year1 = a.getFullYear();
+     var month1 = a.getMonth()+parseInt(1);
+     var date1 = a.getDate();
+     var time1= a.getTime();
+	 var str_date=date1+"/"+month1+"/"+year1;
+	 var a = new Date(end);
+			  var year1 = a.getFullYear();
+     var month1 = a.getMonth()+parseInt(1);
+     var date1 = a.getDate();
+     var time2= a.getTime();var dd="";
+    if((a.getHours()==0 || a.getHours()=="") && allDay==true)
+    {var now= new Date();var now1= new Date();dd=1;var time1= now.getTime();}
+    else
+    {var now= new Date(start);var now1= new Date(end);dd=2;var time2= now.getTime();}
+   var hr=now.getHours();var mn=now.getMinutes();var sec=now.getSeconds();
+   
+   var hr1=now1.getHours();var mn1=now1.getMinutes();var sec1=now1.getSeconds();
+  
+  
+   var m1="",m2="",h1="",h2="",format="",format1="";
+  
+   if(dd==1)
+   {
+  
+   if(mn<30)
+    {
+    
+	   h1=1+parseInt(hr);
+	   
+	    document.getElementById("fr1").value=hr+":30";document.getElementById("to1").value=h1+":30";
+	   if(h1>=12)
+	   {
+	    if(h1>=13)
+	   h1=parseInt(h1)-12;
+	   format="pm";}
+	   else
+	   format="am";
+	   
+	   if(hr>=12)
+	   {
+	   if(hr>=13)
+	   hr=parseInt(hr)-12;format1="pm";}
+	   else 
+	   format1="am";
+	    var newfr=parseInt(hr)+":30"+format1; var newto=parseInt(h1)+":30"+format;
+    }
+    
+    else
+    {
+	   h1=parseInt(1)+parseInt(hr);
+	   document.getElementById("fr1").value=parseInt(h1)+":00";
+	   if(h1>=12)
+	   {
+	   if(h1>=13)
+	   h1=parseInt(h1)-12;
+	   format="pm";}
+	   else
+	   format="am";
+	   
+	    h2=parseInt(2)+parseInt(hr);
+	    document.getElementById("to1").value=parseInt(h2)+":00";
+	   if(h2>=12)
+	   {
+	   if(h2>=13)
+	   h2=parseInt(h2)-12;format1="pm";}
+	   else
+	   format1="am";
+	   
+	    var newfr=h1+":00"+format; var newto=h2+":00"+format1;
+    
+    
+    }
+    
+    }
+    else if(dd==2)
+    {
+	    if(mn<30)
+	    {
+		    	document.getElementById("fr1").value=hr+":00";document.getElementById("to1").value=hr1+":30";
+		    
+		       if(hr>12)
+			   {hr=parseInt(hr)-12;format="pm";}
+			   else
+			   format="am";
+	   
+	      	   if(hr1>12)
+			   {hr1=parseInt(hr1)-12;format1="pm";}
+			   else 
+			   format1="am";
+	    	   var newfr=parseInt(hr)+":00"+format1; var newto=parseInt(hr1)+":30"+format;
+	    }
+	    else 
+	    {
+	     document.getElementById("fr1").value=hr+":30";document.getElementById("to1").value=hr1+":00";
+	     
+		   if(hr>12)
+		   {hr=parseInt(hr)-12;format="pm";}
+		   else
+		   format="am";
+		   
+		   if(hr1>12)
+		   {
+		   hr1=parseInt(hr1)-12;format1="pm";}
+		   else
+		   format1="am";
+		   
+		    var newfr=hr+":30"+format; var newto=hr1+":00"+format1;
+    
+    
+	    }
+    }
+ // alert(newfr);alert(newto);
+    document.getElementById('hr1').value=newfr;document.getElementById('hr2').value=newto;
+  
+	 var end_date=date1+"/"+month1+"/"+year1;
+				document.getElementById('ev').style.display="";
+			 dp_cal1  = new Epoch('epoch_popup','popup',document.getElementById('from'),'',time1);
+			 document.getElementById('from').value=str_date;
+			 document.getElementById('event_name').value="{cfn:getmessage(611)}";
+			 document.getElementById('description').value="{cfn:getmessage(609)}";
+if(remainder_flag==1)
+{
+			 document.getElementById("remchk").checked=true;
+			 document.getElementById("remval").readOnly=false;
+			 document.getElementById("remmod").disabled=false;
+			 document.getElementById("remspan").className="remopcremove";
+			 document.getElementById("remmod").options[0].selected="selected";
+}
+			 document.getElementById("tz").style.display="";
+			document.getElementById("tzonespan").style.display="none";
+			document.getElementById("tzclick").value=0;
+			document.getElementById("evnt_id").value="";
+			
+     dp_cal2  = new Epoch('epoch_popup','popup',document.getElementById('to'),'',time2); 
+	  document.getElementById('to').value=end_date;
+	  document.getElementById("flag").value=0;
+				
+			},
+			eventDrop: function(event, delta) {
+			ebv=event;jsebv=delta;
+				update(event, delta);
+			},
+			
+			eventResize: function(event, delta) {
+			ebv=event;jsebv=delta;
+				update(event, delta);
+			},
+			/*dayClick: function(event, delta) {alert("hi");
+			alert(event.start);
+				//update(event, delta);
+			},*/
+			
+			
+			eventMouseover: function (event, jsEvent, view) {  
+          
+           if(overflag==1)
+           {
+           var mousex = jsEvent.pageX;
+          var mousey = jsEvent.pageY;
+          var offset = $(this).offset();
+           ebv=event;jsebv=jsEvent;
+          viewevents(event, jsEvent, view,mousex,mousey);
+         }
+          
+   },
+   	
+eventClick: function(calEvent, jsEvent, view) {
+ ebv=calEvent;jsebv=jsEvent;
+edit(calEvent,jsEvent);
+}, 
+     dayClick: function(date, allDay, jsEvent, view) {
+},
+			editable: true,
+		
+			 events: geteve
+		});
+		var setflag="{$setflag}";
+		if(setflag==1)
+		{
+		var sety="{$sety}",setm="{$setm}",setd="{$setd}";
+		$('#calendar').fullCalendar('changeView', 'agendaDay')
+                .fullCalendar('gotoDate',sety,setm,setd);
+         }
+	});
+	function edit(event, delta)
+	{
+	viewevents_close();
+	
+	document.getElementById('delbtn').style.display="";
+	document.getElementById('ev').style.display="";
+	event=ebv;delta=jsebv;
+	
+	if(event.title=="{cfn:getmessage(618)}")
+	event.title="{cfn:getmessage(611)}";
+	if(event.desc=="")
+	event.desc="{cfn:getmessage(609)}";
+	var a = new Date(event.start);
+			  var year1 = a.getFullYear();
+     var month1 = a.getMonth()+parseInt(1);
+     var date1 = a.getDate();
+     var time1= a.getTime();
+	 var str_date=date1+"/"+month1+"/"+year1;
+	 var a = new Date(event.end);
+			  var year1 = a.getFullYear();
+     var month1 = a.getMonth()+parseInt(1);
+     var date1 = a.getDate();
+     var time2= a.getTime();
+	 var end_date=date1+"/"+month1+"/"+year1;
+
+			 dp_cal1  = new Epoch('epoch_popup','popup',document.getElementById('from'),'',time1);
+			 document.getElementById('from').value=str_date;
+     dp_cal2  = new Epoch('epoch_popup','popup',document.getElementById('to'),'',time2); 
+	  document.getElementById('to').value=end_date;
+	document.getElementById("event_name").value=event.title;
+	document.getElementById("description").value=event.desc;
+	document.getElementById("flag").value=1;
+	document.getElementById("evnt_id").value=event.id;
+	document.getElementById("hr1").value=event.st1;
+	document.getElementById("hr2").value=event.st2;
+	var f1=event.st1.split(":");
+	
+	var ch1=f1[1].substring(f1[1].length-2);
+	
+	f1[1]=f1[1].replace("am","");f1[1]=f1[1].replace("pm","");
+	var f2=event.st2.split(":");
+	
+	var ch2=f2[1].substring(f2[1].length-2);
+	f2[1]=f2[1].replace("am","");f2[1]=f2[1].replace("pm","");
+	
+	if(ch1=="pm")
+ {f1[0]=parseInt(f1[0])+12;if(f1[0]>=24)f1[0]=parseInt(f1[0])-24;}
+ 
+ if(ch2=="pm")
+ {f2[0]=parseInt(f2[0])+12;if(f2[0]>=24)f2[0]=parseInt(f2[0])-24;}
+
+	
+	if(f1[1]<30)
+	 document.getElementById("fr1").value=f1[0]+":00";
+	 else
+	 document.getElementById("fr1").value=f1[0]+":30";
+	 
+	 if(f2[1]<30)
+	 document.getElementById("to1").value=f2[0]+":00";
+	 else
+	 document.getElementById("to1").value=f2[0]+":30";
+	 
+	 		if(remainder_flag==1)
+			  {
+	 			if(event.remflag==1)
+	 			{
+				 document.getElementById("remchk").checked=true;
+				  document.getElementById("remval").readOnly=false;
+				  document.getElementById("remval").value=event.remtime;
+				  document.getElementById("remmod").disabled=false;
+				   document.getElementById("remspan").className="remopcremove";
+				   document.getElementById("remmod").options[event.remmod-1].selected="selected";
+				 }
+				 else
+				 {
+				 document.getElementById("remchk").checked=false;
+				  document.getElementById("remval").readOnly=true;
+				  document.getElementById("remmod").disabled=true;
+				   document.getElementById("remspan").className="remopc";
+				  document.getElementById("remval").value="";
+				 }
+				
+				}
+				
+				 document.getElementById("tz").style.display="none";
+				document.getElementById("tzonespan").style.display="";
+				document.getElementById("time_zone").options[event.zone].selected="selected";
+				document.getElementById("tzclick").value=1;
+	}
+	function edit_process(evnt_id)
+	{
+var from=document.getElementById("from").value;
+var to=document.getElementById("to").value;
+var title=document.getElementById("event_name").value;
+var desc=document.getElementById("description").value;
+
+var t1=new Array();
+t1=from.split("/");
+
+		var d1 = t1[0];
+		var m1 = t1[1];
+		var y1 = t1[2];
+		 
+var e1=document.getElementById("hr1").value;var tm1=e1;var ch1=e1.substring(e1.length-2);e1 = e1.replace("am","");e1 = e1.replace("pm","");
+var e2=document.getElementById("hr2").value;var tm2=e2;var ch2=e2.substring(e2.length-2);e2 = e2.replace("am","");e2 = e2.replace("pm","");
+
+e1=e1.split(":");e2=e2.split(":");
+var h1=e1[0];var n1=e1[1];var h2=e2[0];var n2=e2[1];
+
+		var t2=new Array();
+t2=to.split("/");
+
+		var d2 = t2[0];
+		var m2 = t2[1];
+			var y2 = t2[2];
+			
+			if(ch1=="pm")
+ {h1=parseInt(h1)+12;if(h1>=24)h1=parseInt(h1)-24;
+ if(h1==0)h1=12;}
+ 
+ if(ch2=="pm")
+ {h2=parseInt(h2)+12;if(h2>=24)h2=parseInt(h2)-24;
+ if(h2==0)h2=12;}
+   var starttime=y1+':'+m1+':'+d1+':'+h1+':'+n1+':00';
+   var endtime=y2+':'+m2+':'+d2+':'+h2+':'+n2+':00';
+var chkk1=m1+"/"+d1+"/"+y1+" "+h1+":"+n1+":00";  var chkk2=m2+"/"+d2+"/"+y2+" "+h2+":"+n2+":00";
+if((toTimestamp(chkk1)<toTimestamp(chkk2)) || (ch1!=ch2))
+{
+var remflag=0,remtime="",remmod="",tzoneflag=0,tzone="";
+if(remainder_flag==1)
+{
+	if(document.getElementById("remchk").checked==true)
+	{
+	remflag=1;remtime=document.getElementById("remval").value;remmod=document.getElementById("remmod").value;
+	}
+}
+tzoneflag=document.getElementById("tzclick").value;
+if(tzoneflag==1)
+{
+tzone=document.getElementById("time_zone").value;
+}
+else
+tzone="";
+
+var id=document.getElementById("evnt_id").value;
+ document.getElementById('ev').style.display="none";
+ 
+ var calEvent=ebv;
+var startField=y1+'-'+m1+'-'+d1+' '+h1+':'+n1+':00';
+var endField=y2+'-'+m2+'-'+d2+' '+h2+':'+n2+':00';
+  calEvent.id = evnt_id; id++; 
+   calEvent.start = startField;
+   calEvent.end = endField; 
+   calEvent.start1 = h1+":"+n1;
+   calEvent.end1 = h2+":"+n2; 
+   calEvent.st1 = tm1;
+   calEvent.st2 = tm2; 
+   if(title=="" || title=="{cfn:getmessage(611)}")
+ 	var title1="{cfn:getmessage(618)}";
+ 	else
+ 	var title1=title;
+   calEvent.title = title1; 
+  
+ var bgselected=document.getElementById("bgselected").value;
+ 
+ $('#calendar').fullCalendar('renderEvent', calEvent, true);
+   
+ $.ajax({
+
+type: "POST",cache: false,
+url: updateeve,
+data: "title="+title+"&start="+starttime+"&end="+endtime+"&desc="+desc+"&remflag="+remflag+"&remtime="+remtime+"&remmod="+remmod+"&tzoneflag="+tzoneflag+"&tzone="+tzone+"&id="+evnt_id+"&bgselected="+bgselected,
+
+success: function(data) {//alert(data);
+ var nAgt = navigator.userAgent;
+ if ((verOffset=nAgt.indexOf("Chrome"))==-1)
+$('#calendar').fullCalendar( 'refetchEvents' );
+var k1=new Array();
+k1=data.split(":::");
+
+   calEvent.zone = k1[0];
+    if(remainder_flag==1)
+	{
+	   calEvent.remflag =k1[1];
+	   calEvent.remtime = k1[2];
+	   calEvent.remmod = k1[3];
+    }
+   calEvent.dispdate = k1[4];
+   calEvent.backgroundColor = k1[5];
+   calEvent.borderColor = k1[5];
+document.getElementById("bgselected").value="";
+document.getElementById("upevt").innerHTML=k1[6];
+ }
+				
+     });
+}
+else
+alert("{cfn:getmessage(619)}");
+	}
+	function toTimestamp(strDate){
+ var datum = Date.parse(strDate);
+ return datum/1000;
+}
+
+	function update(event, delta)
+	{
+	
+var start=(Date.parse(event.start))/1000;
+var end=(Date.parse(event.end))/1000;
+var id=event.id;
+ $.ajax({
+
+type: "POST",cache: false,
+url: update1,
+data: "start="+start+"&end="+end+"&id="+id,
+success: function(data) {
+var k1=new Array();
+k1=data.split(":::");
+if(k1[0]!="")
+   event.dispdate = data;
+document.getElementById("upevt").innerHTML=k1[1];
+ }
+				
+     });
+
+	}
+function test()
+{
+
+if(document.getElementById('delbtn'))
+ document.getElementById('delbtn').style.display="none";
+var flag=document.getElementById("flag").value;
+if(flag==1)
+{
+evnt_id=document.getElementById("evnt_id").value;
+edit_process(evnt_id);
+}
+else
+{
+var from=document.getElementById("from").value;
+var to=document.getElementById("to").value;
+var e1=document.getElementById("hr1").value;var tm1=e1;var ch1=e1.substring(e1.length-2);e1 = e1.replace("am","");e1 = e1.replace("pm","");
+var e2=document.getElementById("hr2").value;var tm2=e2;var ch2=e2.substring(e2.length-2);e2 = e2.replace("am","");e2 = e2.replace("pm","");
+
+e1=e1.split(":");e2=e2.split(":");
+var h1=e1[0];var n1=e1[1];var h2=e2[0];var n2=e2[1];
+
+		
+		var t1=new Array();
+t1=from.split("/");
+
+		var d1 = t1[0];
+		var m1 = t1[1];
+		var y1 = t1[2];
+		var t2=new Array();
+t2=to.split("/");
+
+		var d2 = t2[0];
+		var m2 = t2[1];
+		var y2 = t2[2];
+	if(ch1=="pm")
+ {
+ h1=parseInt(h1)+12;if(h1>=24)h1=parseInt(h1)-24;
+ if(h1==0)h1=12;}
+	
+ 
+ if(ch2=="pm")
+ {
+ h2=parseInt(h2)+12;if(h2>=24)h2=parseInt(h2)-24;
+ if(h2==0)h2=12;}
+ 
+   var starttime=y1+':'+m1+':'+d1+':'+h1+':'+n1+':00';
+   var endtime=y2+':'+m2+':'+d2+':'+h2+':'+n2+':00';
+   
+
+  var start1=h1+":"+n1;var end1=h2+":"+n2;
+  var chkk1=m1+"/"+d1+"/"+y1+" "+h1+":"+n1+":00";  var chkk2=m2+"/"+d2+"/"+y2+" "+h2+":"+n2+":00";
+if(toTimestamp(chkk1)<toTimestamp(chkk2))
+{
+var title=document.getElementById("event_name").value;
+var desc=document.getElementById("description").value;
+
+var remflag=0,remtime="",remmod="",tzoneflag=0,tzone="";
+
+if(remainder_flag==1)
+	{
+		if(document.getElementById("remchk").checked==true)
+		{
+		remflag=1;remtime=document.getElementById("remval").value;remmod=document.getElementById("remmod").value;
+		}
+   }
+tzoneflag=document.getElementById("tzclick").value;
+if(tzoneflag==1)
+{
+tzone=document.getElementById("time_zone").value;
+}
+else
+tzone="";
+ if(title=="" || title=="{cfn:getmessage(611)}")
+ var title1="{cfn:getmessage(618)}";
+ else
+ var title1=title;
+ 
+  
+ document.getElementById('ev').style.display="none";
+ var bgselected=document.getElementById("bgselected").value;
+
+    $.ajax({
+
+type: "POST",cache: false,
+url: posteve,
+data: "title="+title+"&start="+starttime+"&end="+endtime+"&desc="+desc+"&remflag="+remflag+"&remtime="+remtime+"&remmod="+remmod+"&tzoneflag="+tzoneflag+"&tzone="+tzone+"&bgselected="+bgselected,
+success: function(data) { //alert(data);  // $('#calendar').fullCalendar('unselect');
+var k1=new Array();
+k1=data.split(":::");
+
+$('#calendar').fullCalendar('addEventSource', [{id:k1[4],title: title1 ,desc:desc,zone:k1[0],remflag:k1[1],remtime:k1[2],remmod:k1[3],dispdate:k1[5],start1:start1 ,end1:end1 ,st1:tm1 , st2:tm2 ,start: y1+'-'+m1+'-'+d1+' '+h1+':'+n1+':00',backgroundColor:k1[6],borderColor:k1[6],end: y2+'-'+m2+'-'+d2+' '+h2+':'+n2+':00',allDay:false}]);
+ document.getElementById("bgselected").value="";
+ document.getElementById("upevt").innerHTML=k1[7];
+ var nAgt = navigator.userAgent;
+ if ((verOffset=nAgt.indexOf("Chrome"))==-1)
+ $('#calendar').fullCalendar( 'refetchEvents' );
+ }
+				
+     });
+}
+else
+alert("{cfn:getmessage(619)}");
+}
+}
+
+function cancelfn()
+{
+document.getElementById("bgselected").value="";
+document.getElementById("ev").style.display="none";
+if(document.getElementById('delbtn'))
+ document.getElementById('delbtn').style.display="none";
+}
+
+function delfn()
+{
+evnt_id=document.getElementById("evnt_id").value;
+if(document.getElementById('ev'))
+ document.getElementById('ev').style.display="none";
+if(document.getElementById('delbtn'))
+ document.getElementById('delbtn').style.display="none";
+event_delete(evnt_id,'');
+
+//event_delete();
+}
+
+function displayfn1()
+{
+var searchvalue=document.getElementById("event_name").value;
+var ppt="{cfn:getmessage(611)}";
+if(searchvalue==""||searchvalue==ppt)
+document.getElementById("event_name").value=ppt;
+
+}
+function searchfn1()
+{
+
+var searchvalue=document.getElementById("event_name").value;
+var ppt="{cfn:getmessage(611)}";
+if(searchvalue=="" || searchvalue==ppt)
+{
+document.getElementById("event_name").value="";
+}
+}
+
+function displayfn2()
+{
+var searchvalue=document.getElementById("description").value;
+var ppt="{cfn:getmessage(609)}";
+if(searchvalue==""||searchvalue==ppt)
+document.getElementById("description").value=ppt;
+
+}
+function searchfn2()
+{
+
+var searchvalue=document.getElementById("description").value;
+var ppt="{cfn:getmessage(609)}";
+if(searchvalue=="" || searchvalue==ppt)
+{
+document.getElementById("description").value="";
+}
+
+}
+
+</script>
+<style type='text/css'>
+
+	body {
+		text-align: center;
+		font-size: 14px;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		margin:0px;
+		}
+
+	#calendar {
+		width: 68%;
+		margin: 0 auto;
+		float:left;
+		padding:0 20px
+		}
+		
+		#viewevents {
+		width: 900px;
+		margin: 0 auto;
+		}
+.w700 { width:440px !important}
+.addnotes_popup { width:409px; background:#fff; border:3px solid #ccc; margin:5% auto; padding:20px; overflow:hidden;height:335px;}
+.fc-view { position:relative;}
+.addnotes_popup-dark { position:absolute;  top:0; left:0; z-index:10000; width:100%; height:100%; background:url(images/dark.png) repeat 0 0}
+
+
+
+
+.textinput, .tpp-dp .textinput, .tpp .drs .text, .fatc-w .textinput {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+    border-style: solid;
+    border-width: 1px;text-align: left;
+}
+.ep-title, .ep-title input {
+    font-size: 12px;
+    font-weight: bold;
+}
+.ui-placeholder {
+    color: #888888;width: 400px;height: 20px;
+}
+input, textarea, select {
+    font-family: arial,sans-serif;
+}
+
+.ep-drs .text, .ep-title .textinput {
+    padding: 5px;
+	font-size:12px
+}
+
+.text.dr-date, .text.dr-time, .dr-sep {
+    margin-right: 4px; 
+    
+     -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+    border-style: solid;
+    border-width: 1px;color: #888888;
+}
+
+.ep-ea .libe-imageless-button, .ep-ea-bot .libe-imageless-button {
+    margin: 0 1px;
+}
+.action-btn-wrapper { text-align:center}
+.qnb-container .libe-imageless-button, .action-btn-wrapper .libe-imageless-button, #df-fdbk {
+    background: #1e77bc;
+    border: 1px solid transparent;
+    color: #FFFFFF;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+	margin:5px 0 0;
+}
+
+.libe-inline-block {
+    display: inline-block;
+    position: relative;
+}
+.libe-imageless-button, .navbuttonouter {
+    -moz-transition: all 0.218s ease 0s;
+    -moz-user-select: none;
+    background: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1) repeat scroll 0 0 #F5F5F5;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px 2px 2px 2px;
+    color: #444444;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    height: 27px;
+    line-height: 27px;
+    min-width: 54px;
+    outline: medium none;
+    padding: 0 8px;
+    text-align: center;
+}
+
+#calcontent.eui-t .ep-ea {
+    margin: 7px 0 0;
+    padding: 0 16px 7px;
+}
+
+.ep-ea {
+    -moz-transition: all 0.218s ease 0s;
+    border-bottom: 0px solid #EBEBEB;
+    margin: 39px 0 0;
+    padding: 0 16px 14px 0px;
+}
+
+.searchSelect { padding:0px; width:auto;   height:22px;background: #fff; border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+    border-style: solid;
+    border-width: 1px;color: #666;}
+.searchSelect option { border:none;}
+/*margin:12px 0 0 12px;border:1px solid #ccc;*/
+
+.rem
+{
+-moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+    border-style: solid;
+    border-width: 1px;
+    text-align: right;
+    width: 2em;margin: 0 4px 0 0;color: #888888;
+}
+
+.calListSquare {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DCDCDC;
+    border-radius: 1px 1px 1px 1px;
+    height: 11px;
+    margin-right: 4px;
+    top: 2px;
+    width: 11px;
+}
+
+.libe-inline-block {
+    display: inline-block;
+    position: relative;
+}
+
+.remopc
+{
+opacity:0.5;
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";filter: alpha(opacity=50);
+
+}
+.remopcremove
+{
+opacity:1;
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";filter: alpha(opacity=10);
+}
+
+.Link         { font-size:12px; margin: 0px 10px; padding-top:1px; padding-bottom:1px;}
+.Link a       { color:#0099FF; text-decoration:none;}
+.Link a:hover { text-decoration:underline; }
+
+.Link img     { padding:0px 5px; border:none; }
+.Link img     { padding:0px 5px; border:none; }
+
+.bubblemain {
+    padding: 0px 6px;
+    position: relative;
+}
+
+</style>
+
+<script type="text/javascript">
+function remclick()
+{
+
+if(remainder_flag==1)
+	{
+if(document.getElementById("remchk").checked==true)
+{
+document.getElementById("remspan").className="remopcremove";
+document.getElementById("remval").readOnly=false;
+document.getElementById("remmod").disabled=false;
+}
+else
+{
+document.getElementById("remspan").className="remopc";
+document.getElementById("remval").readOnly=true;
+document.getElementById("remmod").disabled=true;
+}
+}
+}
+
+function tzclick(val)
+{
+
+var tzclick=document.getElementById("tzclick").value;
+if(val==1)
+tzclick=1;
+if(tzclick==0)
+{
+document.getElementById("tz").style.display="none";
+document.getElementById("tzonespan").style.display="";
+document.getElementById("tzclick").value=1;
+}
+else
+{
+document.getElementById("tzclick").value=0;
+document.getElementById("tzonespan").style.display="none";
+document.getElementById("tz").style.display="";
+}
+}
+
+function hr1click()
+{
+document.getElementById("hr1").style.display="none";
+document.getElementById("fromsel").style.display="";
+var f1=document.getElementById("fr1").value;
+var h1=document.getElementById("hr1").value;
+
+if (h1.indexOf("am")!=-1) 
+var format="am";
+else if(h1.indexOf("pm")!=-1) 
+var format="pm";
+var indexval=getindexval(h1,format)-1;
+document.getElementById("fromsel").options[indexval].selected = true;
+}
+function hr2click()
+{
+document.getElementById("hr2").style.display="none";
+document.getElementById("tosel").style.display="";
+var t1=document.getElementById("to1").value;
+var h2=document.getElementById("hr2").value;
+if (h2.indexOf("am")!=-1) 
+var format="am";
+else if(h2.indexOf("pm")!=-1) 
+var format="pm";
+var indexval=getindexval(h2,format)-1;
+document.getElementById("tosel").options[indexval].selected = true;
+}
+function getindexval(val,format)
+{
+val=val.replace("am","");
+val=val.replace("pm","");
+var s=val.split(":");
+if(s[0]=="12")
+s[0]="00";
+if(s[0]==00 && s[1]==00 && format=="am")
+return 1;
+else if(s[0]==00 && s[1]==30 && format=="am")
+return 2;
+else if(s[0]==01 && s[1]==00 && format=="am")
+return 3;
+else if(s[0]==01 && s[1]==30 && format=="am")
+return 4;
+else if(s[0]==02 && s[1]==00 && format=="am")
+return 5;
+else if(s[0]==02 && s[1]==30 && format=="am")
+return 6;
+else if(s[0]==03 && s[1]==00 && format=="am")
+return 7;
+else if(s[0]==03 && s[1]==30 && format=="am")
+return 8;
+else if(s[0]==04 && s[1]==00 && format=="am")
+return 9;
+else if(s[0]==04 && s[1]==30 && format=="am")
+return 10;
+else if(s[0]==05 && s[1]==00 && format=="am")
+return 11;
+else if(s[0]==05 && s[1]==30 && format=="am")
+return 12;
+else if(s[0]==06 && s[1]==00 && format=="am")
+return 13;
+else if(s[0]==06 && s[1]==30 && format=="am")
+return 14;
+else if(s[0]==07 && s[1]==00 && format=="am")
+return 15;
+else if(s[0]==07 && s[1]==30 && format=="am")
+return 16;
+else if(s[0]==08 && s[1]==00 && format=="am")
+return 17;
+else if(s[0]==08 && s[1]==30 && format=="am")
+return 18;
+else if(s[0]==09 && s[1]==00 && format=="am")
+return 19;
+else if(s[0]==09 && s[1]==30 && format=="am")
+return 20;
+else if(s[0]==10 && s[1]==00 && format=="am")
+return 21;
+else if(s[0]==10 && s[1]==30 && format=="am")
+return 22;
+else if(s[0]==11 && s[1]==00 && format=="am")
+return 23;
+else if(s[0]==11 && s[1]==30 && format=="am")
+return 24;
+else if(s[0]==00 && s[1]==00 && format=="pm")
+return 25;
+else if(s[0]==00 && s[1]==30 && format=="pm")
+return 26;
+else if(s[0]==01 && s[1]==00 && format=="pm")
+return 27;
+else if(s[0]==01 && s[1]==30 && format=="pm")
+return 28;
+else if(s[0]==02 && s[1]==00 && format=="pm")
+return 29;
+else if(s[0]==02 && s[1]==30 && format=="pm")
+return 30;
+else if(s[0]==03 && s[1]==00 && format=="pm")
+return 31;
+else if(s[0]==03 && s[1]==30 && format=="pm")
+return 32;
+else if(s[0]==04 && s[1]==00 && format=="pm")
+return 33;
+else if(s[0]==04 && s[1]==30 && format=="pm")
+return 34;
+else if(s[0]==05 && s[1]==00 && format=="pm")
+return 35;
+else if(s[0]==05 && s[1]==30 && format=="pm")
+return 36;
+else if(s[0]==06 && s[1]==00 && format=="pm")
+return 37;
+else if(s[0]==06 && s[1]==30 && format=="pm")
+return 38;
+else if(s[0]==07 && s[1]==00 && format=="pm")
+return 39;
+else if(s[0]==07 && s[1]==30 && format=="pm")
+return 40;
+else if(s[0]==08 && s[1]==00 && format=="pm")
+return 41;
+else if(s[0]==08 && s[1]==30 && format=="pm")
+return 42;
+else if(s[0]==09 && s[1]==00 && format=="pm")
+return 43;
+else if(s[0]==09 && s[1]==30 && format=="pm")
+return 44;
+else if(s[0]==10 && s[1]==00 && format=="pm")
+return 45;
+else if(s[0]==10 && s[1]==30 && format=="pm")
+return 46;
+else if(s[0]==11 && s[1]==00 && format=="pm")
+return 47;
+else if(s[0]==11 && s[1]==30 && format=="pm")
+return 48;
+}
+function chnfn(val,type)
+{
+if(type==1)
+{
+var y=document.getElementById("fromsel").options;
+document.getElementById("hr1").style.display="";
+document.getElementById("hr1").value=y[val-1].text;
+document.getElementById("fromsel").style.display="none";
+}
+else if(type==2)
+{
+var y=document.getElementById("tosel").options;
+document.getElementById("hr2").style.display="";
+document.getElementById("hr2").value=y[val-1].text;
+document.getElementById("tosel").style.display="none";
+
+}	
+		
+}
+function viewevents_close()
+{
+	if(document.getElementById("view_events"))
+	{
+	if(document.getElementById("view_events").style.display=="")
+	document.getElementById("view_events").style.display="none";
+	}
+}
+function event_delete(id,event)
+{
+
+ $.ajax({
+
+type: "POST",cache: false,
+url: deleteve,
+data: "id="+id,
+success: function(data) {
+
+if(document.getElementById("view_events").style.display=="")
+document.getElementById("view_events").style.display="none";
+document.getElementById("upevt").innerHTML=data;
+//event.title="";
+$("#calendar").fullCalendar( 'removeEvents', id);
+ }
+
+				
+     });
+     
+     
+}
+function viewevents(event, jsEvent, view,mousex,mousey)
+{
+var title=event.title,daystr=event.dispdate,desc=event.desc;
+ebv=event;jsebv=jsEvent;
+//edit(event,jsEvent);
+var str="<div class=\"addnotes_popup-dark\"><div class=\"addnotes_popup_viewevents\">";
+
+ 		str+="<div class=\"bubblemain\">";
+			str+="<div class=\"closebtn_events\" title=\"{cfn:getmessage(450)}\" onclick=\"javascript:viewevents_close()\"></div>";
+			str+="<div class=\"bubblecontent\">";
+				
+					str+="<div class=\"eb-root\">";
+						str+="<div class=\"eb-header\">";
+							str+="<div class=\"eb-rb-default libe-inline-block\" style=\"background-color: #9A9CFF; border-color:#373AD7;\">";
+								str+="<div class=\"eb-dropdown-indicator\"></div>";
+							str+="</div>";
+							
+							str+="<div class=\"eb-title libe-inline-block\" style=\"color:#373AD7;\">";
+							str+="<div class=\"ui-sch\">";
+							str+="<div class=\"ui-sch-schmedit\" id=\"disp_title\">"+title+"</div>";
+							str+="</div>";
+							str+="</div>";
+							str+="<div class=\"eb-date\" id=\"disp_date\">"+daystr+"</div>";
+							if(desc.length>60)
+							desc=desc.substring(0,60)+"...";
+							str+="<div class=\"eb-date\" id=\"disp_desc\" style=\"height:20px;\">"+desc+"</div>";
+
+							str+="<div class=\"eb-footer\" >";
+							str+="<span class=\"eb-actions-right\">"; 	
+							str+="<span class=\"Link\"><a class=\"eb-action\" href=\"javascript:edit('"+event+"','"+jsEvent+"');\" style=\"font-size:14px;\" title=\"{cfn:getmessage(620)}\">{cfn:getmessage(620)}</a></span>";
+							str+="</span>"; 	
+							str+="<span class=\"eb-actions-left\">";
+							str+="<span class=\"Link\"><a class=\"eb-action-link lk\" href=\"javascript:event_delete('"+event.id+"','"+event+"');\" style=\"font-size:14px;\" title=\"{cfn:getmessage(14)}\">{cfn:getmessage(14)}</a></span>";
+							str+="</span>";
+							str+="</div>";
+
+
+						str+="</div>";
+
+
+					str+="</div>";
+
+
+
+			str+="</div>";
+str+="</div></div>";
+str+="</div>";
+document.getElementById("view_events").style.display="";
+document.getElementById("view_events").innerHTML=str;
+}
+</script>
+
+<style type="text/css">
+body { background:url(images/calendar-body-bg.png) repeat-y 0 0 #fff;}
+.closebtn_events {
+    background: url(images/close_button.gif) repeat scroll 0 -50px transparent;
+    cursor: pointer;
+   height: 10px;
+    position: absolute;
+    right: 3px;
+    top: 6px;
+    width: 11px;
+}
+.bubblecontent {
+    overflow: hidden;
+}
+.eb-date {
+    margin-bottom: 1em;
+    margin-top: 1em;color: #888888;
+}
+.eb-appt .eb-date {
+    margin-bottom: 0;
+}
+.eb-data-key {
+    font-weight: bold;
+    margin-right: 4px;
+}
+.eb-action-link {
+    white-space: nowrap;
+}
+table.eb-data {
+    border-spacing: 0;
+}
+.eb-data td, .eb-data th {
+    line-height: 1.5;
+    padding: 0;
+}
+.eb-data th {
+    padding-right: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+.eb-details-link {
+    font-weight: bold;
+}
+.eb-map-link {
+    padding-left: 5px;
+}
+.eb-footer {
+    border-top: 1px solid #DDDDDD;
+    margin-top: 0.5em;
+    padding-top: 1em;
+}
+.eb-action {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+.eb-actions-left {
+    white-space: nowrap;
+}
+.eb-actions-right {
+    float: right;
+    margin: 0 1px 5px;
+    white-space: nowrap;
+}
+.eb-actions-right {
+    margin-bottom: 0;
+}
+.eb-actions-main {
+    white-space: nowrap;
+}
+/*margin:10% auto;*/
+.addnotes_popup_viewevents { width:420px; background:#fff; border:3px solid #ccc; padding:20px; overflow:hidden;height:130px; margin:9% auto;}
+
+.calendarHeader{ width:100%; height:65px; background:url(images/calendar-mainheader-bg.png) repeat-x 0 0; float:left; border-bottom:1px solid #ced7ec; margin-bottom:10px;}
+.calendarHeader .left { float:left; margin:3px 0 0 0 }
+.calendarHeader .right { float:right; margin:11px 7px 0 0;}
+.calendarHeader .right a.hom-btn { background: url("images/calendar-home-bg.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 32px;
+    margin: 0 0 0 0px;
+    outline: medium none;
+    text-decoration: none;
+    width: 39px;}
+	.calendarHeader .right a.hom-btn:hover { background-position:0 -35px}
+	
+	
+
+	
+.calendarHeader .left a.logo { float:left}
+
+.calendarRight  { float:left; width:277px;}
+.calendarRight table.calendar { display:block !important; border:0px; border-collapse:separate; width:240px; position:relative; background:#f6f6f6;}
+.calendarRight table.calendar input { display:none;}
+.calendarRight table.calendar div.mainheading input {  background: none repeat scroll 0 0 #EEEEEE;  border: 1px solid #ccc; color: #777; display: block !important; float: left; font-size: 17px;  font-weight: bold;  height: 25px; margin-left: 19px; margin-right: 13px; width: 30px;}
+.calendarRight table.calendar div.mainheading select { display: block !important; float: left; height: 20px; margin: 2px;}
+.calendarRight table.calendar table.caldayheading td { border:0px}
+.calendarRight table.caldayheading,
+.calendarRight table.calcells { width:230px;}
+.calendarRight table.caldayheading td,
+.calendarRight table.calcells td { height: 26px; padding-top: 7px; text-align: center; border:1px solid #eff4fd;}
+.calendarRight table.calcells td.wkend,
+.calendarRight table.calcells td.wkday { background:#fff}
+.calendarRight table.calcells td.curdate { background:#ccc}
+.calendarHeader .right .calendra-username span,
+.calendarHeader .right .calendra-username { background:url(images/calendar-usernameBg.png) no-repeat 0 0; height:32px; line-height:32px; padding:0 5px; float:left; margin:0 0 0 5px;}
+.calendarHeader .right .calendra-username span { background-position:right -34px; padding:0 10px 0 0; color:#c8cee2}
+.calendarHeader .right a.logout-btn  { 
+
+background: url("images/calendar-logout-bg.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 32px;
+    margin: 0 0 0 0px;
+    outline: medium none;
+    text-decoration: none;
+    width: 39px;}
+.calendarHeader .right a.logout-btn:hover { background-position:0 -36px}
+.calendar-lft-box {  background: none repeat scroll 0 0 #F6F6F6; border: 1px solid #D5CFCF; margin: 0 0 10px 10px; padding:0; width: 247px; float:left}
+.left-cal-head { background: url("images/calendar-left-header-bg.png") repeat-x scroll 0 0 transparent; border: 1px solid #586181; height: 45px; margin: 0;}
+.left-cal-head.small { background:#656e89; border: 1px solid #586181; height: 36px; margin: 0;}
+.left-cal-head.small .left { margin:5px 0 0 8px}
+.left-cal-head.small .right { margin:5px 8px 0 0}
+.left-cal-head .left { float:left; margin:6px 0 0 8px}
+.left-cal-head .left b { color: #FFFFFF; float: left; margin: 6px 0 0; font-weight:normal}
+.left-cal-head .d { background:#23293d; height:33px; line-height:33px; color:#fff; font-size:23px; float:left; padding:0 6px;}
+.left-cal-head .m-y { float:left; background:url(images/cal-cur-date-arrwo.png) no-repeat left center #39415b; border:1px solid #23293d; height:31px;}
+.left-cal-head .m-y span { color:#c5c7cf; display:block; text-align:left; font-size:12px; padding:0 8px}
+.left-cal-head .right { background:url(images/cal-cur-date-min-max.png) no-repeat -20px 0; width:13px; height:26px; float:right; margin:7px 8px 0 0; cursor:pointer}
+.left-cal-head .right.highlight { background-position:0 0}
+.corl-col-wrap { float:left;}
+.left-cal { float:left; overflow:hidden}
+.corl-col-wrap { float:left; padding-bottom:5px;}
+.corl-col { width:22px; height:22px; border:1px solid #bdbdbd; float:left; margin:6px 0 5px 6px; cursor:pointer}
+.corl-sel-col { width:14px; height:14px; border:1px solid #bdbdbd; float:left; margin:6px 0 5px 6px; cursor:pointer}
+.todo-cal-cls .noevents-ad { color:#d82525; background:#fdf1f1; border:1px solid #eec3c3; padding:5px ; margin:5px;width: 225px;}
+.todo-cal-cls .d-t { background: none repeat scroll 0 0 #e1e4eb;
+    color: #0b2428;
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    margin: 5px 5px 0;
+    text-align: center;
+    width: 58px;
+	border:1px solid #c6cddd;
+	font-size:12px;
+	}
+.todo-cal-cls .dis{  background: none repeat scroll 0 0 #e1e4eb;
+    color: #0b2428;
+    float: left;
+    line-height: 20px;
+    margin: 5px 5px 4px 0;
+    padding: 1px 5px 4px;
+    text-align: left;
+    width: 159px;
+	font-size:12px;
+	border:1px solid #c6cddd
+	}
+.footer_txt{clear:both;color:#777;font-size:11px;height:auto;margin:0 auto 10px;padding-bottom:0;padding-top:10px;text-align:center;width:auto}
+</style>
+<script type="text/javascript">
+function loadfn()
+{
+var date = new Date();
+var time1=date.getTime();
+}
+$(document).ready(function () {
+ $(".left-cal-head .right").click(function () {
+      $(this).toggleClass("highlight");
+	  $(this).parent().siblings(".left-cal").slideToggle();
+    
+	});
+	
+	
+	
+$(".corl-sel-col").click(function () {
+var property = $(this).attr("style");
+var prop=property.split(";");
+var prop1=prop[0].split(":");
+document.getElementById("bgselected").value=prop1[1];
+
+    });
+	
+	
+$(".corl-col").click(function () {
+var property = $(this).attr("style");
+var prop=property.split(";");
+var prop1=prop[0].split(":");
+$(".fc-event-skin").css("background",prop1[1]);
+$(".fc-event-skin").css("border-color",prop1[1]);
+    });
+
+	
+
+});
+</script>
+</head>
+<body  id="body" >
+
+<div class="calendarHeader">
+
+<div class="left">
+<a href="{url:(mail/mailbox)}" class="logo"><img src="{$imgpath}" border="0"></a>
+</div>
+
+<div class="right">
+<input type="hidden" value="" name="bgselected" id="bgselected" />
+<span class="calendra-username"><span>{$username}</span></span>
+<a href="{url:(mail/mailbox)}" class="hom-btn">&nbsp;</a>
+{if($portal_status==0)}<a class="logout-btn" href="{url:(index/logout)}" target="_top" title="{cfn:getmessage(39)}">&nbsp;</a>{endif}
+</div>
+
+</div>
+<div class="clear"></div>
+<div class="calendarRight">
+	<div class="calendar-lft-box">
+	
+<div class="left-cal-head">
+<div class="left">
+<div class="d">{$today_date}</div>
+<div class="m-y">
+<span>{$today_month}</span>
+<span>{$today_year}</span>
+</div>
+</div>
+<div class="right"></div>
+</div>
+<div  class="left-cal" id="sml_cal"></div>
+	</div>
+	
+	<div class="calendar-lft-box">
+	
+<div class="left-cal-head small">
+<div class="left">
+	<b>{cfn:getmessage(652)}</b>
+</div>
+<div class="right"></div>
+</div>
+
+<div  class="left-cal todo-cal-cls" id="upevt">
+{if($no==0)}
+<div class="noevents-ad">{cfn:getmessage(654)}</div>
+{else}
+{loopstart:cal:1000000}
+	<div class="d-t">{fn:date("h:i A",$cal[0])}</div>
+	<div class="dis">{noescape:$cal[1]} </div>
+	{loopend:cal}
+	{endif}
+</div>
+	</div>
+	
+	<div class="calendar-lft-box">
+	
+<div class="left-cal-head small">
+<div class="left">
+	<b>{cfn:getmessage(653)}</b>
+</div>
+<div class="right"></div>
+</div>
+<div  class="left-cal">
+	<div class="corl-col-wrap">
+	<div class="corl-col" style="background-color:#e7e7e7;" ></div>
+	<div class="corl-col" style="background-color:#b6cff5;"></div>
+	<div class="corl-col" style="background-color:#98d7e4;"></div>
+	<div class="corl-col" style="background-color:#e3d7ff;"></div>
+	<div class="corl-col" style="background-color:#fbd3e0;"></div>
+	<div class="corl-col" style="background-color:#f2b2a8;"></div>
+	<div class="corl-col" style="background-color:#c2c2c2;"></div>
+	<div class="corl-col" style="background-color:#4986e7;"></div>
+	<div class="corl-col" style="background-color:#2da2bb;"></div>
+	<div class="corl-col" style="background-color:#b99aff;"></div>
+	<div class="corl-col" style="background-color:#f691b2;"></div>
+	<div class="corl-col" style="background-color:#fb4c2f;"></div>
+	<div class="corl-col" style="background-color:#ffc8af;"></div>
+	<div class="corl-col" style="background-color:#ffad46;"></div>
+	<div class="corl-col" style="background-color:#cca6ac;"></div>
+	<div class="corl-col" style="background-color:#42d692;"></div>
+	<div class="corl-col" style="background-color:#ffdeb5;"></div>
+	<div class="corl-col" style="background-color:#16a765;"></div>
+</div>
+</div>
+	</div>
+	
+	
+	
+	
+</div>
+<div class="clear"></div>
+<div id='calendar'></div>
+
+
+<div id="view_events" style="display:none ;text-align: left;" >
+
+</div>
+<div id="ev" style="display:none;" >
+
+<div class="addnotes_popup-dark" >
+ 	<div class="addnotes_popup">
+ 	
+ 	<div class="ui-sch ep-title">
+<input id="event_name" class="textinput ui-placeholder" type="text" name="event_name" title="{cfn:getmessage(611)}" value="{cfn:getmessage(611)}" onClick="javascript:searchfn1()" onBlur="javascript:displayfn1()">
+</div>
+<div>&nbsp;</div>
+<div class="ui-sch ep-title" style="border: 0px solid red;align:left;">
+
+<span class="ui-placeholder">{cfn:getmessage(54)}</span>
+<input name="from" id="from" class="text dr-date" title="{cfn:getmessage(605)}" size="22" autocomplete="off" value="">
+<select class="searchSelect" id="fromsel" style="display: none;" onchange="chnfn(this.value,1)">
+<option value="1">00:00am</option>
+<option value="2">00:30am</option>
+<option value="3">01:00am</option>
+<option value="4">01:30am</option>
+<option value="5">02:00am</option>
+<option value="6">02:30am</option>
+<option value="7">03:00am</option>
+<option value="8">03:30am</option>
+<option value="9">04:00am</option>
+<option value="10">04:30am</option>
+<option value="11">05:00am</option>
+<option value="12">05:30am</option>
+<option value="13">06:00am</option>
+<option value="14">06:30am</option>
+<option value="15">07:00am</option>
+<option value="16">07:30am</option>
+<option value="17">08:00am</option>
+<option value="18">08:30am</option>
+<option value="19">09:00am</option>
+<option value="20">09:30am</option>
+<option value="21">10:00am</option>
+<option value="22">10:30am</option>
+<option value="23">11:00am</option>
+<option value="24">11:30am</option>
+<option value="25">00:00pm</option>
+<option value="26">00:30pm</option>
+<option value="27">01:00pm</option>
+<option value="28">01:30pm</option>
+<option value="29">02:00pm</option>
+<option value="30">02:30pm</option>
+<option value="31">03:00pm</option>
+<option value="32">03:30pm</option>
+<option value="33">04:00pm</option>
+<option value="34">04:30pm</option>
+<option value="35">05:00pm</option>
+<option value="36">05:30pm</option>
+<option value="37">06:00pm</option>
+<option value="38">06:30pm</option>
+<option value="39">07:00pm</option>
+<option value="40">07:30pm</option>
+<option value="41">08:00pm</option>
+<option value="42">08:30pm</option>
+<option value="43">09:00pm</option>
+<option value="44">09:30pm</option>
+<option value="45">10:00pm</option>
+<option value="46">10:30pm</option>
+<option value="47">11:00pm</option>
+<option value="48">11:30pm</option>
+</select>
+<input name="hr1" id="hr1" class="text dr-time" title="{cfn:getmessage(606)}" size="7" tabindex="0" onclick="hr1click()">
+
+
+</div>
+
+<div>&nbsp;</div>
+
+<div class="ui-sch ep-title" style="border: 0px solid red;align:left;">
+
+<span class="ui-placeholder">{cfn:getmessage(31)}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<input name="to" id="to" class="text dr-date" title="{cfn:getmessage(607)}" size="22" autocomplete="off" value="">
+
+<select class="searchSelect" id="tosel" style="display: none;" onchange="chnfn(this.value,2)">
+<option value="1">00:00am</option>
+<option value="2">00:30am</option>
+<option value="3">01:00am</option>
+<option value="4">01:30am</option>
+<option value="5">02:00am</option>
+<option value="6">02:30am</option>
+<option value="7">03:00am</option>
+<option value="8">03:30am</option>
+<option value="9">04:00am</option>
+<option value="10">04:30am</option>
+<option value="11">05:00am</option>
+<option value="12">05:30am</option>
+<option value="13">06:00am</option>
+<option value="14">06:30am</option>
+<option value="15">07:00am</option>
+<option value="16">07:30am</option>
+<option value="17">08:00am</option>
+<option value="18">08:30am</option>
+<option value="19">09:00am</option>
+<option value="20">09:30am</option>
+<option value="21">10:00am</option>
+<option value="22">10:30am</option>
+<option value="23">11:00am</option>
+<option value="24">11:30am</option>
+<option value="25">00:00pm</option>
+<option value="26">00:30pm</option>
+<option value="27">01:00pm</option>
+<option value="28">01:30pm</option>
+<option value="29">02:00pm</option>
+<option value="30">02:30pm</option>
+<option value="31">03:00pm</option>
+<option value="32">03:30pm</option>
+<option value="33">04:00pm</option>
+<option value="34">04:30pm</option>
+<option value="35">05:00pm</option>
+<option value="36">05:30pm</option>
+<option value="37">06:00pm</option>
+<option value="38">06:30pm</option>
+<option value="39">07:00pm</option>
+<option value="40">07:30pm</option>
+<option value="41">08:00pm</option>
+<option value="42">08:30pm</option>
+<option value="43">09:00pm</option>
+<option value="44">09:30pm</option>
+<option value="45">10:00pm</option>
+<option value="46">10:30pm</option>
+<option value="47">11:00pm</option>
+<option value="48">11:30pm</option>
+</select>
+<input name="hr2" id="hr2" class="text dr-time" title="{cfn:getmessage(608)}" size="7" tabindex="0" onclick="hr2click()">
+
+
+</div>
+
+
+
+<div>&nbsp;</div>
+
+<div class="ui-sch ep-title" style="border: 0px solid red;align:left;">
+<div>
+<textarea id="description" class="textinput" name="description" style="overflow: hidden;width: 380px;color: #888888;font-weight: bold;" rows="3" aria-labelledby=":j.descript-label" onClick="javascript:searchfn2()" onBlur="javascript:displayfn2()">{cfn:getmessage(609)}</textarea>
+</div>
+</div>
+
+<div>&nbsp;</div>
+
+{if($remainder_flag==1)}
+	
+<div class="ui-sch ep-title" style="border: 0px solid red;align:left;float: left;">
+
+<!-- <div class="calListSquare libe-inline-block" style="background:;border-color:"></div> -->
+
+<input type="checkbox" id="remchk" name="remchk" style="width: 1em;height: 1em;" onclick="javascript:remclick()" checked="checked">
+<span class="remopcremove" id="remspan">
+<span class="ui-placeholder" style="font-size: 14px;">{cfn:getmessage(612)}</span>
+<input id="remval" name="remval"  class="rem" type="text" value="10" style="font-size: 14px;">
+<select class="searchSelect" id="remmod" name="remmod">
+<option value="1" selected="selected">{cfn:getmessage(613)}</option>
+<option value="2">{cfn:getmessage(614)}</option>
+<option value="3">{cfn:getmessage(615)}</option>
+<option value="4">{cfn:getmessage(616)}</option>
+</select>
+
+</span>
+</div>
+{endif}
+<div class="left" style="text-align:left;float: left;">
+<br><span class="ui-placeholder" style="text-align: left;float: left;font-size: 14px;font-weight: bold;">{cfn:getmessage(653)}</span>
+</div>
+<div class="corl-col-wrap">
+	<div class="corl-sel-col" style="background-color:#e7e7e7;" ></div>
+	<div class="corl-sel-col" style="background-color:#b6cff5;"></div>
+	<div class="corl-sel-col" style="background-color:#98d7e4;"></div>
+	<div class="corl-sel-col" style="background-color:#e3d7ff;"></div>
+	<div class="corl-sel-col" style="background-color:#fbd3e0;"></div>
+	<div class="corl-sel-col" style="background-color:#f2b2a8;"></div>
+	<div class="corl-sel-col" style="background-color:#c2c2c2;"></div>
+	<div class="corl-sel-col" style="background-color:#4986e7;"></div>
+	<div class="corl-sel-col" style="background-color:#2da2bb;"></div>
+	<div class="corl-sel-col" style="background-color:#b99aff;"></div>
+	<div class="corl-sel-col" style="background-color:#f691b2;"></div>
+	<div class="corl-sel-col" style="background-color:#fb4c2f;"></div>
+	<div class="corl-sel-col" style="background-color:#ffc8af;"></div>
+	<div class="corl-sel-col" style="background-color:#ffad46;"></div>
+	<div class="corl-sel-col" style="background-color:#cca6ac;"></div>
+	<div class="corl-sel-col" style="background-color:#42d692;"></div>
+	<div class="corl-sel-col" style="background-color:#ffdeb5;"></div>
+	<div class="corl-sel-col" style="background-color:#16a765;"></div>
+</div>
+<div class="ui-sch ep-title" style="border: 0px solid red;align:left;float: left;">
+
+<span class="ui-placeholder" style="font-size: 14px;" id="tz"><span class="Link"><a href="#" onclick="javascript:tzclick()" title="{cfn:getmessage(232)}">{cfn:getmessage(232)}</a></span></span>
+
+<span id="tzonespan"  style="display: none;">
+<img src="images/reply.png" alt="{cfn:getmessage(617)}" title="{cfn:getmessage(617)}"  border="0" align="absmiddle" onclick="javascript:tzclick(1)" style="cursor: pointer; float: left; margin: 5px 0 5px 0;  ">
+<select class="searchSelect"  name="time_zone" id="time_zone" style="margin: 5px; float: left; width: 375px">
+			<option value="">{cfn:getmessage(233)}</option>
+			{loopstart:timezone:10000}
+			<option value="{$timezone[0]}" {if($tzone==$timezone[0])} selected="selected" {endif}>&nbsp;({cfn:getmessage(353)}&nbsp;{$timezone[2]})&nbsp;{$timezone[1]}</option>
+			{loopend:timezone}
+		</select>
+</span>
+
+</div>
+
+<div class="ep-ea noprint">
+
+<div  class="action-btn-wrapper ep-ea-btn-wrapper">
+	<div class="libe-inline-block libe-imageless-button" title="" role="button" style="-moz-user-select: none;" tabindex="0">
+		<div class="libe-inline-block libe-imageless-button-outer-box">
+			<div class="libe-inline-block libe-imageless-button-inner-box">
+				<div class="libe-imageless-button-pos" style="font-size: 12px;font-weight: bold;" onclick="test();">{cfn:getmessage(610)}</div>
+			</div>
+		</div>
+	</div>
+	
+	<span class="ep-ea-btn-wrapper" >
+	<span class="libe-inline-block libe-imageless-button" title="" role="button" style="-moz-user-select: none;" tabindex="0">
+		<span class="libe-inline-block libe-imageless-button-outer-box">
+			<span class="libe-inline-block libe-imageless-button-inner-box">
+				<span class="libe-imageless-button-pos" style="font-size: 12px;font-weight: bold;" onclick="cancelfn();">{cfn:getmessage(59)}
+				</span>
+			</span>
+		</span>
+	</span>
+</span>
+
+<span class="ep-ea-btn-wrapper" id="delbtn" style="display:none;">
+	<span class="libe-inline-block libe-imageless-button" title="" role="button" style="-moz-user-select: none;" tabindex="0">
+		<span class="libe-inline-block libe-imageless-button-outer-box">
+			<span class="libe-inline-block libe-imageless-button-inner-box">
+				<span class="libe-imageless-button-pos" style="font-size: 12px;font-weight: bold;" onclick="delfn();">{cfn:getmessage(14)}
+				</span>
+			</span>
+		</span>
+	</span>
+</span>
+
+</div>
+<input type="hidden" name="flag"  id="flag"/> <input type="hidden" name="evnt_id"  id="evnt_id"/>
+<input type="hidden" name="fr1"  id="fr1"/> <input type="hidden" name="to1"  id="to1"/>
+ <input type="hidden" name="tzclick"  id="tzclick" value="0"/>
+<div id=":1b.delete_top" class="ep-ea-btn-wrapper"></div>
+</div>
+	   
+</div>
+			   </div>
+			   </div>
+			   
+			   <div class="footer_txt"><br><center>{$footer}</center></div>
+			   
+</body>
+</html>

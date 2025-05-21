@@ -1,0 +1,52 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+</script>
+
+<br>
+<table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+      <td>{if($userid=="")}{showpage:include/contactsheader} {else}
+<div class="sub_link_style"><a href="{url:(user/contacts/0/{$userid})}" >All Contacts</a>&nbsp;|&nbsp;<a href="{url:(user/groups/{$userid})}" >Contact Groups</a></div> {endif}
+</td>
+
+  </tr>
+
+  </table>	
+	
+	
+			<table cellpadding="0" cellspacing="0" width="100%">  
+			<tr><td class="page_title" align="center">Edit Contact Group<br></td></tr>
+				<tr>
+				<td >
+			{formstart:editgroups:{url:(user/editgroup/{$id})}:post}
+							<table  border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#f1f1f1" width="60%" height="70%">
+							{loopstart:groups:1}
+							  <tr><td>&nbsp;</td></tr> <tr><td>&nbsp;</td></tr> <tr><td>&nbsp;</td></tr>
+							  <tr>
+									<td align="center" width="43%">Group Name</td>
+									<td  align=""><input type="text" value="{$groups[1]}" name="groupname" size="32"/></td>
+							  </tr>
+							  <tr><td>&nbsp;</td></tr>
+							  <tr>
+								<td align="center">&nbsp;</td> 
+								<td align=""> <input type="submit" name="submit" value="Update"/></td>
+							  </tr>
+							  <tr><td>&nbsp;</td></tr> <tr><td>&nbsp;</td></tr> <tr><td>&nbsp;<input type="hidden" name="userid" value="{$userid}"></td></tr>
+							  {loopend:groups}
+							 
+						</table>	
+			{formend:editgroups}
+				 </td>
+				</tr>
+		   </table>
+		  		 
+				   <br /><br /><br />
+
+
+{showpage:include/footer}
+
+
+

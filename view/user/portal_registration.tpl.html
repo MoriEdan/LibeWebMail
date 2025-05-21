@@ -1,0 +1,852 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>{cfn:getmessage(308)}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script language="javascript" type="text/javascript">
+
+function passwordStrength(password)
+
+{
+
+        var desc = new Array();
+
+        desc[0] = "{cfn:getmessage(291)}";
+
+        desc[1] = "{cfn:getmessage(292)}";
+        
+        desc[2] = "{cfn:getmessage(293)}";
+
+        desc[3] = "{cfn:getmessage(294)}";
+        
+  		desc[4] = "{cfn:getmessage(295)}";
+
+
+        var score   = 0;
+
+var val=0;
+var logname=document.getElementById("loginname").value;
+if(logname!="")
+{
+if(logname==password)
+val=1;
+}
+else
+val=0;
+ if(val==1)
+ {
+   score=0;
+   document.getElementById("pwdcnt").value=0; 
+   document.getElementById("passwordStrength").className ="strength1";
+  document.getElementById("passwordDescription").className ="errordisplay";
+   document.getElementById("passwordDescription").innerHTML ="{cfn:getmessage(354)}";
+   
+ }
+ else if(val==0)    
+ {  
+
+
+var lower=getlower_count(password);
+  var upper=getupper_count(password); 
+var num_count=getnumber_count(password);
+var special=getspecialch_count(password);
+var total=lower+upper+num_count+special;
+var length=password.length;
+if(length==0)
+document.getElementById("pwdcnt").value=0;
+
+var min_passwordlength="{$min_passwordlength}";
+if(min_passwordlength==1)
+{
+if(length<1)
+	score=0;
+	else if(length==1)
+	score=1;
+	else if(length==2)
+	score=2;
+	else if(length==3)
+	score=3;
+	else if(length>3)
+	score=4;
+}
+else if(min_passwordlength==2)
+{
+	if(total<2 || length<3)
+	score=0;
+	else if(total==2 && length==3)
+	score=1;
+	else if(total<=3 && length>3)
+	score=2;
+	else if(total<=5 && length>=4)
+	score=3;
+	else if(length<32 && total>5)
+	score=4;
+}
+else if(min_passwordlength==3)
+{
+	if(total<3 || length<5)
+	score=0;
+	else if(total==3 && length==5)
+	score=1;
+	else if(total<=4 && length>5)
+	score=2;
+	else if(total<=6 && length>=5)
+	score=3;
+	else if(length<32 && total>7)
+	score=4;
+}
+else if(min_passwordlength==4)
+{
+	if(total<8 || length<6)
+	score=0;
+	else if(total==8 && length==6)
+	score=1;
+	else if(total<=9 && length>7)
+	score=2;
+	else if(total<=12 && length>=7)
+	score=3;
+	else if(length<32 && total>13)
+	score=4;
+}
+   document.getElementById("passwordDescription").className ="passwordstrength_details";
+       document.getElementById("passwordDescription").innerHTML = desc[score];
+document.getElementById("pwdcnt").value=score;
+document.getElementById("passwordStrength").className = "strength" + score;
+}
+
+}
+function getlower_count(password)
+{
+if ( password.match(/[a-z]/))
+return 1;
+else
+return 0;
+}
+function getupper_count(password)
+{
+if (password.match(/[A-Z]/) )
+return 1;
+else
+return 0;
+}
+function getnumber_count(password)
+{
+ 
+
+var numbers = new  Array()
+
+ var l=0;
+for(var x = 0,length = password.length; x < length; x++)
+ {
+    var s = password.charAt(x);
+    var flag=0;
+    if (isInteger(s))
+    {
+   
+    for(var j=0;j<numbers.length;j++)
+    {
+   
+    if(s==numbers[j])
+    {
+    flag=1;
+   
+   
+    }
+   
+   
+    }
+    if(flag==0)
+    {
+   
+    numbers[l]=s;l++;
+    }
+   
+   
+}
+var t=numbers[l];
+
+}
+var v=numbers.length;
+if(v>=3)
+return 2;
+else if(v==2)
+return 1;
+else if(v==1)
+return 1;
+else
+return 0;
+}
+function getspecialch_count(password)
+{
+ 
+
+var special = new  Array()
+
+ var l=0;
+for(var x = 0,length = password.length; x < length; x++)
+ {
+    var s = password.charAt(x);
+    var flag=0;
+    if (isSpclChar(s) )
+    {
+
+    for(var j=0;j<special.length;j++)
+    {
+   
+    if(s==special[j])
+    {
+    flag=1;
+   
+   
+    }
+   
+   
+    }
+    if(flag==0)
+    {
+   
+    special[l]=s;l++;
+    }
+   
+   
+}
+
+
+}
+var v=special.length;
+
+return v;
+}
+
+function isSpclChar(s){
+var iChars = "!@#$%^&*()+=-[]\\\';,./{}|\":<>?";
+                for (var i = 0; i < s.length; i++) {
+                                if (iChars.indexOf(s.charAt(i)) != -1) {
+                              
+                                return true;
+                }
+                else
+                return false;
+                                }
+}
+
+
+
+
+function isInteger(val)
+                {
+                   // alert(val.value);
+                  if(val==null)
+                    {
+                    //alert(val);
+                    return false;
+                    }
+                if (val.length==0)
+                    {
+                   // alert(val);
+                    return false;
+                    }
+                 if (val.trim().length == 0)
+                     {
+                     return false;
+                     }
+                for (var i = 0; i < val.length; i++)
+                    {
+                    var ch = val.charAt(i)
+                    if (i == 0 && ch == "-")
+                        {
+                        continue
+                        }
+                    if (ch < "0" || ch > "9")
+                        {
+                        return false
+                        }
+                    }
+                return true
+            }
+
+
+function echeck(str) {
+
+		var at="@"
+		var dot="."
+		var lat=str.indexOf(at)
+		var lstr=str.length
+		var ldot=str.indexOf(dot)
+		if (str.indexOf(at)==-1){
+		   alert("{cfn:getmessage(334)}")
+		   return false
+		}
+
+		if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+		   alert("{cfn:getmessage(334)}")
+		   return false
+		}
+
+		if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+		    alert("{cfn:getmessage(334)}")
+		    return false
+		}
+
+		 if (str.indexOf(at,(lat+1))!=-1){
+		    alert("{cfn:getmessage(334)}")
+		    return false
+		 }
+
+		 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+		    alert("{cfn:getmessage(334)}")
+		    return false
+		 }
+
+		 if (str.indexOf(dot,(lat+2))==-1){
+		    alert("{cfn:getmessage(334)}")
+		    return false
+		 }
+		
+		 if (str.indexOf(" ")!=-1){
+		    alert("{cfn:getmessage(334)}")
+		    return false
+		 }
+
+ 		 return true					
+	}
+   
+function ValidateForm()
+{
+
+
+	var emailID=document.getElementById("loginname").value+"{$emailextension}";
+	
+	if ((emailID==null)||(emailID==""))
+	{
+		alert("{cfn:getmessage(158)}");
+		document.getElementById("loginname").focus();
+		return false;
+	}
+	
+	
+	var ss=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+	 if(ss.test(emailID)==false) 
+	 {
+	 	alert("{cfn:getmessage(334)}");
+	 	document.getElementById("loginname").value="";
+		document.getElementById("loginname").focus();
+      	return false;
+      }
+	  else if (echeck(emailID)==false)
+	{
+		document.getElementById("loginname").value="";
+		document.getElementById("loginname").focus();
+		return false;
+	}
+	return true;
+ }
+
+
+var xmlHttp
+    function checkfn()
+    {
+         
+	var emailID=document.getElementById("loginname").value;
+	if(emailID=="")
+	{
+		alert("{cfn:getmessage(114)}");
+		return false;
+	}
+	var ss=ValidateForm(); 
+	if(ss==true)
+	{
+	 document.getElementById("availableinfo1").style.display="none";
+	     document.getElementById("availableinfo2").style.display="none"; 
+	 	 document.getElementById("availableinfo3").style.display="none";
+    	
+		
+		
+		     var str=document.getElementById("loginname").value;
+		     
+		     var illegalChars = /\W/;
+		      s=str.indexOf('.');
+if(s<0)
+
+	 {
+  		// allow only letters, numbers, and underscores
+   		 if (illegalChars.test(str))
+    	 {
+          document.getElementById("availableinfo3").style.display="";
+		  document.getElementById("availableinfo3").innerHTML="{cfn:getmessage(334)}";
+		  document.getElementById("loginname").value="";
+		  document.getElementById("loginname").focus();
+          document.getElementById("availableinfo3").className="errordisplay";
+          return false;
+   		 }
+    }
+    
+   else if(!isNaN(str))
+   {
+   
+   document.getElementById("availableinfo3").style.display="";
+    document.getElementById("availableinfo3").innerHTML="{cfn:getmessage(335)}";
+		 document.getElementById("loginname").value="";
+		  document.getElementById("loginname").focus();
+          document.getElementById("availableinfo3").className="errordisplay";
+          return false;
+   }
+  else 
+   {
+   var t=str.charAt(0);
+   if(!isNaN(t))
+   {
+  document.getElementById("availableinfo3").style.display="";
+       document.getElementById("availableinfo3").innerHTML="{cfn:getmessage(335)}";
+		 document.getElementById("loginname").value="";
+		  document.getElementById("loginname").focus();
+          document.getElementById("availableinfo3").className="errordisplay";
+          return false;
+     }
+   }
+   
+   
+  var s="";var check=1;
+s=str.indexOf('@');
+if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+    s=str.indexOf('#');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+  s=str.indexOf('!');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+       s=str.indexOf('$');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=str.indexOf('%');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+     s=str.indexOf('^');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=str.indexOf('&');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+     s=str.indexOf('*');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=str.indexOf('(');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+    s=str.indexOf(')');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+       s=str.indexOf('-');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=str.indexOf('+');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=str.indexOf('/');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      s=str.indexOf('=');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+       s=str.indexOf(' ');
+      if(s>0)
+
+	 {
+	  check=0;
+      } 
+      
+       s=str.indexOf('?');
+      if(s>0)
+
+	 {
+	  check=0;
+      }
+      
+      
+      if(check==0)
+      {
+          document.getElementById("availableinfo3").style.display="";
+          document.getElementById("availableinfo3").innerHTML="{cfn:getmessage(334)}";
+		  document.getElementById("loginname").value="";
+		  document.getElementById("loginname").focus();
+          document.getElementById("availableinfo3").className="errordisplay";
+          return false;
+      }
+		   
+    var tt=str.length;
+    
+    var min_usernamelength="{$min_usernamelength}";
+    
+    
+if(tt>=min_usernamelength) 
+ {
+        if(tt<=32)
+          {
+            xmlHttp=GetXmlHttpObject();
+            if (xmlHttp==null)
+              {
+              alert ("Your browser does not support AJAX!");
+              return;
+              } 
+                 
+            var url="{url:(user/loginnameavailable/)}"+str;
+         
+            xmlHttp.onreadystatechange=countChanged;
+            xmlHttp.open("GET",url,true);  
+            xmlHttp.send(null);
+		  }
+		else
+			{
+			 document.getElementById("availableinfo1").style.display="";
+             document.getElementById("loginname").focus(); 
+			}
+      }
+   else
+   {
+   document.getElementById("availableinfo2").style.display="";
+   document.getElementById("loginname").focus(); 
+   } 
+   
+}
+else
+{
+var msg="{cfn:getmessage(124)}";
+ document.getElementById("availableinfo3").innerHTML=msg; 
+ document.getElementById("availableinfo2").style.display="none"; 
+ document.getElementById("availableinfo1").style.display="none";
+
+//alert(msg);
+document.getElementById("loginname").focus(); 
+}
+ 
+} 
+
+function countChanged() 
+{ 
+
+        if (xmlHttp.readyState==4)
+        {  
+       var x=xmlHttp.responseText;//alert(x);
+	   var strng=x.split(",");
+	   if(strng[1]!=0)
+		{
+		 document.getElementById("availableinfo3").style.display="";
+		 document.getElementById("availableinfo3").innerHTML=strng[0];
+		 document.getElementById("loginname").value="";
+		  document.getElementById("loginname").focus();
+          document.getElementById("availableinfo3").className="errordisplay";
+		
+		 }
+		 else
+		 {
+	      document.getElementById("availableinfo3").style.display="";
+          document.getElementById("availableinfo3").innerHTML=strng[0];
+          document.getElementById("availableinfo3").className="successdisplay";
+		 
+		}
+		
+      }
+}
+ 
+function GetXmlHttpObject()
+{
+        var xmlHttp=null;
+        try
+          {
+          // Firefox, Opera 8.0+, Safari
+          xmlHttp=new XMLHttpRequest();
+          }
+        catch (e)
+          {
+          // Internet Explorer
+          try
+            {
+            xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+          catch (e)
+            {
+            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+          }
+        return xmlHttp;
+}
+
+/*
+function hideansfn()
+{
+var n=document.getElementById('question');
+var t=n.options[n.selectedIndex].value;
+var s="{cfn:getmessage(140)}";
+if(t!=s)
+{
+if(t==1)
+{
+	  document.getElementById("ownquestionfield1").style.display=""; 
+	  document.getElementById("answerfield1").style.display="";
+	  document.getElementById("ownquestionfield2").style.display=""; 
+	  document.getElementById("answerfield2").style.display="";
+	  document.getElementById("myownquestion").focus();
+}
+else
+{
+	document.getElementById("answerfield1").style.display="";
+	 document.getElementById("ownquestionfield1").style.display="none";
+	 document.getElementById("answerfield2").style.display="";
+	 document.getElementById("ownquestionfield2").style.display="none";
+	  document.getElementById("answer").focus();
+}
+
+}
+else
+{
+	  document.getElementById("ownquestionfield1").style.display="none"; 
+	  document.getElementById("answerfield1").style.display="none";
+	  document.getElementById("ownquestionfield2").style.display="none"; 
+	  document.getElementById("answerfield2").style.display="none";
+}
+
+
+}*/
+function cancelfn()
+{
+
+window.location.href="{$path}";
+}
+
+function passwdcnt()
+{
+
+}
+</script>
+
+</head>
+<body>
+{if($portal_status==1)}{cfn:getloggedheader()}{endif}
+<div class="loginHeader">
+<div class="loginheaderWrapper">
+<img src="{$imgpath}"  border="0" class="left">
+
+ 
+	 <div class="right">
+		<a href="{url:(index/index)}" class="darkSignup"><div class="link">{cfn:getmessage(309)}</div></a>
+		<div class="left"> {cfn:getmessage(150)}? </div>
+	</div>
+	</div>
+</div>
+<div class="clear"></div>
+<div class="mainTop">
+
+<table  align="center" cellspacing="0" cellpadding="0" border="0" class="signup_table" >
+{formstart:registration:{url:(user/portal_registration)}:POST}
+<tr>
+	<td colspan="2">
+<table width="750px" align="center" cellspacing="0" cellpadding="0" border="0" style="font-size: 12px;font-family:Verdana, Arial, Helvetica, sans-serif;color:#000000; ">
+<tr>
+	
+</tr>
+		<tr >
+		
+		<td colspan="2" align="left"  class="forgotpasswordtitle"><br>{cfn:getmessage(308)}</td>
+	</tr>
+	{if($msg2!="")}
+	 <tr>
+    <td>&nbsp;</td><td><span class="messageerrdisplay">{fn:nl2br($msg2)}!!!</span></td>
+  </tr>
+	{endif}
+	
+</table>
+	</td>
+	</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+	
+
+	<tr >
+		<td>{cfn:getmessage(122)}</td>
+		<td ><select name="gender">
+			<option value="" selected="selected">{cfn:getmessage(136)}</option>
+			<option value="{cfn:getmessage(137)}" {if($gr==$m)} selected="selected" {endif}>{cfn:getmessage(137)}			</option>
+			<option value="{cfn:getmessage(138)}" {if($gr==$f)} selected="selected" {endif}>{cfn:getmessage(138)}			</option>
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+	<tr >
+		<td>{cfn:getmessage(43)}</td>
+		<td><select name="day">
+			<option value="" selected="selected">{cfn:getmessage(133)}</option>
+			{loopstart:DD:1000000}
+			<option value="{$DD[0]}" {if($day==$DD[0])} selected="selected" {endif}>{$DD[0]}</option>
+			{loopend:DD}
+		</select> 
+		
+		<select name="month">
+			<option value="" selected="selected">{cfn:getmessage(134)}</option>
+			{loopstart:kkk:100}
+			<option value="{$kkk[0]}" {if($tt===$kkk[0])} selected="selected" {endif}>{$kkk[1]}</option>
+			{loopend:kkk}
+		</select> 
+		
+		<select name="year">
+			<option value="" selected="selected">{cfn:getmessage(135)}</option>
+			
+			{loopstart:YY:1000000}
+			<option value="{$YY[0]}" {if($yr==$YY[0])} selected="selected" {endif}>{$YY[0]}</option>
+			{loopend:YY}
+
+
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+	
+	<tr >
+		<td>{cfn:getmessage(123)}</td>
+		<td><select name="country">
+			<option value="">{cfn:getmessage(139)}</option>
+			{loopstart:country:10000}
+			<option value="{$country[0]}"  {if($cntr==$country[0])} selected="selected" {endif}>{$country[0]}</option>
+			{loopend:country}
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+
+	<tr >
+		<td>{cfn:getmessage(232)}</td>
+		<td>
+		<select name="time_zone">
+			<option value="">{cfn:getmessage(233)}</option>
+			{loopstart:timezone:10000}
+			<option value="{$timezone[0]}" {if($tzone==$timezone[0])} selected="selected" {endif}>&nbsp;({cfn:getmessage(353)}&nbsp;{$timezone[2]})&nbsp;{$timezone[1]}</option>
+			{loopend:timezone}
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+
+
+<tr>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+
+</td></tr>
+
+</td></tr>
+
+	<tr >
+
+		<td>{cfn:getmessage(147)}</td>
+		<td valign="middle"><input type="text" name="image" id="image" class="textbox_border_style" size="25">&nbsp;<span class="mandatory">*</span>
+		&nbsp;<iframe src="{url:(user/captcha)}" marginheight="0" width="190" marginwidth="0" height="35" align="middle" frameborder="0" scrolling="no"></iframe></td>
+	</tr>
+
+	<tr>	
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+	
+	<tr >
+		<td></td>
+		<td><input type="submit" name="submit" value="{cfn:getmessage(106)}" class="cursor_select" >
+		 <input type="button" name="Cancel" value="{cfn:getmessage(267)}" onClick="cancelfn();" class="cursor_select"> 
+		</td>
+	</tr>
+		<tr>	
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr><tr>	
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+	
+
+{formend:registration}
+{validate:registration:isNotNull("name","{cfn:getmessage(669)}")}
+{validate:registration:isNotNull("gender","{cfn:getmessage(127)}")}
+{validate:registration:isNotNull("day","{cfn:getmessage(128)}")}
+{validate:registration:isNotNull("month","{cfn:getmessage(129)}")}
+{validate:registration:isNotNull("year","{cfn:getmessage(130)}")}
+{validate:registration:isNotNull("country","{cfn:getmessage(131)}")}
+{validate:registration:isNotNull("time_zone","{cfn:getmessage(231)}")}
+
+{validate:registration:isNotNull("question","{cfn:getmessage(125)}")}
+{validate:registration:isNotNull("answer","{cfn:getmessage(359)}")}
+
+
+{validate:registration:isNotNull("image","{cfn:getmessage(149)}")}
+</table>
+<table width="750px" border="0" align="center"  >
+  <tr >
+    <td><div align="center"><span class="copyright">{$footer}</span></div></td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

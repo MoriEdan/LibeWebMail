@@ -1,0 +1,133 @@
+{showpage:include/header}
+
+<script language="javascript" type="text/javascript">
+
+
+	
+	function checkfn1(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='checked';
+	//string+=document.getElementById('check'+i).value+",";
+	}
+	
+	}
+	function uncheckfn1(count)
+	{
+	for(var i=0;i<count;i++)
+	{
+	document.getElementById('check'+i).checked='';
+	//string=string.replace(",document.getElementById('check'+i).value,",",");
+	}
+	//alert(string);
+	
+}
+function confirmation1(count)
+{ 
+  var answer = confirm("You are about to delete this mail. Press OK to continue.")
+if(answer)
+{
+
+   var string='';
+   
+   for(var i=0;i<count;i++)
+	{
+	
+	if(document.getElementById('check'+i))
+	   {
+	       if(document.getElementById('check'+i).checked==true)
+	        {
+	           string+=document.getElementById('check'+i).value+",";
+	       }
+	  }
+	else
+	break;
+	}
+	
+	 window.location.href = "{url:(user/deletespamserver/)}"+string;
+}	
+}
+
+function viewfn(id)
+{
+window.location.href = "{url:(user/contacts/)}"+id;
+
+}
+
+function deletefn1(id)
+{
+  var answer = confirm("You are about to delete this mail. Press OK to continue.")
+if(answer)
+{
+window.location.href = "{url:(user/deletespamserver/)}"+id+",";
+}
+}
+
+
+</script>
+
+
+<br>
+<table cellpadding="0" cellspacing="0" width="100%" style="padding:10px;">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/spamheader}</td>
+
+  </tr>
+
+  </table>	
+	
+	
+			<table width=100% border="0" cellpadding="0" cellspacing="0">  
+			
+				<tr>
+				<td >
+			
+						<table cellpadding="0" cellspacing="0" width="100%" style="padding:10px;">
+	
+	
+	<tr><td align="center" >	<font color="#990000"> </font><br /><br />
+	
+			{if($num==0)}
+		<tr><td align="center" >	<font color="#FF0000" style="font-size:16px;font-weight:bold;">-&nbsp;No Spam Servers&nbsp;-</font></td></tr>
+			{else}
+			{loopstart:spamserver:1}
+			<table width=100% border="0" cellpadding="0" cellspacing="0">  
+					  <tr  height="30" bgcolor="#565466" style="color: white;font-weight: bold;" align="left">  	 
+						  <td style="padding:8px;border-right: 1px ;color:white;" width="5%">&nbsp;</td>
+						  <td style="padding:8px;border-right: 1px ;color:white;" width="30%">From</td>
+						  <td style="padding:2px;border-right: 1px ;color:white;" width="15%">Action </td>
+					  </tr>
+					  {loopend:spamserver}
+					{loopstart:spamserver:1000}
+				
+					<tr {if($contacts % 2==1 )}  bgcolor="#E8E8E8"{endif}  bgcolor="#ffffff"  height="35" align="left" style="border-bottom: 1px solid #b7b5b3;">
+						<td style="padding-left:8px; border-bottom: 1px solid #b7b5b3;border-left: 1px solid #b7b5b3;border-right: 0px solid #b7b5b3;"><input type="checkbox" name="check" id="check{loop:spamserver}" value="{$spamserver[0]}"/></td>
+						<td style="border-bottom: 1px solid #b7b5b3;">{if($spamserver[1]!="")}{$spamserver[1]}{else}&nbsp;{endif}&nbsp;&nbsp;</td>
+						
+						<td style="border-bottom: 1px solid #b7b5b3;border-right: 1px solid #b7b5b3;"><a href="{url:(user/editspamserversettings/{$spamserver[0]})}" class="action">Edit</a>&nbsp;|&nbsp;<a href="javascript:deletefn1({$spamserver[0]})" class="action">Delete</a> </td> 
+					  </tr>
+					{loopend:spamserver}
+			</table><br />
+			<tr><td><a href="#" class="action2" onclick="checkfn1({$count});">Check All</a>&nbsp;|&nbsp; <a href="#" class="action2" onclick="uncheckfn1({$count});">Uncheck All</a></td></tr>
+			
+			<tr><td><span onclick="javascript:confirmation1({$count})" ><img src="images/delete.gif" /></span></td></tr>
+			<tr> <td align="center">{noescape:$pagingtop}</td></tr>
+			{endif}
+			
+		  	</td></tr></table>
+			<br /><br /><br />
+</td></tr></table>	
+			
+				 </td>
+				</tr>
+		   </table>
+		  		
+</td></tr></table>
+
+{showpage:include/footer}
+
+
+

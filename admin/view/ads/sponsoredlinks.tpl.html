@@ -1,0 +1,66 @@
+{showpage:include/header}
+<br>  
+  <table cellpadding="0" cellspacing="0" class="sublink_table">
+
+	 <tr align="center">
+
+    <td>	{showpage:include/adssettingsheader}</td>
+
+  </tr>
+
+  </table>	
+  
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	
+	<tr align="center">
+		<td height="42"><span id="styleTitle" class="page_title">Sponsored Links</span></td>
+	</tr>
+	<tr>
+		<td>
+	</tr>
+	<tr align="center">
+		<td>
+		{formstart:sponsoredprocess:{url:(ads/sponsoredprocess)}:post}
+		<table width="75%" border="0" cellpadding="0" cellspacing="0"	style="border-width: 1px; border-color: #cccccc; border-style: solid;">
+			<tr bgcolor="#eeeeee">
+				<td height="20px" colspan="3">&nbsp;</td>
+			</tr>
+			<tr bgcolor="#eeeeee">
+				<td width="5%" height="48">&nbsp;</td>
+				<td width="40%" align="left" style="padding-right: 10px"> Libe Ad Server Install URL</td>
+				<td width="55%" align="left" style="padding-left: 10px"><input type="text" name="installurl" size="35" value="{$installurl}">&nbsp;<span class="mandatory">*</span></td>
+			</tr>
+			<tr bgcolor="#eeeeee">
+				<td height="48">&nbsp;</td>
+				<td align="left" style="padding-right: 10px">Authentication Code</td>
+				<td align="left" style="padding-left: 10px"><input type="text" name="authcode" value="{$authcode}">&nbsp;<span class="mandatory">*</span></td>
+			</tr>
+			<tr bgcolor="#eeeeee">
+				<td height="48">&nbsp;</td>
+				<td align="left" style="padding-right: 10px">The number of sponsored links required on the top</td>
+				<td align="left" style="padding-left: 10px"><input type="text" name="topadcount" value="{$topadcount}">&nbsp;<span class="mandatory">*</span></td>
+			</tr>
+			<tr bgcolor="#eeeeee">
+				<td height="48">&nbsp;</td>
+				<td align="left" style="padding-right: 10px">The number of sponsored links required on the Right</td>
+				<td align="left" style="padding-left: 10px"><input type="text" name="rightadcount" value="{$rightadcount}">&nbsp;<span class="mandatory">*</span></td>
+			</tr>
+			<tr bgcolor="#eeeeee">
+				<td height="48">&nbsp;</td>
+				<td align="left" style="padding-right: 10px" colspan="2"><input type="checkbox" name="publicadstatus"  {if($publicadstatus==1)} value="1" checked="checked" {endif}>&nbsp;&nbsp; Show public service ads from Libe Adserver if the right panel is empty</td>
+			</tr>
+			<tr bgcolor="#eeeeee">
+			<td colspan="2">&nbsp;</td>
+				<td align="left" height="48" style="padding-left: 10px"><input type="submit"	name="submit" value="Update Sponsored link Settings"></td>
+			</tr>
+		</table>
+		{formend:sponsoredprocess}
+		</td>
+	</tr>
+</table>
+{validate:sponsoredprocess:isNotNull(installurl,"Installation url cannot be left blank")}
+{validate:sponsoredprocess:isNotNull(authcode,"Authentication code cannot be blank")}
+{validate:sponsoredprocess:isNotNull(displayurl,"Display url cannot be left blank")}
+
+
+{showpage:include/footer}

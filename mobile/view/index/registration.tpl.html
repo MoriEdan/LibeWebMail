@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>{cfn:getmessage(308)}</title>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="css/mob-style.css" type="text/css" media="screen" />
+
+<style type="text/css">
+.textbox_border_style { border:1px solid #ccc !important; height:13px !important; width:150px !important;}
+.forgotpasswordtitle { font-size:18px !important; color:#333; padding-left:0 !important}
+</style>
+</head>
+
+<body {if($mob==0)}style="background:none" {endif}>
+<div {if($mob==0)}style="width:300px; background:url(../images/contentbg.gif) repeat scroll 0 0 #2A3848; overflow:hidden" {endif}>
+<div class="header" style="border-bottom:1px solid #1A4978">
+	<div class="header">
+		<img src="images/logo.png" alt="Logo" class="left" />
+<a href="{url:(index/index)}" title="{cfn:getmessage(309)}"  class="darkSignup right"><img src="images/theme.png" />{cfn:getmessage(309)}</a>
+	</div>
+</div>
+
+{formstart:registration:{url:(index/registration)}:POST}
+
+
+<div class="contentdiv">
+<div class="registration">
+<div class="mobile_advanced_maintitletd" style="float:left">{cfn:getmessage(308)}</div>
+{if($msg2!="")}<div class="clear"></div>
+<div class="messageerrdisplayred">{fn:nl2br($msg2)}</div>{endif}
+<div class="clear"></div>
+<div class="registrationiinner">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" > 
+
+
+<tr >
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(752)}</td>
+		<td align="left"  class="mobile_advanced_feildtd"><input type="text" name="name" id="name"
+			value="{$name}" autocomplete="off"><span id="mob_mandatory">*</span></td>
+	</tr>
+
+<tr >
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(122)}</td>
+		<td align="left"><select name="gender" style="height:21px;margin-bottom:3px;">
+			<option value="" selected="selected">{cfn:getmessage(136)}</option>
+			<option value="{cfn:getmessage(137)}" {if($gr==$m)} selected="selected" {endif}>{cfn:getmessage(137)}</option>
+			<option value="{cfn:getmessage(138)}" {if($gr==$f)} selected="selected" {endif}>{cfn:getmessage(138)}</option>
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+
+<tr >
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(43)}</td>
+		<td align="left"  ><select name="day" style="height:21px;margin-bottom:3px;">
+			<option value="" selected="selected">{cfn:getmessage(133)}</option>
+			{loopstart:DD:1000000}
+			<option value="{$DD[0]}" {if($day==$DD[0])} selected="selected" {endif}>{$DD[0]}</option>
+			{loopend:DD}
+		</select> 
+		
+		<select name="month" style="height:21px;margin-bottom:3px;width:55px">
+			<option value="" selected="selected">{cfn:getmessage(134)}</option>
+			{loopstart:kkk:100}
+			<option value="{$kkk[0]}" {if($tt===$kkk[0])} selected="selected" {endif}>{$kkk[1]}</option>
+			{loopend:kkk}
+		</select> 
+		
+		<select name="year" style="height:21px;margin-bottom:3px;width:45px">
+			<option value="" selected="selected">{cfn:getmessage(135)}</option>
+			
+			{loopstart:YY:1000000}
+			<option value="{$YY[0]}" {if($yr==$YY[0])} selected="selected" {endif}>{$YY[0]}</option>
+			{loopend:YY}
+
+
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+
+<tr >
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(123)}</td>
+		<td align="left"  class="mobile_advanced_feildtd"><select name="country">
+			<option value="">{cfn:getmessage(139)}</option>
+			{loopstart:country:10000}
+			<option value="{$country[0]}"  {if($cntr==$country[0])} selected="selected" {endif}>{$country[0]}</option>
+			{loopend:country}
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+
+<tr >
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(232)}</td>
+		<td align="left"  class="mobile_advanced_feildtd">
+		<select name="time_zone" >
+			<option value="">{cfn:getmessage(233)}</option>
+			{loopstart:timezone:10000}
+			<option value="{$timezone[0]}" {if($tzone==$timezone[0])} selected="selected" {endif}>&nbsp;({cfn:getmessage(353)}&nbsp;{$timezone[2]})&nbsp;{$timezone[1]}</option>
+			{loopend:timezone}
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+
+<tr>
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(6)}</td>
+		<td align="left"  class="mobile_advanced_feildtd"><input type="text" name="loginname" id="loginname"
+			value="{$loginname}" maxlength="32" autocomplete='off'>&nbsp;<strong><span
+			class="mandatory">*</span></strong></td>
+	</tr>
+
+<tr>
+		<td align="left"  class="mobile_advanced_texttd">&nbsp;</td>
+		<td align="left"  class="mobile_advanced_texttd">{$emailextension}&nbsp;</td>
+	</tr>
+
+
+<tr>
+<td  align="left"  class="mobile_advanced_texttd"><br>{cfn:getmessage(7)} </td>
+<td  align="left"  class="mobile_advanced_feildtd"> <input type="password" name="password" id="password" value="" maxlength="32" >&nbsp;<strong><span class="mandatory">*</span></strong>
+</td></tr>
+<tr >
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(117)}</td>
+		<td align="left"  class="mobile_advanced_feildtd"><input type="password" name="cpassword" id="cpassword"
+			value="" maxlength="32">&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+
+{if($msg1!="")}	
+	<tr >
+		<td></td>
+		<td><span>{$msg1}</span></td>
+	</tr>
+{endif}
+
+<tr >
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(120)}</td>
+		<td align="left"  class="mobile_advanced_feildtd"><select name="question" id="question"  >
+			<option value="" selected="selected">{cfn:getmessage(140)}</option>
+			<option value="{cfn:getmessage(141)}" {if($qst==$f1)} selected="selected" {endif}>{cfn:getmessage(141)}</option>
+			<option value="{cfn:getmessage(142)}" {if($qst==$f2)} selected="selected" {endif}>{cfn:getmessage(142)}</option>
+			<option value="{cfn:getmessage(143)}" {if($qst==$f3)} selected="selected" {endif}>{cfn:getmessage(143)}</option>
+			<option value="{cfn:getmessage(144)}" {if($qst==$f4)} selected="selected" {endif}>{cfn:getmessage(144)}</option>
+			<option value="{cfn:getmessage(145)}" {if($qst==$f5)} selected="selected" {endif}>{cfn:getmessage(145)}</option>
+			
+		</select>&nbsp;<strong><span class="mandatory">*</span></strong></td>
+	</tr>
+<tr><td colspan="2">
+	
+	<tr >
+		<td align="left"  class="mobile_advanced_texttd"><div id="answerfield1"><br>{cfn:getmessage(121)}</div></td>
+		<td align="left"  class="mobile_advanced_feildtd"><div id="answerfield2" ><br><input type="text" name="answer" id="answer" value="{$answer}" autocomplete="off">&nbsp;<strong><span class="mandatory">*</span></strong></div></td>
+	</tr>
+
+<tr >
+
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(272)}</td>
+		<td align="left"  class="mobile_advanced_feildtd"><input type="text" name="alternatemail" value="{$alternateemail}" id="alternatemail" autocomplete="off"></td>
+	</tr>
+
+<tr >
+
+		<td align="left"  class="mobile_advanced_texttd">{cfn:getmessage(147)}</td>
+		<td align="left"  class="mobile_advanced_feildtd" valign="middle"><input type="text" name="image" id="image" autocomplete="off">&nbsp;<span class="mandatory">*</span>
+		&nbsp;<iframe src="{url:(index/captcha)}" marginheight="0" width="190" marginwidth="0" height="35" align="middle" frameborder="0" scrolling="no"></iframe></td>
+	</tr>
+<tr><td colspan="2">&nbsp;</td></tr>
+<tr >
+		<td>&nbsp;</td>
+		<td align="left"  class=""><input type="submit" name="submit" value="{cfn:getmessage(106)}" class="cursor_select" >
+		
+		 <a  href="{url:(index/index)}" class="darkSignup right" style="color:#fff;text-decoration:underline;">{cfn:getmessage(267)}</a>
+		</td>
+	</tr>
+
+
+</table>	
+</div>
+{formend:registration}
+</div>
+<!--
+</table>
+<table width="100%" border="0" align="center"  >
+  <tr >
+    <td><div align="center"><span class="copyright">{$footer}</span></div></td>
+  </tr>
+</table>
+</div>
+</div>
+-->
+</div>
+<div class="ftr">{$footer}</div>
+</div>
+</body>
+</html>

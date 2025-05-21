@@ -1,0 +1,591 @@
+/* CSS Document */
+body { font-family:Arial, Helvetica, sans-serif; font-size:12px; margin:0; }
+.topmain-Menu { width:100%;}
+.iconsCornner { background:url(images/usedIcons.png) no-repeat 0 0;}
+.smileyCornner { background:url(images/smilyeset.jpg) no-repeat 0 0;}
+.arLt 		  { background-position:-4px -206px; width:15px; height:13px;}
+.str-y		  { background-position:-28px -42px; width:15px; height:15px;}
+.str-g		  { background-position:-7px -42px; width:15px; height:15px;}
+.add-f 		  { background-position: -23px -75px; height: 15px; width: 16px;}
+img.add-f:hover  { background-position: -23px -92px;}
+.del-f		  { background-position: -4px -75px; height: 15px; width: 16px;}
+img.del-f:hover  { background-position: -4px -92px;}
+.attach-a		 { background-position:-130px -8px;  width:16px; height:16px;}
+.chat-p		  { background-position:-4px -129px;  width:14px; height:14px;}
+.chat-m		  { background-position:-33px -129px;  width:14px; height:14px;}
+.chat-a		  { background-position:-29px -11px;  width:9px; height:10px;margin-right:3px;}
+.chat-b		  { background-position:-49px -11px;  width:9px; height:10px;margin-right:3px;}
+.chat-i		  { background-position:-9px -11px;  width:9px; height:10px;margin-right:3px;}
+.chat-o		  { background-position:-69px -11px;  width:9px; height:10px;margin-right:3px;}
+.chat-gp		  { background-position:-99px -11px;  width:16px; height:16px;}
+.chat-gp2		  { background-position:-101px -130px;  width:16px; height:15px;}
+.chat-close		  { background-position:-85px -42px;  width:14px; height:14px;}
+.chat-min		  { background-position:-61px -41px;  width:14px; height:15px;}
+.chat-sml		  { background-position:-125px -129px;  width:14px; height:14px;}
+.chat-chsymb	  { background-position:-70px -131px;  width:16px; height:14px;}
+.arrow-d{ background-position:-6px -159px;  width:10px; height:5px;}
+.reply-r{ background-position:-4px -184px;  width:16px; height:17px;}
+.reply-a{ background-position:-44px -184px;  width:20px; height:17px;}
+.reply-f{ background-position:-93px -188px;  width:14px; height:10px;}
+.trash-img{ background-position:0px -234px;  width:14px; height:16px;}
+
+.smiley-1{ background-position:0px 0px;  width:21px; height:20px;}
+.smiley-2{ background-position:-20px 0px;  width:21px; height:20px;}
+.smiley-3{ background-position:-40px 0px;  width:21px; height:20px;}
+.smiley-4{ background-position:-60px 0px;  width:21px; height:20px;}
+
+.smiley-5{ background-position:0px -20px;  width:21px; height:20px;}
+.smiley-6{ background-position:-20px -20px;  width:21px; height:20px;}
+.smiley-7{ background-position:-40px -20px;  width:21px; height:20px;}
+.smiley-8{ background-position:-60px -20px;  width:21px; height:20px;}
+
+.smiley-9{ background-position:-79px 0px;  width:21px; height:20px;}
+.smiley-10{ background-position:-99px 0px;  width:21px; height:20px;}
+.smiley-11{ background-position:-119px 0px;  width:21px; height:20px;}
+.smiley-12{ background-position:-140px 0px;  width:21px; height:20px;}
+
+.smiley-13{ background-position:-79px -20px;  width:21px; height:20px;}
+.smiley-14{ background-position:-99px -20px;  width:21px; height:20px;}
+.smiley-15{ background-position:-119px -20px;  width:21px; height:20px;}
+.smiley-16{ background-position:-140px -20px;  width:21px; height:20px;}
+.close-cal-btn{ background-position:-85px -80px;  width:11px; height:10px;}
+.print-btn{ background-position:-61px -80px;  width:16px; height:16px;}
+
+.header { float:left; width:100%; height:132px; border-bottom:3px solid #000000; position:relative}
+.headerD { background:url(images/gradiant-common.jpg) repeat-x 0 0; position:absolute; left:0px; bottom:0; height:25px; border-style:solid; border-width:1px 1px 0 0; border-color:#c2c0c1;}
+.selectedMainMenu {  float: left; height: 25px; line-height: 25px; overflow: hidden; padding: 0 5px;text-decoration: none; font-weight:bold;  color:#222c4f; font-size:12px; border-right:1px solid #E3E6EB; border-left:1px solid #fff; }
+
+.unselectedMainMenu { float: left; height: 25px; line-height: 25px; overflow: hidden; padding: 0 5px;text-decoration: none; border-right:1px solid #E3E6EB; border-left:1px solid #fff}
+.unselectedMainMenu a { font-family:Arial, Helvetica, sans-serif; text-decoration:none; color:#222c4f; font-size:12px;}
+.newFolder { background:#868484; height:30px; display:block; overflow:hidden}
+.newFolder input { border:1px solid #333; width:155px; margin:5px 0 0 5px; font-size:11px; color:#666; height:20px; padding-left:5px;}
+
+
+
+.bodyClass{background:url(images/classic/bg.jpg) repeat-x 0 0;font-family:Arial, Helvetica,sans-serif;height:100%;margin:0;padding:0;width:100%}
+.topBar{color:#adde8f;height:23px}
+.clear{clear:both}
+.buylink{color:#000;font-size:12px;font-weight:700}
+.buylink:hover{color:red;font-size:12px;font-weight:700}
+#passwordStrength{display:block;float:left;height:10px}
+.strength0{background:#ccc;width:180px}
+.strength1{background:red;width:50px}
+.strength2{background:#56e500;width:100px}
+.strength3{background:#4dcd00;width:150px}
+.strength4{background:#399800;width:200px}
+.horizontalRule{border-top:1px solid #eee;float:left;padding-top:3px;width:100%}
+.usermail{color:#ccc;float:right;font-size:12px;font-weight:700;height:20px;line-height:20px;padding:0 5px;right:40px;text-align:right;width:auto; background:url(images/dark.png) repeat 0 0; border:1px solid #000; margin:-1px 10px 0 0;}
+.usermail a{color:#ccc;text-decoration:none}
+.logoD{float:left;height:65px;overflow:hidden;padding-top:5px;width:200px}
+.coloum{height:auto;overflow:hidden;width:auto}
+.searchMain{ background:url(images/dark.png) repeat;border:1px solid #000;float:right;height:44px;padding:5px 10px 0 0;position:absolute;right:10px;top:53px}
+.searchMain a { color:#ccc;}
+.searchSelect{border:1px solid #ccc;color:#666;margin:10px 0 0 12px;padding:0;width:auto; height:22px;}
+.SelectContact{border:1px solid #ccc;color:#666;margin:10px 0 0 3px;padding:0;width:auto; height:22px;}
+.searchField{border:none;color:#FFF;font-size:11px;font-weight:700;height:18px;line-height:18px;margin:20px 0 0 20px;padding:0 10px;width:120px}
+.searchBtn{float:right; margin:10px 0 0 12px;width:auto}
+.searchBtn input {background: none repeat scroll 0 0 #EEEEEE; border: 1px solid #666666; color: #333333; height: 23px;padding-bottom: 3px;}
+.select{margin-top:12px}
+#menu ul{list-style-type:none;margin:0;text-align:center}
+#menu li{display:inline;float:left;font-family:Arial, Helvetica,sans-serif;font-size:small;line-height:200%;list-style-type:none;margin:5px;text-align:center}
+#messages{z-index:50}
+.mailSubMenu{background-color:#90C5F6;height:30px}
+.mailSubMenu ul{background-color:#90C5F6;list-style:none;padding:3px 3px 3px 10px;width:auto}
+.mailSubMenu ul li{display:inline;padding-right:8px}
+.mailSubMenu ul li a{color:#fff;font-family:Arial, Helvetica,sans-serif;font-size:12px;text-decoration:none}
+.mailSubMenu ul li a:hover{color:#000;font-size:12px}
+.mailSubMenu ul li ul{background-color:#fff;position:absolute}
+.vertmenu{float:left;font-family:Arial, Helvetica,sans-serif;font-size:12px;height:auto;padding:0;width:170px; background:url(images/left-box-bg.jpg) repeat-x 0 0}
+.vertmenu ul li{margin:0;padding:0; font-family:Arial, Helvetica, sans-serif; background:#e3e3e3; height:25px; border-bottom:1px solid #bfbfbf; border-top:1px solid #fff}
+.vertmenu ul li a{color:#333; text-shadow:1px 1px 1px #fff;display:block;font-size:12px;height:23px;line-height:23px;padding:0 0 0 11px;text-decoration:none; outline:none}
+.leftSelected,.vertmenu ul li a:hover{background:#d3d1d1 !important;height:25px;}
+li.leftSelected a { font-weight:bold; font-size:13px !important;}
+.icon{border:none;height:16px;width:16px}
+.editBtn{height:16px;margin-left:10px;overflow:hidden;width:16px}
+.footer_txt{clear:both;color:#777;font-size:11px;height:auto;margin:0 auto 10px;padding-bottom:0;padding-top:10px;text-align:center;width:auto}
+.mailContentmain{background:#fff;float:left;width:100%}
+.mailContentmain h2 { background: none repeat scroll 0 0 #EEEEEE; border-left: 1px solid #E2E2E2; border-right: 1px solid #E2E2E2; border-top: 1px solid #E2E2E2; font-size: 12px; font-weight: 700; margin: 0 !important; padding: 5px 6px !important;}
+.mailPageOuter { border-left:1px solid #d3d1d1; border-right:1px solid #D3D1D1; width:90%}
+.innerTheme {background:url(images/left-box-bg2.jpg) repeat-x 0 0; padding:5px 5px 0 5px;}
+.mailPage{background:#fff; height:expression(this.scrollHeight<399?"400px":"auto");margin:0;min-height:400px; padding:6px; border:1px solid #dcdcdc; }
+#newMail{background:#fff}
+#newMail .mailBox { border:0px;}
+#newMail .mailBox .mailBoxFooter { background:none; border:none; padding:0}
+.unreadmail{font-size:12px;font-weight:700}
+.readmail{color:#000;font-size:12px;font-weight:500;overflow:hidden}
+.readmail a{color:#000;line-height:25px;text-decoration:none}
+.twopaneMailRead{background:url(images/mail-list-bg.png) no-repeat 0 0; font-size:12px;height:28px;overflow:hidden; margin-bottom:2px; padding:0 0 0 10px;}
+.twopaneMailRead .mail-list-in { background:url(images/mail-list-bg.png) no-repeat right -28px; height:28px; padding-right:10px;}
+.twopaneMailRead .mail-list-tbl { background:url(images/mail-list-bg.png) repeat-x right -56px; height:28px !important;}
+
+.mailOver{background:url(images/mail-list-bg.png) no-repeat 0 -88px; font-size:12px;height:28px;overflow:hidden; margin-bottom:2px; padding:0 0 0 10px;}
+.mailOver .mail-list-in { background:url(images/mail-list-bg.png) no-repeat right -116px; height:28px; padding-right:10px;}
+.mailOver .mail-list-tbl { background:url(images/mail-list-bg.png) repeat-x right -144px; height:28px !important;}
+
+.twopaneMailUnRead{background:url(images/mail-list-bg.png) no-repeat 0 -180px; font-size:12px;height:28px;overflow:hidden; margin-bottom:2px; padding:0 0 0 10px;}
+.twopaneMailUnRead .mail-list-in { background:url(images/mail-list-bg.png) no-repeat right -208px; height:28px; padding-right:10px;}
+.twopaneMailUnRead .mail-list-tbl { background:url(images/mail-list-bg.png) repeat-x right -236px; height:28px !important;}
+
+
+
+.mail_sub_cont{height:25px;overflow:hidden}
+.colFrom{float:left;height:25px;line-height:25px;margin-left:5px;overflow:hidden;width:20%}
+.colSubject{float:left;height:25px;line-height:25px;margin-left:5px;overflow:hidden}
+.colContent{display:block;float:left;height:25px;line-height:25px;margin-left:5px;overflow:hidden}
+.colAttach{float:right;height:25px;line-height:25px;margin-left:5px;overflow:hidden;width:5%}
+.colDate{float:right;height:25px;line-height:25px;margin-left:2px;overflow:hidden;padding-right:5px;text-align:right;width:12%}
+.fromDate { background: url("images/date-bg.png") no-repeat scroll 0 2px transparent; color: #0099CC; float: right;font-size: 11px;font-style: italic;text-align: right;width: auto;}
+.fromDate a { background: url("images/date-bg.png") no-repeat scroll right -22px transparent; color:#333 !important; padding:5px 24px 5px 4px; margin-left:3px; float:left;}
+.fromDate.noArrow .in {  background: url("images/date-bg.png") no-repeat scroll right -116px transparent; color:#333 !important; padding:5px 7px 5px 4px; margin-left:3px; float:left;}
+.fromDate.active a { background-position: right -67px}
+.fromName a { color: #0099CC;float: left; text-decoration: none;}
+.fromDate_short{color:#0e2405;float:right;font-size:11px;font-style:italic;padding:4px;text-align:right;width:100px}
+.fromDate_short a{color:#0e2405;text-decoration:none}
+.star{height:16px;margin:5px 2px;width:16px}
+.mailCheckBox{padding:3px 2px}
+.titleStar{float:left;height:16px;margin:5px 5px 5px 0;width:16px}
+.coloum50{height:auto;overflow:hidden;width:50px}
+.folderH {background: none repeat scroll 0 0 #EEEEEE;border-bottom: 1px solid #DCE1EA; margin: -5px -5px 5px; overflow: hidden; padding: 0 5px;}
+.folderLH{background:url(images/classic/lefttopCornner.png) no-repeat;float:left;height:32px;width:9px; display:none}
+.folderMH{color:#1b1e4b;display:block;font-size:14px;font-weight:700; line-height:32px;width:auto; padding:4px 0}
+.folderRH{float:right;height:32px;width:9px; display:none}
+.mailBox{height:auto; overflow:hidden;  border:1px solid #e2e2e2; border-bottom:0px;}
+.mailBoxOpened{height:auto;margin:0 auto;overflow:hidden;position:relative;width:100%}
+.mailBoxLT{background:url(images/mail-curves.png) no-repeat;float:left;height:27px;width:19px; display:none}
+.mailBoxRT{background:url(images/mail-curves.png) no-repeat 0 -37px;float:right;height:27px;width:19px; display:none}
+.mailBoxMT{float:left;height:27px;line-height:27px;margin:0;overflow:hidden;width:80%}
+.fromName{color:#315219;float:left;font-size:12px;font-weight:700;padding-right:5px}
+.mailContent{border-top:1px solid #EFEFEF;display:block;font-size:12px;margin-bottom:4px;margin-left:10px;margin-right:10px;overflow:auto;padding:10px;width:auto}
+.detailedList{color:#999;font-size:12px;height:auto;margin-bottom:4px;overflow:hidden;padding-left:10px;width:100%}
+.detailedList .floatL{clear:none!important;margin-bottom:6px}
+.blackTxt{color:#333;display:block;float:left;font-size:12px;height:auto;margin-right:7px;text-align:right;width:50px}
+.normalTxt{font-size:12px;padding:0 4px}
+.attachments{color:#39F;float:left;font-size:12px;padding:10px 2px;width:auto}
+.attachments a{color:#39F;font-size:12px;width:auto}
+.attachedImage{border:1px solid #39F;float:left;margin-bottom:10px;margin-top:3px;padding:5px}
+.attachedImage_nb{float:left;margin-bottom:10px;margin-top:3px;padding:5px 1px}
+.replyLink img{border:none;padding:2px 5px; display:none}
+.replyLink a{color:#333;text-decoration:none}
+.iframestyle{height:30px;width:430px}
+.replyWindow{background-color:#F3F1F1;border-bottom:1px solid #bebebe;border-left:1px solid #bebebe;border-right:1px solid #bebebe;border-top:1px solid #bebebe;margin-bottom:0px;padding-bottom:3px;padding-left:10px;width:auto}
+.nicedit_div{background-color:#FFF;border-bottom:1px solid #bebebe;width:905px !important}
+.nicedit_textarea{background-color:#FFF;height:317px;width:908px !important;}/*height:500px;*/
+.nicedit_div_new{background-color:#FFF; height:350px !important;}/*height:533px;*/
+.nicedit_textarea_new{background-color:#FFF;height:317px !important; width:99%}/*height:500px;*/
+.marginT10{margin-top:10px}
+h2{font-size:12px;font-weight:700;margin-top:10px;padding-left:15px}
+h4{font-size:16px;font-weight:700;margin:0;padding:0}
+.mailBoxTitle{background:url(images/mailbox-grad.jpg) repeat-x 0 -2px;height:27px;margin:0;overflow:hidden;padding:0;  border-top:1px solid #e2e2e2; border-bottom:1px solid #e2e2e2; padding:5px; margin-top:-1px;}
+.mailBoxOpened .mailBoxTitle { height:27px; background:none; border:0px;}
+.mailBoxRF{background:url(images/mail-curves.png) no-repeat 0 -115px;float:right;height:27px;width:19px; display:none;}
+.mailBoxFooter { background:#f4f3f3; border-bottom: 2px solid #DDDDDD; height: 37px; line-height: 22px; overflow: hidden; padding: 5px 5px 0;}
+.mailBoxLF{background:url(images/mail-curves.png) no-repeat 0 -75px;float:left;height:27px;width:19px; display:none;}
+.mailBoxBM{display:block;float:left;height:33px;overflow:hidden;padding:0;width:auto;}
+.mailBoxBM .replyLink{background: url("images/roundButton.png") no-repeat scroll 0 0 transparent; color: #374060; display: block; float: left; margin: 0 1px 0 0; text-decoration: none; width: auto;}
+.mailBoxBM div.replyLink:hover { background-position:0 -73px;}
+.mailBoxBM div.replyLink:hover a { background-position:right -108px;}
+.mailBoxBM .replyLink a{background: url("images/roundButton.png") no-repeat scroll right -35px transparent; float: left; font-size: 12px; height: 32px; line-height: 32px; margin-left: 7px; padding-right: 7px;}
+.mailBoxBM .replyLink a:hover { text-decoration:none}
+
+.coloum70{height:auto;overflow:hidden;padding-right:5px;padding-top:7px;text-align:left;width:70px}
+.coloum30{height:auto;overflow:hidden;padding-right:5px;padding-top:7px;text-align:right;width:30px}
+.coloum100{height:auto;overflow:hidden;padding-right:5px;width:100px}
+.coloum120{height:auto;overflow:hidden;padding-right:5px;width:120px}
+.coloum150{height:auto;overflow:hidden;padding-right:5px;width:150px}
+.coloum200{height:auto;overflow:hidden;padding-right:5px;width:200px}
+.coloum220{height:auto;overflow:hidden;padding-right:5px;width:220px}
+.coloum180{height:auto;overflow:hidden;padding-right:5px;width:180px}
+.coloum250{height:auto;overflow:hidden;padding-right:5px;width:250px}
+.coloum300{height:auto;overflow:hidden;padding-right:5px;width:300px}
+.coloum500{height:auto;overflow:hidden;padding-right:5px;width:500px}
+.boldTxt{font-family:Arial, Helvetica,sans-serif;font-size:11px;font-weight:700;padding:0}
+.member_text_box{border:1px #999 solid;margin-bottom:0;width:573px}
+.livesearchchat div{color:#093;font-family:Arial, Helvetica,sans-serif;font-size:12px;height:20px;line-height:20px;text-decoration:none}
+.livesearch{margin-top:-1px;overflow:visible;padding:0;position:absolute;width:377px;z-index:9999}
+.livesearch div{color:#444;display:block;font-family:Arial, Helvetica,sans-serif;font-size:12px;line-height:20px;padding-left:5px;text-decoration:none}
+.livesearch div:hover{background-color:#ddd;display:block;font-size:12px;text-decoration:none}
+.livesearch_span{color:#093;font-family:Arial, Helvetica,sans-serif;font-size:11px}
+.commonLink{float:left;font-size:12px;padding:0}
+.commonLink a{color:#09F;padding:0;text-decoration:none}
+.attachIcon{height:16px;margin:4px 2px 4px 4px;width:16px}
+.commonBtn,
+.sendBtn { background: url("images/roundButton.png") no-repeat scroll 0 -73px transparent; color: #374060; display: block; float: left; margin: 0 1px 0 0; outline: medium none; text-decoration: none; width: auto;}
+.commonBtn a,
+.sendBtn a { background: url("images/roundButton.png") no-repeat scroll right -108px transparent; float: left; font-size: 12px;  height: 32px; line-height: 32px;  margin-left: 7px; padding-right: 7px; font-weight:bold}
+
+div.sendBtn:hover,
+div.commonBtn:hover { background-position:0 0;}
+div.sendBtn:hover a,
+div.commonBtn:hover a { background-position:right -35px;}
+
+.mailBoxM{display:block;height:auto;margin:0;overflow:hidden;padding:0}
+.titleContent{color:#777;display:block;font-size:12px;overflow:hidden}
+.showDetailBtn{float:left;font-size:11px;padding:0 5px}
+.showDetailBtn a{color:#83a870;text-decoration:none}
+.imageDisplay{background-color:#EEE;color:#333;font-family:Arial, Helvetica, sans-serif;font-size:12px;margin:0 20px 20px;padding:5px 15px}
+.imageDisplay a{color:#36F;font-family:Arial, Helvetica, sans-serif;font-size:12px;text-decoration:underline}
+.preloader{background:#fff;border:1px solid #D4DCE4;margin:200px auto;overflow:hidden;padding:20px 0;width:200px}
+.preloaderImg{height:40px;margin:20px auto 10px;overflow:hidden;width:40px}
+.preloaderTxt{color:#2892BC;font-size:12px;height:20px;line-height:20px;text-align:center;width:200px}
+.loadingDiv{color:#333;font-family:Arial, Helvetica, sans-serif;font-size:12px;left:1%;padding:2px;position:absolute;text-align:center;width:100%}
+.loadingTxt{background-color:#FF6;font-size:12px;font-weight:700;height:20px;line-height:20px;width:100px}
+.messageTab{height:20px;overflow:hidden;width:auto}
+.messageTabL{background:url(images/yellow-curves.png) no-repeat 0 -6px;float:left;height:20px;width:8px}
+.messageTabR{background:url(images/yellow-curves.png) no-repeat 0 -35px;float:left;height:20px;width:8px}
+.messageTabM{background:url(images/yellow-curves.png) repeat-x 0 -68px;display:block;float:left;font-size:11px;font-weight:700;height:20px;line-height:17px;padding-bottom:2px;padding-left:10px;padding-right:10px;width:auto}
+.messageTabM a{color:#000;text-decoration:none}
+.paging{color:#333;float:right;font-size:12px;line-height:28px;padding:2px 5px}
+.pageingDiv{ font-size:12px;height:28px;line-height:30px;overflow:hidden;text-align:left; float:right !important;}
+.paging a{color:#333;line-height:28px;text-decoration:underline}
+.moreDiv ul{float:left;list-style:none;margin:0;padding:0;position:relative;width:150px}
+.moreDiv li{cursor:pointer;display:inline;font-size:12px;font-weight:700;margin:0;text-align:center}
+.buttons{height:21px;list-style:none;padding:0;width:170px; background:#eee; border-bottom:1px solid #ccc; border-top:1px solid #909090;}
+.buttons li{float:left;height:26px;margin-top:5px;overflow:hidden;padding-left:5px;width:25px}
+.addBtn a{text-decoration:none}
+.delBtn a{text-decoration:none}
+.addBtn.left { float:right; margin:3px 6px 0 0}
+.delBtn.left { float:right; margin:3px 6px 0 0}
+.mail_subheader{height:auto}
+#mailLeft .sddm { border-bottom:1px solid #dedadb; overflow:hidden; float:none; padding:10px 0px 4px 10px; margin-bottom:-1px; }
+#mailLeft .sddm  a { margin:0 1px 5px 0}
+.sddm{float:left;margin:0;padding:5px 0;z-index:30}
+.sddm li{float:left;font:bold 11px arial;list-style:none;margin:0;padding:0; z-index:10!important}
+.sddm a{background:url(images/roundButton.png) no-repeat 0 0; color:#374060; display:block;margin:0 1px 0 0;0 text-align:center;text-decoration:none;width:auto; float:left; outline:none}
+.sddm a:hover { background-position:0 -73px;}
+.sddm a:hover span { background-position:right -108px;}
+.sddm a span { background: url("images/roundButton.png") no-repeat scroll right -35px transparent; float: left; font-size: 12px; height: 32px; line-height: 32px;  margin-left: 7px; padding-right: 7px;}
+#sddm .roundDropdown{ background:url(images/round-dropDown.png) no-repeat 0 0; margin:0;padding:0;position:absolute; left:0; top:28px; z-index:1000}
+#sddm .roundDropdown .in { background:url(images/round-dropDown.png) no-repeat right bottom; display:block;  margin-top:7px; padding-bottom:1px; width:104px; float:left}
+#sddm div a{ background:none; color:#374060;display:block;font:11px arial;margin:0;padding:5px 10px;position:relative;text-align:left;text-decoration:none;white-space:nowrap;width:90px}
+#sddm div a:hover{color:#000}
+.contactListTable{margin:0;padding:0}
+#noContactDiv{font-size:12px;padding:10px}
+.divide_contacts{border-right:8px solid #eee}
+.contactListTD a{color:#000;font-size:12px;height:30px;line-height:30px;text-decoration:none}
+.contactListTD a:hover{color:#ccc;font-size:12px;text-decoration:none}
+.conatctsrightTD{background-color:#F7F7F7;border-left:1px solid #bebebe;padding-left:40px}
+.shortContactDiv{background-color:#FFF;margin:0;padding:0}
+.shortContactDivSelected{background-color:#F7F7F7;height:30px;margin:0;padding:0}
+.shortContactDivUnSelected{background-color:#FFF;height:30px;width:100%}
+.newContact{ padding-top:10px}
+.newContact td{padding-top:10px}
+.mandatory{color:red;font-size:11px;font-weight:700}
+.settings_left_table{background-color:#EAEAEA;border-left-color:#666;border-left-style:solid;border-left-width:1px;color:#009;font-family:Arial, Helvetica,sans-serif;font-size:12px;width:100%}
+.settings_left_td_selected{background-color:#FFF;height:40px;padding-left:20px;textdecoration:none}
+.settings_left_td_unselected{height:40px;padding-left:20px}
+.settings_details_table{color:#000;font-family:Arial, Helvetica,sans-serif;font-size:12px;padding-left:50px;padding-top:20px;width:90%}
+.antisapm_details_table{color:#000;font-family:Arial, Helvetica,sans-serif;font-size:12px;padding-left:60px;padding-top:20px;width:90%}
+.mailoptions_details_table{color:#000;font-family:Arial, Helvetica,sans-serif;font-size:12px;padding-left:50px;padding-top:20px;width:60%}
+.fullwidth{width:100%}
+.emailfilter_detail_table{color:#000;font-size:12px;padding-left:0;width:90%}
+.filterdetail_tr{background-color:#EAF4FF;color:#000;font-weight:700;height:30px;line-height:30px;margin-top:30px;overflow:hidden;padding:0;width:100%}
+.filterdetail_tr td{border-bottom:1px solid #b7b5b3;border-top:1px solid #b7b5b3}
+.bottom_td{border:1px solid #b7b5b3;border-top:none;font-size:12px;height:auto;overflow:hidden;padding-bottom:5px;padding-top:5px;width:auto}
+.paddinng_bottom_td{border-bottom:1px solid #b7b5b3;color:#000;font-family:Arial, Helvetica,sans-serif;font-size:12px;padding-bottom:8px}
+.filter_padding_td{padding:0}
+.filter_bottom_left_td{border-bottom:1px solid #b7b5b3;border-left:1px solid #b7b5b3;padding-bottom:5px;padding-left:8px;padding-top:5px}
+.filter_bottom_right_td a{color:#39F}
+.fliterList{line-height:20px}
+.cursor_select{cursor:pointer;padding:0}
+.addfilter_table{padding-right:60px;width:68%}
+.padding_td2{margin:0;padding:0}
+.filter_newrule_table{color:#000;font-family:Arial, Helvetica,sans-serif;font-size:12px;padding-left:60px;padding-top:10px;width:63%}
+.normal_font_style{color:#000;font-size:12px;margin:0;padding:0}
+.body_background{background-color:#fff;background-image:url(images/header.png);background-repeat:repeat-x}
+.index_logo_table{height:120px;width:70%}
+.index_leftside_table{background-color:#f3f3f3;border:solid thin #DAE1DE;height:250px;padding:5px 20px 5px 10px;width:70%}
+.index_rightside_table{background-color:#f3f3f3;border:0;border-left:thin solid #DAE1DE;font-family:verdana,geneva,arial,helvetica,sans-serif;font-size:12px;height:250px;padding:5px 20px;width:100%}
+.index_leftside_img_style{border:0;padding-left:10px;width:64px}
+.index_padding_td{padding-left:8px}
+.textbox_border_style{border-color:#9CF;border-style:solid;border-width:thin}
+.language_icon_style{border:0;height:16px;width:10px}
+.buttonstyle{cursor:pointer;height:25px;width:80px}
+.registration_logo_table{height:120px;width:765px}
+.signup_table{background-color:#f3f3f3;border:1px;border-color:#DAE1DE;border-style:solid;color:#000;font-family:Arial, Helvetica,sans-serif;font-size:12px;padding-left:15px;width:970px; margin-top:10px;}
+.messagedisplay{background-color:#CCC;color:green;height:25px;padding-left:20px;padding-top:8px}
+.successdisplay{color:green;height:25px}
+.errordisplay{color:red;font-size:12px}
+.messageerrdisplay{color:red;font-size:12px;padding-left:20px;padding-top:8px}
+.black_overlay{-moz-opacity:0.6;_position:fixed;background-color:#FFF;display:block;filter:alpha(opacity=60);height:28px;left:43px;opacity:.60;position:fixed;top:513px;width:28px;z-index:1001}
+.forgotpasswordtitle{font-family:Arial, Helvetica, sans-serif;font-size:20px;font-weight:700;padding-left:12px}
+.copyright{color:#999;font-family:Arial, Helvetica,sans-serif;font-size:10px}
+a.signuplink{color:#104E8B;font-family:Arial, Helvetica,sans-serif;font-size:12px;font-weight:700;text-decoration:none}
+a.signuplink:hover{color:red;font-family:Arial, Helvetica,sans-serif;font-size:12px;font-weight:700;text-decoration:none}
+.indextitle{font-family:Arial, Helvetica, sans-serif;font-size:20px;font-weight:700;padding-left:10px}
+.indexsubtitle{color:#336565;font-family:Arial, Helvetica,sans-serif;font-size:15px;font-weight:700;padding-left:10px}
+.indexnote{color:#333;font-family:Arial, Helvetica,sans-serif;font-size:11px}
+.homepagelink{color:#666;font-family:Arial, Helvetica,sans-serif;font-size:11px}
+.signuptitle{color:teal;font-family:Arial, Helvetica,sans-serif;font-size:12px;font-weight:700}
+.container{display:block}
+.content{background:#eee}
+.round_span3{background:#ee;display:block;height:1px;line-height:1px;margin:0 3px;overflow:hidden}
+.round_span2{background:#eee;display:block;height:1px;line-height:1px;margin:0 2px;overflow:hidden}
+.round_span1{background:#eee;display:block;height:1px;line-height:1px;margin:0 1px;overflow:hidden}
+.top_ads_title{color:#000;font-family:Arial, Helvetica,sans-serif;font-size:13px;font-style:italic;font-weight:100}
+.top_ads_desc{color:#333;font-family:Arial, Helvetica,sans-serif;font-size:12px;font-style:italic;font-weight:400; text-align:right}
+.top_ads_url{color:#F2F2F2;font-family:Arial, Helvetica,sans-serif;font-size:11px;text-decoration:underline}
+.ads_td{padding:4px}
+.ads_span{display:block;float:right;padding-left:10px}
+.ads_span span,.ads_span a{color:#000!important}
+.right_ads_title{color:#000;font-family:Arial, Helvetica,sans-serif;font-size:13px;font-weight:700}
+.right_ads_title a{color:#39F;font-family:Arial, Helvetica,sans-serif;font-size:11px;text-decoration:underline}
+.right_ads_desc{color:#000;font-family:Arial, Helvetica,sans-serif;font-size:11px}
+.right_ads_url{color:green;font-family:Arial, Helvetica,sans-serif;font-size:11px;text-decoration:none}
+.rightads_table{padding:5px;width:193px}
+.shortmail{padding-left:0;padding-right:0}
+.detailmail{margin-left:0;margin-right:0;padding-left:0;padding-right:0}
+.warningTxt{background:url(images/spam.png) left center no-repeat;font-size:12px;font-weight:700;height:20px;line-height:18px; padding:5px 5px 5px 25px;width:auto}
+.smileyOver{border:0}
+.chatmainbox{font-family:Arial, Helvetica,sans-serif;margin-left:0;margin-top:6px;padding-right:8px;padding-top:6px;width:150px}
+.chatmainbox iframe a{color:#fff!important}
+.livesrch{border:1px;border-color:#333;border-style:solid;color:#000;float:left;font-size:11px;line-height:18px;margin-top:4px;padding-left:1px;width:146px}
+.searchbox{border:1px;border-color:#eee;border-style:solid;color:#777;float:left;font-size:11px;line-height:18px;margin-top:4px;padding-left:1px;width:146px}
+.custommsgbox{border:1px;border-color:#E0E0E0;border-style:solid;font-size:3mm;height:22px;padding:2px;width:140px}
+.overdiv{background-color:#FFF;border:solid thin #DAE1DE;border-color:#666;border-style:solid;font-family:Arial, Helvetica,sans-serif;font-size:4mm;font-style:normal;margin-left:157px;margin-top:0;overflow:hidden;position:absolute;width:280px;z-index:9999}
+#minus font{color:#000}
+.ss{height:30px;padding:2px}
+.ss1{height:30px;padding:2px}
+#kann{color:#666}
+.upstatus{background-color:#FFF;border:solid thin #DAE1DE;float:left;font-size:4mm;margin-left:0;vertical-align:top;width:150px;z-index:1}
+.textboxdiv{width:250px;z-index:9999}
+.option_bar{background:#fff;border:solid thin #DAE1DE;font-size:11px;height:108px;margin-top:-120px;position:absolute;width:100px;z-index:1}
+.message2{color:#4E0C02;font-size:12px;text-decoration:none}
+.maininvitationdiv{margin:10px}
+.chatdiv{background-color:#A9D0F5;color:#000;height:25px;line-height:25px;padding:5px}
+.total{background-color:#000}
+.listdiv{border:none;border-collapse:collapse;font-family:Arial, Helvetica,sans-serif;font-size:3mm;font-style:normal;padding:0}
+.listdiv a{color:#000 !important;font-size:12px;font-weight:100;text-decoration:none}
+.listdiv a:hover{color:#000;font-size:12px;font-weight:100;text-decoration:none}
+.submain2{background-color:#FEF0C9;height:100px;width:150px;z-index:1}
+.overdivref{color:#000!important;font-size:3mm;font-weight:100;text-align:center;text-decoration:underline}
+a.overdivref:hover{font-size:12px;font-weight:100;text-decoration:none}
+.custom_status{color:#777}
+a.options:hover{color:#2892BC;text-decoration:none}
+.chatboxhead{background-color:#A7B7E7;border-left:1px solid #A7B7E7;border-right:1px solid #A7B7E7;border-top:1px solid #A7B7E7;color:#fff;padding:7px;width:209px}
+.chatboxalert{background-color:#f99d39;border-left:1px solid #006fb2;border-right:1px solid #006fb2;border-top:1px solid #006fb2;color:#fff;padding:7px;width:209px}
+.chatboxblink{background-color:#176689;border-left:1px solid #176689;border-right:1px solid #176689}
+.chatboxcontent{background-color:#fff;border-bottom:0 solid #A7B7E7;border-left:1px solid #A7B7E7;border-right:1px solid #A7B7E7;color:#000;font-family:Arial, Helvetica,sans-serif;font-size:13px;height:expression(this.scrollHeight>159?"160px":"auto");line-height:1.5em;max-height:160px;overflow-x:auto;overflow-y:auto;padding:7px;text-align:left;width:209px;word-wrap:break-word}
+.chatboxcontent1{background-color:#fff;border-left:1px solid #A7B7E7;border-right:1px solid #A7B7E7;color:#000;font-family:Arial, Helvetica,sans-serif;font-size:13px;line-height:1.5em;max-height:200px;overflow-x:auto;overflow-y:auto;padding:7px;text-align:left;width:209px}
+.chatboxinput{background-color:#fff;border-bottom:1px solid #A7B7E7;border-left:1px solid #A7B7E7;border-right:1px solid #A7B7E7;height:auto;overflow:hidden;padding:7px;width:209px}
+.chatboxtextarea{border:2px solid #eee;margin:1px;width:209px}
+.chatboxtextareaselected{border:2px solid #A7B7E7;margin:1px;width:209px}
+.chatboxmessage{margin-left:1em}
+.chatboxinfo{color:#666;margin-left:-1em}
+.chatboxmessagefrom{font-weight:700;margin-left:-1em}
+.chatboxoptions a{color:#FFF;font-family:Verdana,Arial,"Bitstream Vera Sans",sans-serif;text-decoration:none}
+.chatboxtitle{float:left;font-family:Arial, Helvetica,sans-serif;font-size:13px;font-weight:700}
+.maindiv{float:right;padding:5px}
+.aclass{color:#FFF;text-decoration:none}
+.invitechat{color:#6db7eb;font-size:13px;text-align:center;text-decoration:none}
+.invitechattextbox{font-size:13px;text-align:left}
+a.invitechat:hover{color:#2892BC;text-decoration:underline}
+.statusmsg{background-color:#fff;color:#B40404;font-family:Arial, Helvetica,sans-serif;font-size:10px;height:50px;line-height:1.3em;overflow-x:auto;overflow-y:auto;text-align:left;width:209px}
+.typestatus{background-color:#fff;color:#BDBDBD;font-family:Arial, Helvetica,sans-serif;font-size:10px;height:15px;line-height:1.3em;overflow-x:auto;overflow-y:auto;text-align:left;width:209px}
+.connectionerror{background-color:#FAAC58;color:#000;font-family:Arial, Helvetica,sans-serif;font-size:11px;padding-left:5px}
+.notes{color:#ADADAD}
+.chattitleTime{color:#999;float:left;font-size:12px;width:auto}
+.chatContent{color:#000;font-family:Arial, Helvetica,sans-serif;font-size:12px}
+.colSubjectChat{float:left;height:25px;line-height:25px;margin-left:5px;width:30%}
+.colDateChat{float:right;height:25px;line-height:25px;margin-left:5px;overflow:hidden;padding-right:10px;text-align:right;width:10%}
+#submain1 div{padding-bottom:5px!important}
+.overdivbg{background-color:#A9D0F5}
+.vertmenu ul{border:none;list-style:none;margin:0;padding:0;width:170px}
+.attachwrap{float:left;margin-left:74px}
+.attachBox{clear:both;display:table}
+.attachLink{float:left;margin:8px 0 8px 73px}
+.attachLink a{color:#000;font-size:11px;font-weight:700;text-decoration:none}
+.row{clear:both;height:auto;overflow:hidden;width:auto}
+.searchD {border: 1px solid #CCCCCC;font-size: 11px; font-style: italic; height: 23px; line-height: 20px; margin: 9px 0 0 12px; overflow: hidden; padding: 0;   vertical-align: middle; width: 322px;}
+.info_title{color:#666;font-size:14px;font-weight:700}
+.settingsDiv{background-color:#FFF}
+.settingsPage,.contactPage{background:#fff; height:expression(this.scrollHeight<399?"400px":"auto");margin:0;min-height:400px; padding:6px; border:1px solid #dcdcdc;}
+.contactwrapeer{background-color:#fff}
+.contactListTD{margin:0;padding:0;width:370px}
+#passwordDescription{margin-top:4px}
+.passwordstrength_details{font-size:11px;margin-bottom:4px}
+#themeDiv{background:#fff;border:1px solid;padding:3px 0 3px 3px;position:absolute;right:-70px;z-index:1001;top:23px;}
+#themeDiv img{border:0;margin-right:3px}
+.buynow{left:28%;position:fixed;top:0;width:500px;z-index:2000}
+.buynow img{border:1px solid red;width:320px}
+#page,.minmax{float:left;width:100%}
+.left,.testclass,.floatL,#cc_bcc_0{float:left}
+.usermail a:hover,.replyLink a:hover,.commonLink a:hover,.showDetailBtn a:hover{text-decoration:underline}
+.floatR,.chatboxoptions{float:right}
+.searchSelect option,.attachIcom img{border:none}
+.SelectContact option,.attachIcom img{border:none}
+
+.footer_txt a,.readContent a,.unreadContent a,.titleContent a{color:#777;text-decoration:none}
+.unreadmail a,.sendBtn a,.commonBtn a{color:#374060;text-decoration:none}
+.readContent,.unreadContent{color:#777;font-size:12px}
+.fromDate a,.fromName a{color:#09C;text-decoration:none}
+.addBtn a:hover,.delBtn a:hover,.upstatus a{text-decoration:none}
+.filter_bottom_right_td,.movedfolder{border-bottom:1px solid #b7b5b3;border-right:1px solid #b7b5b3;padding-bottom:5px;padding-left:8px;padding-top:5px}
+.options,.options1,a.options1:hover{color:#2892BC;font-size:11px;text-align:center;text-decoration:underline}
+.options2,a.options2:hover{color:#000;font-size:11px;text-align:center;text-decoration:underline}
+.titleContent-Link { color:#4a5168; font-size:12px; font-family:Arial, Helvetica, sans-serif; text-decoration:none;}
+.mailBoxOpened .mailBoxTitle { overflow:visible}
+#mailactionsdrop { cursor:pointer; margin-left:2px; position:relative;}
+
+#mailactionsdrop .popup { position:absolute; top:22px; right:0px; display:none;}
+span#mailactionsdrop:hover .popup { display:block}
+span#mailactionsdrop:hover .popup .fromDate.noArrow .in { width:50px;}
+span.fromDate#mailactionsdrop:hover { background-position:0 -140px}
+span.fromDate#mailactionsdrop:hover .in { background-position:right -161px}
+span#mailactionsdrop.fromDate .popup a.fromDate { background-position: 0 -140px; margin-left: 0; padding: 0 0 0 0;}
+span.fromDate#mailactionsdrop .popup a.fromDate:hover { background-position:0 -186px}
+span.fromDate#mailactionsdrop .popup a.fromDate:hover .in { background-position:right -207px}
+
+
+#messages { margin:13px 0 10px !important; padding:0 !important}
+
+.darken { position:fixed; left:0; top:0; width:100%; height:100%; z-index:10001; background:url(images/dark.png); display:none}
+.themeSelWrap {  margin: 50px auto; left: 0; position: absolute;   right: 0; z-index: 10002; width:596px; display:none}
+.themeSelWrap .themeSelHead { background:url(images/dark-gradiant.jpg) repeat-x 0 0; color:#ccc; height:30px; line-height:30px; padding:0 5px; display:block; overflow:hidden;}
+.themeSelWrap .themeSelHead .left { font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;}
+.themeSelWrap .themeSelHead .close { background:url(images/close-button.jpg) no-repeat 0 0; width:22px; height:22px; float:right; margin-top:4px; cursor:pointer}
+.themeSelWrap .themeSelHead div.close:hover { background-position:0 -25px;}
+.themeSelBox { background: none repeat scroll 0 0 #FFFFFF; height: 376px;  overflow-y: auto; padding: 5px 0 5px 5px;  width: 589px;  border:1px solid #000}
+
+.themeSelBox a.thumb .shade { background:url(images/thumbshade.png) no-repeat 0 -93px; width:93px; height:93px; float:left;}
+.themeSelBox a.thumb:hover .shade { display:none;}
+.themeSelBox a.thumb { width:93px; height:93px; float:left; background:url(images/themesThumb.jpg) no-repeat 0 0; margin:1px; position:relative;}
+.themeSelBox a.thumb.hny		{ background-position:-94px 0} 
+.themeSelBox a.thumb.frst		{ background-position:-188px 0}
+.themeSelBox a.thumb.spdr		{ background-position:-282px 0} 
+.themeSelBox a.thumb.snd		{ background-position:-376px 0} 
+
+.themeSelBox a.thumb.fd			{ background-position:0 -94px} 
+.themeSelBox a.thumb.bFly		{ background-position:-94px -94px} 
+.themeSelBox a.thumb.sct		{ background-position:-188px -94px} 
+.themeSelBox a.thumb.dce		{ background-position:-282px -94px} 
+.themeSelBox a.thumb.toy		{ background-position:-376px -94px} 
+
+.themeSelBox a.thumb.schl		{ background-position:0 -188px} 
+.themeSelBox a.thumb.pln		{ background-position:-94px -188px}  
+.themeSelBox a.thumb.org		{ background-position:-188px -188px} 
+.themeSelBox a.thumb.pupy		{ background-position:-282px -188px}  		
+.themeSelBox a.thumb.car		{ background-position:-376px -188px} 	
+.themeSelBox a.thumb.dft		{ background-position:-188px -376px} 
+
+ 
+.themeSelBox a.thumb.elpnt		{ background-position:0 -282px} 
+.themeSelBox a.thumb.dceGrn		{ background-position:-94px -282px} 
+.themeSelBox a.thumb.gold		{ background-position:-188px -282px} 
+.themeSelBox a.thumb.cartoon	{ background-position:-282px -282px}
+.themeSelBox a.thumb.night		{ background-position:-376px -282px}
+
+.themeSelBox a.thumb.viln		{ background-position:0 -376px}
+.themeSelBox a.thumb.knn		{ background-position:-94px -376px}
+
+
+.themeSelBox a.thumb.plnclr .shade { background-position:0 -93px}
+.themeSelBox a.thumb.plnclr{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 0;}
+.themeSelBox a.thumb.plnclr.a{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 0;}
+.themeSelBox a.thumb.plnclr.b{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -137px;}
+.themeSelBox a.thumb.plnclr.c{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -273px;}
+.themeSelBox a.thumb.plnclr.d{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -408px;}
+.themeSelBox a.thumb.plnclr.e{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -544px;}
+.themeSelBox a.thumb.plnclr.f{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -681px;}
+.themeSelBox a.thumb.plnclr.g{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -818px;}
+.themeSelBox a.thumb.plnclr.h{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -955px;}
+.themeSelBox a.thumb.plnclr.i{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -1092px;}
+.themeSelBox a.thumb.plnclr.j{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -1229px;}
+.themeSelBox a.thumb.plnclr.k{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -1366px;}
+.themeSelBox a.thumb.plnclr.l{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -1503px;}
+.themeSelBox a.thumb.plnclr.m{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -1632px;}
+.themeSelBox a.thumb.plnclr.n{ background:url(images/themeDemo-repeat.jpg) repeat-x 0 -1769px;}
+
+.fxdLeft { width:500px; height:165px; position:fixed; top:0; left:0; background:url(images/loginPageBG.png) 0 0}
+.fxdright { width:500px; height:165px; position:fixed; top:0; right:0; background:url(images/loginPageBG.png) right 0}
+.fxdbtLeft { width:500px; height:165px; position:fixed; bottom:0; left:0; background:url(images/loginPageBG.png) 0 bottom}
+.fxdbtright { width:500px; height:165px; position:fixed; bottom:0; right:0; background:url(images/loginPageBG.png) right bottom}
+.mainTop { position:relative; z-index:1000}
+.signup_table select { height:25px; border:1px solid #ccc;}
+.logininputBtn { background: url("images/loginButton.png") no-repeat scroll 0 0 transparent;  float: right;  margin: 5px 0 0; color:#fff; text-decoration:none;}
+.logininputBtn .link {background: url("images/loginButton.png") no-repeat scroll right -30px transparent; border: 0 none; color: #FFFFFF; cursor: pointer; height: 30px; line-height: 30px;  margin-left: 5px; padding: 0 9px 0 4px;}
+a.logininputBtn:hover { background-position:0 -70px}
+a.logininputBtn:hover .link  { background-position:right -100px;}
+.allready { float: right; font-family: Arial,Helvetica,sans-serif; font-size: 14px; height: 37px; line-height: 37px; margin-right: -4px; margin-top: 27px;}
+.loginHeader { background:#1f2834; height:86px; width:100%; float:left; border-bottom:5px solid #354353}
+.loginheaderWrapper { height:81px; width:982px; margin:0 auto; background:url(images/loginpageGraphics.png) no-repeat center 0}
+.loginheaderWrapper .right { float:right}
+.loginheaderWrapper .right .left {   color: #FFFFFF; font-size: 15px; margin: 34px 10px 0 0; float:right}
+.loginheaderWrapper .righ .darkSignup { float:right}
+.loginheaderWrapper .left { float:left; margin:14px 0 0 0}
+.darkSignup { background:url(images/longDarkButton.png) no-repeat 0 0; float:right; margin:21px 0 0 0; text-decoration:none; outline:none}
+.darkSignup:active { background-position:0 -56px;}
+.darkSignup:hover { background-position:0 -205px;}
+.darkSignup:active .link { background-position:right -163px}
+.darkSignup:hover .link { background-position:right -247px}
+.darkSignup .link { background: url("images/longDarkButton.png") no-repeat scroll right -107px transparent; color: #B8C0C9; display: block; font-size: 15px; height: 32px;  margin: 0 0 0 8px; padding: 10px 10px 0 3px;}
+.clear { clear:both}
+.main_engines, .main_engines li { display:inline; margin:2pt; padding: 0pt;font-size:12px;}
+.morediv{ margin-top:0px; z-index:10; width:85px;  border-bottom:1px solid #C9DFF7;
+border-left:1px solid #C9DFF7; border-right:1px solid #C9DFF7;
+ background:#FFFFFF;color:red;}
+.morediv a{ display:block; padding:4px 10px;text-decoration:none;text-transform:capitalize;}
+.moresection{border:none;padding-top:4px;color:#0000CF;}
+.morediv a:hover {color:#FFFFFF;background-color:#00688B;text-decoration:none;}
+.inactivetablink{color:#1874CD;}
+.loginRight #username,
+.loginRight #password {  background: url("images/login-textBox.png") no-repeat scroll 0 0 transparent; border: 0 none; height: 41px; width: 296px; padding:0 10px; margin:7px 0; *padding:10px 10px 0 10px; *height:31px; overflow:hidden; float:left}
+.loginRight input#username:hover,
+.loginRight input#password:hover { background-position:0 -41px;}
+.webmailWrap { width:979px; margin:15px auto; position:relative; z-index:1000;}
+.LoginleftBox {  background: url("images/loginContent.png") no-repeat scroll 0 0 transparent; float: left; height: 442px; width: 551px;}
+.LoginleftBox .leftside { float: left; margin: 15px 0 0 14px; width: 277px;}
+.LoginleftBox .rightSide { float:left; margin:14px 0 0 18px}
+.LoginleftBox .leftside .column { background: url("images/singleLine.png") repeat-x scroll 0 0 transparent; float: left; margin: 10px; width: 256px;}
+
+.LoginleftBox .bx-prev { position:absolute; left:-19px; top:80px; background:url(images/loginSlideControls.png) no-repeat 0 -33px; width:7px; height:32px; text-indent:-9999px; outline:none}
+.LoginleftBox .bx-prev:hover { background-position:0 0}
+.LoginleftBox .bx-next { position:absolute;  top:80px; right:-19px; background:url(images/loginSlideControls.png) no-repeat right -33px; width:7px; height:32px; text-indent:-9999px; outline:none}
+.LoginleftBox .bx-next:hover { background-position:right 0}
+.LoginleftBox .indextitle { color:#FF6600;  margin-left: 7px;}
+.loginRight { background: url("images/loginRightbox.png") no-repeat scroll 0 0 transparent; float: right; height: 404px; padding: 44px 0 0 50px; width: 367px;}
+.fxdLeft { width:500px; height:165px; position:fixed; top:0; left:0; background:url(images/loginPageBG.png) 0 0}
+.fxdright { width:500px; height:165px; position:fixed; top:0; right:0; background:url(images/loginPageBG.png) right 0}
+.fxdbtLeft { width:500px; height:165px; position:fixed; bottom:0; left:0; background:url(images/loginPageBG.png) 0 bottom}
+.fxdbtright { width:500px; height:165px; position:fixed; bottom:0; right:0; background:url(images/loginPageBG.png) right bottom}
+.signuplink,
+.logininputBtn { float:right; background:url(images/loginButton.png) no-repeat 0 0; margin:5px 0 0 0; text-decoration: none;}
+.signuplink .link,
+.logininputBtn input { background: url("images/loginButton.png") no-repeat scroll right -30px transparent; border: 0 none; color: #1f2834; cursor: pointer; float: left; height: 30px; margin-left: 5px; padding:0 4px 0 0}
+.allwraping .logininputBtn input { color:#fff}
+div.logininputBtn:hover { background-position:0 -70px;}
+div.logininputBtn:hover input { background-position:right -100px;}
+.signuplink { background-position:0 -130px}
+.signuplink:hover { background-position:0 -200px}
+.signuplink:hover .link { background-position:right -230px;}
+.signuplink .link { background-position: right -160px; line-height: 28px; padding-right: 5px;}
+.homepagelink { float:left; color:#252525; font-size:12px; text-decoration:none; margin:10px 0 0; }
+.main_engines .homepagelink { background:url(images/lang-dropdown-bg.png) no-repeat 0 0; padding: 6px 27px 6px 5px; width: 73px; font-family:Arial, Helvetica, sans-serif} 
+.main_engines, .main_engines li { margin:0 0 5px 0; position:relative; float:left}
+.homepagelink:hover { text-decoration:underline}
+.selectLanguage { float:right;}
+.loginBoxttl { float:left; font-size:28px; color:#252525}
+.allwrapingtop { float:left; width:316px}
+.allwraping { float:left; width:316px}
+.messageerrdisplay { float:left; padding:10px 0;font-weight: bold;font-size: 13px;}
+.loginRoundBox { background:url(images/loginRoundBox.png) no-repeat 0 0; float:right; margin-top:35px;}
+.loginRoundBox .in {background: url("images/loginRoundBox.png") no-repeat scroll right -61px transparent; color: #FFFFFF; float: left; font-weight: bold; height: 46px; margin-left: 6px; padding: 10px 10px 5px 0;}
+.loginRoundBox .left { float:left; margin:12px 12px 0 6px}
+.indextitle { font-size:16px !important; padding:10px 0 0 0; display:block; color:#336565; font-weight: bold;}
+.indexsubtitle { display:block; padding:10px 0px 5px 0px; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#336565; font-weight:bold}
+.indexnote { color: #333333; font-family: Arial,Verdana,Helvetica,sans-serif;font-size: 12px;}
+.mobDisply { float:left; width:579px; height:218px; border-bottom:1px solid #a8c0d8;}
+.mobDisply h2 { color: #ff4e1e; float: left; font-size: 20px; margin: 27px 0 18px;  padding: 0; width: 323px;}
+.mobDisply span { float:left; clear:both; width:323px; font-size:12px;}
+.main_engines .roundDropdown{ background:url(images/round-dropDown.png) no-repeat 0 0; margin:0;padding:0;position:absolute; left:0; top:40px; z-index:1000}
+.main_engines .roundDropdown .in { background:url(images/round-dropDown.png) no-repeat right bottom; display:block;  margin-top:7px; padding-bottom:1px; width:104px; float:left}
+.main_engines div a{ background:none; color:#374060;display:block;font:11px arial;margin:0;padding:5px 10px;position:relative;text-align:left;text-decoration:none;white-space:nowrap;width:90px}
+.main_engines div a:hover{color:#000}
+.copyright { display:block; padding:10px 0;color: #999999;font-family: Verdana,Arial,Helvetica,sans-serif;font-size: 10px;}
+
+.signUpBox { float:left; margin:80px 0 0 -40px;}
+.signUpBox h2 { color:#ff4e1e; font-size:17px;  padding:0}
+.blueButton { background:url(images/blueButton.png) no-repeat 0 0; float:left; text-decoration:none; outline:none}
+.blueButton:hover { background-position:0 -83px;}
+.blueButton:hover .link{ background-position:right -126px; }
+.blueButton .link { background: url("images/blueButton.png") no-repeat scroll right -43px transparent; color: #FFFFFF; float: left; font-size: 15px; font-weight: bold; height: 30px;  margin-left: 5px; padding: 10px 10px 0 5px; cursor:pointer}
+.clickHere { color: #0BA8FF;  float: left; font-size: 15px; font-weight: bold; margin:10px 10px 0 6px}
